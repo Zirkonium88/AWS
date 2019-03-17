@@ -12,5 +12,5 @@ This repository will provide some demo examples from my daily AWS workloads. It 
 
 ## Deploying an AWS Lambda on AWS via Serverless
 
-* You do not how a deployment to AWS Lambda could work? The example on [Serverless](Lambda/ServerlessDemo/README.ME) will show how.
-* Do you need a example for simple Lambda processing pipeline? In the tutorial for connecting [Amazon S3 and DynamoDB via AWS Lambda](Lambda/GetIamgenames/README.ME), you will get your example. 
+* You do not how a deployment to AWS Lambda could work? The example on [Serverless](https://github.com/Zirkonium88/AWS/tree/master/Lambda/ServerlessDemo/README.MD) will show how.
+* Do you need a example for simple Lambda processing pipeline? In the tutorial for connecting [Amazon S3 and DynamoDB via AWS Lambda](https://github.com/Zirkonium88/AWS/tree/master/Lambda/GetImagenames/README.MD), you will get your example. 
