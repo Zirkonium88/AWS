@@ -4,47 +4,55 @@ This demos shows how to build a[ Docker container](https://www.docker.com/resour
 
 1. First, [(install and) activate Docker](https://runnable.com/docker/getting-started/).
 
-2. Build the [Docker container](https://github.com/Zirkonium88/AWS/blob/master/Docker/Dockerfile): 
+2. Generate the `Dockerfile`.
+
+    ```bash
+    touch Dockerfile
+    ```
+
+    Edit the file, e.g. with `nano Dockerfile`. An example can be found [here](https://github.com/Zirkonium88/AWS/blob/master/Docker/Dockerfile).
+
+3. Build and tag the Docker container: 
 
     ```bash 
     docker build -t hello-world .
     ```
 
-3. Test your container on localhost: 
+4. Test your container on localhost: 
 
     ```bash 
     docker run -p 80:80 hello-world
     ```
 
-4. Stop your running container:
+5. Stop your running container:
     * `docker ps` to retrieve the contaibner-ID 
     * `docker stop container-ID`
 
-5. Create a AWS ECR repository via the [CLI](https://aws.amazon.com/cli/?nc1=h_ls): 
+6. Create a AWS ECR repository via the [CLI](https://aws.amazon.com/cli/?nc1=h_ls): 
 
     ```bash
     aws ecr create-repository --repository-name hello-repository  --region eu-west-1
     ``` 
     Change `repository-name` and `region` accordingly.
 
-6. Copy `uri` to your clipboard.
+7. Copy `uri` to your clipboard.
 
-7. Tag the Docker container for your respository: 
+8. Tag the Docker container for your respository: 
     ``` bash
     docker tag hello-world XXX.dkr.ecr.eu-west-1.amazonaws.com/hello-repository # XXX = your account-ID
     ``` 
     Change the `uri` accordingly.
 
-8. Get temporary credentials for your repository via the CLI: 
+9. Get temporary credentials for your repository via the CLI: 
     ```bash 
     aws ecr get-login --no-include-email --region eu-west-1
     ``` 
     Copy the output to your clipboard.
 
-9. Push the Docker container to your repository:
+10. Push the Docker container to your repository:
     ```bash
     docker push XXX.dkr.ecr.eu-west-1.amazonaws.com/hello-repository # XXX = your account-ID
     ```
-10. Go the ECS service. Click on `Get started` and choose `Costum container`. Set the port settings to 80.
+11. Go the ECS service. Click on `Get started` and choose `Costum container`. Set the port settings to 80.
 
-11. After ECS deployed your application, get the `DNS-Name` of the deployed `ELB` (e.g. **EC2 console**). Paste it in to your browser tab.
+12. After ECS deployed your application, get the `DNS-Name` of the deployed `ELB` (e.g. **EC2 console**). Paste it in to your browser tab.
