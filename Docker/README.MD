@@ -1,4 +1,4 @@
-# Docker demo: Static wepage with AWS ECS
+# Docker demo: Static web page with AWS ECS
 
 This demos shows how to build a[ Docker container](https://www.docker.com/resources/what-container) serving as a webserver. The webserver hosts a [static webpage](index.html). Afterwards, we will push the Docker container to AWS. Finally, the Docker container used to launch an [Amazon ECS cluster](https://aws.amazon.com/ecs/?nc1=h_ls). But we can used [Amazon SQS](https://aws.amazon.com/sqs/?nc1=h_ls) and [Amazon EC2](https://aws.amazon.com/ec2/?nc1=h_ls) to create a pipline. 
 
@@ -20,7 +20,8 @@ This demos shows how to build a[ Docker container](https://www.docker.com/resour
     * `docker ps` to retrieve the contaibner-ID 
     * `docker stop container-ID`
 
-5. Create a AWS ECR repository via the CLI: 
+5. Create a AWS ECR repository via the [CLI](https://aws.amazon.com/cli/?nc1=h_ls): 
+
     ```bash
     aws ecr create-repository --repository-name hello-repository  --region eu-west-1
     ``` 
