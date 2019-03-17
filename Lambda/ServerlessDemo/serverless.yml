@@ -1,0 +1,11 @@
+service: ServerlessDemo # NOTE: update this with your service name
+
+provider:
+  name: aws
+  runtime: python3.6
+  stage: dev
+  region: eu-central-1
+
+functions:
+  ServerlessDemo:
+    handler: handler.lambda_handler
