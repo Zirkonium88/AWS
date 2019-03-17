@@ -16,7 +16,7 @@ This demos shows how to build a[ Docker container](https://www.docker.com/resour
     docker run -p 80:80 hello-world
     ```
 
-4. Stop your running contaiern:
+4. Stop your running container:
     * `docker ps` to retrieve the contaibner-ID 
     * `docker stop container-ID`
 
