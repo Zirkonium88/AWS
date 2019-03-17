@@ -9,3 +9,8 @@ This repository will provide some demo examples from my daily AWS workloads. It 
 ## Hosting Docker on AWS
 
 * Do you want to host a Docker container as Apache webserver? The [Docker example](Docker/README.MD) will show you how.
+
+## Deploying an AWS Lambda on AWS via Serverless
+
+* You do not how a deployment to AWS Lambda could work? The example on [Serverless](Lambda/ServerlessDemo/README.ME) will show how.
+* Do you need a example for simple Lambda processing pipeline? In the tutorial for connecting [Amazon S3 and DynamoDB via AWS Lambda](Lambda/GetIamgenames/README.ME), you will get your example. 

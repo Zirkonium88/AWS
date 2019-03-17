@@ -1,0 +1,19 @@
+service: GetImagenames # NOTE: update this with your service name
+
+provider:
+  name: aws
+  runtime: python3.6
+
+  stage: dev
+  region: eu-central-1
+
+functions:
+  GetImagenames:
+    handler: handler.lambda_handler
+
+plugins:
+  - serverless-python-requirements
+
+custom:
+  pythonRequirements:
+    dockerizePip: non-linux
