@@ -44,7 +44,7 @@ npm install -g serverless
     nano serverless.yml
     ````
 
-    The file [serverless.yml](https://github.com/Zirkonium88/AWS/blob/master/Lambda/serverless.yml) can be used to set staging of your deployment, the region, IAM ressources and many more.
+    The file [serverless.yml](https://github.com/Zirkonium88/AWS/blob/master/Lambda/ServerlessDemo/serverless.yml) can be used to set staging of your deployment, the region, IAM ressources and many more.
 
     ```yaml
     service: ServerlessDemo # NOTE: update this with your service name
