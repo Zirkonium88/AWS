@@ -1,11 +1,10 @@
+# Load libraries
 import boto3
 import urllib
 import json
 
-
 # Set environment variables to avoid hard coded objects
 # table_name = os.environ['TABLE_NAME']
-# bucket = os.environ['BUCKET']
 table_name = "myLambdaFunctionTable"
 
 
@@ -28,9 +27,10 @@ def lambda_handler(event, context):
     # Value = Bucket name
     item = {'key': key, 'bucket': bucket}
     table.put_item(Item=item)
-	
-	# Leave it or not: Say Hello from Lambda with status code 200
+
+    # Leave it or not: Say Hello from Lambda with status code 200
     return {
         'statusCode': 200,
-        'body': json.dumps('Hello from Lambda!')
+        'Bucket': json.dumps(bucket),
+        'Key': json.dumps(key)
     }

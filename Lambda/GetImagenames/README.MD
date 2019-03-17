@@ -1,6 +1,6 @@
 # Lambda pipeline with S3 and DynamoDB
 
-This examples shows how AWS Lambda can be integrated with [Amazon S3](https://aws.amazon.com/s3/?nc1=h_ls) and [Amazon DynamoDB](https://aws.amazon.com/dynamodb/?nc1=h_ls). The Lambda extracts the bucket and image name of every upload and writes it to the DynamoDB table. A [sample event](https://github.com/Zirkonium88/AWS/blob/master/Lambda/GetImagenames/event.json) is given.
+This examples shows how AWS Lambda can be integrated with [Amazon S3](https://aws.amazon.com/s3/?nc1=h_ls) and [Amazon DynamoDB](https://aws.amazon.com/dynamodb/?nc1=h_ls). The Lambda extracts the bucket and image name of every upload and writes them to the DynamoDB table. A [sample event](https://github.com/Zirkonium88/AWS/blob/master/Lambda/GetImagenames/event.json) is given.
 
 ## Prerequisites
 
@@ -16,7 +16,6 @@ import json
 
 # Set environment variables to avoid hard coded objects
 # table_name = os.environ['TABLE_NAME']
-# bucket = os.environ['BUCKET']
 table_name = "myLambdaFunctionTable"
 
 
