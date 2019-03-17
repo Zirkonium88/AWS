@@ -56,6 +56,6 @@ def lambda_handler(event, context):
 	# Upload data.json to s3
 	s3_client.upload_file('/tmp/data.json',BUCKET_NAME,'DetectFaces/data.json')
 	
-	# Return results
+	# Return results 
 	return responses
 

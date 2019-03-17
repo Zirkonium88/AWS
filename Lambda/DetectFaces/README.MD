@@ -1,6 +1,6 @@
 # Analyzing a picture with Amazon Rekognition via AWS Lambda
 
-In this example a [AWS Lambda]((https://github.com/Zirkonium88/AWS/blob/master/Lambda/DetectFaces/DetectFaces.py)) calls on behalf a static image file from a S3 bucket. The purpose of this call is to use [Amazon Rekognition](https://aws.amazon.com/rekognition/?nc1=h_ls) - AWS out-of-the-box convolutional neural network ([CNN](https://en.wikipedia.org/wiki/Convolutional_neural_network)). Afterwards, Amazon Rekognition analyses the iamge with DetectFaces. DetectFaces checks whether or not a face is shown. If a face is shown, Amazon Rekognition estimates **emotions** and several other aspects like **image quality** or the **outer appereance**. It's pretty simple to work with Amazon Rekognition because no training data is needed.
+In this example a [AWS Lambda](https://github.com/Zirkonium88/AWS/blob/master/Lambda/DetectFaces/DetectFaces.py) calls on behalf a static image file from a S3 bucket. The purpose of this call is to use [Amazon Rekognition](https://aws.amazon.com/rekognition/?nc1=h_ls) - AWS out-of-the-box convolutional neural network ([CNN](https://en.wikipedia.org/wiki/Convolutional_neural_network)). Afterwards, Amazon Rekognition analyses the iamge with DetectFaces. DetectFaces checks whether or not a face is shown. If a face is shown, Amazon Rekognition estimates **emotions** and several other aspects like **image quality** or the **outer appereance**. It's pretty simple to work with Amazon Rekognition because no training data is needed.
 
 ```python
 
