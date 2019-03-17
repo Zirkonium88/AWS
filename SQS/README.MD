@@ -13,7 +13,7 @@ In some UseCases your are not able to use AWS Lambda to react on S3 events. Mayb
     pip install boto3
     ```
 
-3. Copy the [EC2Unzip.py](AWS/SQS/EC2Unzip.py) file to your instance.
+3. Copy the [EC2Unzip.py](https://github.com/Zirkonium88/AWS/blob/master/SQS/EC2Unzip.py) file to your instance.
 
     ```python
     # Load libraries
