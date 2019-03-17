@@ -14,7 +14,7 @@ end = time.time()
 
 # Initialise SQS services
 sqs = boto3.client('sqs', region_name="eu-central-1")
-queue_url = 'https://sqs.eu-central-1.amazonaws.com/XXX/Ec2Unzip'
+queue_url = 'https://sqs.eu-central-1.amazonaws.com/XXX/Ec2Unzip' #XXX = Your account-ID
 
 # Counter variable for processed objects
 i = 0
