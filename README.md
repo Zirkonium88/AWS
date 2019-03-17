@@ -13,4 +13,8 @@ This repository will provide some demo examples from my daily AWS workloads. It 
 ## Deploying an AWS Lambda on AWS via Serverless
 
 * You do not how a deployment to AWS Lambda could work? The example on [Serverless](https://github.com/Zirkonium88/AWS/tree/master/Lambda/ServerlessDemo/README.MD) will show how.
-* Do you need a example for simple Lambda processing pipeline? In the tutorial for connecting [Amazon S3 and DynamoDB via AWS Lambda](https://github.com/Zirkonium88/AWS/tree/master/Lambda/GetImagenames/README.MD), you will get your example. 
+* Do you need a example for simple Lambda processing pipeline? In the tutorial for connecting [Amazon S3 and DynamoDB via AWS Lambda](https://github.com/Zirkonium88/AWS/tree/master/Lambda/GetImagenames/README.MD), you will get your example.
+
+## Machine and DeepLearning on AWS
+
+* Do you want to know how to use a the AWS out-of-the-box convolutional neural network ([CNN](https://en.wikipedia.org/wiki/Convolutional_neural_network))? Try it out with this [example](https://github.com/Zirkonium88/AWS/tree/master/Lambda/DetectFaces).
