@@ -34,3 +34,4 @@ def lambda_handler(event, context):
         'Bucket': json.dumps(bucket),
         'Key': json.dumps(key)
     }
+
