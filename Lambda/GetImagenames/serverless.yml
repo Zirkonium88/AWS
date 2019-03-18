@@ -9,7 +9,7 @@ provider:
 
 functions:
   GetImagenames:
-    handler: handler.lambda_handler
+    handler: GetImagenames.lambda_handler
 
 plugins:
   - serverless-python-requirements

@@ -8,4 +8,4 @@ provider:
 
 functions:
   ServerlessDemo:
-    handler: handler.lambda_handler
+    handler: ServerlessDemo.lambda_handler

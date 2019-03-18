@@ -1,6 +1,6 @@
 # Lambda demo: Push a Lambda via Serverless to AWS
 
-This demo shows, how to deploy a [AWS Lambda](https://aws.amazon.com/lambda/?nc1=h_ls) in Python via the [Serverless framework](https://serverless.com). One major benefit of Serverless comes up with its compatibility with more than one private cloud provider. Following this guide will publisch a HelloWorld function by default. Other examples are given in this repository.
+This demo shows, how to deploy a [AWS Lambda](https://aws.amazon.com/lambda/?nc1=h_ls) in Python via the [Serverless framework](https://serverless.com). One major benefit of Serverless comes up with its compatibility with more than one private cloud provider. Following this guide will publisch a HelloWorld function by default. Other examples are given in this repository ([Image processing pipeling](), [Using AWS Rekognition for detecting Faces]() ).
 
 ## Prepare Serverless
 1. Install NodeJS and npm.
