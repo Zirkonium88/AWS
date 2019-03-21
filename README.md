@@ -19,3 +19,7 @@ This repository will provide some demo examples from my daily AWS workloads. It 
 
 * Do you want to know how to use a the AWS out-of-the-box convolutional neural network ([CNN](https://en.wikipedia.org/wiki/Convolutional_neural_network))? Try it out with this [example](https://github.com/Zirkonium88/AWS/tree/master/Lambda/DetectFaces).
 * Do you want to know how Amazon Rekognition and Polly can interact with each other? Try it out with this [example](https://github.com/Zirkonium88/AWS/tree/master/Lambda/CompareFaces).
+
+## Talks on AWS
+
+* Do you want to know to make AWS AI/ML services available on IoT? Within our [AWS UserGroup in Hannover](https://www.meetup.com/de-DE/AWS-Usergroup-Hannover/) talked about [that](https://github.com/Zirkonium88/AWS/tree/master/Presentations/20190319_UserGroup_AI_on_IoT.pdf). 
