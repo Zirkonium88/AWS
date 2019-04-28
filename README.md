@@ -19,7 +19,7 @@ This repository will provide some demo examples from my daily AWS workloads. It 
 
 * Do you want to know how to use a the AWS out-of-the-box convolutional neural network ([CNN](https://en.wikipedia.org/wiki/Convolutional_neural_network))? Try it out with this [example](https://github.com/Zirkonium88/AWS/tree/master/Lambda/DetectFaces).
 * Do you want to know how Amazon Rekognition and Polly can interact with each other? Try it out with this [example](https://github.com/Zirkonium88/AWS/tree/master/Lambda/CompareFaces).
-* Got a text-to-speech problem? Look here for an [exmaple](https://github.com/Zirkonium88/AWS/tree/master/Lambda/Transscribe) with some additionall exeperinces.
+* Got a text-to-speech problem? Look here for an [example](https://github.com/Zirkonium88/AWS/tree/master/Lambda/TransScribeMP3) with some additionall exeperinces.
 
 ## Talks on AWS within our AWS UserGroup
 
