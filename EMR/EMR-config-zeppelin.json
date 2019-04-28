@@ -1,0 +1,16 @@
+[
+  {
+      "Classification": "zeppelin-env", # Initialise the Zeppelin
+      "Configurations": [
+        {
+          "Classification": "export", # Export your notebook to Amazon s3
+          "Properties": {
+            "ZEPPELIN_NOTEBOOK_S3_USER": "zeppelin-usernamer", # Bucket folder, named by user
+            "ZEPPELIN_NOTEBOOK_S3_BUCKET": "myBucket-for-emr-jobs", # Define a bucket - needs already to exist
+            "ZEPPELIN_NOTEBOOK_S3_ENDPOINT": "s3.amazonaws.com",
+            "ZEPPELIN_NOTEBOOK_STORAGE": "org.apache.zeppelin.notebook.repo.S3NotebookRepo"
+          },
+        }
+      ]
+    }
+  ]
