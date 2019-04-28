@@ -29,4 +29,4 @@ This repository will provide some demo examples from my daily AWS workloads. It 
 
 ## Talks on AWS within our AWS UserGroup
 
-* Do you want to know how to make AWS AI/ML services available on IoT? Within our [AWS UserGroup in Hannover](https://www.meetup.com/de-DE/AWS-Usergroup-Hannover/) talked about [that](https://github.com/Zirkonium88/AWS/tree/master/Presentations/20190319_UserGroup_AI_on_IoT.pdf). 
+* Do you want to know how to make AWS AI/ML services available on IoT? Within our [AWS UserGroup in Hannover](https://www.meetup.com/de-DE/AWS-Usergroup-Hannover/) we talked about [that](https://github.com/Zirkonium88/AWS/tree/master/Presentations/20190319_UserGroup_AI_on_IoT.pdf). 
