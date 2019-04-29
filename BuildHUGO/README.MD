@@ -72,7 +72,7 @@ phases:
       - aws cloudfront create-invalidation --distribution-id ${CLOUDFRONT_ID_A} --paths "/*"
       - aws cloudfront create-invalidation --distribution-id ${CLOUDFRONT_ID_B} --paths "/*"
     finally:
-      - echo "CloudFront nvalidation successfull"
+      - echo "CloudFront invalidation successfull"
 
 ````
 Why? After deploying the HUGO webpage, you need to invalidated every object within your CloudFront distribution. Second, I want to use `www.exmaple.com` and `exmaple.com`. Thats why I need a second `aws sync`. Additionally, you need to edit the execution and it's policy with the permission for CloudFront and S3 for both buckets.
