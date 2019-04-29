@@ -1,6 +1,6 @@
 # Create and deploy a HUGO webpage in a CIDCD manner
 
- So far, I used pretty ugly tools to deploy my webpages. Now, a [HUGO](https://gohugo.io) webpage came up in a workshop. This is pretty straight forward. You can locally develop you webpage by using a lot of differents themes ([look up here](https://gohugo.io/getting-started/quick-start/). I'm using [webpage](trctrainings.com) the [Hermit theme](https://themes.gohugo.io/hermit/).
+ So far, I used pretty ugly tools to deploy my webpages. Now, a [HUGO](https://gohugo.io) webpage came up in a workshop. This is pretty straight forward. You can locally develop you webpage by using a lot of differents themes ([look up here](https://gohugo.io/getting-started/quick-start/)). Aftwards you can push the compiled result to somewhere. For my [web page](trctrainings.com), I'm using the the [Hermit theme](https://themes.gohugo.io/hermit/).
 
 ## Presequities
 
@@ -10,7 +10,7 @@ I like automation. I just want to push a markdown-file to a repository. Fire and
 * Amazon CodeCommit 
 * Amazon CodePipeline
 
-If you want to have your own URL, you need the folliwng services.
+If you want to have your own URL, you need the folliwng services as well.
 
 * Route53
 * CloudFront
@@ -20,15 +20,25 @@ If you want to have your own URL, you need the folliwng services.
 
 ### Deploying a Hugo website to AWS in 6 steps (CDN+HTTPS)
 
-Don't write things twice. I just followed this [tutorial](https://simpleit.rocks/golang/hugo/deploying-a-hugo-website-to-aws-the-right-way/). Two things I need to mention. First, do not skip the Lambda@Edge step. Otherweise, your webpage will not work! Second, set the `draft: false`. Otherweise the content will not be publsihed.
+Don't write things twice. I just followed this [tutorial](https://simpleit.rocks/golang/hugo/deploying-a-hugo-website-to-aws-the-right-way/). Two things I need to mention. First, do not skip the Lambda@Edge step. Otherweise, your webpage will not work! Second, set `draft: false` within your markdown header section. Otherwise the content will not be publsihed.
+
+```
+
+---
+title: "EXAMPLE"
+date: 2019-04-28T21:48:38+02:00
+draft: false
+---
+
+```
 
 ### Getting the CICD pipeline
 
 I just want to use `git add .`, `git commit -m 'Fancy new cotent` and `git push` for my deployment. For a more detailed tutorial, look up [here](https://digilution.io/posts/ci-cd-pipeline-for-hugo/). The build process of my HUGO webpage shall be done with a pipeline.
 
-* Create a CodeCommit [repository](https://docs.aws.amazon.com/codecommit/latest/userguide/how-to-create-repository.html) and push your HUGO website
-* Next, we need a [Build Project](https://docs.aws.amazon.com/codebuild/latest/userguide/create-project.html)
-* Finally, we need a [CodePipeline](https://docs.aws.amazon.com/codepipeline/latest/userguide/pipelines-create.html)
+* Create a CodeCommit [repository](https://docs.aws.amazon.com/codecommit/latest/userguide/how-to-create-repository.html) and push your HUGO website.
+* Next, we need a [Build Project].(https://docs.aws.amazon.com/codebuild/latest/userguide/create-project.html)
+* Finally, we need a [CodePipeline].(https://docs.aws.amazon.com/codepipeline/latest/userguide/pipelines-create.html)
 
 Two important things to mention. First, I used my own `buildspec.yml`. 
 
@@ -69,8 +79,8 @@ Why? After deploying the HUGO webpage, you need to invalidated every object with
 
 ### Delivering the HUGO wegpage with our pipeline
 
-Using the [Hermit theme](https://themes.gohugo.io/hermit/), every post need to be placed in `content/posts/` and every additional webpage need to be in `content/`. After finishing my content, `git add .`, `git commit -m 'Fancy new cotent` and `git push` will do the rest. Cheers!
+Using the [Hermit theme](https://themes.gohugo.io/hermit/), every post needs to be placed in `content/posts/` and every additional webpage needs to be in `content/`. After finishing my content, `git add .`, `git commit -m 'Fancy new cotent` and `git push` will do the rest. Cheers!
 
 ### Speeding things up
 
-If you think this is not fast enough, you can use S3 for Buil Project as well. In doing so, you can skip the git process.
+If you think this is not fast enough, you can use S3 for `Build Project` as well. In doing so, you can skip the git process.
