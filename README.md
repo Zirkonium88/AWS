@@ -9,7 +9,7 @@ This repository will provide some examples from my daily AWS workloads. It will 
 
 ## Cloudformation templates
 
-* If your interested in various examples of CloudFormation, look [here] (https://github.com/Zirkonium88/aws-cf-templates). It's a repo of one of my colleagues.
+* If your interested in various examples of CloudFormation, look [here](https://github.com/Zirkonium88/aws-cf-templates). It's a repo of one of my colleagues.
 
 ## Hosting Docker on AWS
 
