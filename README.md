@@ -5,7 +5,7 @@ This repository will provide some demo examples from my daily AWS workloads. It 
 ## Big Data workloads
 
 * Lambda does not fit? The [SQS example](SQS/README.MD) will show you how to unzip large gzip files via S3 events and EC2.
-* Do you want to use Zeppelin on AWS EMR without hard coded credetnials? Look up this [example](EMR/README.MD).
+* Do you want to use Zeppelin on AWS EMR without hard coded credentials? Look up this [example](EMR/README.MD).
 
 ## Cloudformation templates
 

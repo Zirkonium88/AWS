@@ -1,0 +1,21 @@
+service: LoadData # NOTE: update this with your service name
+
+provider:
+  name: aws
+  runtime: python3.7
+
+# you can overwrite defaults here
+  stage: dev
+  region: eu-central-1
+
+functions:
+  LoadData:
+    handler: handler.lambda_handler
+
+package: # Optional deployment packaging configuration
+  include: # Specify the directories and files which should be included in the deployment package
+    - handler.py
+  exclude: # Specify the directories and files which should be excluded in the deployment package
+    - venv/**
+    - event.json
+    - __pycache__/**
