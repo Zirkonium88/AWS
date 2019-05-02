@@ -37,8 +37,8 @@ draft: false
 I just want to use `git add .`, `git commit -m 'Fancy new cotent` and `git push` for my deployment. For a more detailed tutorial, look up [here](https://digilution.io/posts/ci-cd-pipeline-for-hugo/). The build process of my HUGO webpage shall be done with a pipeline.
 
 * Create a CodeCommit [repository](https://docs.aws.amazon.com/codecommit/latest/userguide/how-to-create-repository.html) and push your HUGO website.
-* Next, we need a [Build Project].(https://docs.aws.amazon.com/codebuild/latest/userguide/create-project.html)
-* Finally, we need a [CodePipeline].(https://docs.aws.amazon.com/codepipeline/latest/userguide/pipelines-create.html)
+* Next, we need a [Build Project](https://docs.aws.amazon.com/codebuild/latest/userguide/create-project.html).
+* Finally, we need a [CodePipeline](https://docs.aws.amazon.com/codepipeline/latest/userguide/pipelines-create.html).
 
 Two important things to mention. First, I used my own `buildspec.yml`. 
 

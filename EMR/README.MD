@@ -1,8 +1,8 @@
 # Amazon EMR
 
-Elastic mapre reduce jobs with AWS are pretty easy to fulfill. 
+Elastic map reduce jobs with AWS are pretty easy to fulfill. 
 
-## Configure Zeppelin
+# Configure Zeppelin
 
 * I like to use [Zeppelin](https://zeppelin.apache.org). It's more capable, then Jupyternotebooks which can be used by default. By using this configuration file, no access are needed. Instead, use AWS roles on your instances. The config [file](https://github.com/Zirkonium88/AWS/blob/master/EMR/EMR-config-zeppelin.json) needs to be used under advanced options.
 

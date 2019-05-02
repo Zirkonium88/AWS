@@ -1,6 +1,6 @@
 # Loading data from a CSV into a DynamoDB table
 
-In this example a [AWS Lambda](https://github.com/Zirkonium88/AWS/blob/master/Lambda/LoadData/handler.py) is trigerd by an S3 event. This Lambda loads data from a CSV into a [DynamoDB](https://aws.amazon.com/dynamodb/?nc1=h_ls) table.
+In this example a [AWS Lambda](https://github.com/Zirkonium88/AWS/blob/master/Lambda/LoadData/handler.py) is triggered by a S3 event. This Lambda loads data from a CSV into a [DynamoDB](https://aws.amazon.com/dynamodb/?nc1=h_ls) table.
 
 ```python
 
