@@ -24,7 +24,7 @@ This repository will provide some demo examples from my daily AWS workloads. It 
 
 * You want to know how to set up a HUGO webpage within a CICD pipeline? Look at this [example](BuildHUGO/README.MD).
 * Do you need a Lambda which loads data from a CSV into DynamoDB? Go [forward!](Lambda/LoadData/README.MD)
-* After we have loaded our data into a DynamoDB table, we maybe want to call it from a static website. This [example]() shows how to use the Javascript SDK to do so.
+* After we have loaded our data into a DynamoDB table, we maybe want to call it from a static website. This [example](https://github.com/Zirkonium88/AWS/blob/master/BuildHUGO/CallDynamo.MD) shows how to use the Javascript SDK to do so.
 
 ## Machine and DeepLearning on AWS
 
