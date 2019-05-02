@@ -1,6 +1,10 @@
 # Loading data via functional user from a DynamoDB
 
-Sometimes you need dynamic content on a static website. Within AWS, this can be done with the [AWS SDK for JavaScript](https://aws.amazon.com/de/sdk-for-browser/). This example shows, how to call a DynamoDB based in a input text. Therefore, HTML is combined with CSS and Javascript. The authentification is done by a functional user. This [Lambda](https://github.com/Zirkonium88/AWS/blob/master/Lambda/LoadData/handler.py) shows how to put data into a DynamoDB.
+Sometimes you need dynamic content on a static website. Within AWS, this can be done with the [AWS SDK for JavaScript](https://aws.amazon.com/de/sdk-for-browser/). This example shows, how to call a DynamoDB based in a input text. Therefore, HTML is combined with CSS and Javascript. The authentification is done by a functional user. This [Lambda](https://github.com/Zirkonium88/AWS/blob/master/Lambda/LoadData/handler.py) shows how to put data into a DynamoDB. 
+
+# Warning
+
+The access keys to call the DynamoDB are publically exposed. Even though the call can only be done with the correct primary key, the functional user needs close restrictions! [Here],(https://docs.aws.amazon.com/amazondynamodb/latest/developerguide/GettingStarted.JavaScript.html) you can find another solution with [Amazon Cognitio](https://aws.amazon.com/cognito/?nc1=h_ls). This solution does not use a an exposed functional user.
 
 ````html
 <html>
