@@ -1,8 +1,15 @@
+# Loading data from a CSV into a DynamoDB table
+
+In this example a [AWS Lambda](https://github.com/Zirkonium88/AWS/blob/master/Lambda/LoadData/handler.py) is trigerd by an S3 event. This Lambda loads data from a CSV into a [DynamoDB](https://aws.amazon.com/dynamodb/?nc1=h_ls) table.
+
+```python
+
 # Load-Inventory Lambda function
 #
 # This function is triggered by an object being created in an Amazon S3 bucket.
 # The file is downloaded and each line is inserted into a DynamoDB table.
 
+# Load libs
 import json, urllib, boto3, csv
 
 # Connect to S3 and DynamoDB
@@ -58,4 +65,11 @@ def lambda_handler(event, context):
 
     # Finished!
     return "%d counts inserted" % rowCount
+
+
+
+```
+
+
+
 

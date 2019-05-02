@@ -74,3 +74,11 @@ Lambda/venv
 Presentations/.DS_Store
 
 EMR/EMR-config.json
+
+Lambda/LoadData/__pycache__/
+Lambda/LoadData/__pycache__
+Lambda/LoadData/serverless.yml
+Lambda/LoadData/event.json
+Lambda/LoadData/.serverless
+Lambda/LoadData/venv/
+Lambda/.DS_Store
