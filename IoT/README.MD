@@ -1,13 +1,15 @@
 # Simple publish and suscbribe example for AWS IoT
 
-This example show how to use Python to communicate with AWS Iot Core. The skript connectes via certificates and MQTT with an endpoint and publishes tweo random numbers. I can be extended to recieve messages as well. A complete walkthrough can be find [here](https://docs.aws.amazon.com/iot/latest/developerguide/iot-gs.html).
+This example show how to use Python to communicate with AWS Iot Core. The script connects via certificates and [MQTT](http://mqtt.org) with an endpoint and publishes two random numbers. In doing so, the usage of [micro controllers, e.g. ESP8266](https://github.com/debsahu/ESP-MQTT-AWS-IoT-Core) is possible.
+
+It be can be extended to recieve messages as well. A complete walkthrough can be find [here](https://docs.aws.amazon.com/iot/latest/developerguide/iot-gs.html).
 
 ## Presequities
 
-* Install the [AWS IoT Pythin SDK](https://docs.aws.amazon.com/de_de/iot/latest/developerguide/iot-sdks.html)
-* [Onboard your IoT device](https://docs.aws.amazon.com/iot/latest/developerguide/iot-provision.html)
+* Install the [AWS IoT Pythin SDK].(https://docs.aws.amazon.com/de_de/iot/latest/developerguide/iot-sdks.html)
+* [Onboard your IoT device].(https://docs.aws.amazon.com/iot/latest/developerguide/iot-provision.html)
 * Figure out what your endpoint URI looks like. You can find the URI under Settings / Custom Endpoint withhin the WS Iot Core service.
-* Copy all files to your (virtual) device.
+* Copy all files accordingly to your (virtual) device.
 
 ## Usage
 
