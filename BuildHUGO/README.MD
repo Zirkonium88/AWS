@@ -84,3 +84,7 @@ Using the [Hermit theme](https://themes.gohugo.io/hermit/), every post needs to 
 ### Speeding things up
 
 If you think this is not fast enough, you can use S3 for `Build Project` as well. In doing so, you can skip the git process.
+
+## Adding new content
+
+With `hugo new posts/my-first-post.md` we can add new content to the HUGO website.
