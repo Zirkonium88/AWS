@@ -9,7 +9,7 @@ This repository will provide some examples from my daily AWS workloads. It will 
 
 ## AWS IoT
 
-* This [AWS IoT example](Iot/README.MD) shows how to publish random data to an AWS IoT topic. The example can be extende to recieve data as well. The script can run on an Raspberry Pi but also on your local machine.
+* This [AWS IoT example](https://github.com/Zirkonium88/AWS/tree/master/IoT) shows how to publish random data to an AWS IoT topic. The example can be extended to recieve data as well. The script can run on an Raspberry Pi but also on your local machine.
 
 ## Cloudformation templates
 
