@@ -17,25 +17,25 @@ This repository will provide some examples from my daily AWS workloads. It will 
 
 ## Hosting Docker on AWS
 
-* Do you want to host a Docker container as Apache webserver? The [Docker example](Docker/README.MD) will show you how.
+* Do you want to host a Docker container as Apache webserver? This [Docker example](Docker/README.MD) will show you how.
 
 ## Deploying an AWS Lambda on AWS via Serverless
 
 * You do not how a deployment to AWS Lambda could work? The example on [Serverless](https://github.com/Zirkonium88/AWS/tree/master/Lambda/ServerlessDemo/README.MD) will show you how.
-* Do you need a example for simple Lambda processing pipeline? In this tutorial for connecting [Amazon S3 and DynamoDB via AWS Lambda](https://github.com/Zirkonium88/AWS/tree/master/Lambda/GetImagenames/README.MD), you will get your example.
+* Do you need a example for a simple Lambda processing pipeline? In this tutorial for connecting [Amazon S3 and DynamoDB via AWS Lambda](https://github.com/Zirkonium88/AWS/tree/master/Lambda/GetImagenames/README.MD), you will get your example.
 
 ## Deploying my HUGO webpage
 
 * You want to know how to set up a HUGO webpage within a CICD pipeline? Look at this [example](BuildHUGO/README.MD).
 * Do you need a Lambda which loads data from a CSV into DynamoDB? Go [forward!](Lambda/LoadData/README.MD)
-* After we have loaded our data into a DynamoDB table, we maybe want to call it from our static website. This [example](https://github.com/Zirkonium88/AWS/blob/master/BuildHUGO/CallDynamo.MD) shows how to use the Javascript SDK to do so.
+* After we have loaded our data into a DynamoDB table, we maybe want to call it from our static website. This [example](https://github.com/Zirkonium88/AWS/blob/master/BuildHUGO/CallDynamo.MD) shows how to use the AWS Javascript SDK to do so.
 
 ## Machine and DeepLearning on AWS
 
 * Do you want to know how to use a the AWS out-of-the-box convolutional neural network ([CNN](https://en.wikipedia.org/wiki/Convolutional_neural_network))? Try it out with this [example](https://github.com/Zirkonium88/AWS/tree/master/Lambda/DetectFaces).
 * Do you want to know how Amazon Rekognition and Polly can interact with each other? Look up this [example](https://github.com/Zirkonium88/AWS/tree/master/Lambda/CompareFaces).
-* Got a text-to-speech problem? Look here for an [example](https://github.com/Zirkonium88/AWS/tree/master/Lambda/TransScribeMP3) with some additional experiences.
-* You are a data scientist and you love to use cheat sheets?. I found this nice repo and [forked](https://github.com/Zirkonium88/Data-Science--Cheat-Sheet) it. It contains alot of different pdf's.
+* Got a text-to-speech problem? Look here for an [example](https://github.com/Zirkonium88/AWS/tree/master/Lambda/TransScribeMP3). The example describes experiences as well.
+* You are a data scientist and you love to use cheat sheets? I found this nice repo and [forked](https://github.com/Zirkonium88/Data-Science--Cheat-Sheet) it. It contains a lot of different pdf's.
 
 ## Talks on AWS within our AWS UserGroup
 
