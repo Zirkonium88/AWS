@@ -15,9 +15,10 @@ This repository will provide some examples from my daily AWS workloads. It will 
 
 * If your interested in various examples of CloudFormation, look [here](https://github.com/Zirkonium88/aws-cf-templates). It's a repo of one of my colleagues.
 
-## Hosting Docker on AWS
+## Docker on AWS
 
-* Do you want to host a Docker container as Apache webserver? This [Docker example](Docker/README.MD) will show you how.
+* Do you want to host a Docker container as Apache webserver? This [Docker example](Docker/DockerStaticWebsite/README.MD) will show you how.
+* CICD for athe precois (or any outher) Docker workload? Look out [here:](Docker/DockerCICD/README.MD)
 
 ## Deploying an AWS Lambda on AWS via Serverless
 
