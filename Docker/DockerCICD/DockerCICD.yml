@@ -1,0 +1,278 @@
+Description: >-
+  This AWS CloudFormation Template deploys a S3-based CICD pipeline to deploy a docker
+  image to Amazon ECR. The image needs to be upload to azuredropbucket ressource as
+  zip. Docker build runs within the pipeline.
+Outputs:
+  BuildArtrifactsBucket:
+    Description: 'Logging Bucket: Build process'
+    Value: !GetAtt 'CodeBuildProjectDockerStaticWebsite.Arn'
+  CodeBuildARN:
+    Description: CodeBuild Arn
+    Value: !GetAtt 'CodeBuildProjectDockerStaticWebsite.Arn'
+  CodePipelineARN:
+    Description: CodePipeline Arn
+    Value: !Join
+      - ''
+      - - 'arn:aws:codepipeline:'
+        - !Ref 'AWS::Region'
+        - ':'
+        - !Ref 'AWS::AccountId'
+        - ':'
+        - dockerdeliverystaticwebsite
+  EventRule:
+    Description: Cloudwatch Event Rule to trigger CodePipeline
+    Value: !GetAtt 'DockerStaticWebsiteEventRule.Arn'
+  IncommingBucket:
+    Description: Incomming Bucket for docker.zip
+    Value: !GetAtt 'staticwebsite.Arn'
+  ServiceRoleBuild:
+    Description: CodeBuild IAM role
+    Value: !GetAtt 'CodeBuildServiceRole.Arn'
+  ServiceRolePipeline:
+    Description: CodePipelind IAM role
+    Value: !GetAtt 'CodePipelineServiceRole.Arn'
+Resources:
+  CodeBuildProjectDockerStaticWebsite:
+    Properties:
+      Artifacts:
+        Type: CODEPIPELINE
+      Cache:
+        Type: NO_CACHE
+      Environment:
+        ComputeType: BUILD_GENERAL1_SMALL
+        Image: aws/codebuild/standard:2.0
+        ImagePullCredentialsType: CODEBUILD
+        PrivilegedMode: 'true'
+        Type: LINUX_CONTAINER
+      Name: dockerstaticwebsite
+      ServiceRole: !GetAtt 'CodeBuildServiceRole.Arn'
+      Source:
+        GitCloneDepth: 1
+        InsecureSsl: 'false'
+        Type: CODEPIPELINE
+      TimeoutInMinutes: 60
+    Type: AWS::CodeBuild::Project
+  CodeBuildServiceRole:
+    Properties:
+      AssumeRolePolicyDocument:
+        Statement:
+          - Action:
+              - sts:AssumeRole
+            Effect: Allow
+            Principal:
+              Service:
+                - codebuild.amazonaws.com
+      Path: /
+      Policies:
+        - PolicyDocument:
+            Statement:
+              - Action:
+                  - s3:GetObject
+                  - s3:PutObject
+                  - s3:GetBucketAcl
+                  - s3:ListBucket
+                  - s3:GetBucketLocation
+                  - s3:GetObjectVersion
+                Effect: Allow
+                Resource:
+                  - !GetAtt 'staticwebsite.Arn'
+                  - !GetAtt 'buildartifactsbucket.Arn'
+                  - !Join
+                    - /
+                    - - !GetAtt 'staticwebsite.Arn'
+                      - '*'
+                  - !Join
+                    - /
+                    - - !GetAtt 'buildartifactsbucket.Arn'
+                      - '*'
+          PolicyName: WorktwithS3
+        - PolicyDocument:
+            Statement:
+              - Action:
+                  - logs:PutLogEvents
+                  - logs:CreateLogStream
+                  - logs:CreateLogGroup
+                Effect: Allow
+                Resource:
+                  - '*'
+          PolicyName: WorkWithLogs
+        - PolicyDocument:
+            Statement:
+              - Action:
+                  - ecr:CompleteLayerUpload
+                  - ecr:UploadLayerPart
+                  - ecr:GetAuthorizationToken
+                  - ecr:InitiateLayerUpload
+                  - ecr:BatchCheckLayerAvailability
+                  - ecr:PutImage
+                Effect: Allow
+                Resource:
+                  - !GetAtt 'DockerStaticWebsiteRepo.Arn'
+          PolicyName: WorkWithECR
+    Type: AWS::IAM::Role
+  CodePipelineServiceRole:
+    Properties:
+      AssumeRolePolicyDocument:
+        Statement:
+          - Action:
+              - sts:AssumeRole
+            Effect: Allow
+            Principal:
+              Service:
+                - codepipeline.amazonaws.com
+      Path: /
+      Policies:
+        - PolicyDocument:
+            Statement:
+              - Action:
+                  - iam:PassRole
+                  - codebuild:BatchGetBuilds
+                  - codebuild:StartBuild
+                  - elasticbeanstalk:*
+                  - ec2:*
+                  - elasticloadbalancing:*
+                  - autoscaling:*
+                  - cloudwatch:*
+                  - s3:*
+                  - sns:*
+                  - cloudformation:*
+                  - rds:*
+                  - sqs:*
+                  - ecs:*
+                  - fargate:*
+                Effect: Allow
+                Resource:
+                  - '*'
+          PolicyName: CopyCodePipelineServicePolicy
+    Type: AWS::IAM::Role
+  DockerStaticWebsiteEventRole:
+    Properties:
+      AssumeRolePolicyDocument:
+        Statement:
+          - Action:
+              - sts:AssumeRole
+            Effect: Allow
+            Principal:
+              Service:
+                - events.amazonaws.com
+      Path: /
+      Policies:
+        - PolicyDocument:
+            Statement:
+              - Action:
+                  - codepipeline:StartPipelineExecution
+                Effect: Allow
+                Resource:
+                  - !Join
+                    - ''
+                    - - 'arn:aws:codepipeline:'
+                      - !Ref 'AWS::Region'
+                      - ':'
+                      - !Ref 'AWS::AccountId'
+                      - ':'
+                      - dockerdeliverystaticwebsite
+          PolicyName: StartPipeline
+    Type: AWS::IAM::Role
+  DockerStaticWebsiteEventRule:
+    Properties:
+      Description: >-
+        Amazon CloudWatch Events rule to automatically start your pipeline when a
+        change occurs in the Amazon S3 object key or S3 folder. Deleting this may
+        prevent changes from being detected in that pipeline. Read more: http://docs.aws.amazon.com/codepipeline/latest/userguide/pipelines-about-starting.html
+      EventPattern:
+        detail:
+          eventName:
+            - PutObject
+            - CompleteMultipartUpload
+            - CopyObject
+          eventSource:
+            - s3.amazonaws.com
+          requestParameters:
+            bucketName:
+              - my-new-stack-azuredropbucket-zy6wv6dg4yic
+            key:
+              - docker.zip
+        detail-type:
+          - AWS API Call via CloudTrail
+        source:
+          - aws.s3
+      Name: codepipeline-DockerStaticWebsiteEventRule
+      ScheduleExpression: ''
+      State: ENABLED
+      Targets:
+        - Arn: !Join
+            - ''
+            - - 'arn:aws:codepipeline:'
+              - !Ref 'AWS::Region'
+              - ':'
+              - !Ref 'AWS::AccountId'
+              - ':'
+              - dockerdeliverystaticwebsite
+          Id: CodePipelineTarget
+          RoleArn: !GetAtt 'DockerStaticWebsiteEventRole.Arn'
+    Type: AWS::Events::Rule
+  DockerStaticWebsitePipeline:
+    Properties:
+      ArtifactStore:
+        Location: !Ref 'buildartifactsbucket'
+        Type: S3
+      Name: dockerdeliverystaticwebsite
+      RoleArn: !GetAtt 'CodePipelineServiceRole.Arn'
+      Stages:
+        - Actions:
+            - ActionTypeId:
+                Category: Source
+                Owner: AWS
+                Provider: S3
+                Version: '1'
+              Configuration:
+                PollForSourceChanges: 'false'
+                S3Bucket: !Ref 'staticwebsite'
+                S3ObjectKey: docker.zip
+              Name: Source
+              OutputArtifacts:
+                - Name: SourceArtifact
+              RunOrder: '1'
+          Name: Source
+        - Actions:
+            - ActionTypeId:
+                Category: Build
+                Owner: AWS
+                Provider: CodeBuild
+                Version: '1'
+              Configuration:
+                ProjectName: dockerstaticwebsite
+              InputArtifacts:
+                - Name: SourceArtifact
+              Name: Build
+              OutputArtifacts:
+                - Name: BuildArtifact
+              Region: !Ref 'AWS::Region'
+          Name: Build
+    Type: AWS::CodePipeline::Pipeline
+  DockerStaticWebsiteRepo:
+    Properties:
+      RepositoryName: dockerstaticwebsite
+      RepositoryPolicyText:
+        Statement:
+          - Action:
+              - ecr:GetDownloadUrlForLayer
+              - ecr:BatchGetImage
+              - ecr:BatchCheckLayerAvailability
+              - ecr:PutImage
+              - ecr:InitiateLayerUpload
+              - ecr:UploadLayerPart
+              - ecr:CompleteLayerUpload
+            Effect: Allow
+            Principal:
+              AWS: '*'
+            Sid: AllowPushPull
+    Type: AWS::ECR::Repository
+  buildartifactsbucket:
+    Type: AWS::S3::Bucket
+  staticwebsite:
+    Properties:
+      VersioningConfiguration:
+        Status: Enabled
+    Type: AWS::S3::Bucket
+
