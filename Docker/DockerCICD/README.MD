@@ -442,7 +442,7 @@ Now, you can develop your image on your local machine. Ready? Use `zip -r docker
 
 ````bash
 aws s3 ls
-aws s3 cp foo.zip s3://dockerstaticwebsite+str(RANDOM_HASH) 
+aws s3 cp foo.zip s3://dockerstaticwebsite+RANDOM_HASH
 
 # RANDOM_HASH can be retrieved from Cloudformation outputs 
 # or from your S3 console
