@@ -10,7 +10,7 @@ The Cloudformation template deploys ressource within your account. You will get 
 
 I very dislike bare debeloping of Cloudformation templates. An easy way to deal with this situation come up with [`troposphere`](https://github.com/cloudtools/troposphere). Here, the work gets done with Python and a very good documentation.
 
-The following [Python file](Docker) gets transformed with `python CICD.py > DockerCICD.yml` to our wanted Cloudformation YAML template.
+The following [Python file](DockerCICD/CICD.py) gets transformed with `python CICD.py > DockerCICD.yml` to our wanted Cloudformation YAML template.
 
 ````python
 # Converted from CodePipeline example located at:
@@ -410,6 +410,15 @@ t.add_output(
 print(t.to_yaml())
 
 ````
+As you can see, JSON-script can be retrieve as well. First change
+
+`````python
+print(t.to_json())
+#print(t.to_yaml())
+`````
+
+at the end of the CICD.py file. Second, use `python CICD.py > DockerCICD.json`to get a json.
+
 
 ## Deploying the Cloudoformation template
 
@@ -439,4 +448,4 @@ aws s3 cp foo.zip s3://dockerstaticwebsite+str(RANDOM_HASH)
 # or from your S3 console
 ````
 
-Make sure you use the approciate key for your uploaded zip archive. The Cloudformations scripts uses `docker.zip`
+Make sure you use the approciate key for your uploaded zip archive. The Cloudformations scripts uses `docker.zip`.
