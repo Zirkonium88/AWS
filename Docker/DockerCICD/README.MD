@@ -24,7 +24,9 @@ import awacs.logs as logs
 import awacs.s3 as s3
 from awacs.aws import Action, Allow, AWSPrincipal, Principal, Statement
 from awacs.sts import AssumeRole
-from troposphere import AccountId, GetAtt, Join, Output, Ref, Region, Template
+from troposphere import (AccountId, GetAtt, Join, Output, Parameter, Ref,
+                         Region, Template)
+from troposphere.cloudtrail import DataResource, EventSelector, Trail
 from troposphere.codebuild import (Artifacts, Environment, Project,
                                    ProjectCache, Source)
 from troposphere.codepipeline import (Actions, ActionTypeId, ArtifactStore,
@@ -33,41 +35,110 @@ from troposphere.codepipeline import (Actions, ActionTypeId, ArtifactStore,
 from troposphere.ecr import Repository
 from troposphere.events import Rule, Target
 from troposphere.iam import Policy, Role
-from troposphere.s3 import Bucket, VersioningConfiguration
+from troposphere.s3 import Bucket, BucketPolicy, VersioningConfiguration
 
 S3_OBJECT_Key = "docker.zip"
-PROJECT_NAME = "dockerstaticwebsite"
+PROJECT_NAME = "cicdstaticwebsite"
 BUILD_NAME = "dockerdeliverystaticwebsite"
 S3_DELIVERY_BUCKET = "dockerstaticwebsite"
 ARTIFACT_BUCKET = "buildartifactsbucket"
 ECR_REPO = "dockerstaticwebsite"
+VERSION = "2012-10-17"
 
 t = Template()
+t.add_version("2010-09-09")
+
+ProjectName = t.add_parameter(Parameter(
+    "AppName",
+    Type="String",
+    Description="Application Name",
+    MinLength="1",
+    MaxLength="255",
+    Default=PROJECT_NAME,
+    AllowedPattern="[\\x20-\\x7E]*",
+    ConstraintDescription="can contain only ASCII characters.",
+))
+
+RepoName = t.add_parameter(Parameter(
+    "RepName",
+    Type="String",
+    Description="ECR Repository Name",
+    MinLength="1",
+    MaxLength="255",
+    Default=ECR_REPO,
+    AllowedPattern="[\\x20-\\x7E]*",
+    ConstraintDescription="can contain only ASCII characters.",
+))
+
+ObjectKey = t.add_parameter(Parameter(
+    "S3ObjectKey",
+    Type="String",
+    Description="Uploaded Key",
+    MinLength="1",
+    MaxLength="255",
+    Default=S3_OBJECT_Key,
+    AllowedPattern="[\\x20-\\x7E]*",
+    ConstraintDescription="can contain only ASCII characters.",
+))
+
+ArtifactBucket = t.add_parameter(Parameter(
+    "ArtifactBucket",
+    Type="String",
+    Description="Artifact Bucket Name",
+    MinLength="1",
+    MaxLength="255",
+    Default=ARTIFACT_BUCKET,
+    AllowedPattern="[\\x20-\\x7E]*",
+    ConstraintDescription="can contain only ASCII characters.",
+))
+
+DeliveryBucket = t.add_parameter(Parameter(
+    "DeliveryBucket",
+    Type="String",
+    Description="Retrieval Bucket Name",
+    MinLength="1",
+    MaxLength="255",
+    Default=S3_DELIVERY_BUCKET,
+    AllowedPattern="[\\x20-\\x7E]*",
+    ConstraintDescription="can contain only ASCII characters.",
+))
+
+BuildName = t.add_parameter(Parameter(
+    "Key",
+    Type="String",
+    Description="CodeBuild Project Name",
+    MinLength="1",
+    MaxLength="255",
+    Default=BUILD_NAME,
+    AllowedPattern="[\\x20-\\x7E]*",
+    ConstraintDescription="can contain only ASCII characters.",
+))
 
 t.set_description("This AWS CloudFormation Template deploys a S3-based CICD pipeline to deploy a docker image to Amazon ECR. The image needs to be upload to azuredropbucket ressource as zip. Docker build runs within the pipeline.")
 
 # Generate two Buckets
-IncommingBucket = t.add_resource(
-    Bucket(
-        S3_DELIVERY_BUCKET,
-        VersioningConfiguration=VersioningConfiguration(
-            Status="Enabled",
-            )
-        )
-    )   
-
-BuildArtifacts = t.add_resource(
-    Bucket(
-        ARTIFACT_BUCKET,
-        )
+IncommingBucket = t.add_resource(Bucket(
+    S3_DELIVERY_BUCKET,
+    VersioningConfiguration=VersioningConfiguration(
+        Status="Enabled",
     )
+))
+
+BuildArtifacts = t.add_resource(Bucket(
+    'buildartifactsbucket'
+))
+
+AWSCloudTrailBucket = t.add_resource(Bucket(
+    'AWSCloudTrailBucket'
+))
 
 # Generate a ECR Repository
 DockerStaticWebsiteRepo = t.add_resource(
     Repository(
         'DockerStaticWebsiteRepo',
-        RepositoryName=ECR_REPO,
+        RepositoryName=Ref(RepoName),
         RepositoryPolicyText=awacs.aws.Policy(
+            Version=VERSION,
             Statement=[
                 awacs.aws.Statement(
                     Sid='AllowPushPull',
@@ -92,6 +163,7 @@ DockerStaticWebsiteRepo = t.add_resource(
 CodeBuildServiceRole = t.add_resource(Role(
     "CodeBuildServiceRole",
     AssumeRolePolicyDocument=awacs.aws.Policy(
+        Version=VERSION,
         Statement=[
             awacs.aws.Statement(
                 Effect=Allow,
@@ -102,8 +174,9 @@ CodeBuildServiceRole = t.add_resource(Role(
     ),
     Policies=[
         Policy(
-            PolicyName = "WorktwithS3",
+            PolicyName="WorktwithS3",
             PolicyDocument=awacs.aws.Policy(
+                Version=VERSION,
                 Statement=[
                     awacs.aws.Statement(
                         Effect=Allow,
@@ -115,25 +188,28 @@ CodeBuildServiceRole = t.add_resource(Role(
                             Action("s3", "ListBucket"),
                             Action("s3", "GetBucketLocation"),
                             Action("s3", "GetObjectVersion")
-                            ],
+                        ],
                         Resource=[
                             # '*'
                             GetAtt(IncommingBucket, "Arn"),
                             GetAtt(BuildArtifacts, "Arn"),
-                            Join("/",
-                                [GetAtt(IncommingBucket, "Arn"),'*']
+                            Join(
+                                "/",
+                                [GetAtt(IncommingBucket, "Arn"), '*']
                             ),
-                            Join("/",
-                                [GetAtt(BuildArtifacts, "Arn"),'*']
+                            Join(
+                                "/",
+                                [GetAtt(BuildArtifacts, "Arn"), '*']
                             )
                         ],
                     ),
                 ],
             )
         ),
-    Policy(
-            PolicyName = "WorkWithLogs",
+        Policy(
+            PolicyName="WorkWithLogs",
             PolicyDocument=awacs.aws.Policy(
+                Version=VERSION,
                 Statement=[
                     awacs.aws.Statement(
                         Effect=Allow,
@@ -141,15 +217,16 @@ CodeBuildServiceRole = t.add_resource(Role(
                             Action("logs", "PutLogEvents"),
                             Action("logs", "CreateLogStream"),
                             Action("logs", "CreateLogGroup")
-                            ],
+                        ],
                         Resource=["*"],
                     ),
                 ],
             )
         ),
-    Policy(
-            PolicyName = "WorkWithECR",
+        Policy(
+            PolicyName="WorkWithECR",
             PolicyDocument=awacs.aws.Policy(
+                Version=VERSION,
                 Statement=[
                     awacs.aws.Statement(
                         Effect=Allow,
@@ -160,14 +237,13 @@ CodeBuildServiceRole = t.add_resource(Role(
                             Action("ecr", "InitiateLayerUpload"),
                             Action("ecr", "BatchCheckLayerAvailability"),
                             Action("ecr", "PutImage")
-                            ],
-                        Resource=[GetAtt(DockerStaticWebsiteRepo, "Arn")],
+                        ],
+                        Resource=['*'],
                     ),
                 ],
             )
-        ), 
-    ],
-    Path='/'
+        ),
+    ]
 ))
 
 # Generate the build porject
@@ -200,6 +276,7 @@ CodeBuildProject = t.add_resource(Project(
 CodePipelineServiceRole = t.add_resource(Role(
     "CodePipelineServiceRole",
     AssumeRolePolicyDocument=awacs.aws.Policy(
+        Version=VERSION,
         Statement=[
             awacs.aws.Statement(
                 Effect=Allow,
@@ -210,8 +287,9 @@ CodePipelineServiceRole = t.add_resource(Role(
     ),
     Policies=[
         Policy(
-            PolicyName = "CopyCodePipelineServicePolicy",
+            PolicyName="CopyCodePipelineServicePolicy",
             PolicyDocument=awacs.aws.Policy(
+                Version=VERSION,
                 Statement=[
                     awacs.aws.Statement(
                         Effect=Allow,
@@ -231,7 +309,7 @@ CodePipelineServiceRole = t.add_resource(Role(
                             Action("sqs", "*"),
                             Action("ecs", "*"),
                             Action("fargate", "*"),
-                            ],
+                        ],
                         Resource=['*']
                     )
                 ],
@@ -246,7 +324,7 @@ CodePipeline = t.add_resource(Pipeline(
     "DockerStaticWebsitePipeline",
     ArtifactStore=ArtifactStore(
         Location=Ref(ARTIFACT_BUCKET),
-        Type='S3'
+        Type='S3',
     ),
     RoleArn=GetAtt(CodePipelineServiceRole, "Arn"),
     Name=BUILD_NAME,
@@ -269,10 +347,11 @@ CodePipeline = t.add_resource(Pipeline(
                     ],
                     Configuration={
                         "PollForSourceChanges": 'false',
-                        "S3Bucket": Ref(IncommingBucket), 
+                        "S3Bucket": Ref(IncommingBucket),
                         "S3ObjectKey": S3_OBJECT_Key,
                     },
-                    RunOrder="1"
+                    RunOrder=1,
+                    Region=Region
                 )
             ]
         ),
@@ -282,10 +361,10 @@ CodePipeline = t.add_resource(Pipeline(
                 Actions(
                     Name='Build',
                     ActionTypeId=ActionTypeId(
-                        Category= 'Build',
-                        Owner= 'AWS',
-                        Provider= 'CodeBuild',
-                        Version= '1'
+                        Category='Build',
+                        Owner='AWS',
+                        Provider='CodeBuild',
+                        Version='1'
                     ),
                     Configuration={
                         "ProjectName": PROJECT_NAME
@@ -311,6 +390,7 @@ CodePipeline = t.add_resource(Pipeline(
 EventRole = t.add_resource(Role(
     "DockerStaticWebsiteEventRole",
     AssumeRolePolicyDocument=awacs.aws.Policy(
+        Version=VERSION,
         Statement=[
             awacs.aws.Statement(
                 Effect=Allow,
@@ -321,92 +401,201 @@ EventRole = t.add_resource(Role(
     ),
     Policies=[
         Policy(
-            PolicyName = "StartPipeline",
+            PolicyName="DockerSaticWebsitePipeline",
             PolicyDocument=awacs.aws.Policy(
+                Version=VERSION,
                 Statement=[
                     awacs.aws.Statement(
                         Effect=Allow,
                         Action=[
                             Action("codepipeline", "StartPipelineExecution"),
-                            ],
+                        ],
                         Resource=[Join(
                             "",
-                            ['arn:aws:codepipeline:',Region,":",AccountId,":",BUILD_NAME]
-                            )
+                            ['arn:aws:codepipeline:', Region, ":",
+                                AccountId, ":", Ref(CodePipeline)]
+                        )
                         ]
                     )
                 ],
             ),
         )
     ],
-    Path='/'
 ))
+
 
 # Create the Event Rule
 EventRule = t.add_resource(Rule(
     "DockerStaticWebsiteEventRule",
     Name='codepipeline-DockerStaticWebsiteEventRule',
     State='ENABLED',
-    
     Description='Amazon CloudWatch Events rule to automatically start your pipeline when a change occurs in the Amazon S3 object key or S3 folder. Deleting this may prevent changes from being detected in that pipeline. Read more: http://docs.aws.amazon.com/codepipeline/latest/userguide/pipelines-about-starting.html',
-    ScheduleExpression='',
-    EventPattern={"source":["aws.s3"],"detail-type":["AWS API Call via CloudTrail"],"detail":{"eventSource":["s3.amazonaws.com"],"eventName":["PutObject","CompleteMultipartUpload","CopyObject"],"requestParameters":{"bucketName":["my-new-stack-azuredropbucket-zy6wv6dg4yic"],"key":["docker.zip"]}}},
+    EventPattern={
+        "source": [
+                "aws.s3"
+        ],
+        "detail-type": [
+            "AWS API Call via CloudTrail"
+        ],
+        "detail": {
+            "eventSource": [
+                "s3.amazonaws.com"
+            ],
+            "eventName": [
+                "PutObject",
+                "CompleteMultipartUpload",
+                "CopyObject"
+            ],
+            "requestParameters": {
+                "bucketName": [
+                    {"Ref": S3_DELIVERY_BUCKET}
+                ],
+                "key": [
+                    S3_OBJECT_Key
+                ]
+            }
+        }
+    },
     Targets=[
         Target(
-            Arn=Join("",
-                ['arn:aws:codepipeline:',Region,":",AccountId,":",BUILD_NAME]
+            Arn=Join(
+                "",
+                ['arn:aws:codepipeline:', Region, ":", AccountId, ":", BUILD_NAME]
             ),
             Id='CodePipelineTarget',
-            RoleArn = GetAtt(EventRole,"Arn"),
+            RoleArn=GetAtt(EventRole, "Arn"),
         )
     ]
 ))
 
+BucketPolicy = t.add_resource(BucketPolicy(
+    "BucketPolicy",
+    PolicyDocument={
+        "Statement": [
+                {
+                "Sid": "AWSCloudTrailAclCheck",
+                "Effect": "Allow",
+                "Principal": {
+                    "Service": [
+                    "cloudtrail.amazonaws.com"
+                    ]
+                },
+                "Action": "s3:GetBucketAcl",
+                "Resource": {
+                    "Fn::GetAtt": [
+                    "AWSCloudTrailBucket",
+                    "Arn"
+                    ]
+                }
+                },
+                {
+                "Sid": "AWSCloudTrailWrite",
+                "Effect": "Allow",
+                "Principal": {
+                    "Service": [
+                    "cloudtrail.amazonaws.com"
+                    ]
+                },
+                "Action": "s3:PutObject",
+                "Resource": {
+                    "Fn::Join": [
+                    "",
+                    [
+                        {
+                        "Fn::GetAtt": [
+                            "AWSCloudTrailBucket",
+                            "Arn"
+                        ]
+                        },
+                        "/AWSLogs/",
+                        {
+                        "Ref": "AWS::AccountId"
+                        },
+                        "/*"
+                    ]
+                    ]
+                },
+                "Condition": {
+                    "StringEquals": {
+                    "s3:x-amz-acl": "bucket-owner-full-control"
+                    }
+                }
+                }
+            ]
+    },
+    Bucket=Ref(AWSCloudTrailBucket),
+))
+
+S3DeliveryTrail = t.add_resource(Trail(
+    "S3DeliveryTrail",
+    IsLogging=True,
+    S3BucketName=Ref(AWSCloudTrailBucket),
+    DependsOn=["BucketPolicy"],
+    EventSelectors=[
+        EventSelector(
+            IncludeManagementEvents=True,
+            DataResources=[
+                DataResource(
+                    Values=[
+                        Join("",["arn:aws:s3:::",Ref(IncommingBucket),"/",S3_OBJECT_Key])
+                    ],
+                    Type="AWS::S3::Object",
+                ),
+            ],
+            ReadWriteType="All",
+        ),
+    ],
+))
+
 # Show cerated ressources
 t.add_output(
-    [   
+    [Output(
+        "S3DeliveryTrail",
+        Description="Cloudtrail to detect drift changes within S3",
+        Value=GetAtt(S3DeliveryTrail, "Arn")
+    ),
         Output(
             "IncommingBucket",
             Description="Incomming Bucket for docker.zip",
             Value=GetAtt(IncommingBucket, "Arn")
-        ),
+    ),
         Output(
             "BuildArtrifactsBucket",
             Description="Logging Bucket: Build process",
             Value=GetAtt(CodeBuildProject, "Arn")
-        ),
+    ),
         Output(
             "CodeBuildARN",
             Description="CodeBuild Arn",
             Value=GetAtt(CodeBuildProject, "Arn")
-        ),
+    ),
         Output(
             "CodePipelineARN",
             Description="CodePipeline Arn",
             Value=Join(
                 "",
-                ['arn:aws:codepipeline:',Region,":",AccountId,":",BUILD_NAME]
+                ['arn:aws:codepipeline:', Region, ":", AccountId, ":", BUILD_NAME]
             )
-        ),
+    ),
         Output(
             "ServiceRoleBuild",
             Description="CodeBuild IAM role",
-            Value=GetAtt(CodeBuildServiceRole,"Arn")
-        ),
+            Value=GetAtt(CodeBuildServiceRole, "Arn")
+    ),
         Output(
             "ServiceRolePipeline",
             Description="CodePipelind IAM role",
-            Value=GetAtt(CodePipelineServiceRole,"Arn"),
-        ),
+            Value=GetAtt(CodePipelineServiceRole, "Arn"),
+    ),
         Output(
             "EventRule",
             Description="Cloudwatch Event Rule to trigger CodePipeline",
-            Value=GetAtt(EventRule,"Arn")
-        )
+            Value=GetAtt(EventRule, "Arn")
+    )
     ]
 )
 
-#print(t.to_json())
+# print(t.to_json())
 print(t.to_yaml())
 
 ````
@@ -420,7 +609,7 @@ print(t.to_json())
 at the end of the CICD.py file. Second, use `python CICD.py > DockerCICD.json`to get a json.
 
 
-## Deploying the Cloudoformation template
+## Deploying the Cloudformation template
 
 First, validate the Cloudformation template with: 
 
@@ -436,9 +625,44 @@ aws cloudformation deploy --template-file ./DockerCICD.yml --stack-name dockerst
 
 `--capabilities CAPABILITY_NAMED_IAMCAPABILITY_NAMED_IAM` is needed because you will deploy IAM ressources.
 
-## Upload your image to S3
+## Creat your buildspec.yml
 
-Now, you can develop your image on your local machine. Ready? Use `zip -r docker.zip .`, get the complete bucket name of your `dockerstaticwebsite`  and upload you zip-file to S3:
+Before uploading your Docker image, you need to create your `buildspec.yml`. It can look like this:
+
+````bash
+version: 0.2
+
+env:
+  variables:
+    AWS_DEFAULT_REGION: "eu-central-1"
+    AWS_ACCOUNT_ID: "037732949416"
+    IMAGE_REPO_NAME: "dockerstaticwebsite"
+    IMAGE_TAG: "latest"
+    
+phases:
+  install:aws s3 
+    runtime-versions:
+      docker: 18
+  pre_build:
+    commands:
+      - echo Logging in to Amazon ECR...
+      - $(aws ecr get-login --no-include-email --region $AWS_DEFAULT_REGION)
+  build:
+    commands:
+      - echo Build started on `date`
+      - echo Building the Docker image...          
+      - docker build -t $IMAGE_REPO_NAME:$IMAGE_TAG .
+      - docker tag $IMAGE_REPO_NAME:$IMAGE_TAG $AWS_ACCOUNT_ID.dkr.ecr.$AWS_DEFAULT_REGION.amazonaws.com/$IMAGE_REPO_NAME:$IMAGE_TAG      
+  post_build:
+    commands:
+      - echo Build completed on `date`
+      - echo Pushing the Docker image...
+      - docker push $AWS_ACCOUNT_ID.dkr.ecr.$AWS_DEFAULT_REGION.amazonaws.com/$IMAGE_REPO_NAME:$IMAGE_TAG
+````
+
+## Upload your docker image as zip file to S3
+
+Gather all files (at least the `Dockerfile`, it dependencies and the `buildspec.yml`) together in one directory. Ready? Use `zip -r docker.zip .`, get the complete bucket name of your `dockerstaticwebsite`  and upload you zip-file to S3:
 
 ````bash
 aws s3 ls

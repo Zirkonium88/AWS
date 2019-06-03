@@ -1,3 +1,4 @@
+AWSTemplateFormatVersion: '2010-09-09'
 Description: >-
   This AWS CloudFormation Template deploys a S3-based CICD pipeline to deploy a docker
   image to Amazon ECR. The image needs to be upload to azuredropbucket ressource as
@@ -24,14 +25,96 @@ Outputs:
     Value: !GetAtt 'DockerStaticWebsiteEventRule.Arn'
   IncommingBucket:
     Description: Incomming Bucket for docker.zip
-    Value: !GetAtt 'staticwebsite.Arn'
+    Value: !GetAtt 'dockerstaticwebsite.Arn'
+  S3DeliveryTrail:
+    Description: Cloudtrail to detect drift changes within S3
+    Value: !GetAtt 'S3DeliveryTrail.Arn'
   ServiceRoleBuild:
     Description: CodeBuild IAM role
     Value: !GetAtt 'CodeBuildServiceRole.Arn'
   ServiceRolePipeline:
     Description: CodePipelind IAM role
     Value: !GetAtt 'CodePipelineServiceRole.Arn'
+Parameters:
+  AppName:
+    AllowedPattern: '[\x20-\x7E]*'
+    ConstraintDescription: can contain only ASCII characters.
+    Default: cicdstaticwebsite
+    Description: Application Name
+    MaxLength: '255'
+    MinLength: '1'
+    Type: String
+  ArtifactBucket:
+    AllowedPattern: '[\x20-\x7E]*'
+    ConstraintDescription: can contain only ASCII characters.
+    Default: buildartifactsbucket
+    Description: Artifact Bucket Name
+    MaxLength: '255'
+    MinLength: '1'
+    Type: String
+  DeliveryBucket:
+    AllowedPattern: '[\x20-\x7E]*'
+    ConstraintDescription: can contain only ASCII characters.
+    Default: dockerstaticwebsite
+    Description: Retrieval Bucket Name
+    MaxLength: '255'
+    MinLength: '1'
+    Type: String
+  Key:
+    AllowedPattern: '[\x20-\x7E]*'
+    ConstraintDescription: can contain only ASCII characters.
+    Default: dockerdeliverystaticwebsite
+    Description: CodeBuild Project Name
+    MaxLength: '255'
+    MinLength: '1'
+    Type: String
+  RepName:
+    AllowedPattern: '[\x20-\x7E]*'
+    ConstraintDescription: can contain only ASCII characters.
+    Default: dockerstaticwebsite
+    Description: ECR Repository Name
+    MaxLength: '255'
+    MinLength: '1'
+    Type: String
+  S3ObjectKey:
+    AllowedPattern: '[\x20-\x7E]*'
+    ConstraintDescription: can contain only ASCII characters.
+    Default: docker.zip
+    Description: Uploaded Key
+    MaxLength: '255'
+    MinLength: '1'
+    Type: String
 Resources:
+  AWSCloudTrailBucket:
+    Type: AWS::S3::Bucket
+  BucketPolicy:
+    Properties:
+      Bucket: !Ref 'AWSCloudTrailBucket'
+      PolicyDocument:
+        Statement:
+          - Action: s3:GetBucketAcl
+            Effect: Allow
+            Principal:
+              Service:
+                - cloudtrail.amazonaws.com
+            Resource: !GetAtt 'AWSCloudTrailBucket.Arn'
+            Sid: AWSCloudTrailAclCheck
+          - Action: s3:PutObject
+            Condition:
+              StringEquals:
+                s3:x-amz-acl: bucket-owner-full-control
+            Effect: Allow
+            Principal:
+              Service:
+                - cloudtrail.amazonaws.com
+            Resource: !Join
+              - ''
+              - - !GetAtt 'AWSCloudTrailBucket.Arn'
+                - /AWSLogs/
+                - !Ref 'AWS::AccountId'
+                - /*
+            Sid: AWSCloudTrailWrite
+    Type: AWS::S3::BucketPolicy
   CodeBuildProjectDockerStaticWebsite:
     Properties:
       Artifacts:
@@ -44,7 +127,7 @@ Resources:
         ImagePullCredentialsType: CODEBUILD
         PrivilegedMode: 'true'
         Type: LINUX_CONTAINER
-      Name: dockerstaticwebsite
+      Name: cicdstaticwebsite
       ServiceRole: !GetAtt 'CodeBuildServiceRole.Arn'
       Source:
         GitCloneDepth: 1
@@ -62,7 +145,7 @@ Resources:
             Principal:
               Service:
                 - codebuild.amazonaws.com
-      Path: /
+        Version: '2012-10-17'
       Policies:
         - PolicyDocument:
             Statement:
@@ -75,16 +158,17 @@ Resources:
                   - s3:GetObjectVersion
                 Effect: Allow
                 Resource:
-                  - !GetAtt 'staticwebsite.Arn'
+                  - !GetAtt 'dockerstaticwebsite.Arn'
                   - !GetAtt 'buildartifactsbucket.Arn'
                   - !Join
                     - /
-                    - - !GetAtt 'staticwebsite.Arn'
+                    - - !GetAtt 'dockerstaticwebsite.Arn'
                       - '*'
                   - !Join
                     - /
                     - - !GetAtt 'buildartifactsbucket.Arn'
                       - '*'
+            Version: '2012-10-17'
           PolicyName: WorktwithS3
         - PolicyDocument:
             Statement:
@@ -95,6 +179,7 @@ Resources:
                 Effect: Allow
                 Resource:
                   - '*'
+            Version: '2012-10-17'
           PolicyName: WorkWithLogs
         - PolicyDocument:
             Statement:
@@ -107,7 +192,8 @@ Resources:
                   - ecr:PutImage
                 Effect: Allow
                 Resource:
-                  - !GetAtt 'DockerStaticWebsiteRepo.Arn'
+                  - '*'
+            Version: '2012-10-17'
           PolicyName: WorkWithECR
     Type: AWS::IAM::Role
   CodePipelineServiceRole:
@@ -120,6 +206,7 @@ Resources:
             Principal:
               Service:
                 - codepipeline.amazonaws.com
+        Version: '2012-10-17'
       Path: /
       Policies:
         - PolicyDocument:
@@ -143,6 +230,7 @@ Resources:
                 Effect: Allow
                 Resource:
                   - '*'
+            Version: '2012-10-17'
           PolicyName: CopyCodePipelineServicePolicy
     Type: AWS::IAM::Role
   DockerStaticWebsiteEventRole:
@@ -155,7 +243,7 @@ Resources:
             Principal:
               Service:
                 - events.amazonaws.com
-      Path: /
+        Version: '2012-10-17'
       Policies:
         - PolicyDocument:
             Statement:
@@ -170,8 +258,9 @@ Resources:
                       - ':'
                       - !Ref 'AWS::AccountId'
                       - ':'
-                      - dockerdeliverystaticwebsite
-          PolicyName: StartPipeline
+                      - !Ref 'DockerStaticWebsitePipeline'
+            Version: '2012-10-17'
+          PolicyName: DockerSaticWebsitePipeline
     Type: AWS::IAM::Role
   DockerStaticWebsiteEventRule:
     Properties:
@@ -189,7 +278,7 @@ Resources:
             - s3.amazonaws.com
           requestParameters:
             bucketName:
-              - my-new-stack-azuredropbucket-zy6wv6dg4yic
+              - !Ref 'dockerstaticwebsite'
             key:
               - docker.zip
         detail-type:
@@ -197,7 +286,6 @@ Resources:
         source:
           - aws.s3
       Name: codepipeline-DockerStaticWebsiteEventRule
-      ScheduleExpression: ''
       State: ENABLED
       Targets:
         - Arn: !Join
@@ -227,12 +315,13 @@ Resources:
                 Version: '1'
               Configuration:
                 PollForSourceChanges: 'false'
-                S3Bucket: !Ref 'staticwebsite'
+                S3Bucket: !Ref 'dockerstaticwebsite'
                 S3ObjectKey: docker.zip
               Name: Source
               OutputArtifacts:
                 - Name: SourceArtifact
-              RunOrder: '1'
+              Region: !Ref 'AWS::Region'
+              RunOrder: 1
           Name: Source
         - Actions:
             - ActionTypeId:
@@ -241,7 +330,7 @@ Resources:
                 Provider: CodeBuild
                 Version: '1'
               Configuration:
-                ProjectName: dockerstaticwebsite
+                ProjectName: cicdstaticwebsite
               InputArtifacts:
                 - Name: SourceArtifact
               Name: Build
@@ -252,7 +341,7 @@ Resources:
     Type: AWS::CodePipeline::Pipeline
   DockerStaticWebsiteRepo:
     Properties:
-      RepositoryName: dockerstaticwebsite
+      RepositoryName: !Ref 'RepName'
       RepositoryPolicyText:
         Statement:
           - Action:
@@ -267,10 +356,30 @@ Resources:
             Principal:
               AWS: '*'
             Sid: AllowPushPull
+        Version: '2012-10-17'
     Type: AWS::ECR::Repository
+  S3DeliveryTrail:
+    DependsOn:
+      - BucketPolicy
+    Properties:
+      EventSelectors:
+        - DataResources:
+            - Type: AWS::S3::Object
+              Values:
+                - !Join
+                  - ''
+                  - - 'arn:aws:s3:::'
+                    - !Ref 'dockerstaticwebsite'
+                    - /
+                    - docker.zip
+          IncludeManagementEvents: 'true'
+          ReadWriteType: All
+      IsLogging: 'true'
+      S3BucketName: !Ref 'AWSCloudTrailBucket'
+    Type: AWS::CloudTrail::Trail
   buildartifactsbucket:
     Type: AWS::S3::Bucket
-  staticwebsite:
+  dockerstaticwebsite:
     Properties:
       VersioningConfiguration:
         Status: Enabled
