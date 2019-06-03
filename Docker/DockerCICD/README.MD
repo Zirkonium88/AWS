@@ -672,4 +672,4 @@ aws s3 cp foo.zip s3://dockerstaticwebsite+RANDOM_HASH
 # or from your S3 console
 ````
 
-Make sure you use the approciate key for your uploaded zip archive. The Cloudformations scripts uses `docker.zip`.
+Make sure you use the approciate key for your uploaded zip archive. The Cloudformation script assumes `docker.zip`.
