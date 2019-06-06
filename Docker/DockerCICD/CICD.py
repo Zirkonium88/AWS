@@ -101,7 +101,7 @@ BuildName = t.add_parameter(Parameter(
 
 t.set_description("This AWS CloudFormation Template deploys a S3-based CICD pipeline to deploy a docker image to Amazon ECR. The image needs to be upload to azuredropbucket ressource as zip. Docker build runs within the pipeline.")
 
-# Generate two Buckets
+# Generate three Buckets
 IncommingBucket = t.add_resource(Bucket(
     S3_DELIVERY_BUCKET,
     VersioningConfiguration=VersioningConfiguration(
@@ -597,7 +597,4 @@ print(t.to_yaml())
 
 # Delete Stack
 # aws cloudformation delete-stack --stack-name my-new-stack
-
-# aws codepipeline retry-stage-execution --pipeline-name my-new-stack-DockerDelivery-13T6KR7HXMNO1 --stage-name Source --pipeline-execution-id 56bd1735-4f81-4621-aa58-f2429f71f259 --retry-mode FAILED_ACTIONS
-
-# aws codepipeline get-job-details --job-id 56bd1735-4f81-4621-aa58-f2429f71f259
++
