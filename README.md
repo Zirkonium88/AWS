@@ -20,12 +20,14 @@ This repository will provide some examples from my daily AWS workloads. It will 
 
 * Do you want to host a Docker container as Apache webserver? This [Docker example](Docker/DockerStaticWebsite/README.MD) will show you how.
 * Do you want a CICD for a the previous (or any outher) Docker workload? Look out [here!](Docker/DockerCICD/README.MD)
+* Docker batch workloads? Look [here!](Docker/BatchWorkloads/README.MD)
 
 ## Deploying an AWS Lambda on AWS via Serverless
 
 * You do not how a deployment to AWS Lambda could work? The example on [Serverless](https://github.com/Zirkonium88/AWS/tree/master/Lambda/ServerlessDemo/README.MD) will show you how.
 * Do you need a example for a simple Lambda processing pipeline? In this tutorial for connecting [Amazon S3 and DynamoDB via AWS Lambda](https://github.com/Zirkonium88/AWS/tree/master/Lambda/GetImagenames/README.MD), you will get your example.
-* How to prevent unintentional deletion of buckets and their contents? This example shows it with [Lambda and the setting of Bucketpolicies](https://github.com/Zirkonium88/AWS/tree/master/Lambda/BucketPolicy/README.MD). 
+* How to prevent unintentional deletion of buckets and their contents? This example shows it with [Lambda and the setting of Bucketpolicies](https://github.com/Zirkonium88/AWS/tree/master/Lambda/BucketPolicy/README.MD).
+* Do you want to automize your IAM processes? Have a look [here!](https://github.com/Zirkonium88/AWS/tree/master/Lambda/AddUser/README.M) 
 
 ## Deploying my HUGO webpage
 
