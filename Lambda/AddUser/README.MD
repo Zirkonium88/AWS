@@ -57,7 +57,7 @@ def lambda_handler(event, context):
 ```
 
 
-The [serverless.yaml](https://github.com/Zirkonium88/AWS/tree/master/Lambda/AddUser/serverless.yml) looks like this. It deploys a IAM group, it's IAM policy, and the Cloudwatch Event.
+The [serverless.yaml](https://github.com/Zirkonium88/AWS/tree/master/Lambda/AddUser/serverless.yml) looks like this. It deploys the Lmabda and a Cloudwatch Event.
 
 ```yaml
 
@@ -103,23 +103,5 @@ functions:
               eventName:
                 - "CreateUser"
                 - "UpdateUser"
-
-resources: # CloudFormation template syntax
-  Resources:
-    ProtectNasuniGroup:
-      Type: AWS::IAM::Group
-    ProtectNasuniPol:
-      Properties:
-        Groups:
-          - !Ref 'IAM-Group'
-        PolicyDocument:
-          Statement:
-            - Action:
-                - s3:DeleteBucketPolicy
-              Effect: Deny
-              Resource: arn:aws:s3:::nasunifiler*
-          Version: '2012-10-17'
-        PolicyName: grppolIAMGroup
-      Type: AWS::IAM::Policy
 
 ```

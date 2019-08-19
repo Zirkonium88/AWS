@@ -1,6 +1,6 @@
-# Cloudformationa and Parameters
+# Cloudformation and Parameters
 
-I like to use `Troposphere`- a apython library - for my Cloudformation workloads. In this case, I want to create two Buckets. One with a default naming and one with defined one yor my apllication. If you are ready for testing you just need to run `python CreateBucket.py > CreateBucket.yml` to print out the template.
+I like to use `Troposphere`- a Python library - for my Cloudformation workloads. In this case, I want to create two Buckets. One with a default naming and one with defined one yor my apllication. If you are ready for testing you just need to run `python CreateBucket.py > CreateBucket.yml` to print out the template.
 
 Aftwards you can validate your template with: 
 
