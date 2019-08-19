@@ -9,3 +9,10 @@ provider:
 functions:
   ServerlessDemo:
     handler: ServerlessDemo.lambda_handler
+    
+plugins:
+    - serverless-python-requirements
+
+custom:
+    pythonRequirements:
+        dockerizePip: non-linux

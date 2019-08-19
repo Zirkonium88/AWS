@@ -14,16 +14,18 @@ This repository will provide some examples from my daily AWS workloads. It will 
 ## Cloudformation templates
 
 * If your interested in various examples of CloudFormation, look [here](https://github.com/Zirkonium88/aws-cf-templates). It's a repo of one of my colleagues.
+* A small Demo on how to use Parameters and Troposphere in and for Cloudformation can be found [here](https://github.com/Zirkonium88/AWS/tree/master/CloudFormation/README.MD).
 
 ## Docker on AWS
 
 * Do you want to host a Docker container as Apache webserver? This [Docker example](Docker/DockerStaticWebsite/README.MD) will show you how.
-* CICD for athe precois (or any outher) Docker workload? Look out [here:](Docker/DockerCICD/README.MD)
+* Do you want a CICD for a the previous (or any outher) Docker workload? Look out [here!](Docker/DockerCICD/README.MD)
 
 ## Deploying an AWS Lambda on AWS via Serverless
 
 * You do not how a deployment to AWS Lambda could work? The example on [Serverless](https://github.com/Zirkonium88/AWS/tree/master/Lambda/ServerlessDemo/README.MD) will show you how.
 * Do you need a example for a simple Lambda processing pipeline? In this tutorial for connecting [Amazon S3 and DynamoDB via AWS Lambda](https://github.com/Zirkonium88/AWS/tree/master/Lambda/GetImagenames/README.MD), you will get your example.
+* How to prevent unintentional deletion of buckets and their contents? This example shows it with [Lambda and the setting of Bucketpolicies](https://github.com/Zirkonium88/AWS/tree/master/Lambda/BucketPolicy/README.MD). 
 
 ## Deploying my HUGO webpage
 
@@ -40,4 +42,4 @@ This repository will provide some examples from my daily AWS workloads. It will 
 
 ## Talks on AWS within our AWS UserGroup
 
-* Do you want to know how to make AWS AI/ML services available on IoT? Within our [AWS UserGroup in Hannover](https://www.meetup.com/de-DE/AWS-Usergroup-Hannover/) we talked about [that](https://github.com/Zirkonium88/AWS/tree/master/Presentations/20190319_UserGroup_AI_on_IoT.pdf). 
+* Do you want to know how to make AWS AI/ML services available on IoT? Within our [AWS UserGroup in Hannover](https://www.meetup.com/de-DE/AWS-Usergroup-Hannover/) we talked about [that](https://github.com/Zirkonium88/AWS/tree/master/Presentations/20190319_UserGroup_AI_on_IoT.pdf).

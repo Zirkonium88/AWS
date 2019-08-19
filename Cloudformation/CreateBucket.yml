@@ -1,0 +1,34 @@
+Description: This AWS CloudFormation template creates two S3 Buckets.One with simple
+  settings and the other one with advanced settings to holdwebsite content
+Outputs:
+  DefaultBucketOutput:
+    Description: Name of S3 default bucket
+    Value: !Ref 'WebsiteS3Bucket'
+  WebsiteBucketOutput:
+    Description: Name of S3 bucket to hold website content
+    Value: !Ref 'WebsiteS3Bucket'
+Resources:
+  DefaultS3Bucket:
+    Type: AWS::S3::Bucket
+  WebsiteS3Bucket:
+    Properties:
+      AccessControl: PublicRead
+      LifecycleConfiguration:
+        Rules:
+          - ExpirationInDays: 3650
+            Id: S3BucketRule001
+            NoncurrentVersionExpirationInDays: 365
+            NoncurrentVersionTransitions:
+              - StorageClass: STANDARD_IA
+                TransitionInDays: 30
+              - StorageClass: GLACIER
+                TransitionInDays: 120
+            Prefix: /only-this-sub-dir
+            Status: Enabled
+            Transitions:
+              - StorageClass: STANDARD_IA
+                TransitionInDays: 60
+      VersioningConfiguration:
+        Status: Enabled
+    Type: AWS::S3::Bucket
+
