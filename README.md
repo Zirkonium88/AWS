@@ -28,7 +28,6 @@ This repository will provide some examples from my daily AWS workloads. It will 
 * Do you need a example for a simple Lambda processing pipeline? In this tutorial for connecting [Amazon S3 and DynamoDB via AWS Lambda](https://github.com/Zirkonium88/AWS/tree/master/Lambda/GetImagenames/README.MD), you will get your example.
 * How to prevent unintentional deletion of buckets and their contents? This example shows it with [Lambda and the setting of Bucketpolicies](https://github.com/Zirkonium88/AWS/tree/master/Lambda/BucketPolicy/README.MD).
 * Do you want to automize your IAM processes? Have a look [here!](https://github.com/Zirkonium88/AWS/blob/master/Lambda/AddUser/README.MD)
-* Do you want to dump Data from  
 
 ## Deploying my HUGO webpage
 
