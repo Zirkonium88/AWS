@@ -1,0 +1,277 @@
+# Adapted from https://www.thinkahead.com/TheLAB/serverless-big-data-demo-using-small-data-aws/
+AWSTemplateFormatVersion: "2010-09-09"
+Description: >-
+  This AWS CloudFormation Template deploys a IoT anaomyl detection pipeline. The stacks creates everthying apart from your input device. This can be virtual or not. Due to the variety of opportunities, the user needs to provision this device over AWS IoT Core.
+
+Parameters:
+  Email:
+    Description: "Your Email address: to be used for anomaly detection."
+    Type: "String"
+    Default: "myemail@email.com"
+  BucketName:
+    Description: "The S3 Bucket you uploaded the Lambda to."
+    Type: "String"
+    Default: "LambdaBucket"
+  S3Key:
+    Description: "The key of your S3 Object."
+    Type: "String"
+    Default: "lambda.zip"
+
+Resources:
+  # create the S3 bucket used to store time-series data
+  DataRepositoryS3Bucket:
+    Type: "AWS::S3::Bucket"
+    Properties:
+      AccessControl: "PublicRead"
+  DataRepositoryS3BucketPolicy:
+    Type: "AWS::S3::BucketPolicy"
+    Properties:
+      Bucket: !Ref DataRepositoryS3Bucket
+      PolicyDocument:
+        Statement:
+          - Action:
+              - "s3:Get*"
+              - "s3:List*"
+            Effect: "Allow"
+            Principal: "*"
+            Resource:
+              - !Join ["", ["arn:aws:s3:::", !Ref DataRepositoryS3Bucket]]
+              - !Join ["", ["arn:aws:s3:::", !Ref DataRepositoryS3Bucket, "/*"]]
+
+  # SNS topic used to alert user when anomalies are detected in Kinesis; Alert comes via SMS
+  AlertSnsTopic:
+    Type: "AWS::SNS::Topic"
+    Properties:
+      Subscription:
+        - Endpoint: !Ref Email
+          Protocol: "email"
+
+  # create IAM policy that permits Kinesis Firehose to write to the S3 bucket
+  FirehoseToS3Policy:
+    Type: "AWS::IAM::Policy"
+    Properties:
+      PolicyDocument:
+        Version: "2012-10-17"
+        Statement:
+          - Effect: "Allow"
+            Action:
+              - "s3:PutObject"
+              - "s3:PutObjectAcl"
+              - "s3:PutObjectVersionAcl"
+              - "s3:AbortMultipartUpload"
+              - "s3:GetBucketLocation"
+              - "s3:GetObject"
+              - "s3:ListBucket"
+              - "s3:ListBucketMultipartUploads"
+            Resource:
+              - !Join ["", ["arn:aws:s3:::", !Ref DataRepositoryS3Bucket]]
+              - !Join ["", ["arn:aws:s3:::", !Ref DataRepositoryS3Bucket, "/*"]]
+          - Effect: "Allow"
+            Action:
+              - "logs:CreateLogGroup"
+              - "logs:CreateLogStream"
+              - "logs:PutLogEvents"
+              - "logs:DescribeLogStreams"
+            Resource: "arn:aws:logs:*:*:*"
+      PolicyName: "FirehoseToS3"
+      Roles:
+        - Ref: FirehoseToS3Role
+
+  # create IAM role that connects to the IAM policy
+  FirehoseToS3Role:
+    Type: "AWS::IAM::Role"
+    Properties:
+      AssumeRolePolicyDocument:
+        Version: "2012-10-17"
+        Statement:
+          - Effect: "Allow"
+            Principal:
+              Service:
+                - "firehose.amazonaws.com"
+            Action:
+              - "sts:AssumeRole"
+      Path: "/"
+
+  # create IAM role that grants Kinesis Analytics access to the Firehose delivery stream
+  KinesisAnalyticsRole:
+    Type: "AWS::IAM::Role"
+    Properties:
+      AssumeRolePolicyDocument:
+        Version: "2012-10-17"
+        Statement:
+          - Effect: "Allow"
+            Principal:
+              Service:
+                - "kinesisanalytics.amazonaws.com"
+            Action:
+              - "sts:AssumeRole"
+      Path: "/"
+
+  # create IAM policy that permits Kinesis Analytics to read from the Firehose delivery stream
+  KinesisAnalyticsToKinesisStreamAndFirehosePolicy:
+    Type: "AWS::IAM::Policy"
+    Properties:
+      PolicyDocument:
+        Version: "2012-10-17"
+        Statement:
+          - Effect: "Allow"
+            Action:
+              - "firehose:DescribeDeliveryStream"
+              - "firehose:Get*"
+            Resource:
+              !Join [
+                "",
+                [
+                  "arn:aws:firehose:",
+                  !Ref "AWS::Region",
+                  ":",
+                  !Ref "AWS::AccountId",
+                  ":deliverystream/",
+                  !Ref DataKinesisFirehose,
+                ],
+              ]
+          - Effect: "Allow"
+            Action:
+              - "kinesis:DescribeStream"
+              - "kinesis:PutRecord"
+              - "kinesis:PutRecords"
+            Resource: !GetAtt KinesisAnomalyStream.Arn
+      PolicyName: "AnalyticsToFirehose"
+      Roles:
+        - Ref: KinesisAnalyticsRole
+
+  # create IAM role that grants AWS Lambda access to publish to the SNS Topic
+  LambdaExecutionRole:
+    Type: "AWS::IAM::Role"
+    Properties:
+      AssumeRolePolicyDocument:
+        Version: "2012-10-17"
+        Statement:
+          - Effect: "Allow"
+            Principal:
+              Service:
+                - "lambda.amazonaws.com"
+            Action:
+              - "sts:AssumeRole"
+      Path: "/"
+
+  # create IAM policy that permits Kinesis Analytics to read from the Firehose delivery stream
+  LambdaToKinesisAndSnsPolicy:
+    Type: "AWS::IAM::Policy"
+    Properties:
+      PolicyDocument:
+        Version: "2012-10-17"
+        Statement:
+          - Effect: "Allow"
+            Action:
+              - "sns:GetTopicAttributes"
+              - "sns:ListTopics"
+              - "sns:Publish"
+            Resource: !Ref AlertSnsTopic
+          - Effect: "Allow"
+            Action:
+              - "kinesis:DescribeStream"
+              - "kinesis:GetRecords"
+              - "kinesis:GetShardIterator"
+            Resource: !GetAtt KinesisAnomalyStream.Arn
+          - Effect: "Allow"
+            Action:
+              - "logs:CreateLogGroup"
+            Resource:
+              !Join [
+                "",
+                [
+                  "arn:aws:logs:",
+                  !Ref "AWS::Region",
+                  ":",
+                  !Ref "AWS::AccountId",
+                  ":*",
+                ],
+              ]
+          - Effect: "Allow"
+            Action:
+              - "logs:CreateLogStream"
+              - "logs:PutLogEvents"
+            Resource:
+              !Join [
+                "",
+                [
+                  "arn:aws:logs:",
+                  !Ref "AWS::Region",
+                  ":",
+                  !Ref "AWS::AccountId",
+                  ":log-group:/aws/lambda/*",
+                ],
+              ]
+      PolicyName: "LambdaToKinesisAndSnsPolicy"
+      Roles:
+        - Ref: LambdaExecutionRole
+
+  # create Lambda function that takes anomalies from Kinesis Analytics and publishes on SNS
+  AlertingLambdaFunction:
+    Type: "AWS::Lambda::Function"
+    Properties:
+      Code:
+        S3Bucket: !Ref BucketName
+        S3Key: !Ref S3Key
+      Description: "Lambda function that takes anomalies discovered in Kinesis Analytics and performs alerting to SNS topic"
+      Environment:
+        Variables:
+          "SnsTopicArn": !Ref AlertSnsTopic
+      Handler: "lambda_function.lambda_handler"
+      Runtime: "python3.7"
+      Role: !GetAtt LambdaExecutionRole.Arn
+      MemorySize: 128
+      Timeout: 3
+
+  # create the Kinesis Firehose that takes device data and persists to S3
+  DataKinesisFirehose:
+    Type: "AWS::KinesisFirehose::DeliveryStream"
+    DependsOn: DataRepositoryS3Bucket
+    Properties:
+      S3DestinationConfiguration:
+        BucketARN: !Join ["", ["arn:aws:s3:::", !Ref DataRepositoryS3Bucket]]
+        BufferingHints:
+          IntervalInSeconds: 60 # amount of seconds to wait before persisting
+          SizeInMBs: 1 # setting small for a basic test
+        CompressionFormat: "GZIP" # in real life, we would both encrypt & compress this data
+        RoleARN: !GetAtt FirehoseToS3Role.Arn
+        Prefix: ""
+        CloudWatchLoggingOptions:
+          Enabled: true
+          LogGroupName: !Ref FirehoseLoggingLogGroup
+          LogStreamName: !Ref FirehoseLogStream
+
+  # create Kinesis stream that Kinesis Analytics will write to when anomalies are found
+  KinesisAnomalyStream:
+    Type: "AWS::Kinesis::Stream"
+    Properties:
+      ShardCount: 1
+
+  # create a CWL log group & log stream for Kinesis Firehose logging
+  FirehoseLoggingLogGroup:
+    Type: "AWS::Logs::LogGroup"
+    Properties:
+      RetentionInDays: 3
+
+  FirehoseLogStream:
+    Type: "AWS::Logs::LogStream"
+    Properties:
+      LogGroupName: !Ref FirehoseLoggingLogGroup
+
+Outputs:
+  DataRepositoryBucketName:
+    Description: "Name of the S3 bucket storing device data"
+    Value: !Ref DataRepositoryS3Bucket
+
+  DataKinesisFirehoseId:
+    Description: "ID of the Kinesis Firehose delivery stream, to be used in the data producer script"
+    Value: !Ref DataKinesisFirehose
+
+  KinesisAnomalyStreamId:
+    Description: "ID of the Kinesis stream, to be used as the target for Kinesis Analytics anomaly detection and event source for the Lambda alerting function"
+    Value: !Ref KinesisAnomalyStream
+
+  SnsAlertTopic:
+    Description: "ARN of SNS topic used to notify (via email) user of anomlies"
+    Value: !Ref AlertSnsTopic

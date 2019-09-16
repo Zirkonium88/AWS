@@ -33,26 +33,33 @@ This demos shows how to build a [Docker container](https://www.docker.com/resour
     ```bash
     aws ecr create-repository --repository-name hello-repository  --region eu-west-1
     ``` 
+
     Change `repository-name` and `region` accordingly.
 
 7. Copy `uri` to your clipboard.
 
 8. Tag the Docker container for your respository: 
+
     ``` bash
     docker tag hello-world XXX.dkr.ecr.eu-west-1.amazonaws.com/hello-repository # XXX = your account-ID
     ``` 
+
     Change the `uri` accordingly.
 
-9. Get temporary credentials for your repository via the CLI: 
+9. Get temporary credentials for your repository via the CLI:
+
     ```bash 
     aws ecr get-login --no-include-email --region eu-west-1
     ``` 
+
     Copy the output to your clipboard.
 
 10. Push the Docker container to your repository:
+
     ```bash
     docker push XXX.dkr.ecr.eu-west-1.amazonaws.com/hello-repository # XXX = your account-ID
     ```
+
 11. Go the ECS service. Click on `Get started` and choose `Costum container`. Set the port settings to 80.
 
 12. After ECS deployed your application, get the `DNS-Name` of the deployed `ELB` (e.g. **EC2 console**). Paste it in to your browser tab.

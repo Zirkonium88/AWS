@@ -1,25 +1,46 @@
 <!DOCTYPE html>
+
 <head>
 	<title>HTML and CSS "Hello World"</title>
 	<style>
 		body {
 			background-color: rgb(255, 181, 0);
+			text-align: center
 		}
-		
+
+		div {
+			height: 200px;
+			line-height: 200px;
+			text-align: center;
+		}
+
+		span {
+			display: inline-block;
+			vertical-align: middle;
+			line-height: normal;
+		}
+
 		h1 {
 			color: rgb(0, 38, 62);
 			font-size: 30px;
 			font-family: Menlo, Monaco, fixed-width;
+			text-align: center
 		}
-		
+
 		p {
 			color: rgb(0, 38, 62);
 			font-family: "Source Code Pro", Menlo, Monaco, fixed-width;
+			text-align: center
 		}
 	</style>
 </head>
-<body>
-	<h1>Hallo liebe Kursteilnehmende!</h1>
-	<p>Diese Demo zeigt, wie man eine statische Webseite mit Docker auf ECS deployed!</p>
-</body>
+
+<div>
+
+	<body>
+		<h1>Hallo liebe Kursteilnehmende!</h1>
+		<p>Diese Demo zeigt, wie man eine statische Webseite mit Docker auf ECS deployed!</p>
+	</body>
+</div>
+
 </html>

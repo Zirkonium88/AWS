@@ -1,12 +1,13 @@
-Description: This AWS CloudFormation template creates two S3 Buckets.One with simple
+Description:
+  This AWS CloudFormation template creates two S3 Buckets.One with simple
   settings and the other one with advanced settings to holdwebsite content
 Outputs:
   DefaultBucketOutput:
     Description: Name of S3 default bucket
-    Value: !Ref 'WebsiteS3Bucket'
+    Value: !Ref "DefaultS3Bucket"
   WebsiteBucketOutput:
     Description: Name of S3 bucket to hold website content
-    Value: !Ref 'WebsiteS3Bucket'
+    Value: !Ref "WebsiteS3Bucket"
 Resources:
   DefaultS3Bucket:
     Type: AWS::S3::Bucket
@@ -31,4 +32,3 @@ Resources:
       VersioningConfiguration:
         Status: Enabled
     Type: AWS::S3::Bucket
-
