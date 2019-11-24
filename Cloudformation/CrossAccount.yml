@@ -1,0 +1,61 @@
+---
+Parameters:
+  ResourceAccount: ## RessourceAccount
+    Type: String
+    ConstraintDescription: Numeric account ID of tecRacer MSP account
+    Default: "XXX" ## Your Account ID here
+Resources:
+  CrossaccountRoleAdministrators:
+    Type: AWS::IAM::Role
+    Properties:
+      AssumeRolePolicyDocument:
+        Version: "2012-10-17"
+        Statement:
+          - Effect: Allow
+            Principal:
+              AWS:
+                Fn::Join:
+                  - ""
+                  - - "arn:aws:iam::"
+                    - Ref: RessourceAccount
+                    - ":root"
+            Action: sts:AssumeRole
+      RoleName: CrossAccountSuperAdmin
+      ManagedPolicyArns:
+        - arn:aws:iam::aws:policy/AdministratorAccess ### Zugriff
+      Policies:
+        - PolicyName: LimitRole
+          PolicyDocument:
+            Version: "2012-10-17"
+            Statement:
+              - Sid: DenyPurchases
+                Effect: Deny
+                Action:
+                  - ec2:*Reserved*
+                  - dynamodb:*Reserved*
+                  - rds:*Reserved*
+                  - elasticache:*Reserved*
+                  - redshift:*Reserved
+                Resource: "*"
+              - Sid: DenyModifyAccount
+                Effect: Deny
+                Action: aws-portal:ModifyAccount
+                Resource: "*"
+Outputs:
+  CaaTrcAdministratorsRoleArn:
+    Description: Role ARN for Cross-Account Access
+    Value:
+      Fn::GetAtt:
+        - CrossAccountSuperAdmin
+        - Arn
+  CaaTrcAdministratorsAccessUrl:
+    Description: URL for Admin Cross-Account Access
+    Value:
+      Fn::Join:
+        - ""
+        - - https://signin.aws.amazon.com/switchrole?account=
+          - Ref: AWS::AccountId
+          - "&roleName="
+          - Ref: CrossaccountRoleTRCAdministrators
+          - "&displayName=...&color=F2B0A9"
+AWSTemplateFormatVersion: "2010-09-09"

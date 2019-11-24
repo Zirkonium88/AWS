@@ -72,7 +72,7 @@ while not done: # interupt with CTRl+X
     for event in pygame.event.get():
         if event.type == KEYDOWN:
             done = True
-´´´
+```
 
 ## Kinesis Data Analytics
 

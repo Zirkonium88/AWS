@@ -13,10 +13,7 @@ npm install -g serverless
 ## Create your Serverless environment
 1. Change name and path accordingly:
     ```bash 
-    serverless create \
-    --template aws-python3 \
-    --name ServerlessDemo \
-    --path ServerlessDemo
+    serverless create --template aws-python3 --name ServerlessDemo --path ServerlessDemo
     ```
 
 2. Move to your directory, generate a venv for Python and activate it.

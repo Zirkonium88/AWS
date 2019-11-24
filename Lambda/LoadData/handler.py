@@ -3,16 +3,22 @@
 # This function is triggered by an object being created in an Amazon S3 bucket.
 # The file is downloaded and each line is inserted into a DynamoDB table.
 
-import json, urllib, boto3, csv
+import csv
+import json
+import urllib
+
+import boto3
 
 # Connect to S3 and DynamoDB
 s3 = boto3.resource('s3')
 dynamodb = boto3.resource('dynamodb')
 
 # Connect to the DynamoDB tables
-codesTables = dynamodb.Table('SAMPLE_TABLE');
+codesTables = dynamodb.Table('SAMPLE_TABLE')
 
 # This handler is executed every time the Lambda function is triggered
+
+
 def lambda_handler(event, context):
 
     # Show the incoming event in the debug log
@@ -33,24 +39,24 @@ def lambda_handler(event, context):
 
     # Read the Inventory CSV file
     with open(localFilename) as csvfile:
-        reader = csv.DictReader(csvfile, delimiter=';') # Change delimiter accordingly
+        # Change delimiter accordingly
+        reader = csv.DictReader(csvfile, delimiter=';')
 
         # Read each row in the file
         rowCount = 0
         for row in reader:
             rowCount += 1
-            
+
             # Show the row in the debug log
             print(row['id'], row['code'], row['\data'])
-            #print(row)
+            # print(row)
             try:
                 # Insert Store, Item and Count into the Inventory table
                 item = {'training': row['\data'],
-                        'id': row['id'], 
+                        'id': row['id'],
                         'code': row['code']}
 
                 codesTables.put_item(Item=item)
-            
 
             except Exception as e:
                 print(e)
@@ -58,4 +64,3 @@ def lambda_handler(event, context):
 
     # Finished!
     return "%d counts inserted" % rowCount
-

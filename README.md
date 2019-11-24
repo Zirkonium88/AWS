@@ -28,7 +28,8 @@ This repository will provide some examples from my daily AWS workloads. It will 
 * Do you need a example for a simple Lambda processing pipeline? In this tutorial for connecting [Amazon S3 and DynamoDB via AWS Lambda](https://github.com/Zirkonium88/AWS/tree/master/Lambda/GetImagenames/README.MD), you will get your example.
 * How to prevent unintentional deletion of buckets and their contents? This example shows it with [Lambda and the setting of Bucketpolicies](https://github.com/Zirkonium88/AWS/tree/master/Lambda/BucketPolicy/README.MD).
 * Do you want to automize your IAM processes? Have a look [here!](https://github.com/Zirkonium88/AWS/blob/master/Lambda/AddUser/README.MD)
-* Do you want to dump Data from from your DynamoDB as CSV? [Have a look!]() 
+* Do you want to dump Data from from your DynamoDB as CSV? [Have a look!](https://github.com/Zirkonium88/AWS/blob/master/Lambda/ReadDynamo/README.MD)
+* Chunking a big CSV into smaller files? Without using pandas? [Click!](https://github.com/Zirkonium88/AWS/blob/master/Lambda/ChunkCSV/README.MD) 
 
 ## Deploying my HUGO webpage
 
@@ -46,5 +47,4 @@ This repository will provide some examples from my daily AWS workloads. It will 
 ## Talks on AWS within our AWS UserGroup
 
 * Do you want to know how to make AWS AI/ML services available on IoT? Within our [AWS UserGroup in Hannover](https://www.meetup.com/de-DE/AWS-Usergroup-Hannover/) we talked about [that](https://github.com/Zirkonium88/AWS/tree/master/Presentations/20190319_UserGroup_AI_on_IoT.pdf).
-
 * Here, you can find my talk at the [AWS Community Day in Hamburg 2019](https://github.com/Zirkonium88/AWS/tree/master/Presentations/20190909_AWS_communityday.pdf) about using a CPU fan to build a up data lake. All technical information can be found [here](https://github.com/Zirkonium88/AWS/tree/master/IoT).
