@@ -1,0 +1,84 @@
+{
+	"providers": {
+		"awscloudformation": {
+			"AuthRoleName": "amplify-hoursnotes-dev-151036-authRole",
+			"UnauthRoleArn": "arn:aws:iam::037732949416:role/amplify-hoursnotes-dev-151036-unauthRole",
+			"AuthRoleArn": "arn:aws:iam::037732949416:role/amplify-hoursnotes-dev-151036-authRole",
+			"Region": "eu-central-1",
+			"DeploymentBucketName": "amplify-hoursnotes-dev-151036-deployment",
+			"UnauthRoleName": "amplify-hoursnotes-dev-151036-unauthRole",
+			"StackName": "amplify-hoursnotes-dev-151036",
+			"StackId": "arn:aws:cloudformation:eu-central-1:037732949416:stack/amplify-hoursnotes-dev-151036/a3dc3e10-36d7-11ea-88bd-025bd1eb3930",
+			"AmplifyAppId": "dhsb2631izsdt"
+		}
+	},
+	"auth": {
+		"hoursnotesbe081bba": {
+			"service": "Cognito",
+			"providerPlugin": "awscloudformation",
+			"dependsOn": [],
+			"providerMetadata": {
+				"s3TemplateURL": "https://s3.amazonaws.com/amplify-hoursnotes-dev-151036-deployment/amplify-cfn-templates/auth/hoursnotesbe081bba-cloudformation-template.yml",
+				"logicalId": "authhoursnotesbe081bba"
+			},
+			"lastPushTimeStamp": "2020-01-14T16:26:16.424Z",
+			"output": {
+				"AppClientSecret": "1abrn1jaefvgid31l63lb0nmnec1767mn0bvlfob7cmdd18hhqhm",
+				"UserPoolId": "eu-central-1_aYOJFsYR1",
+				"AppClientIDWeb": "1hs3vshmc3nodnbv76tv0jcjku",
+				"AppClientID": "vq5f54kvq62mbbp7dmc52m9i6",
+				"IdentityPoolId": "eu-central-1:e1d6329a-6ca9-4aeb-9777-5159323d5992",
+				"IdentityPoolName": "hoursnotesbe081bba_identitypool_be081bba__dev",
+				"UserPoolName": "hoursnotesbe081bba_userpool_be081bba"
+			},
+			"lastPushDirHash": "xKZNC25Y7QhDvko3sT+KfRzreY4="
+		}
+	},
+	"api": {
+		"hoursnotes": {
+			"service": "AppSync",
+			"providerPlugin": "awscloudformation",
+			"output": {
+				"authConfig": {
+					"additionalAuthenticationProviders": [],
+					"defaultAuthentication": {
+						"authenticationType": "AMAZON_COGNITO_USER_POOLS",
+						"userPoolConfig": {
+							"userPoolId": "authhoursnotesbe081bba"
+						}
+					}
+				},
+				"GraphQLAPIIdOutput": "u5lpunm43zerppb3u7s3wb73ie",
+				"GraphQLAPIEndpointOutput": "https://pxl4zxtebbem3kib2yj3tl4ghq.appsync-api.eu-central-1.amazonaws.com/graphql"
+			},
+			"providerMetadata": {
+				"s3TemplateURL": "https://s3.amazonaws.com/amplify-hoursnotes-dev-151036-deployment/amplify-cfn-templates/api/cloudformation-template.json",
+				"logicalId": "apihoursnotes"
+			},
+			"lastPushTimeStamp": "2020-01-14T16:26:16.433Z",
+			"lastPushDirHash": "PcjKRQJkbc66GsIr/hEHLRysE10="
+		}
+	},
+	"hosting": {
+		"S3AndCloudFront": {
+			"service": "S3AndCloudFront",
+			"providerPlugin": "awscloudformation",
+			"providerMetadata": {
+				"s3TemplateURL": "https://s3.amazonaws.com/amplify-hoursnotes-dev-151036-deployment/amplify-cfn-templates/hosting/template.json",
+				"logicalId": "hostingS3AndCloudFront"
+			},
+			"lastPushTimeStamp": "2020-01-14T16:26:16.445Z",
+			"output": {
+				"CloudFrontSecureURL": "https://d3l321yj7z92uf.cloudfront.net",
+				"S3BucketSecureURL": "https://hoursnotes-20200114170828-hostingbucket-dev.s3.amazonaws.com",
+				"CloudFrontOriginAccessIdentity": "E8SYZT89CSKYX",
+				"WebsiteURL": "http://hoursnotes-20200114170828-hostingbucket-dev.s3-website.eu-central-1.amazonaws.com",
+				"CloudFrontDistributionID": "E1K7XP7237BX6Z",
+				"Region": "eu-central-1",
+				"HostingBucketName": "hoursnotes-20200114170828-hostingbucket-dev",
+				"CloudFrontDomainName": "d3l321yj7z92uf.cloudfront.net"
+			},
+			"lastPushDirHash": "FkXE+pOS/aixg0G+2K6BziM5Qdw="
+		}
+	}
+}

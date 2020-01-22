@@ -1,0 +1,20 @@
+{
+    "dev": {
+        "awscloudformation": {
+            "AuthRoleName": "amplify-hoursnotes-dev-151036-authRole",
+            "UnauthRoleArn": "arn:aws:iam::037732949416:role/amplify-hoursnotes-dev-151036-unauthRole",
+            "AuthRoleArn": "arn:aws:iam::037732949416:role/amplify-hoursnotes-dev-151036-authRole",
+            "Region": "eu-central-1",
+            "DeploymentBucketName": "amplify-hoursnotes-dev-151036-deployment",
+            "UnauthRoleName": "amplify-hoursnotes-dev-151036-unauthRole",
+            "StackName": "amplify-hoursnotes-dev-151036",
+            "StackId": "arn:aws:cloudformation:eu-central-1:037732949416:stack/amplify-hoursnotes-dev-151036/a3dc3e10-36d7-11ea-88bd-025bd1eb3930",
+            "AmplifyAppId": "dhsb2631izsdt"
+        },
+        "categories": {
+            "auth": {
+                "hoursnotesbe081bba": {}
+            }
+        }
+    }
+}
