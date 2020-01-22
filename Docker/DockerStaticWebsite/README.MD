@@ -31,7 +31,7 @@ This demos shows how to build a [Docker container](https://www.docker.com/resour
 6. Create a AWS ECR repository via the [CLI](https://aws.amazon.com/cli/?nc1=h_ls): 
 
     ```bash
-    aws ecr create-repository --repository-name hello-repository  --region eu-west-1
+    aws ecr create-repository --repository-name hello-repository  --region eu-central-1
     ``` 
 
     Change `repository-name` and `region` accordingly.

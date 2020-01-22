@@ -11,9 +11,10 @@ from AWSIoTPythonSDK.MQTTLib import \
 
 myMQTTClient = AWSIoTMQTTClient("new_Client")
 myMQTTClient.configureEndpoint(
-    "a3nrmm2z1crnbl-ats.iot.eu-central-1.amazonaws.com", 8883)
-myMQTTClient.configureCredentials("/Users/mwalkowiak/Desktop/Trainings/Demos/IoT/Backlog/root-ca-cert.pem",
-                                  "/Users/mwalkowiak/Desktop/Trainings/Demos/IoT/Backlog/a62755dc63-private.pem.key", "/Users/mwalkowiak/Desktop/Trainings/Demos/IoT/Backlog/a62755dc63-certificate.pem.crt")
+    "awvkkbwtsweza-ats.iot.eu-central-1.amazonaws.com", 8883)
+myMQTTClient.configureCredentials("/Users/mwalkowiak/Library/Mobile Documents/com~apple~CloudDocs/Documents/Demos/IoT/root-ca-cert.pem",
+                                  "/Users/mwalkowiak/Library/Mobile Documents/com~apple~CloudDocs/Documents/Demos/IoT/Backlog/a62755dc63-private.pem.key", 
+                                  "/Users/mwalkowiak/Library/Mobile Documents/com~apple~CloudDocs/Documents/Demos/IoT/Backlog/a62755dc63-certificate.pem.crt")
 
 # Infinite offline Publish queueing
 myMQTTClient.configureOfflinePublishQueueing(-1)

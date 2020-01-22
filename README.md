@@ -7,6 +7,10 @@ This repository will provide some examples from my daily AWS workloads. It will 
 * Lambda does not fit your workload? The [SQS example](SQS/README.MD) will show you how to unzip large gzip files via S3 events and EC2.
 * Do you want to use Zeppelin on [AWS EMR](https://aws.amazon.com/emr/?nc1=h_ls) without hard coded credentials? Look up this [example](EMR/README.MD).
 
+## Amplify
+
+* Recently the kindergarten my daughter needed an app to collect the duty hours of the parents. This was my first contatc with [Amplify](https://github.com/Zirkonium88/AWS/tree/master/Amplify), which is greate tool for web developers.
+
 ## AWS IoT
 
 * This [AWS IoT example](https://github.com/Zirkonium88/AWS/tree/master/IoT) shows how to publish random data to an AWS IoT topic. The example can be extended to recieve data as well. The script can run on an Raspberry Pi but also on your local machine.

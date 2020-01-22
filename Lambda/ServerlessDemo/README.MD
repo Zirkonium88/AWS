@@ -19,7 +19,7 @@ npm install -g serverless
 2. Move to your directory, generate a venv for Python and activate it.
     ```bash
     cd ServerlessDemo
-    virtualenv venv --python=python3
+    virtualenv venv --python=python3 # python3 -m venv env
     source venv/bin/activate
     ```
 
