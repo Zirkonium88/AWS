@@ -171,7 +171,7 @@ class AccountSetupStack(core.Stack):
             self,
             id="user_email",
             description="A valid email address",
-            default="aws-mwalkowiak@gmx.de",
+            default="YOUR_EMAIL@exmaple.com.com",
             type="String"
         )
 
