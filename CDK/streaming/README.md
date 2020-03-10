@@ -50,7 +50,7 @@ aws iot create-keys-and-certificate \
 * You need to push your certificateson your IoT device
 * This is my demo:
 
-![alt text](./IMG_2298.png)
+![alt text](https://github.com/Zirkonium88/AWS/blob/master/CDK/streaming/IMG_2298.JPG)
 
 ## IoT Device Script
 
