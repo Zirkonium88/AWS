@@ -1,0 +1,74 @@
+{
+  "Description": "Creates a public ES-Cluster with Kibana 7.1 within the default VPC",
+  "Resources": {
+    "IoTDemoESCluster": {
+      "Type": "AWS::Elasticsearch::Domain",
+      "Properties": {
+        "AccessPolicies": {
+          "Version": "2012-10-17",
+          "Statement": [
+            {
+              "Effect": "Allow",
+              "Principal": {
+                "AWS": [
+                  "*"
+                ]
+              },
+              "Action": [
+                "es:*"
+              ],
+              "Resource": "*"
+            }
+          ]
+        },
+        "AdvancedOptions": {
+          "rest.action.multi.allow_explicit_index": "true"
+        },
+        "DomainName": "iot-demo-trcmw-2020-02",
+        "EBSOptions": {
+          "EBSEnabled": true,
+          "Iops": 0,
+          "VolumeSize": 10,
+          "VolumeType": "gp2"
+        },
+        "ElasticsearchClusterConfig": {
+          "DedicatedMasterEnabled": true,
+          "InstanceCount": 1,
+          "InstanceType": "t2.medium.elasticsearch",
+          "ZoneAwarenessEnabled": false
+        },
+        "ElasticsearchVersion": "7.1",
+        "SnapshotOptions": {
+          "AutomatedSnapshotStartHour": 0
+        }
+      },
+      "Metadata": {
+        "aws:cdk:path": "es-cluster/IoT_Demo_ES_Cluster"
+      }
+    }
+  },
+  "Outputs": {
+    "ExportsOutputFnGetAttIoTDemoESClusterArn2DA363E2": {
+      "Value": {
+        "Fn::GetAtt": [
+          "IoTDemoESCluster",
+          "Arn"
+        ]
+      },
+      "Export": {
+        "Name": "es-cluster:ExportsOutputFnGetAttIoTDemoESClusterArn2DA363E2"
+      }
+    },
+    "ExportsOutputFnGetAttIoTDemoESClusterDomainEndpoint21CAB078": {
+      "Value": {
+        "Fn::GetAtt": [
+          "IoTDemoESCluster",
+          "DomainEndpoint"
+        ]
+      },
+      "Export": {
+        "Name": "es-cluster:ExportsOutputFnGetAttIoTDemoESClusterDomainEndpoint21CAB078"
+      }
+    }
+  }
+}

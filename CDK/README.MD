@@ -6,8 +6,8 @@ This app fullfils some of the AWS Best Practices.
 
 ## Account SetUp
 
-![AWS Account Setup](CDK/account/README.MD)
+![AWS Account Setup](https://github.com/Zirkonium88/AWS/blob/master/CDK/account/README.md)
 
 ## IoT-Streaming Example
 
-![AWS Account Setup](CDK/IoT/README.MD)
+![AWS Account Setup](https://github.com/Zirkonium88/AWS/blob/master/CDK/iot/README.MD)

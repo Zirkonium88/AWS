@@ -1,0 +1,109 @@
+{
+  "Description": "Creates a Firehose Delivery Stream with the S3 Bucket as destination",
+  "Resources": {
+    "FirehoseRole4DC5687E": {
+      "Type": "AWS::IAM::Role",
+      "Properties": {
+        "AssumeRolePolicyDocument": {
+          "Statement": [
+            {
+              "Action": "sts:AssumeRole",
+              "Effect": "Allow",
+              "Principal": {
+                "Service": "firehose.amazonaws.com"
+              }
+            }
+          ],
+          "Version": "2012-10-17"
+        }
+      },
+      "Metadata": {
+        "aws:cdk:path": "firehose/Firehose_Role/Resource"
+      }
+    },
+    "FirehosePolicy00A88912": {
+      "Type": "AWS::IAM::Policy",
+      "Properties": {
+        "PolicyDocument": {
+          "Statement": [
+            {
+              "Action": [
+                "s3:AbortMultipartUpload",
+                "s3:GetBucketLocation",
+                "s3:GetObject",
+                "s3:ListBucket",
+                "s3:ListBucketMultipartUploads",
+                "s3:PutObject"
+              ],
+              "Effect": "Allow",
+              "Resource": [
+                {
+                  "Fn::ImportValue": "s3:ExportsOutputFnGetAttIotDataBucketA2196D1AArnAD19849D"
+                },
+                {
+                  "Fn::Join": [
+                    "",
+                    [
+                      {
+                        "Fn::ImportValue": "s3:ExportsOutputFnGetAttIotDataBucketA2196D1AArnAD19849D"
+                      },
+                      "/*"
+                    ]
+                  ]
+                }
+              ]
+            }
+          ],
+          "Version": "2012-10-17"
+        },
+        "PolicyName": "Firehose_Policy",
+        "Roles": [
+          {
+            "Ref": "FirehoseRole4DC5687E"
+          }
+        ]
+      },
+      "Metadata": {
+        "aws:cdk:path": "firehose/Firehose_Policy/Resource"
+      }
+    },
+    "IoTBatchLayerStream": {
+      "Type": "AWS::KinesisFirehose::DeliveryStream",
+      "Properties": {
+        "DeliveryStreamName": "IoT_Data_Batch_Stream",
+        "S3DestinationConfiguration": {
+          "BucketARN": {
+            "Fn::ImportValue": "s3:ExportsOutputFnGetAttIotDataBucketA2196D1AArnAD19849D"
+          },
+          "BufferingHints": {
+            "IntervalInSeconds": 60,
+            "SizeInMBs": 50
+          },
+          "CompressionFormat": "UNCOMPRESSED",
+          "RoleARN": {
+            "Fn::GetAtt": [
+              "FirehoseRole4DC5687E",
+              "Arn"
+            ]
+          }
+        }
+      },
+      "Metadata": {
+        "aws:cdk:path": "firehose/IoT_Batch_Layer_Stream"
+      }
+    }
+  },
+  "Outputs": {
+    "ExportsOutputFnGetAttIoTBatchLayerStreamArn6A9AF93F": {
+      "Value": {
+        "Fn::GetAtt": [
+          "IoTBatchLayerStream",
+          "Arn"
+        ]
+      },
+      "Export": {
+        "Name": "firehose:ExportsOutputFnGetAttIoTBatchLayerStreamArn6A9AF93F"
+      }
+    }
+  }
+}

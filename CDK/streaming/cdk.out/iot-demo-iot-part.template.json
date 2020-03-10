@@ -1,0 +1,210 @@
+{
+  "Description": "Creates a IoT Thing and it's Policy and Certificate as well as a IoT Topic rule to save data in S3 via Firehose",
+  "Resources": {
+    "IoTTopicRoleFirehoseB3CF86DD": {
+      "Type": "AWS::IAM::Role",
+      "Properties": {
+        "AssumeRolePolicyDocument": {
+          "Statement": [
+            {
+              "Action": "sts:AssumeRole",
+              "Effect": "Allow",
+              "Principal": {
+                "Service": "iot.amazonaws.com"
+              }
+            }
+          ],
+          "Version": "2012-10-17"
+        }
+      },
+      "Metadata": {
+        "aws:cdk:path": "iot-demo-iot-part/IoT_Topic_Role_Firehose/Resource"
+      }
+    },
+    "IoTTopicRoleES5B3284B3": {
+      "Type": "AWS::IAM::Role",
+      "Properties": {
+        "AssumeRolePolicyDocument": {
+          "Statement": [
+            {
+              "Action": "sts:AssumeRole",
+              "Effect": "Allow",
+              "Principal": {
+                "Service": "iot.amazonaws.com"
+              }
+            }
+          ],
+          "Version": "2012-10-17"
+        }
+      },
+      "Metadata": {
+        "aws:cdk:path": "iot-demo-iot-part/IoT_Topic_Role_ES/Resource"
+      }
+    },
+    "IoTTopicPolicyFirehoseFA936E90": {
+      "Type": "AWS::IAM::Policy",
+      "Properties": {
+        "PolicyDocument": {
+          "Statement": [
+            {
+              "Action": "firehose:PutRecord",
+              "Effect": "Allow",
+              "Resource": {
+                "Fn::ImportValue": "iot-demo-firehose-part:ExportsOutputFnGetAttIoTBatchLayerStreamArn6A9AF93F"
+              }
+            }
+          ],
+          "Version": "2012-10-17"
+        },
+        "PolicyName": "IoT_Topic_Policy_Firehose",
+        "Roles": [
+          {
+            "Ref": "IoTTopicRoleFirehoseB3CF86DD"
+          }
+        ]
+      },
+      "Metadata": {
+        "aws:cdk:path": "iot-demo-iot-part/IoT_Topic_Policy_Firehose/Resource"
+      }
+    },
+    "IoTTopicPolicyES42CF4847": {
+      "Type": "AWS::IAM::Policy",
+      "Properties": {
+        "PolicyDocument": {
+          "Statement": [
+            {
+              "Action": "es:ESHttpPut",
+              "Effect": "Allow",
+              "Resource": {
+                "Fn::Join": [
+                  "",
+                  [
+                    {
+                      "Fn::ImportValue": "iot-demo-es-cluster-part:ExportsOutputFnGetAttIoTDemoESClusterArn2DA363E2"
+                    },
+                    "/*"
+                  ]
+                ]
+              }
+            }
+          ],
+          "Version": "2012-10-17"
+        },
+        "PolicyName": "IoT_Topic_Policy_ES",
+        "Roles": [
+          {
+            "Ref": "IoTTopicRoleES5B3284B3"
+          }
+        ]
+      },
+      "Metadata": {
+        "aws:cdk:path": "iot-demo-iot-part/IoT_Topic_Policy_ES/Resource"
+      }
+    },
+    "IoTDemo": {
+      "Type": "AWS::IoT::Thing",
+      "Properties": {
+        "ThingName": "IoT_Demo"
+      },
+      "Metadata": {
+        "aws:cdk:path": "iot-demo-iot-part/IoT_Demo"
+      }
+    },
+    "ThingPolicy": {
+      "Type": "AWS::IoT::Policy",
+      "Properties": {
+        "PolicyDocument": {
+          "Version": "2012-10-17",
+          "Statement": [
+            {
+              "Effect": "Allow",
+              "Action": "iot:*",
+              "Resource": "*"
+            }
+          ]
+        },
+        "PolicyName": "Connection_Policy"
+      },
+      "Metadata": {
+        "aws:cdk:path": "iot-demo-iot-part/Thing_Policy"
+      }
+    },
+    "PolicyPrincipal": {
+      "Type": "AWS::IoT::PolicyPrincipalAttachment",
+      "Properties": {
+        "PolicyName": "Connection_Policy",
+        "Principal": "arn:aws:iot:eu-central-1:037732949416:cert/437531efdb9b66ad7f36e7aa6a541984e55b896a8e3572a9b875f5dc7f9ab0df"
+      },
+      "DependsOn": [
+        "IoTDemo"
+      ],
+      "Metadata": {
+        "aws:cdk:path": "iot-demo-iot-part/Policy_Principal"
+      }
+    },
+    "ThingPrincipal": {
+      "Type": "AWS::IoT::ThingPrincipalAttachment",
+      "Properties": {
+        "Principal": "arn:aws:iot:eu-central-1:037732949416:cert/437531efdb9b66ad7f36e7aa6a541984e55b896a8e3572a9b875f5dc7f9ab0df",
+        "ThingName": "IoT_Demo"
+      },
+      "DependsOn": [
+        "IoTDemo"
+      ],
+      "Metadata": {
+        "aws:cdk:path": "iot-demo-iot-part/Thing_Principal"
+      }
+    },
+    "IotDemoTopicRule": {
+      "Type": "AWS::IoT::TopicRule",
+      "Properties": {
+        "TopicRulePayload": {
+          "Actions": [
+            {
+              "Firehose": {
+                "DeliveryStreamName": "IoT_Data_Batch_Stream",
+                "RoleArn": {
+                  "Fn::GetAtt": [
+                    "IoTTopicRoleFirehoseB3CF86DD",
+                    "Arn"
+                  ]
+                },
+                "Separator": "\n"
+              }
+            },
+            {
+              "Elasticsearch": {
+                "Endpoint": {
+                  "Fn::Join": [
+                    "",
+                    [
+                      "https://",
+                      {
+                        "Fn::ImportValue": "iot-demo-es-cluster-part:ExportsOutputFnGetAttIoTDemoESClusterDomainEndpoint21CAB078"
+                      }
+                    ]
+                  ]
+                },
+                "Id": "${newuuid()}",
+                "Index": "fanids",
+                "RoleArn": {
+                  "Fn::GetAtt": [
+                    "IoTTopicRoleES5B3284B3",
+                    "Arn"
+                  ]
+                },
+                "Type": "fanid"
+              }
+            }
+          ],
+          "RuleDisabled": false,
+          "Sql": "SELECT * FROM 'IoT_TOPIC/recieve'"
+        },
+        "RuleName": "Iot_Demo_Topic_Rule"
+      },
+      "Metadata": {
+        "aws:cdk:path": "iot-demo-iot-part/Iot_Demo_Topic_Rule"
+      }
+    }
+  }
+}

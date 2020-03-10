@@ -1,0 +1,391 @@
+{
+  "version": "1.21.0",
+  "artifacts": {
+    "Tree": {
+      "type": "cdk:tree",
+      "properties": {
+        "file": "tree.json"
+      }
+    },
+    "s3": {
+      "type": "aws:cloudformation:stack",
+      "environment": "aws://unknown-account/unknown-region",
+      "properties": {
+        "templateFile": "s3.template.json"
+      },
+      "dependencies": [
+        "es-cluster"
+      ],
+      "metadata": {
+        "/s3/Iot_Data_Bucket/Resource": [
+          {
+            "type": "aws:cdk:logicalId",
+            "data": "IotDataBucketA2196D1A",
+            "trace": [
+              "new Bucket (/private/var/folders/m7/dzg6rz512n9fs1pmf39yjg6m0000gp/T/jsii-kernel-8z5kZa/node_modules/@aws-cdk/aws-s3/lib/bucket.js:366:26)",
+              "/Users/mwalkowiak/Library/Mobile Documents/com~apple~CloudDocs/Documents/Demos/CDK/IoT/.env/lib/python3.7/site-packages/jsii/_embedded/jsii/jsii-runtime.js:7838:49",
+              "Kernel._wrapSandboxCode (/Users/mwalkowiak/Library/Mobile Documents/com~apple~CloudDocs/Documents/Demos/CDK/IoT/.env/lib/python3.7/site-packages/jsii/_embedded/jsii/jsii-runtime.js:8298:20)",
+              "Kernel._create (/Users/mwalkowiak/Library/Mobile Documents/com~apple~CloudDocs/Documents/Demos/CDK/IoT/.env/lib/python3.7/site-packages/jsii/_embedded/jsii/jsii-runtime.js:7838:26)",
+              "Kernel.create (/Users/mwalkowiak/Library/Mobile Documents/com~apple~CloudDocs/Documents/Demos/CDK/IoT/.env/lib/python3.7/site-packages/jsii/_embedded/jsii/jsii-runtime.js:7585:21)",
+              "KernelHost.processRequest (/Users/mwalkowiak/Library/Mobile Documents/com~apple~CloudDocs/Documents/Demos/CDK/IoT/.env/lib/python3.7/site-packages/jsii/_embedded/jsii/jsii-runtime.js:7372:28)",
+              "KernelHost.run (/Users/mwalkowiak/Library/Mobile Documents/com~apple~CloudDocs/Documents/Demos/CDK/IoT/.env/lib/python3.7/site-packages/jsii/_embedded/jsii/jsii-runtime.js:7312:14)",
+              "Immediate._onImmediate (/Users/mwalkowiak/Library/Mobile Documents/com~apple~CloudDocs/Documents/Demos/CDK/IoT/.env/lib/python3.7/site-packages/jsii/_embedded/jsii/jsii-runtime.js:7315:37)",
+              "processImmediate (internal/timers.js:456:21)"
+            ]
+          }
+        ],
+        "/s3/Exports/Output{\"Fn::GetAtt\":[\"IotDataBucketA2196D1A\",\"Arn\"]}": [
+          {
+            "type": "aws:cdk:logicalId",
+            "data": "ExportsOutputFnGetAttIotDataBucketA2196D1AArnAD19849D",
+            "trace": [
+              "Stack.prepareCrossReference (/private/var/folders/m7/dzg6rz512n9fs1pmf39yjg6m0000gp/T/jsii-kernel-8z5kZa/node_modules/@aws-cdk/core/lib/stack.js:686:13)",
+              "Stack.prepare (/private/var/folders/m7/dzg6rz512n9fs1pmf39yjg6m0000gp/T/jsii-kernel-8z5kZa/node_modules/@aws-cdk/core/lib/stack.js:560:43)",
+              "Function.prepare (/private/var/folders/m7/dzg6rz512n9fs1pmf39yjg6m0000gp/T/jsii-kernel-8z5kZa/node_modules/@aws-cdk/core/lib/construct.js:87:27)",
+              "Function.synth (/private/var/folders/m7/dzg6rz512n9fs1pmf39yjg6m0000gp/T/jsii-kernel-8z5kZa/node_modules/@aws-cdk/core/lib/construct.js:51:14)",
+              "App.synth (/private/var/folders/m7/dzg6rz512n9fs1pmf39yjg6m0000gp/T/jsii-kernel-8z5kZa/node_modules/@aws-cdk/core/lib/app.js:71:52)",
+              "/Users/mwalkowiak/Library/Mobile Documents/com~apple~CloudDocs/Documents/Demos/CDK/IoT/.env/lib/python3.7/site-packages/jsii/_embedded/jsii/jsii-runtime.js:7665:51",
+              "Kernel._wrapSandboxCode (/Users/mwalkowiak/Library/Mobile Documents/com~apple~CloudDocs/Documents/Demos/CDK/IoT/.env/lib/python3.7/site-packages/jsii/_embedded/jsii/jsii-runtime.js:8298:20)",
+              "/Users/mwalkowiak/Library/Mobile Documents/com~apple~CloudDocs/Documents/Demos/CDK/IoT/.env/lib/python3.7/site-packages/jsii/_embedded/jsii/jsii-runtime.js:7665:25",
+              "Kernel._ensureSync (/Users/mwalkowiak/Library/Mobile Documents/com~apple~CloudDocs/Documents/Demos/CDK/IoT/.env/lib/python3.7/site-packages/jsii/_embedded/jsii/jsii-runtime.js:8274:20)",
+              "Kernel.invoke (/Users/mwalkowiak/Library/Mobile Documents/com~apple~CloudDocs/Documents/Demos/CDK/IoT/.env/lib/python3.7/site-packages/jsii/_embedded/jsii/jsii-runtime.js:7664:26)",
+              "KernelHost.processRequest (/Users/mwalkowiak/Library/Mobile Documents/com~apple~CloudDocs/Documents/Demos/CDK/IoT/.env/lib/python3.7/site-packages/jsii/_embedded/jsii/jsii-runtime.js:7372:28)",
+              "KernelHost.run (/Users/mwalkowiak/Library/Mobile Documents/com~apple~CloudDocs/Documents/Demos/CDK/IoT/.env/lib/python3.7/site-packages/jsii/_embedded/jsii/jsii-runtime.js:7312:14)",
+              "Immediate._onImmediate (/Users/mwalkowiak/Library/Mobile Documents/com~apple~CloudDocs/Documents/Demos/CDK/IoT/.env/lib/python3.7/site-packages/jsii/_embedded/jsii/jsii-runtime.js:7315:37)",
+              "processImmediate (internal/timers.js:456:21)"
+            ]
+          }
+        ]
+      }
+    },
+    "firehose": {
+      "type": "aws:cloudformation:stack",
+      "environment": "aws://unknown-account/unknown-region",
+      "properties": {
+        "templateFile": "firehose.template.json"
+      },
+      "dependencies": [
+        "s3"
+      ],
+      "metadata": {
+        "/firehose/Firehose_Role/Resource": [
+          {
+            "type": "aws:cdk:logicalId",
+            "data": "FirehoseRole4DC5687E",
+            "trace": [
+              "new Role (/private/var/folders/m7/dzg6rz512n9fs1pmf39yjg6m0000gp/T/jsii-kernel-8z5kZa/node_modules/@aws-cdk/aws-iam/lib/role.js:41:22)",
+              "/Users/mwalkowiak/Library/Mobile Documents/com~apple~CloudDocs/Documents/Demos/CDK/IoT/.env/lib/python3.7/site-packages/jsii/_embedded/jsii/jsii-runtime.js:7838:49",
+              "Kernel._wrapSandboxCode (/Users/mwalkowiak/Library/Mobile Documents/com~apple~CloudDocs/Documents/Demos/CDK/IoT/.env/lib/python3.7/site-packages/jsii/_embedded/jsii/jsii-runtime.js:8298:20)",
+              "Kernel._create (/Users/mwalkowiak/Library/Mobile Documents/com~apple~CloudDocs/Documents/Demos/CDK/IoT/.env/lib/python3.7/site-packages/jsii/_embedded/jsii/jsii-runtime.js:7838:26)",
+              "Kernel.create (/Users/mwalkowiak/Library/Mobile Documents/com~apple~CloudDocs/Documents/Demos/CDK/IoT/.env/lib/python3.7/site-packages/jsii/_embedded/jsii/jsii-runtime.js:7585:21)",
+              "KernelHost.processRequest (/Users/mwalkowiak/Library/Mobile Documents/com~apple~CloudDocs/Documents/Demos/CDK/IoT/.env/lib/python3.7/site-packages/jsii/_embedded/jsii/jsii-runtime.js:7372:28)",
+              "KernelHost.run (/Users/mwalkowiak/Library/Mobile Documents/com~apple~CloudDocs/Documents/Demos/CDK/IoT/.env/lib/python3.7/site-packages/jsii/_embedded/jsii/jsii-runtime.js:7312:14)",
+              "Immediate._onImmediate (/Users/mwalkowiak/Library/Mobile Documents/com~apple~CloudDocs/Documents/Demos/CDK/IoT/.env/lib/python3.7/site-packages/jsii/_embedded/jsii/jsii-runtime.js:7315:37)",
+              "processImmediate (internal/timers.js:456:21)"
+            ]
+          }
+        ],
+        "/firehose/Firehose_Policy/Resource": [
+          {
+            "type": "aws:cdk:logicalId",
+            "data": "FirehosePolicy00A88912",
+            "trace": [
+              "new Policy (/private/var/folders/m7/dzg6rz512n9fs1pmf39yjg6m0000gp/T/jsii-kernel-8z5kZa/node_modules/@aws-cdk/aws-iam/lib/policy.js:30:26)",
+              "/Users/mwalkowiak/Library/Mobile Documents/com~apple~CloudDocs/Documents/Demos/CDK/IoT/.env/lib/python3.7/site-packages/jsii/_embedded/jsii/jsii-runtime.js:7838:49",
+              "Kernel._wrapSandboxCode (/Users/mwalkowiak/Library/Mobile Documents/com~apple~CloudDocs/Documents/Demos/CDK/IoT/.env/lib/python3.7/site-packages/jsii/_embedded/jsii/jsii-runtime.js:8298:20)",
+              "Kernel._create (/Users/mwalkowiak/Library/Mobile Documents/com~apple~CloudDocs/Documents/Demos/CDK/IoT/.env/lib/python3.7/site-packages/jsii/_embedded/jsii/jsii-runtime.js:7838:26)",
+              "Kernel.create (/Users/mwalkowiak/Library/Mobile Documents/com~apple~CloudDocs/Documents/Demos/CDK/IoT/.env/lib/python3.7/site-packages/jsii/_embedded/jsii/jsii-runtime.js:7585:21)",
+              "KernelHost.processRequest (/Users/mwalkowiak/Library/Mobile Documents/com~apple~CloudDocs/Documents/Demos/CDK/IoT/.env/lib/python3.7/site-packages/jsii/_embedded/jsii/jsii-runtime.js:7372:28)",
+              "KernelHost.run (/Users/mwalkowiak/Library/Mobile Documents/com~apple~CloudDocs/Documents/Demos/CDK/IoT/.env/lib/python3.7/site-packages/jsii/_embedded/jsii/jsii-runtime.js:7312:14)",
+              "Immediate._onImmediate (/Users/mwalkowiak/Library/Mobile Documents/com~apple~CloudDocs/Documents/Demos/CDK/IoT/.env/lib/python3.7/site-packages/jsii/_embedded/jsii/jsii-runtime.js:7315:37)",
+              "processImmediate (internal/timers.js:456:21)"
+            ]
+          }
+        ],
+        "/firehose/IoT_Batch_Layer_Stream": [
+          {
+            "type": "aws:cdk:logicalId",
+            "data": "IoTBatchLayerStream",
+            "trace": [
+              "/Users/mwalkowiak/Library/Mobile Documents/com~apple~CloudDocs/Documents/Demos/CDK/IoT/.env/lib/python3.7/site-packages/jsii/_embedded/jsii/jsii-runtime.js:7838:49",
+              "Kernel._wrapSandboxCode (/Users/mwalkowiak/Library/Mobile Documents/com~apple~CloudDocs/Documents/Demos/CDK/IoT/.env/lib/python3.7/site-packages/jsii/_embedded/jsii/jsii-runtime.js:8298:20)",
+              "Kernel._create (/Users/mwalkowiak/Library/Mobile Documents/com~apple~CloudDocs/Documents/Demos/CDK/IoT/.env/lib/python3.7/site-packages/jsii/_embedded/jsii/jsii-runtime.js:7838:26)",
+              "Kernel.create (/Users/mwalkowiak/Library/Mobile Documents/com~apple~CloudDocs/Documents/Demos/CDK/IoT/.env/lib/python3.7/site-packages/jsii/_embedded/jsii/jsii-runtime.js:7585:21)",
+              "KernelHost.processRequest (/Users/mwalkowiak/Library/Mobile Documents/com~apple~CloudDocs/Documents/Demos/CDK/IoT/.env/lib/python3.7/site-packages/jsii/_embedded/jsii/jsii-runtime.js:7372:28)",
+              "KernelHost.run (/Users/mwalkowiak/Library/Mobile Documents/com~apple~CloudDocs/Documents/Demos/CDK/IoT/.env/lib/python3.7/site-packages/jsii/_embedded/jsii/jsii-runtime.js:7312:14)",
+              "Immediate._onImmediate (/Users/mwalkowiak/Library/Mobile Documents/com~apple~CloudDocs/Documents/Demos/CDK/IoT/.env/lib/python3.7/site-packages/jsii/_embedded/jsii/jsii-runtime.js:7315:37)",
+              "processImmediate (internal/timers.js:456:21)"
+            ]
+          }
+        ],
+        "/firehose/Exports/Output{\"Fn::GetAtt\":[\"IoTBatchLayerStream\",\"Arn\"]}": [
+          {
+            "type": "aws:cdk:logicalId",
+            "data": "ExportsOutputFnGetAttIoTBatchLayerStreamArn6A9AF93F",
+            "trace": [
+              "Stack.prepareCrossReference (/private/var/folders/m7/dzg6rz512n9fs1pmf39yjg6m0000gp/T/jsii-kernel-8z5kZa/node_modules/@aws-cdk/core/lib/stack.js:686:13)",
+              "Stack.prepare (/private/var/folders/m7/dzg6rz512n9fs1pmf39yjg6m0000gp/T/jsii-kernel-8z5kZa/node_modules/@aws-cdk/core/lib/stack.js:560:43)",
+              "Function.prepare (/private/var/folders/m7/dzg6rz512n9fs1pmf39yjg6m0000gp/T/jsii-kernel-8z5kZa/node_modules/@aws-cdk/core/lib/construct.js:87:27)",
+              "Function.synth (/private/var/folders/m7/dzg6rz512n9fs1pmf39yjg6m0000gp/T/jsii-kernel-8z5kZa/node_modules/@aws-cdk/core/lib/construct.js:51:14)",
+              "App.synth (/private/var/folders/m7/dzg6rz512n9fs1pmf39yjg6m0000gp/T/jsii-kernel-8z5kZa/node_modules/@aws-cdk/core/lib/app.js:71:52)",
+              "/Users/mwalkowiak/Library/Mobile Documents/com~apple~CloudDocs/Documents/Demos/CDK/IoT/.env/lib/python3.7/site-packages/jsii/_embedded/jsii/jsii-runtime.js:7665:51",
+              "Kernel._wrapSandboxCode (/Users/mwalkowiak/Library/Mobile Documents/com~apple~CloudDocs/Documents/Demos/CDK/IoT/.env/lib/python3.7/site-packages/jsii/_embedded/jsii/jsii-runtime.js:8298:20)",
+              "/Users/mwalkowiak/Library/Mobile Documents/com~apple~CloudDocs/Documents/Demos/CDK/IoT/.env/lib/python3.7/site-packages/jsii/_embedded/jsii/jsii-runtime.js:7665:25",
+              "Kernel._ensureSync (/Users/mwalkowiak/Library/Mobile Documents/com~apple~CloudDocs/Documents/Demos/CDK/IoT/.env/lib/python3.7/site-packages/jsii/_embedded/jsii/jsii-runtime.js:8274:20)",
+              "Kernel.invoke (/Users/mwalkowiak/Library/Mobile Documents/com~apple~CloudDocs/Documents/Demos/CDK/IoT/.env/lib/python3.7/site-packages/jsii/_embedded/jsii/jsii-runtime.js:7664:26)",
+              "KernelHost.processRequest (/Users/mwalkowiak/Library/Mobile Documents/com~apple~CloudDocs/Documents/Demos/CDK/IoT/.env/lib/python3.7/site-packages/jsii/_embedded/jsii/jsii-runtime.js:7372:28)",
+              "KernelHost.run (/Users/mwalkowiak/Library/Mobile Documents/com~apple~CloudDocs/Documents/Demos/CDK/IoT/.env/lib/python3.7/site-packages/jsii/_embedded/jsii/jsii-runtime.js:7312:14)",
+              "Immediate._onImmediate (/Users/mwalkowiak/Library/Mobile Documents/com~apple~CloudDocs/Documents/Demos/CDK/IoT/.env/lib/python3.7/site-packages/jsii/_embedded/jsii/jsii-runtime.js:7315:37)",
+              "processImmediate (internal/timers.js:456:21)"
+            ]
+          }
+        ]
+      }
+    },
+    "es-cluster": {
+      "type": "aws:cloudformation:stack",
+      "environment": "aws://unknown-account/unknown-region",
+      "properties": {
+        "templateFile": "es-cluster.template.json"
+      },
+      "metadata": {
+        "/es-cluster/IoT_Demo_ES_Cluster": [
+          {
+            "type": "aws:cdk:logicalId",
+            "data": "IoTDemoESCluster",
+            "trace": [
+              "/Users/mwalkowiak/Library/Mobile Documents/com~apple~CloudDocs/Documents/Demos/CDK/IoT/.env/lib/python3.7/site-packages/jsii/_embedded/jsii/jsii-runtime.js:7838:49",
+              "Kernel._wrapSandboxCode (/Users/mwalkowiak/Library/Mobile Documents/com~apple~CloudDocs/Documents/Demos/CDK/IoT/.env/lib/python3.7/site-packages/jsii/_embedded/jsii/jsii-runtime.js:8298:20)",
+              "Kernel._create (/Users/mwalkowiak/Library/Mobile Documents/com~apple~CloudDocs/Documents/Demos/CDK/IoT/.env/lib/python3.7/site-packages/jsii/_embedded/jsii/jsii-runtime.js:7838:26)",
+              "Kernel.create (/Users/mwalkowiak/Library/Mobile Documents/com~apple~CloudDocs/Documents/Demos/CDK/IoT/.env/lib/python3.7/site-packages/jsii/_embedded/jsii/jsii-runtime.js:7585:21)",
+              "KernelHost.processRequest (/Users/mwalkowiak/Library/Mobile Documents/com~apple~CloudDocs/Documents/Demos/CDK/IoT/.env/lib/python3.7/site-packages/jsii/_embedded/jsii/jsii-runtime.js:7372:28)",
+              "KernelHost.run (/Users/mwalkowiak/Library/Mobile Documents/com~apple~CloudDocs/Documents/Demos/CDK/IoT/.env/lib/python3.7/site-packages/jsii/_embedded/jsii/jsii-runtime.js:7312:14)",
+              "Immediate._onImmediate (/Users/mwalkowiak/Library/Mobile Documents/com~apple~CloudDocs/Documents/Demos/CDK/IoT/.env/lib/python3.7/site-packages/jsii/_embedded/jsii/jsii-runtime.js:7315:37)",
+              "processImmediate (internal/timers.js:456:21)"
+            ]
+          }
+        ],
+        "/es-cluster/Exports/Output{\"Fn::GetAtt\":[\"IoTDemoESCluster\",\"Arn\"]}": [
+          {
+            "type": "aws:cdk:logicalId",
+            "data": "ExportsOutputFnGetAttIoTDemoESClusterArn2DA363E2",
+            "trace": [
+              "Stack.prepareCrossReference (/private/var/folders/m7/dzg6rz512n9fs1pmf39yjg6m0000gp/T/jsii-kernel-8z5kZa/node_modules/@aws-cdk/core/lib/stack.js:686:13)",
+              "Stack.prepare (/private/var/folders/m7/dzg6rz512n9fs1pmf39yjg6m0000gp/T/jsii-kernel-8z5kZa/node_modules/@aws-cdk/core/lib/stack.js:560:43)",
+              "Function.prepare (/private/var/folders/m7/dzg6rz512n9fs1pmf39yjg6m0000gp/T/jsii-kernel-8z5kZa/node_modules/@aws-cdk/core/lib/construct.js:87:27)",
+              "Function.synth (/private/var/folders/m7/dzg6rz512n9fs1pmf39yjg6m0000gp/T/jsii-kernel-8z5kZa/node_modules/@aws-cdk/core/lib/construct.js:51:14)",
+              "App.synth (/private/var/folders/m7/dzg6rz512n9fs1pmf39yjg6m0000gp/T/jsii-kernel-8z5kZa/node_modules/@aws-cdk/core/lib/app.js:71:52)",
+              "/Users/mwalkowiak/Library/Mobile Documents/com~apple~CloudDocs/Documents/Demos/CDK/IoT/.env/lib/python3.7/site-packages/jsii/_embedded/jsii/jsii-runtime.js:7665:51",
+              "Kernel._wrapSandboxCode (/Users/mwalkowiak/Library/Mobile Documents/com~apple~CloudDocs/Documents/Demos/CDK/IoT/.env/lib/python3.7/site-packages/jsii/_embedded/jsii/jsii-runtime.js:8298:20)",
+              "/Users/mwalkowiak/Library/Mobile Documents/com~apple~CloudDocs/Documents/Demos/CDK/IoT/.env/lib/python3.7/site-packages/jsii/_embedded/jsii/jsii-runtime.js:7665:25",
+              "Kernel._ensureSync (/Users/mwalkowiak/Library/Mobile Documents/com~apple~CloudDocs/Documents/Demos/CDK/IoT/.env/lib/python3.7/site-packages/jsii/_embedded/jsii/jsii-runtime.js:8274:20)",
+              "Kernel.invoke (/Users/mwalkowiak/Library/Mobile Documents/com~apple~CloudDocs/Documents/Demos/CDK/IoT/.env/lib/python3.7/site-packages/jsii/_embedded/jsii/jsii-runtime.js:7664:26)",
+              "KernelHost.processRequest (/Users/mwalkowiak/Library/Mobile Documents/com~apple~CloudDocs/Documents/Demos/CDK/IoT/.env/lib/python3.7/site-packages/jsii/_embedded/jsii/jsii-runtime.js:7372:28)",
+              "KernelHost.run (/Users/mwalkowiak/Library/Mobile Documents/com~apple~CloudDocs/Documents/Demos/CDK/IoT/.env/lib/python3.7/site-packages/jsii/_embedded/jsii/jsii-runtime.js:7312:14)",
+              "Immediate._onImmediate (/Users/mwalkowiak/Library/Mobile Documents/com~apple~CloudDocs/Documents/Demos/CDK/IoT/.env/lib/python3.7/site-packages/jsii/_embedded/jsii/jsii-runtime.js:7315:37)",
+              "processImmediate (internal/timers.js:456:21)"
+            ]
+          }
+        ],
+        "/es-cluster/Exports/Output{\"Fn::GetAtt\":[\"IoTDemoESCluster\",\"DomainEndpoint\"]}": [
+          {
+            "type": "aws:cdk:logicalId",
+            "data": "ExportsOutputFnGetAttIoTDemoESClusterDomainEndpoint21CAB078",
+            "trace": [
+              "Stack.prepareCrossReference (/private/var/folders/m7/dzg6rz512n9fs1pmf39yjg6m0000gp/T/jsii-kernel-8z5kZa/node_modules/@aws-cdk/core/lib/stack.js:686:13)",
+              "Stack.prepare (/private/var/folders/m7/dzg6rz512n9fs1pmf39yjg6m0000gp/T/jsii-kernel-8z5kZa/node_modules/@aws-cdk/core/lib/stack.js:560:43)",
+              "Function.prepare (/private/var/folders/m7/dzg6rz512n9fs1pmf39yjg6m0000gp/T/jsii-kernel-8z5kZa/node_modules/@aws-cdk/core/lib/construct.js:87:27)",
+              "Function.synth (/private/var/folders/m7/dzg6rz512n9fs1pmf39yjg6m0000gp/T/jsii-kernel-8z5kZa/node_modules/@aws-cdk/core/lib/construct.js:51:14)",
+              "App.synth (/private/var/folders/m7/dzg6rz512n9fs1pmf39yjg6m0000gp/T/jsii-kernel-8z5kZa/node_modules/@aws-cdk/core/lib/app.js:71:52)",
+              "/Users/mwalkowiak/Library/Mobile Documents/com~apple~CloudDocs/Documents/Demos/CDK/IoT/.env/lib/python3.7/site-packages/jsii/_embedded/jsii/jsii-runtime.js:7665:51",
+              "Kernel._wrapSandboxCode (/Users/mwalkowiak/Library/Mobile Documents/com~apple~CloudDocs/Documents/Demos/CDK/IoT/.env/lib/python3.7/site-packages/jsii/_embedded/jsii/jsii-runtime.js:8298:20)",
+              "/Users/mwalkowiak/Library/Mobile Documents/com~apple~CloudDocs/Documents/Demos/CDK/IoT/.env/lib/python3.7/site-packages/jsii/_embedded/jsii/jsii-runtime.js:7665:25",
+              "Kernel._ensureSync (/Users/mwalkowiak/Library/Mobile Documents/com~apple~CloudDocs/Documents/Demos/CDK/IoT/.env/lib/python3.7/site-packages/jsii/_embedded/jsii/jsii-runtime.js:8274:20)",
+              "Kernel.invoke (/Users/mwalkowiak/Library/Mobile Documents/com~apple~CloudDocs/Documents/Demos/CDK/IoT/.env/lib/python3.7/site-packages/jsii/_embedded/jsii/jsii-runtime.js:7664:26)",
+              "KernelHost.processRequest (/Users/mwalkowiak/Library/Mobile Documents/com~apple~CloudDocs/Documents/Demos/CDK/IoT/.env/lib/python3.7/site-packages/jsii/_embedded/jsii/jsii-runtime.js:7372:28)",
+              "KernelHost.run (/Users/mwalkowiak/Library/Mobile Documents/com~apple~CloudDocs/Documents/Demos/CDK/IoT/.env/lib/python3.7/site-packages/jsii/_embedded/jsii/jsii-runtime.js:7312:14)",
+              "Immediate._onImmediate (/Users/mwalkowiak/Library/Mobile Documents/com~apple~CloudDocs/Documents/Demos/CDK/IoT/.env/lib/python3.7/site-packages/jsii/_embedded/jsii/jsii-runtime.js:7315:37)",
+              "processImmediate (internal/timers.js:456:21)"
+            ]
+          }
+        ]
+      }
+    },
+    "iot": {
+      "type": "aws:cloudformation:stack",
+      "environment": "aws://unknown-account/unknown-region",
+      "properties": {
+        "templateFile": "iot.template.json"
+      },
+      "dependencies": [
+        "es-cluster",
+        "firehose"
+      ],
+      "metadata": {
+        "/iot/IoT_Topic_Role_Firehose/Resource": [
+          {
+            "type": "aws:cdk:logicalId",
+            "data": "IoTTopicRoleFirehoseB3CF86DD",
+            "trace": [
+              "new Role (/private/var/folders/m7/dzg6rz512n9fs1pmf39yjg6m0000gp/T/jsii-kernel-8z5kZa/node_modules/@aws-cdk/aws-iam/lib/role.js:41:22)",
+              "/Users/mwalkowiak/Library/Mobile Documents/com~apple~CloudDocs/Documents/Demos/CDK/IoT/.env/lib/python3.7/site-packages/jsii/_embedded/jsii/jsii-runtime.js:7838:49",
+              "Kernel._wrapSandboxCode (/Users/mwalkowiak/Library/Mobile Documents/com~apple~CloudDocs/Documents/Demos/CDK/IoT/.env/lib/python3.7/site-packages/jsii/_embedded/jsii/jsii-runtime.js:8298:20)",
+              "Kernel._create (/Users/mwalkowiak/Library/Mobile Documents/com~apple~CloudDocs/Documents/Demos/CDK/IoT/.env/lib/python3.7/site-packages/jsii/_embedded/jsii/jsii-runtime.js:7838:26)",
+              "Kernel.create (/Users/mwalkowiak/Library/Mobile Documents/com~apple~CloudDocs/Documents/Demos/CDK/IoT/.env/lib/python3.7/site-packages/jsii/_embedded/jsii/jsii-runtime.js:7585:21)",
+              "KernelHost.processRequest (/Users/mwalkowiak/Library/Mobile Documents/com~apple~CloudDocs/Documents/Demos/CDK/IoT/.env/lib/python3.7/site-packages/jsii/_embedded/jsii/jsii-runtime.js:7372:28)",
+              "KernelHost.run (/Users/mwalkowiak/Library/Mobile Documents/com~apple~CloudDocs/Documents/Demos/CDK/IoT/.env/lib/python3.7/site-packages/jsii/_embedded/jsii/jsii-runtime.js:7312:14)",
+              "Immediate._onImmediate (/Users/mwalkowiak/Library/Mobile Documents/com~apple~CloudDocs/Documents/Demos/CDK/IoT/.env/lib/python3.7/site-packages/jsii/_embedded/jsii/jsii-runtime.js:7315:37)",
+              "processImmediate (internal/timers.js:456:21)"
+            ]
+          }
+        ],
+        "/iot/IoT_Topic_Role_ES/Resource": [
+          {
+            "type": "aws:cdk:logicalId",
+            "data": "IoTTopicRoleES5B3284B3",
+            "trace": [
+              "new Role (/private/var/folders/m7/dzg6rz512n9fs1pmf39yjg6m0000gp/T/jsii-kernel-8z5kZa/node_modules/@aws-cdk/aws-iam/lib/role.js:41:22)",
+              "/Users/mwalkowiak/Library/Mobile Documents/com~apple~CloudDocs/Documents/Demos/CDK/IoT/.env/lib/python3.7/site-packages/jsii/_embedded/jsii/jsii-runtime.js:7838:49",
+              "Kernel._wrapSandboxCode (/Users/mwalkowiak/Library/Mobile Documents/com~apple~CloudDocs/Documents/Demos/CDK/IoT/.env/lib/python3.7/site-packages/jsii/_embedded/jsii/jsii-runtime.js:8298:20)",
+              "Kernel._create (/Users/mwalkowiak/Library/Mobile Documents/com~apple~CloudDocs/Documents/Demos/CDK/IoT/.env/lib/python3.7/site-packages/jsii/_embedded/jsii/jsii-runtime.js:7838:26)",
+              "Kernel.create (/Users/mwalkowiak/Library/Mobile Documents/com~apple~CloudDocs/Documents/Demos/CDK/IoT/.env/lib/python3.7/site-packages/jsii/_embedded/jsii/jsii-runtime.js:7585:21)",
+              "KernelHost.processRequest (/Users/mwalkowiak/Library/Mobile Documents/com~apple~CloudDocs/Documents/Demos/CDK/IoT/.env/lib/python3.7/site-packages/jsii/_embedded/jsii/jsii-runtime.js:7372:28)",
+              "KernelHost.run (/Users/mwalkowiak/Library/Mobile Documents/com~apple~CloudDocs/Documents/Demos/CDK/IoT/.env/lib/python3.7/site-packages/jsii/_embedded/jsii/jsii-runtime.js:7312:14)",
+              "Immediate._onImmediate (/Users/mwalkowiak/Library/Mobile Documents/com~apple~CloudDocs/Documents/Demos/CDK/IoT/.env/lib/python3.7/site-packages/jsii/_embedded/jsii/jsii-runtime.js:7315:37)",
+              "processImmediate (internal/timers.js:456:21)"
+            ]
+          }
+        ],
+        "/iot/IoT_Topic_Policy_Firehose/Resource": [
+          {
+            "type": "aws:cdk:logicalId",
+            "data": "IoTTopicPolicyFirehoseFA936E90",
+            "trace": [
+              "new Policy (/private/var/folders/m7/dzg6rz512n9fs1pmf39yjg6m0000gp/T/jsii-kernel-8z5kZa/node_modules/@aws-cdk/aws-iam/lib/policy.js:30:26)",
+              "/Users/mwalkowiak/Library/Mobile Documents/com~apple~CloudDocs/Documents/Demos/CDK/IoT/.env/lib/python3.7/site-packages/jsii/_embedded/jsii/jsii-runtime.js:7838:49",
+              "Kernel._wrapSandboxCode (/Users/mwalkowiak/Library/Mobile Documents/com~apple~CloudDocs/Documents/Demos/CDK/IoT/.env/lib/python3.7/site-packages/jsii/_embedded/jsii/jsii-runtime.js:8298:20)",
+              "Kernel._create (/Users/mwalkowiak/Library/Mobile Documents/com~apple~CloudDocs/Documents/Demos/CDK/IoT/.env/lib/python3.7/site-packages/jsii/_embedded/jsii/jsii-runtime.js:7838:26)",
+              "Kernel.create (/Users/mwalkowiak/Library/Mobile Documents/com~apple~CloudDocs/Documents/Demos/CDK/IoT/.env/lib/python3.7/site-packages/jsii/_embedded/jsii/jsii-runtime.js:7585:21)",
+              "KernelHost.processRequest (/Users/mwalkowiak/Library/Mobile Documents/com~apple~CloudDocs/Documents/Demos/CDK/IoT/.env/lib/python3.7/site-packages/jsii/_embedded/jsii/jsii-runtime.js:7372:28)",
+              "KernelHost.run (/Users/mwalkowiak/Library/Mobile Documents/com~apple~CloudDocs/Documents/Demos/CDK/IoT/.env/lib/python3.7/site-packages/jsii/_embedded/jsii/jsii-runtime.js:7312:14)",
+              "Immediate._onImmediate (/Users/mwalkowiak/Library/Mobile Documents/com~apple~CloudDocs/Documents/Demos/CDK/IoT/.env/lib/python3.7/site-packages/jsii/_embedded/jsii/jsii-runtime.js:7315:37)",
+              "processImmediate (internal/timers.js:456:21)"
+            ]
+          }
+        ],
+        "/iot/IoT_Topic_Policy_ES/Resource": [
+          {
+            "type": "aws:cdk:logicalId",
+            "data": "IoTTopicPolicyES42CF4847",
+            "trace": [
+              "new Policy (/private/var/folders/m7/dzg6rz512n9fs1pmf39yjg6m0000gp/T/jsii-kernel-8z5kZa/node_modules/@aws-cdk/aws-iam/lib/policy.js:30:26)",
+              "/Users/mwalkowiak/Library/Mobile Documents/com~apple~CloudDocs/Documents/Demos/CDK/IoT/.env/lib/python3.7/site-packages/jsii/_embedded/jsii/jsii-runtime.js:7838:49",
+              "Kernel._wrapSandboxCode (/Users/mwalkowiak/Library/Mobile Documents/com~apple~CloudDocs/Documents/Demos/CDK/IoT/.env/lib/python3.7/site-packages/jsii/_embedded/jsii/jsii-runtime.js:8298:20)",
+              "Kernel._create (/Users/mwalkowiak/Library/Mobile Documents/com~apple~CloudDocs/Documents/Demos/CDK/IoT/.env/lib/python3.7/site-packages/jsii/_embedded/jsii/jsii-runtime.js:7838:26)",
+              "Kernel.create (/Users/mwalkowiak/Library/Mobile Documents/com~apple~CloudDocs/Documents/Demos/CDK/IoT/.env/lib/python3.7/site-packages/jsii/_embedded/jsii/jsii-runtime.js:7585:21)",
+              "KernelHost.processRequest (/Users/mwalkowiak/Library/Mobile Documents/com~apple~CloudDocs/Documents/Demos/CDK/IoT/.env/lib/python3.7/site-packages/jsii/_embedded/jsii/jsii-runtime.js:7372:28)",
+              "KernelHost.run (/Users/mwalkowiak/Library/Mobile Documents/com~apple~CloudDocs/Documents/Demos/CDK/IoT/.env/lib/python3.7/site-packages/jsii/_embedded/jsii/jsii-runtime.js:7312:14)",
+              "Immediate._onImmediate (/Users/mwalkowiak/Library/Mobile Documents/com~apple~CloudDocs/Documents/Demos/CDK/IoT/.env/lib/python3.7/site-packages/jsii/_embedded/jsii/jsii-runtime.js:7315:37)",
+              "processImmediate (internal/timers.js:456:21)"
+            ]
+          }
+        ],
+        "/iot/IoT_Demo": [
+          {
+            "type": "aws:cdk:logicalId",
+            "data": "IoTDemo",
+            "trace": [
+              "/Users/mwalkowiak/Library/Mobile Documents/com~apple~CloudDocs/Documents/Demos/CDK/IoT/.env/lib/python3.7/site-packages/jsii/_embedded/jsii/jsii-runtime.js:7838:49",
+              "Kernel._wrapSandboxCode (/Users/mwalkowiak/Library/Mobile Documents/com~apple~CloudDocs/Documents/Demos/CDK/IoT/.env/lib/python3.7/site-packages/jsii/_embedded/jsii/jsii-runtime.js:8298:20)",
+              "Kernel._create (/Users/mwalkowiak/Library/Mobile Documents/com~apple~CloudDocs/Documents/Demos/CDK/IoT/.env/lib/python3.7/site-packages/jsii/_embedded/jsii/jsii-runtime.js:7838:26)",
+              "Kernel.create (/Users/mwalkowiak/Library/Mobile Documents/com~apple~CloudDocs/Documents/Demos/CDK/IoT/.env/lib/python3.7/site-packages/jsii/_embedded/jsii/jsii-runtime.js:7585:21)",
+              "KernelHost.processRequest (/Users/mwalkowiak/Library/Mobile Documents/com~apple~CloudDocs/Documents/Demos/CDK/IoT/.env/lib/python3.7/site-packages/jsii/_embedded/jsii/jsii-runtime.js:7372:28)",
+              "KernelHost.run (/Users/mwalkowiak/Library/Mobile Documents/com~apple~CloudDocs/Documents/Demos/CDK/IoT/.env/lib/python3.7/site-packages/jsii/_embedded/jsii/jsii-runtime.js:7312:14)",
+              "Immediate._onImmediate (/Users/mwalkowiak/Library/Mobile Documents/com~apple~CloudDocs/Documents/Demos/CDK/IoT/.env/lib/python3.7/site-packages/jsii/_embedded/jsii/jsii-runtime.js:7315:37)",
+              "processImmediate (internal/timers.js:456:21)"
+            ]
+          }
+        ],
+        "/iot/Thing_Policy": [
+          {
+            "type": "aws:cdk:logicalId",
+            "data": "ThingPolicy",
+            "trace": [
+              "/Users/mwalkowiak/Library/Mobile Documents/com~apple~CloudDocs/Documents/Demos/CDK/IoT/.env/lib/python3.7/site-packages/jsii/_embedded/jsii/jsii-runtime.js:7838:49",
+              "Kernel._wrapSandboxCode (/Users/mwalkowiak/Library/Mobile Documents/com~apple~CloudDocs/Documents/Demos/CDK/IoT/.env/lib/python3.7/site-packages/jsii/_embedded/jsii/jsii-runtime.js:8298:20)",
+              "Kernel._create (/Users/mwalkowiak/Library/Mobile Documents/com~apple~CloudDocs/Documents/Demos/CDK/IoT/.env/lib/python3.7/site-packages/jsii/_embedded/jsii/jsii-runtime.js:7838:26)",
+              "Kernel.create (/Users/mwalkowiak/Library/Mobile Documents/com~apple~CloudDocs/Documents/Demos/CDK/IoT/.env/lib/python3.7/site-packages/jsii/_embedded/jsii/jsii-runtime.js:7585:21)",
+              "KernelHost.processRequest (/Users/mwalkowiak/Library/Mobile Documents/com~apple~CloudDocs/Documents/Demos/CDK/IoT/.env/lib/python3.7/site-packages/jsii/_embedded/jsii/jsii-runtime.js:7372:28)",
+              "KernelHost.run (/Users/mwalkowiak/Library/Mobile Documents/com~apple~CloudDocs/Documents/Demos/CDK/IoT/.env/lib/python3.7/site-packages/jsii/_embedded/jsii/jsii-runtime.js:7312:14)",
+              "Immediate._onImmediate (/Users/mwalkowiak/Library/Mobile Documents/com~apple~CloudDocs/Documents/Demos/CDK/IoT/.env/lib/python3.7/site-packages/jsii/_embedded/jsii/jsii-runtime.js:7315:37)",
+              "processImmediate (internal/timers.js:456:21)"
+            ]
+          }
+        ],
+        "/iot/Policy_Principal": [
+          {
+            "type": "aws:cdk:logicalId",
+            "data": "PolicyPrincipal",
+            "trace": [
+              "/Users/mwalkowiak/Library/Mobile Documents/com~apple~CloudDocs/Documents/Demos/CDK/IoT/.env/lib/python3.7/site-packages/jsii/_embedded/jsii/jsii-runtime.js:7838:49",
+              "Kernel._wrapSandboxCode (/Users/mwalkowiak/Library/Mobile Documents/com~apple~CloudDocs/Documents/Demos/CDK/IoT/.env/lib/python3.7/site-packages/jsii/_embedded/jsii/jsii-runtime.js:8298:20)",
+              "Kernel._create (/Users/mwalkowiak/Library/Mobile Documents/com~apple~CloudDocs/Documents/Demos/CDK/IoT/.env/lib/python3.7/site-packages/jsii/_embedded/jsii/jsii-runtime.js:7838:26)",
+              "Kernel.create (/Users/mwalkowiak/Library/Mobile Documents/com~apple~CloudDocs/Documents/Demos/CDK/IoT/.env/lib/python3.7/site-packages/jsii/_embedded/jsii/jsii-runtime.js:7585:21)",
+              "KernelHost.processRequest (/Users/mwalkowiak/Library/Mobile Documents/com~apple~CloudDocs/Documents/Demos/CDK/IoT/.env/lib/python3.7/site-packages/jsii/_embedded/jsii/jsii-runtime.js:7372:28)",
+              "KernelHost.run (/Users/mwalkowiak/Library/Mobile Documents/com~apple~CloudDocs/Documents/Demos/CDK/IoT/.env/lib/python3.7/site-packages/jsii/_embedded/jsii/jsii-runtime.js:7312:14)",
+              "Immediate._onImmediate (/Users/mwalkowiak/Library/Mobile Documents/com~apple~CloudDocs/Documents/Demos/CDK/IoT/.env/lib/python3.7/site-packages/jsii/_embedded/jsii/jsii-runtime.js:7315:37)",
+              "processImmediate (internal/timers.js:456:21)"
+            ]
+          }
+        ],
+        "/iot/Thing_Principal": [
+          {
+            "type": "aws:cdk:logicalId",
+            "data": "ThingPrincipal",
+            "trace": [
+              "/Users/mwalkowiak/Library/Mobile Documents/com~apple~CloudDocs/Documents/Demos/CDK/IoT/.env/lib/python3.7/site-packages/jsii/_embedded/jsii/jsii-runtime.js:7838:49",
+              "Kernel._wrapSandboxCode (/Users/mwalkowiak/Library/Mobile Documents/com~apple~CloudDocs/Documents/Demos/CDK/IoT/.env/lib/python3.7/site-packages/jsii/_embedded/jsii/jsii-runtime.js:8298:20)",
+              "Kernel._create (/Users/mwalkowiak/Library/Mobile Documents/com~apple~CloudDocs/Documents/Demos/CDK/IoT/.env/lib/python3.7/site-packages/jsii/_embedded/jsii/jsii-runtime.js:7838:26)",
+              "Kernel.create (/Users/mwalkowiak/Library/Mobile Documents/com~apple~CloudDocs/Documents/Demos/CDK/IoT/.env/lib/python3.7/site-packages/jsii/_embedded/jsii/jsii-runtime.js:7585:21)",
+              "KernelHost.processRequest (/Users/mwalkowiak/Library/Mobile Documents/com~apple~CloudDocs/Documents/Demos/CDK/IoT/.env/lib/python3.7/site-packages/jsii/_embedded/jsii/jsii-runtime.js:7372:28)",
+              "KernelHost.run (/Users/mwalkowiak/Library/Mobile Documents/com~apple~CloudDocs/Documents/Demos/CDK/IoT/.env/lib/python3.7/site-packages/jsii/_embedded/jsii/jsii-runtime.js:7312:14)",
+              "Immediate._onImmediate (/Users/mwalkowiak/Library/Mobile Documents/com~apple~CloudDocs/Documents/Demos/CDK/IoT/.env/lib/python3.7/site-packages/jsii/_embedded/jsii/jsii-runtime.js:7315:37)",
+              "processImmediate (internal/timers.js:456:21)"
+            ]
+          }
+        ],
+        "/iot/Iot_Demo_Topic_Rule": [
+          {
+            "type": "aws:cdk:logicalId",
+            "data": "IotDemoTopicRule",
+            "trace": [
+              "/Users/mwalkowiak/Library/Mobile Documents/com~apple~CloudDocs/Documents/Demos/CDK/IoT/.env/lib/python3.7/site-packages/jsii/_embedded/jsii/jsii-runtime.js:7838:49",
+              "Kernel._wrapSandboxCode (/Users/mwalkowiak/Library/Mobile Documents/com~apple~CloudDocs/Documents/Demos/CDK/IoT/.env/lib/python3.7/site-packages/jsii/_embedded/jsii/jsii-runtime.js:8298:20)",
+              "Kernel._create (/Users/mwalkowiak/Library/Mobile Documents/com~apple~CloudDocs/Documents/Demos/CDK/IoT/.env/lib/python3.7/site-packages/jsii/_embedded/jsii/jsii-runtime.js:7838:26)",
+              "Kernel.create (/Users/mwalkowiak/Library/Mobile Documents/com~apple~CloudDocs/Documents/Demos/CDK/IoT/.env/lib/python3.7/site-packages/jsii/_embedded/jsii/jsii-runtime.js:7585:21)",
+              "KernelHost.processRequest (/Users/mwalkowiak/Library/Mobile Documents/com~apple~CloudDocs/Documents/Demos/CDK/IoT/.env/lib/python3.7/site-packages/jsii/_embedded/jsii/jsii-runtime.js:7372:28)",
+              "KernelHost.run (/Users/mwalkowiak/Library/Mobile Documents/com~apple~CloudDocs/Documents/Demos/CDK/IoT/.env/lib/python3.7/site-packages/jsii/_embedded/jsii/jsii-runtime.js:7312:14)",
+              "Immediate._onImmediate (/Users/mwalkowiak/Library/Mobile Documents/com~apple~CloudDocs/Documents/Demos/CDK/IoT/.env/lib/python3.7/site-packages/jsii/_embedded/jsii/jsii-runtime.js:7315:37)",
+              "processImmediate (internal/timers.js:456:21)"
+            ]
+          }
+        ]
+      }
+    }
+  },
+  "runtime": {
+    "libraries": {
+      "@aws-cdk/cx-api": "1.24.0",
+      "@aws-cdk/core": "1.24.0",
+      "@aws-cdk/region-info": "1.24.0",
+      "@aws-cdk/aws-iam": "1.24.0",
+      "@aws-cdk/aws-events": "1.24.0",
+      "@aws-cdk/aws-kms": "1.24.0",
+      "@aws-cdk/aws-s3": "1.24.0",
+      "@aws-cdk/aws-kinesisfirehose": "1.24.0",
+      "@aws-cdk/aws-iot": "1.24.0",
+      "@aws-cdk/aws-elasticsearch": "1.24.0",
+      "jsii-runtime": "Python/3.7.3"
+    }
+  }
+}

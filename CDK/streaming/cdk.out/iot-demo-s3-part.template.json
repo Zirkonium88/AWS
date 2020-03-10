@@ -1,0 +1,38 @@
+{
+  "Description": "Creates a Bucket with KMS encryption",
+  "Resources": {
+    "IotDataBucketA2196D1A": {
+      "Type": "AWS::S3::Bucket",
+      "Properties": {
+        "BucketEncryption": {
+          "ServerSideEncryptionConfiguration": [
+            {
+              "ServerSideEncryptionByDefault": {
+                "SSEAlgorithm": "aws:kms"
+              }
+            }
+          ]
+        },
+        "BucketName": "iot-data-bucket-trcmw-2020-19"
+      },
+      "UpdateReplacePolicy": "Retain",
+      "DeletionPolicy": "Retain",
+      "Metadata": {
+        "aws:cdk:path": "iot-demo-s3-part/Iot_Data_Bucket/Resource"
+      }
+    }
+  },
+  "Outputs": {
+    "ExportsOutputFnGetAttIotDataBucketA2196D1AArnAD19849D": {
+      "Value": {
+        "Fn::GetAtt": [
+          "IotDataBucketA2196D1A",
+          "Arn"
+        ]
+      },
+      "Export": {
+        "Name": "iot-demo-s3-part:ExportsOutputFnGetAttIotDataBucketA2196D1AArnAD19849D"
+      }
+    }
+  }
+}

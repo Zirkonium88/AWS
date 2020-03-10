@@ -1,0 +1,488 @@
+{
+  "version": "tree-0.1",
+  "tree": {
+    "id": "App",
+    "path": "",
+    "children": {
+      "Tree": {
+        "id": "Tree",
+        "path": "Tree"
+      },
+      "s3": {
+        "id": "s3",
+        "path": "s3",
+        "children": {
+          "Iot_Data_Bucket": {
+            "id": "Iot_Data_Bucket",
+            "path": "s3/Iot_Data_Bucket",
+            "children": {
+              "Resource": {
+                "id": "Resource",
+                "path": "s3/Iot_Data_Bucket/Resource",
+                "attributes": {
+                  "aws:cdk:cloudformation:type": "AWS::S3::Bucket",
+                  "aws:cdk:cloudformation:props": {
+                    "bucketEncryption": {
+                      "serverSideEncryptionConfiguration": [
+                        {
+                          "serverSideEncryptionByDefault": {
+                            "sseAlgorithm": "aws:kms"
+                          }
+                        }
+                      ]
+                    },
+                    "bucketName": "iot-data-bucket-trcmw-2020-19"
+                  }
+                }
+              },
+              "Notifications": {
+                "id": "Notifications",
+                "path": "s3/Iot_Data_Bucket/Notifications"
+              }
+            }
+          },
+          "Exports": {
+            "id": "Exports",
+            "path": "s3/Exports",
+            "children": {
+              "Output{\"Fn::GetAtt\":[\"IotDataBucketA2196D1A\",\"Arn\"]}": {
+                "id": "Output{\"Fn::GetAtt\":[\"IotDataBucketA2196D1A\",\"Arn\"]}",
+                "path": "s3/Exports/Output{\"Fn::GetAtt\":[\"IotDataBucketA2196D1A\",\"Arn\"]}"
+              }
+            }
+          }
+        }
+      },
+      "firehose": {
+        "id": "firehose",
+        "path": "firehose",
+        "children": {
+          "Ref_Iot_Data_Bucket": {
+            "id": "Ref_Iot_Data_Bucket",
+            "path": "firehose/Ref_Iot_Data_Bucket"
+          },
+          "Firehose_Role": {
+            "id": "Firehose_Role",
+            "path": "firehose/Firehose_Role",
+            "children": {
+              "Resource": {
+                "id": "Resource",
+                "path": "firehose/Firehose_Role/Resource",
+                "attributes": {
+                  "aws:cdk:cloudformation:type": "AWS::IAM::Role",
+                  "aws:cdk:cloudformation:props": {
+                    "assumeRolePolicyDocument": {
+                      "Statement": [
+                        {
+                          "Action": "sts:AssumeRole",
+                          "Effect": "Allow",
+                          "Principal": {
+                            "Service": "firehose.amazonaws.com"
+                          }
+                        }
+                      ],
+                      "Version": "2012-10-17"
+                    }
+                  }
+                }
+              }
+            }
+          },
+          "Firehose_Policy": {
+            "id": "Firehose_Policy",
+            "path": "firehose/Firehose_Policy",
+            "children": {
+              "Resource": {
+                "id": "Resource",
+                "path": "firehose/Firehose_Policy/Resource",
+                "attributes": {
+                  "aws:cdk:cloudformation:type": "AWS::IAM::Policy",
+                  "aws:cdk:cloudformation:props": {
+                    "policyDocument": {
+                      "Statement": [
+                        {
+                          "Action": [
+                            "s3:AbortMultipartUpload",
+                            "s3:GetBucketLocation",
+                            "s3:GetObject",
+                            "s3:ListBucket",
+                            "s3:ListBucketMultipartUploads",
+                            "s3:PutObject"
+                          ],
+                          "Effect": "Allow",
+                          "Resource": [
+                            {
+                              "Fn::ImportValue": "s3:ExportsOutputFnGetAttIotDataBucketA2196D1AArnAD19849D"
+                            },
+                            {
+                              "Fn::Join": [
+                                "",
+                                [
+                                  {
+                                    "Fn::ImportValue": "s3:ExportsOutputFnGetAttIotDataBucketA2196D1AArnAD19849D"
+                                  },
+                                  "/*"
+                                ]
+                              ]
+                            }
+                          ]
+                        }
+                      ],
+                      "Version": "2012-10-17"
+                    },
+                    "policyName": "Firehose_Policy",
+                    "roles": [
+                      {
+                        "Ref": "FirehoseRole4DC5687E"
+                      }
+                    ]
+                  }
+                }
+              }
+            }
+          },
+          "IoT_Batch_Layer_Stream": {
+            "id": "IoT_Batch_Layer_Stream",
+            "path": "firehose/IoT_Batch_Layer_Stream",
+            "attributes": {
+              "aws:cdk:cloudformation:type": "AWS::KinesisFirehose::DeliveryStream",
+              "aws:cdk:cloudformation:props": {
+                "deliveryStreamName": "IoT_Data_Batch_Stream",
+                "s3DestinationConfiguration": {
+                  "bucketArn": {
+                    "Fn::ImportValue": "s3:ExportsOutputFnGetAttIotDataBucketA2196D1AArnAD19849D"
+                  },
+                  "bufferingHints": {
+                    "intervalInSeconds": 60,
+                    "sizeInMBs": 50
+                  },
+                  "compressionFormat": "UNCOMPRESSED",
+                  "roleArn": {
+                    "Fn::GetAtt": [
+                      "FirehoseRole4DC5687E",
+                      "Arn"
+                    ]
+                  }
+                }
+              }
+            }
+          },
+          "Exports": {
+            "id": "Exports",
+            "path": "firehose/Exports",
+            "children": {
+              "Output{\"Fn::GetAtt\":[\"IoTBatchLayerStream\",\"Arn\"]}": {
+                "id": "Output{\"Fn::GetAtt\":[\"IoTBatchLayerStream\",\"Arn\"]}",
+                "path": "firehose/Exports/Output{\"Fn::GetAtt\":[\"IoTBatchLayerStream\",\"Arn\"]}"
+              }
+            }
+          }
+        }
+      },
+      "es-cluster": {
+        "id": "es-cluster",
+        "path": "es-cluster",
+        "children": {
+          "IoT_Demo_ES_Cluster": {
+            "id": "IoT_Demo_ES_Cluster",
+            "path": "es-cluster/IoT_Demo_ES_Cluster",
+            "attributes": {
+              "aws:cdk:cloudformation:type": "AWS::Elasticsearch::Domain",
+              "aws:cdk:cloudformation:props": {
+                "accessPolicies": {
+                  "Version": "2012-10-17",
+                  "Statement": [
+                    {
+                      "Effect": "Allow",
+                      "Principal": {
+                        "AWS": [
+                          "*"
+                        ]
+                      },
+                      "Action": [
+                        "es:*"
+                      ],
+                      "Resource": "*"
+                    }
+                  ]
+                },
+                "advancedOptions": {
+                  "rest.action.multi.allow_explicit_index": "true"
+                },
+                "domainName": "iot-demo-trcmw-2020-02",
+                "ebsOptions": {
+                  "ebsEnabled": true,
+                  "iops": 0,
+                  "volumeSize": 10,
+                  "volumeType": "gp2"
+                },
+                "elasticsearchClusterConfig": {
+                  "dedicatedMasterEnabled": true,
+                  "instanceCount": 1,
+                  "zoneAwarenessEnabled": false,
+                  "instanceType": "t2.medium.elasticsearch"
+                },
+                "elasticsearchVersion": "7.1",
+                "snapshotOptions": {
+                  "automatedSnapshotStartHour": 0
+                }
+              }
+            }
+          },
+          "Exports": {
+            "id": "Exports",
+            "path": "es-cluster/Exports",
+            "children": {
+              "Output{\"Fn::GetAtt\":[\"IoTDemoESCluster\",\"Arn\"]}": {
+                "id": "Output{\"Fn::GetAtt\":[\"IoTDemoESCluster\",\"Arn\"]}",
+                "path": "es-cluster/Exports/Output{\"Fn::GetAtt\":[\"IoTDemoESCluster\",\"Arn\"]}"
+              },
+              "Output{\"Fn::GetAtt\":[\"IoTDemoESCluster\",\"DomainEndpoint\"]}": {
+                "id": "Output{\"Fn::GetAtt\":[\"IoTDemoESCluster\",\"DomainEndpoint\"]}",
+                "path": "es-cluster/Exports/Output{\"Fn::GetAtt\":[\"IoTDemoESCluster\",\"DomainEndpoint\"]}"
+              }
+            }
+          }
+        }
+      },
+      "iot": {
+        "id": "iot",
+        "path": "iot",
+        "children": {
+          "IoT_Topic_Role_Firehose": {
+            "id": "IoT_Topic_Role_Firehose",
+            "path": "iot/IoT_Topic_Role_Firehose",
+            "children": {
+              "Resource": {
+                "id": "Resource",
+                "path": "iot/IoT_Topic_Role_Firehose/Resource",
+                "attributes": {
+                  "aws:cdk:cloudformation:type": "AWS::IAM::Role",
+                  "aws:cdk:cloudformation:props": {
+                    "assumeRolePolicyDocument": {
+                      "Statement": [
+                        {
+                          "Action": "sts:AssumeRole",
+                          "Effect": "Allow",
+                          "Principal": {
+                            "Service": "iot.amazonaws.com"
+                          }
+                        }
+                      ],
+                      "Version": "2012-10-17"
+                    }
+                  }
+                }
+              }
+            }
+          },
+          "IoT_Topic_Role_ES": {
+            "id": "IoT_Topic_Role_ES",
+            "path": "iot/IoT_Topic_Role_ES",
+            "children": {
+              "Resource": {
+                "id": "Resource",
+                "path": "iot/IoT_Topic_Role_ES/Resource",
+                "attributes": {
+                  "aws:cdk:cloudformation:type": "AWS::IAM::Role",
+                  "aws:cdk:cloudformation:props": {
+                    "assumeRolePolicyDocument": {
+                      "Statement": [
+                        {
+                          "Action": "sts:AssumeRole",
+                          "Effect": "Allow",
+                          "Principal": {
+                            "Service": "iot.amazonaws.com"
+                          }
+                        }
+                      ],
+                      "Version": "2012-10-17"
+                    }
+                  }
+                }
+              }
+            }
+          },
+          "IoT_Topic_Policy_Firehose": {
+            "id": "IoT_Topic_Policy_Firehose",
+            "path": "iot/IoT_Topic_Policy_Firehose",
+            "children": {
+              "Resource": {
+                "id": "Resource",
+                "path": "iot/IoT_Topic_Policy_Firehose/Resource",
+                "attributes": {
+                  "aws:cdk:cloudformation:type": "AWS::IAM::Policy",
+                  "aws:cdk:cloudformation:props": {
+                    "policyDocument": {
+                      "Statement": [
+                        {
+                          "Action": "firehose:PutRecord",
+                          "Effect": "Allow",
+                          "Resource": {
+                            "Fn::ImportValue": "firehose:ExportsOutputFnGetAttIoTBatchLayerStreamArn6A9AF93F"
+                          }
+                        }
+                      ],
+                      "Version": "2012-10-17"
+                    },
+                    "policyName": "IoT_Topic_Policy_Firehose",
+                    "roles": [
+                      {
+                        "Ref": "IoTTopicRoleFirehoseB3CF86DD"
+                      }
+                    ]
+                  }
+                }
+              }
+            }
+          },
+          "IoT_Topic_Policy_ES": {
+            "id": "IoT_Topic_Policy_ES",
+            "path": "iot/IoT_Topic_Policy_ES",
+            "children": {
+              "Resource": {
+                "id": "Resource",
+                "path": "iot/IoT_Topic_Policy_ES/Resource",
+                "attributes": {
+                  "aws:cdk:cloudformation:type": "AWS::IAM::Policy",
+                  "aws:cdk:cloudformation:props": {
+                    "policyDocument": {
+                      "Statement": [
+                        {
+                          "Action": "es:ESHttpPut",
+                          "Effect": "Allow",
+                          "Resource": {
+                            "Fn::Join": [
+                              "",
+                              [
+                                {
+                                  "Fn::ImportValue": "es-cluster:ExportsOutputFnGetAttIoTDemoESClusterArn2DA363E2"
+                                },
+                                "/*"
+                              ]
+                            ]
+                          }
+                        }
+                      ],
+                      "Version": "2012-10-17"
+                    },
+                    "policyName": "IoT_Topic_Policy_ES",
+                    "roles": [
+                      {
+                        "Ref": "IoTTopicRoleES5B3284B3"
+                      }
+                    ]
+                  }
+                }
+              }
+            }
+          },
+          "IoT_Demo": {
+            "id": "IoT_Demo",
+            "path": "iot/IoT_Demo",
+            "attributes": {
+              "aws:cdk:cloudformation:type": "AWS::IoT::Thing",
+              "aws:cdk:cloudformation:props": {
+                "thingName": "IoT_Demo"
+              }
+            }
+          },
+          "Thing_Policy": {
+            "id": "Thing_Policy",
+            "path": "iot/Thing_Policy",
+            "attributes": {
+              "aws:cdk:cloudformation:type": "AWS::IoT::Policy",
+              "aws:cdk:cloudformation:props": {
+                "policyDocument": {
+                  "Version": "2012-10-17",
+                  "Statement": [
+                    {
+                      "Effect": "Allow",
+                      "Action": "iot:*",
+                      "Resource": "*"
+                    }
+                  ]
+                },
+                "policyName": "Connection_Policy"
+              }
+            }
+          },
+          "Policy_Principal": {
+            "id": "Policy_Principal",
+            "path": "iot/Policy_Principal",
+            "attributes": {
+              "aws:cdk:cloudformation:type": "AWS::IoT::PolicyPrincipalAttachment",
+              "aws:cdk:cloudformation:props": {
+                "policyName": "Connection_Policy",
+                "principal": "arn:aws:iot:eu-central-1:037732949416:cert/437531efdb9b66ad7f36e7aa6a541984e55b896a8e3572a9b875f5dc7f9ab0df"
+              }
+            }
+          },
+          "Thing_Principal": {
+            "id": "Thing_Principal",
+            "path": "iot/Thing_Principal",
+            "attributes": {
+              "aws:cdk:cloudformation:type": "AWS::IoT::ThingPrincipalAttachment",
+              "aws:cdk:cloudformation:props": {
+                "principal": "arn:aws:iot:eu-central-1:037732949416:cert/437531efdb9b66ad7f36e7aa6a541984e55b896a8e3572a9b875f5dc7f9ab0df",
+                "thingName": "IoT_Demo"
+              }
+            }
+          },
+          "Iot_Demo_Topic_Rule": {
+            "id": "Iot_Demo_Topic_Rule",
+            "path": "iot/Iot_Demo_Topic_Rule",
+            "attributes": {
+              "aws:cdk:cloudformation:type": "AWS::IoT::TopicRule",
+              "aws:cdk:cloudformation:props": {
+                "topicRulePayload": {
+                  "ruleDisabled": false,
+                  "sql": "SELECT * FROM 'IoT_TOPIC/recieve'",
+                  "actions": [
+                    {
+                      "firehose": {
+                        "deliveryStreamName": "IoT_Data_Batch_Stream",
+                        "roleArn": {
+                          "Fn::GetAtt": [
+                            "IoTTopicRoleFirehoseB3CF86DD",
+                            "Arn"
+                          ]
+                        },
+                        "separator": "\n"
+                      }
+                    },
+                    {
+                      "elasticsearch": {
+                        "endpoint": {
+                          "Fn::Join": [
+                            "",
+                            [
+                              "https://",
+                              {
+                                "Fn::ImportValue": "es-cluster:ExportsOutputFnGetAttIoTDemoESClusterDomainEndpoint21CAB078"
+                              }
+                            ]
+                          ]
+                        },
+                        "id": "${newuuid()}",
+                        "index": "fanids",
+                        "roleArn": {
+                          "Fn::GetAtt": [
+                            "IoTTopicRoleES5B3284B3",
+                            "Arn"
+                          ]
+                        },
+                        "type": "fanid"
+                      }
+                    }
+                  ]
+                },
+                "ruleName": "Iot_Demo_Topic_Rule"
+              }
+            }
+          }
+        }
+      }
+    }
+  }
+}
