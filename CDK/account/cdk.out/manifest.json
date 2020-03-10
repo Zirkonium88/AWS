@@ -1,0 +1,1741 @@
+{
+  "version": "1.21.0",
+  "artifacts": {
+    "Tree": {
+      "type": "cdk:tree",
+      "properties": {
+        "file": "tree.json"
+      }
+    },
+    "accountSetUp": {
+      "type": "aws:cloudformation:stack",
+      "environment": "aws://431892011317/us-east-1",
+      "properties": {
+        "templateFile": "accountSetUp.template.json"
+      },
+      "metadata": {
+        "/accountSetUp": [
+          {
+            "type": "aws:cdk:asset",
+            "data": {
+              "path": "asset.5741f85917ffca30b209ad61e375d3d3bae0457270071f7aca8ca81be19bd22a",
+              "id": "5741f85917ffca30b209ad61e375d3d3bae0457270071f7aca8ca81be19bd22a",
+              "packaging": "zip",
+              "sourceHash": "5741f85917ffca30b209ad61e375d3d3bae0457270071f7aca8ca81be19bd22a",
+              "s3BucketParameter": "AssetParameters5741f85917ffca30b209ad61e375d3d3bae0457270071f7aca8ca81be19bd22aS3Bucket4E933C7F",
+              "s3KeyParameter": "AssetParameters5741f85917ffca30b209ad61e375d3d3bae0457270071f7aca8ca81be19bd22aS3VersionKeyB83CC434",
+              "artifactHashParameter": "AssetParameters5741f85917ffca30b209ad61e375d3d3bae0457270071f7aca8ca81be19bd22aArtifactHash5A536F97"
+            },
+            "trace": [
+              "Stack.addFileAsset (/private/var/folders/xh/6kwtj36s0zv32spmbqc7bs280000gn/T/jsii-kernel-Gl17XN/node_modules/@aws-cdk/core/lib/stack.js:370:23)",
+              "new Asset (/private/var/folders/xh/6kwtj36s0zv32spmbqc7bs280000gn/T/jsii-kernel-Gl17XN/node_modules/@aws-cdk/aws-s3-assets/lib/asset.js:30:32)",
+              "AssetCode.bind (/private/var/folders/xh/6kwtj36s0zv32spmbqc7bs280000gn/T/jsii-kernel-Gl17XN/node_modules/@aws-cdk/aws-lambda/lib/code.js:135:26)",
+              "new Function (/private/var/folders/xh/6kwtj36s0zv32spmbqc7bs280000gn/T/jsii-kernel-Gl17XN/node_modules/@aws-cdk/aws-lambda/lib/function.js:68:33)",
+              "SingletonFunction.ensureLambda (/private/var/folders/xh/6kwtj36s0zv32spmbqc7bs280000gn/T/jsii-kernel-Gl17XN/node_modules/@aws-cdk/aws-lambda/lib/singleton-lambda.js:37:16)",
+              "new SingletonFunction (/private/var/folders/xh/6kwtj36s0zv32spmbqc7bs280000gn/T/jsii-kernel-Gl17XN/node_modules/@aws-cdk/aws-lambda/lib/singleton-lambda.js:19:36)",
+              "new LogRetention (/private/var/folders/xh/6kwtj36s0zv32spmbqc7bs280000gn/T/jsii-kernel-Gl17XN/node_modules/@aws-cdk/aws-lambda/lib/log-retention.js:19:26)",
+              "new Function (/private/var/folders/xh/6kwtj36s0zv32spmbqc7bs280000gn/T/jsii-kernel-Gl17XN/node_modules/@aws-cdk/aws-lambda/lib/function.js:109:34)",
+              "/Users/Malte/Documents/CDK/account-setup/.env/lib/python3.7/site-packages/jsii/_embedded/jsii/jsii-runtime.js:7838:49",
+              "Kernel._wrapSandboxCode (/Users/Malte/Documents/CDK/account-setup/.env/lib/python3.7/site-packages/jsii/_embedded/jsii/jsii-runtime.js:8298:20)",
+              "Kernel._create (/Users/Malte/Documents/CDK/account-setup/.env/lib/python3.7/site-packages/jsii/_embedded/jsii/jsii-runtime.js:7838:26)",
+              "Kernel.create (/Users/Malte/Documents/CDK/account-setup/.env/lib/python3.7/site-packages/jsii/_embedded/jsii/jsii-runtime.js:7585:21)",
+              "KernelHost.processRequest (/Users/Malte/Documents/CDK/account-setup/.env/lib/python3.7/site-packages/jsii/_embedded/jsii/jsii-runtime.js:7372:28)",
+              "KernelHost.run (/Users/Malte/Documents/CDK/account-setup/.env/lib/python3.7/site-packages/jsii/_embedded/jsii/jsii-runtime.js:7312:14)",
+              "Immediate._onImmediate (/Users/Malte/Documents/CDK/account-setup/.env/lib/python3.7/site-packages/jsii/_embedded/jsii/jsii-runtime.js:7315:37)",
+              "processImmediate (internal/timers.js:456:21)"
+            ]
+          },
+          {
+            "type": "aws:cdk:asset",
+            "data": {
+              "path": "asset.6383df60cc1b99de7b175befae3f0ea1dfa7ef89a2afae556140dcf51c8d17b7",
+              "id": "6383df60cc1b99de7b175befae3f0ea1dfa7ef89a2afae556140dcf51c8d17b7",
+              "packaging": "zip",
+              "sourceHash": "6383df60cc1b99de7b175befae3f0ea1dfa7ef89a2afae556140dcf51c8d17b7",
+              "s3BucketParameter": "AssetParameters6383df60cc1b99de7b175befae3f0ea1dfa7ef89a2afae556140dcf51c8d17b7S3BucketC2E03481",
+              "s3KeyParameter": "AssetParameters6383df60cc1b99de7b175befae3f0ea1dfa7ef89a2afae556140dcf51c8d17b7S3VersionKey71106FD8",
+              "artifactHashParameter": "AssetParameters6383df60cc1b99de7b175befae3f0ea1dfa7ef89a2afae556140dcf51c8d17b7ArtifactHash1D4B4D91"
+            },
+            "trace": [
+              "Stack.addFileAsset (/private/var/folders/xh/6kwtj36s0zv32spmbqc7bs280000gn/T/jsii-kernel-Gl17XN/node_modules/@aws-cdk/core/lib/stack.js:370:23)",
+              "new Asset (/private/var/folders/xh/6kwtj36s0zv32spmbqc7bs280000gn/T/jsii-kernel-Gl17XN/node_modules/@aws-cdk/aws-s3-assets/lib/asset.js:30:32)",
+              "AssetCode.bind (/private/var/folders/xh/6kwtj36s0zv32spmbqc7bs280000gn/T/jsii-kernel-Gl17XN/node_modules/@aws-cdk/aws-lambda/lib/code.js:135:26)",
+              "new Function (/private/var/folders/xh/6kwtj36s0zv32spmbqc7bs280000gn/T/jsii-kernel-Gl17XN/node_modules/@aws-cdk/aws-lambda/lib/function.js:68:33)",
+              "/Users/Malte/Documents/CDK/account-setup/.env/lib/python3.7/site-packages/jsii/_embedded/jsii/jsii-runtime.js:7838:49",
+              "Kernel._wrapSandboxCode (/Users/Malte/Documents/CDK/account-setup/.env/lib/python3.7/site-packages/jsii/_embedded/jsii/jsii-runtime.js:8298:20)",
+              "Kernel._create (/Users/Malte/Documents/CDK/account-setup/.env/lib/python3.7/site-packages/jsii/_embedded/jsii/jsii-runtime.js:7838:26)",
+              "Kernel.create (/Users/Malte/Documents/CDK/account-setup/.env/lib/python3.7/site-packages/jsii/_embedded/jsii/jsii-runtime.js:7585:21)",
+              "KernelHost.processRequest (/Users/Malte/Documents/CDK/account-setup/.env/lib/python3.7/site-packages/jsii/_embedded/jsii/jsii-runtime.js:7372:28)",
+              "KernelHost.run (/Users/Malte/Documents/CDK/account-setup/.env/lib/python3.7/site-packages/jsii/_embedded/jsii/jsii-runtime.js:7312:14)",
+              "Immediate._onImmediate (/Users/Malte/Documents/CDK/account-setup/.env/lib/python3.7/site-packages/jsii/_embedded/jsii/jsii-runtime.js:7315:37)",
+              "processImmediate (internal/timers.js:456:21)"
+            ]
+          }
+        ],
+        "/accountSetUp/Allow_Users_To_Change_Password": [
+          {
+            "type": "aws:cdk:logicalId",
+            "data": "AllowUsersToChangePassword",
+            "trace": [
+              "/Users/Malte/Documents/CDK/account-setup/.env/lib/python3.7/site-packages/jsii/_embedded/jsii/jsii-runtime.js:7838:49",
+              "Kernel._wrapSandboxCode (/Users/Malte/Documents/CDK/account-setup/.env/lib/python3.7/site-packages/jsii/_embedded/jsii/jsii-runtime.js:8298:20)",
+              "Kernel._create (/Users/Malte/Documents/CDK/account-setup/.env/lib/python3.7/site-packages/jsii/_embedded/jsii/jsii-runtime.js:7838:26)",
+              "Kernel.create (/Users/Malte/Documents/CDK/account-setup/.env/lib/python3.7/site-packages/jsii/_embedded/jsii/jsii-runtime.js:7585:21)",
+              "KernelHost.processRequest (/Users/Malte/Documents/CDK/account-setup/.env/lib/python3.7/site-packages/jsii/_embedded/jsii/jsii-runtime.js:7372:28)",
+              "KernelHost.run (/Users/Malte/Documents/CDK/account-setup/.env/lib/python3.7/site-packages/jsii/_embedded/jsii/jsii-runtime.js:7312:14)",
+              "Immediate._onImmediate (/Users/Malte/Documents/CDK/account-setup/.env/lib/python3.7/site-packages/jsii/_embedded/jsii/jsii-runtime.js:7315:37)",
+              "processImmediate (internal/timers.js:456:21)"
+            ]
+          }
+        ],
+        "/accountSetUp/Hard_Expiry": [
+          {
+            "type": "aws:cdk:logicalId",
+            "data": "HardExpiry",
+            "trace": [
+              "/Users/Malte/Documents/CDK/account-setup/.env/lib/python3.7/site-packages/jsii/_embedded/jsii/jsii-runtime.js:7838:49",
+              "Kernel._wrapSandboxCode (/Users/Malte/Documents/CDK/account-setup/.env/lib/python3.7/site-packages/jsii/_embedded/jsii/jsii-runtime.js:8298:20)",
+              "Kernel._create (/Users/Malte/Documents/CDK/account-setup/.env/lib/python3.7/site-packages/jsii/_embedded/jsii/jsii-runtime.js:7838:26)",
+              "Kernel.create (/Users/Malte/Documents/CDK/account-setup/.env/lib/python3.7/site-packages/jsii/_embedded/jsii/jsii-runtime.js:7585:21)",
+              "KernelHost.processRequest (/Users/Malte/Documents/CDK/account-setup/.env/lib/python3.7/site-packages/jsii/_embedded/jsii/jsii-runtime.js:7372:28)",
+              "KernelHost.run (/Users/Malte/Documents/CDK/account-setup/.env/lib/python3.7/site-packages/jsii/_embedded/jsii/jsii-runtime.js:7312:14)",
+              "Immediate._onImmediate (/Users/Malte/Documents/CDK/account-setup/.env/lib/python3.7/site-packages/jsii/_embedded/jsii/jsii-runtime.js:7315:37)",
+              "processImmediate (internal/timers.js:456:21)"
+            ]
+          }
+        ],
+        "/accountSetUp/Max_Password_Age": [
+          {
+            "type": "aws:cdk:logicalId",
+            "data": "MaxPasswordAge",
+            "trace": [
+              "/Users/Malte/Documents/CDK/account-setup/.env/lib/python3.7/site-packages/jsii/_embedded/jsii/jsii-runtime.js:7838:49",
+              "Kernel._wrapSandboxCode (/Users/Malte/Documents/CDK/account-setup/.env/lib/python3.7/site-packages/jsii/_embedded/jsii/jsii-runtime.js:8298:20)",
+              "Kernel._create (/Users/Malte/Documents/CDK/account-setup/.env/lib/python3.7/site-packages/jsii/_embedded/jsii/jsii-runtime.js:7838:26)",
+              "Kernel.create (/Users/Malte/Documents/CDK/account-setup/.env/lib/python3.7/site-packages/jsii/_embedded/jsii/jsii-runtime.js:7585:21)",
+              "KernelHost.processRequest (/Users/Malte/Documents/CDK/account-setup/.env/lib/python3.7/site-packages/jsii/_embedded/jsii/jsii-runtime.js:7372:28)",
+              "KernelHost.run (/Users/Malte/Documents/CDK/account-setup/.env/lib/python3.7/site-packages/jsii/_embedded/jsii/jsii-runtime.js:7312:14)",
+              "Immediate._onImmediate (/Users/Malte/Documents/CDK/account-setup/.env/lib/python3.7/site-packages/jsii/_embedded/jsii/jsii-runtime.js:7315:37)",
+              "processImmediate (internal/timers.js:456:21)"
+            ]
+          }
+        ],
+        "/accountSetUp/Minimum_Password_Length": [
+          {
+            "type": "aws:cdk:logicalId",
+            "data": "MinimumPasswordLength",
+            "trace": [
+              "/Users/Malte/Documents/CDK/account-setup/.env/lib/python3.7/site-packages/jsii/_embedded/jsii/jsii-runtime.js:7838:49",
+              "Kernel._wrapSandboxCode (/Users/Malte/Documents/CDK/account-setup/.env/lib/python3.7/site-packages/jsii/_embedded/jsii/jsii-runtime.js:8298:20)",
+              "Kernel._create (/Users/Malte/Documents/CDK/account-setup/.env/lib/python3.7/site-packages/jsii/_embedded/jsii/jsii-runtime.js:7838:26)",
+              "Kernel.create (/Users/Malte/Documents/CDK/account-setup/.env/lib/python3.7/site-packages/jsii/_embedded/jsii/jsii-runtime.js:7585:21)",
+              "KernelHost.processRequest (/Users/Malte/Documents/CDK/account-setup/.env/lib/python3.7/site-packages/jsii/_embedded/jsii/jsii-runtime.js:7372:28)",
+              "KernelHost.run (/Users/Malte/Documents/CDK/account-setup/.env/lib/python3.7/site-packages/jsii/_embedded/jsii/jsii-runtime.js:7312:14)",
+              "Immediate._onImmediate (/Users/Malte/Documents/CDK/account-setup/.env/lib/python3.7/site-packages/jsii/_embedded/jsii/jsii-runtime.js:7315:37)",
+              "processImmediate (internal/timers.js:456:21)"
+            ]
+          }
+        ],
+        "/accountSetUp/Password_Reuse_Prevention": [
+          {
+            "type": "aws:cdk:logicalId",
+            "data": "PasswordReusePrevention",
+            "trace": [
+              "/Users/Malte/Documents/CDK/account-setup/.env/lib/python3.7/site-packages/jsii/_embedded/jsii/jsii-runtime.js:7838:49",
+              "Kernel._wrapSandboxCode (/Users/Malte/Documents/CDK/account-setup/.env/lib/python3.7/site-packages/jsii/_embedded/jsii/jsii-runtime.js:8298:20)",
+              "Kernel._create (/Users/Malte/Documents/CDK/account-setup/.env/lib/python3.7/site-packages/jsii/_embedded/jsii/jsii-runtime.js:7838:26)",
+              "Kernel.create (/Users/Malte/Documents/CDK/account-setup/.env/lib/python3.7/site-packages/jsii/_embedded/jsii/jsii-runtime.js:7585:21)",
+              "KernelHost.processRequest (/Users/Malte/Documents/CDK/account-setup/.env/lib/python3.7/site-packages/jsii/_embedded/jsii/jsii-runtime.js:7372:28)",
+              "KernelHost.run (/Users/Malte/Documents/CDK/account-setup/.env/lib/python3.7/site-packages/jsii/_embedded/jsii/jsii-runtime.js:7312:14)",
+              "Immediate._onImmediate (/Users/Malte/Documents/CDK/account-setup/.env/lib/python3.7/site-packages/jsii/_embedded/jsii/jsii-runtime.js:7315:37)",
+              "processImmediate (internal/timers.js:456:21)"
+            ]
+          }
+        ],
+        "/accountSetUp/Require_Lowercase_Characters": [
+          {
+            "type": "aws:cdk:logicalId",
+            "data": "RequireLowercaseCharacters",
+            "trace": [
+              "/Users/Malte/Documents/CDK/account-setup/.env/lib/python3.7/site-packages/jsii/_embedded/jsii/jsii-runtime.js:7838:49",
+              "Kernel._wrapSandboxCode (/Users/Malte/Documents/CDK/account-setup/.env/lib/python3.7/site-packages/jsii/_embedded/jsii/jsii-runtime.js:8298:20)",
+              "Kernel._create (/Users/Malte/Documents/CDK/account-setup/.env/lib/python3.7/site-packages/jsii/_embedded/jsii/jsii-runtime.js:7838:26)",
+              "Kernel.create (/Users/Malte/Documents/CDK/account-setup/.env/lib/python3.7/site-packages/jsii/_embedded/jsii/jsii-runtime.js:7585:21)",
+              "KernelHost.processRequest (/Users/Malte/Documents/CDK/account-setup/.env/lib/python3.7/site-packages/jsii/_embedded/jsii/jsii-runtime.js:7372:28)",
+              "KernelHost.run (/Users/Malte/Documents/CDK/account-setup/.env/lib/python3.7/site-packages/jsii/_embedded/jsii/jsii-runtime.js:7312:14)",
+              "Immediate._onImmediate (/Users/Malte/Documents/CDK/account-setup/.env/lib/python3.7/site-packages/jsii/_embedded/jsii/jsii-runtime.js:7315:37)",
+              "processImmediate (internal/timers.js:456:21)"
+            ]
+          }
+        ],
+        "/accountSetUp/Require_Numbers_Characters": [
+          {
+            "type": "aws:cdk:logicalId",
+            "data": "RequireNumbersCharacters",
+            "trace": [
+              "/Users/Malte/Documents/CDK/account-setup/.env/lib/python3.7/site-packages/jsii/_embedded/jsii/jsii-runtime.js:7838:49",
+              "Kernel._wrapSandboxCode (/Users/Malte/Documents/CDK/account-setup/.env/lib/python3.7/site-packages/jsii/_embedded/jsii/jsii-runtime.js:8298:20)",
+              "Kernel._create (/Users/Malte/Documents/CDK/account-setup/.env/lib/python3.7/site-packages/jsii/_embedded/jsii/jsii-runtime.js:7838:26)",
+              "Kernel.create (/Users/Malte/Documents/CDK/account-setup/.env/lib/python3.7/site-packages/jsii/_embedded/jsii/jsii-runtime.js:7585:21)",
+              "KernelHost.processRequest (/Users/Malte/Documents/CDK/account-setup/.env/lib/python3.7/site-packages/jsii/_embedded/jsii/jsii-runtime.js:7372:28)",
+              "KernelHost.run (/Users/Malte/Documents/CDK/account-setup/.env/lib/python3.7/site-packages/jsii/_embedded/jsii/jsii-runtime.js:7312:14)",
+              "Immediate._onImmediate (/Users/Malte/Documents/CDK/account-setup/.env/lib/python3.7/site-packages/jsii/_embedded/jsii/jsii-runtime.js:7315:37)",
+              "processImmediate (internal/timers.js:456:21)"
+            ]
+          }
+        ],
+        "/accountSetUp/Require_Symbols_Characters": [
+          {
+            "type": "aws:cdk:logicalId",
+            "data": "RequireSymbolsCharacters",
+            "trace": [
+              "/Users/Malte/Documents/CDK/account-setup/.env/lib/python3.7/site-packages/jsii/_embedded/jsii/jsii-runtime.js:7838:49",
+              "Kernel._wrapSandboxCode (/Users/Malte/Documents/CDK/account-setup/.env/lib/python3.7/site-packages/jsii/_embedded/jsii/jsii-runtime.js:8298:20)",
+              "Kernel._create (/Users/Malte/Documents/CDK/account-setup/.env/lib/python3.7/site-packages/jsii/_embedded/jsii/jsii-runtime.js:7838:26)",
+              "Kernel.create (/Users/Malte/Documents/CDK/account-setup/.env/lib/python3.7/site-packages/jsii/_embedded/jsii/jsii-runtime.js:7585:21)",
+              "KernelHost.processRequest (/Users/Malte/Documents/CDK/account-setup/.env/lib/python3.7/site-packages/jsii/_embedded/jsii/jsii-runtime.js:7372:28)",
+              "KernelHost.run (/Users/Malte/Documents/CDK/account-setup/.env/lib/python3.7/site-packages/jsii/_embedded/jsii/jsii-runtime.js:7312:14)",
+              "Immediate._onImmediate (/Users/Malte/Documents/CDK/account-setup/.env/lib/python3.7/site-packages/jsii/_embedded/jsii/jsii-runtime.js:7315:37)",
+              "processImmediate (internal/timers.js:456:21)"
+            ]
+          }
+        ],
+        "/accountSetUp/Require_Uppercase_Characters": [
+          {
+            "type": "aws:cdk:logicalId",
+            "data": "RequireUppercaseCharacters",
+            "trace": [
+              "/Users/Malte/Documents/CDK/account-setup/.env/lib/python3.7/site-packages/jsii/_embedded/jsii/jsii-runtime.js:7838:49",
+              "Kernel._wrapSandboxCode (/Users/Malte/Documents/CDK/account-setup/.env/lib/python3.7/site-packages/jsii/_embedded/jsii/jsii-runtime.js:8298:20)",
+              "Kernel._create (/Users/Malte/Documents/CDK/account-setup/.env/lib/python3.7/site-packages/jsii/_embedded/jsii/jsii-runtime.js:7838:26)",
+              "Kernel.create (/Users/Malte/Documents/CDK/account-setup/.env/lib/python3.7/site-packages/jsii/_embedded/jsii/jsii-runtime.js:7585:21)",
+              "KernelHost.processRequest (/Users/Malte/Documents/CDK/account-setup/.env/lib/python3.7/site-packages/jsii/_embedded/jsii/jsii-runtime.js:7372:28)",
+              "KernelHost.run (/Users/Malte/Documents/CDK/account-setup/.env/lib/python3.7/site-packages/jsii/_embedded/jsii/jsii-runtime.js:7312:14)",
+              "Immediate._onImmediate (/Users/Malte/Documents/CDK/account-setup/.env/lib/python3.7/site-packages/jsii/_embedded/jsii/jsii-runtime.js:7315:37)",
+              "processImmediate (internal/timers.js:456:21)"
+            ]
+          }
+        ],
+        "/accountSetUp/Set_Password_Policy/ServiceRole/Resource": [
+          {
+            "type": "aws:cdk:logicalId",
+            "data": "SetPasswordPolicyServiceRole07D7CF76",
+            "trace": [
+              "new Role (/private/var/folders/xh/6kwtj36s0zv32spmbqc7bs280000gn/T/jsii-kernel-Gl17XN/node_modules/@aws-cdk/aws-iam/lib/role.js:41:22)",
+              "new Function (/private/var/folders/xh/6kwtj36s0zv32spmbqc7bs280000gn/T/jsii-kernel-Gl17XN/node_modules/@aws-cdk/aws-lambda/lib/function.js:60:35)",
+              "/Users/Malte/Documents/CDK/account-setup/.env/lib/python3.7/site-packages/jsii/_embedded/jsii/jsii-runtime.js:7838:49",
+              "Kernel._wrapSandboxCode (/Users/Malte/Documents/CDK/account-setup/.env/lib/python3.7/site-packages/jsii/_embedded/jsii/jsii-runtime.js:8298:20)",
+              "Kernel._create (/Users/Malte/Documents/CDK/account-setup/.env/lib/python3.7/site-packages/jsii/_embedded/jsii/jsii-runtime.js:7838:26)",
+              "Kernel.create (/Users/Malte/Documents/CDK/account-setup/.env/lib/python3.7/site-packages/jsii/_embedded/jsii/jsii-runtime.js:7585:21)",
+              "KernelHost.processRequest (/Users/Malte/Documents/CDK/account-setup/.env/lib/python3.7/site-packages/jsii/_embedded/jsii/jsii-runtime.js:7372:28)",
+              "KernelHost.run (/Users/Malte/Documents/CDK/account-setup/.env/lib/python3.7/site-packages/jsii/_embedded/jsii/jsii-runtime.js:7312:14)",
+              "Immediate._onImmediate (/Users/Malte/Documents/CDK/account-setup/.env/lib/python3.7/site-packages/jsii/_embedded/jsii/jsii-runtime.js:7315:37)",
+              "processImmediate (internal/timers.js:456:21)"
+            ]
+          }
+        ],
+        "/accountSetUp/Set_Password_Policy/ServiceRole/DefaultPolicy/Resource": [
+          {
+            "type": "aws:cdk:logicalId",
+            "data": "SetPasswordPolicyServiceRoleDefaultPolicy6A127D21",
+            "trace": [
+              "new Policy (/private/var/folders/xh/6kwtj36s0zv32spmbqc7bs280000gn/T/jsii-kernel-Gl17XN/node_modules/@aws-cdk/aws-iam/lib/policy.js:30:26)",
+              "Role.addToPolicy (/private/var/folders/xh/6kwtj36s0zv32spmbqc7bs280000gn/T/jsii-kernel-Gl17XN/node_modules/@aws-cdk/aws-iam/lib/role.js:160:34)",
+              "Function.addToRolePolicy (/private/var/folders/xh/6kwtj36s0zv32spmbqc7bs280000gn/T/jsii-kernel-Gl17XN/node_modules/@aws-cdk/aws-lambda/lib/function-base.js:38:19)",
+              "/Users/Malte/Documents/CDK/account-setup/.env/lib/python3.7/site-packages/jsii/_embedded/jsii/jsii-runtime.js:7665:51",
+              "Kernel._wrapSandboxCode (/Users/Malte/Documents/CDK/account-setup/.env/lib/python3.7/site-packages/jsii/_embedded/jsii/jsii-runtime.js:8298:20)",
+              "/Users/Malte/Documents/CDK/account-setup/.env/lib/python3.7/site-packages/jsii/_embedded/jsii/jsii-runtime.js:7665:25",
+              "Kernel._ensureSync (/Users/Malte/Documents/CDK/account-setup/.env/lib/python3.7/site-packages/jsii/_embedded/jsii/jsii-runtime.js:8274:20)",
+              "Kernel.invoke (/Users/Malte/Documents/CDK/account-setup/.env/lib/python3.7/site-packages/jsii/_embedded/jsii/jsii-runtime.js:7664:26)",
+              "KernelHost.processRequest (/Users/Malte/Documents/CDK/account-setup/.env/lib/python3.7/site-packages/jsii/_embedded/jsii/jsii-runtime.js:7372:28)",
+              "KernelHost.run (/Users/Malte/Documents/CDK/account-setup/.env/lib/python3.7/site-packages/jsii/_embedded/jsii/jsii-runtime.js:7312:14)",
+              "Immediate._onImmediate (/Users/Malte/Documents/CDK/account-setup/.env/lib/python3.7/site-packages/jsii/_embedded/jsii/jsii-runtime.js:7315:37)",
+              "processImmediate (internal/timers.js:456:21)"
+            ]
+          }
+        ],
+        "/accountSetUp/Set_Password_Policy/Resource": [
+          {
+            "type": "aws:cdk:logicalId",
+            "data": "SetPasswordPolicy62BCABC3",
+            "trace": [
+              "new Function (/private/var/folders/xh/6kwtj36s0zv32spmbqc7bs280000gn/T/jsii-kernel-Gl17XN/node_modules/@aws-cdk/aws-lambda/lib/function.js:71:26)",
+              "/Users/Malte/Documents/CDK/account-setup/.env/lib/python3.7/site-packages/jsii/_embedded/jsii/jsii-runtime.js:7838:49",
+              "Kernel._wrapSandboxCode (/Users/Malte/Documents/CDK/account-setup/.env/lib/python3.7/site-packages/jsii/_embedded/jsii/jsii-runtime.js:8298:20)",
+              "Kernel._create (/Users/Malte/Documents/CDK/account-setup/.env/lib/python3.7/site-packages/jsii/_embedded/jsii/jsii-runtime.js:7838:26)",
+              "Kernel.create (/Users/Malte/Documents/CDK/account-setup/.env/lib/python3.7/site-packages/jsii/_embedded/jsii/jsii-runtime.js:7585:21)",
+              "KernelHost.processRequest (/Users/Malte/Documents/CDK/account-setup/.env/lib/python3.7/site-packages/jsii/_embedded/jsii/jsii-runtime.js:7372:28)",
+              "KernelHost.run (/Users/Malte/Documents/CDK/account-setup/.env/lib/python3.7/site-packages/jsii/_embedded/jsii/jsii-runtime.js:7312:14)",
+              "Immediate._onImmediate (/Users/Malte/Documents/CDK/account-setup/.env/lib/python3.7/site-packages/jsii/_embedded/jsii/jsii-runtime.js:7315:37)",
+              "processImmediate (internal/timers.js:456:21)"
+            ]
+          }
+        ],
+        "/accountSetUp/Set_Password_Policy/LogRetention/Resource": [
+          {
+            "type": "aws:cdk:logicalId",
+            "data": "SetPasswordPolicyLogRetention4CCFAF74",
+            "trace": [
+              "new LogRetention (/private/var/folders/xh/6kwtj36s0zv32spmbqc7bs280000gn/T/jsii-kernel-Gl17XN/node_modules/@aws-cdk/aws-lambda/lib/log-retention.js:37:26)",
+              "new Function (/private/var/folders/xh/6kwtj36s0zv32spmbqc7bs280000gn/T/jsii-kernel-Gl17XN/node_modules/@aws-cdk/aws-lambda/lib/function.js:109:34)",
+              "/Users/Malte/Documents/CDK/account-setup/.env/lib/python3.7/site-packages/jsii/_embedded/jsii/jsii-runtime.js:7838:49",
+              "Kernel._wrapSandboxCode (/Users/Malte/Documents/CDK/account-setup/.env/lib/python3.7/site-packages/jsii/_embedded/jsii/jsii-runtime.js:8298:20)",
+              "Kernel._create (/Users/Malte/Documents/CDK/account-setup/.env/lib/python3.7/site-packages/jsii/_embedded/jsii/jsii-runtime.js:7838:26)",
+              "Kernel.create (/Users/Malte/Documents/CDK/account-setup/.env/lib/python3.7/site-packages/jsii/_embedded/jsii/jsii-runtime.js:7585:21)",
+              "KernelHost.processRequest (/Users/Malte/Documents/CDK/account-setup/.env/lib/python3.7/site-packages/jsii/_embedded/jsii/jsii-runtime.js:7372:28)",
+              "KernelHost.run (/Users/Malte/Documents/CDK/account-setup/.env/lib/python3.7/site-packages/jsii/_embedded/jsii/jsii-runtime.js:7312:14)",
+              "Immediate._onImmediate (/Users/Malte/Documents/CDK/account-setup/.env/lib/python3.7/site-packages/jsii/_embedded/jsii/jsii-runtime.js:7315:37)",
+              "processImmediate (internal/timers.js:456:21)"
+            ]
+          }
+        ],
+        "/accountSetUp/Set_Password_Policy/EventInvokeConfig/Resource": [
+          {
+            "type": "aws:cdk:logicalId",
+            "data": "SetPasswordPolicyEventInvokeConfig9DDD223C",
+            "trace": [
+              "new EventInvokeConfig (/private/var/folders/xh/6kwtj36s0zv32spmbqc7bs280000gn/T/jsii-kernel-Gl17XN/node_modules/@aws-cdk/aws-lambda/lib/event-invoke-config.js:23:9)",
+              "Function.configureAsyncInvoke (/private/var/folders/xh/6kwtj36s0zv32spmbqc7bs280000gn/T/jsii-kernel-Gl17XN/node_modules/@aws-cdk/aws-lambda/lib/function-base.js:112:9)",
+              "new Function (/private/var/folders/xh/6kwtj36s0zv32spmbqc7bs280000gn/T/jsii-kernel-Gl17XN/node_modules/@aws-cdk/aws-lambda/lib/function.js:119:18)",
+              "/Users/Malte/Documents/CDK/account-setup/.env/lib/python3.7/site-packages/jsii/_embedded/jsii/jsii-runtime.js:7838:49",
+              "Kernel._wrapSandboxCode (/Users/Malte/Documents/CDK/account-setup/.env/lib/python3.7/site-packages/jsii/_embedded/jsii/jsii-runtime.js:8298:20)",
+              "Kernel._create (/Users/Malte/Documents/CDK/account-setup/.env/lib/python3.7/site-packages/jsii/_embedded/jsii/jsii-runtime.js:7838:26)",
+              "Kernel.create (/Users/Malte/Documents/CDK/account-setup/.env/lib/python3.7/site-packages/jsii/_embedded/jsii/jsii-runtime.js:7585:21)",
+              "KernelHost.processRequest (/Users/Malte/Documents/CDK/account-setup/.env/lib/python3.7/site-packages/jsii/_embedded/jsii/jsii-runtime.js:7372:28)",
+              "KernelHost.run (/Users/Malte/Documents/CDK/account-setup/.env/lib/python3.7/site-packages/jsii/_embedded/jsii/jsii-runtime.js:7312:14)",
+              "Immediate._onImmediate (/Users/Malte/Documents/CDK/account-setup/.env/lib/python3.7/site-packages/jsii/_embedded/jsii/jsii-runtime.js:7315:37)",
+              "processImmediate (internal/timers.js:456:21)"
+            ]
+          }
+        ],
+        "/accountSetUp/LogRetentionaae0aa3c5b4d4f87b02d85b201efdd8a/ServiceRole/Resource": [
+          {
+            "type": "aws:cdk:logicalId",
+            "data": "LogRetentionaae0aa3c5b4d4f87b02d85b201efdd8aServiceRole9741ECFB",
+            "trace": [
+              "new Role (/private/var/folders/xh/6kwtj36s0zv32spmbqc7bs280000gn/T/jsii-kernel-Gl17XN/node_modules/@aws-cdk/aws-iam/lib/role.js:41:22)",
+              "new Function (/private/var/folders/xh/6kwtj36s0zv32spmbqc7bs280000gn/T/jsii-kernel-Gl17XN/node_modules/@aws-cdk/aws-lambda/lib/function.js:60:35)",
+              "SingletonFunction.ensureLambda (/private/var/folders/xh/6kwtj36s0zv32spmbqc7bs280000gn/T/jsii-kernel-Gl17XN/node_modules/@aws-cdk/aws-lambda/lib/singleton-lambda.js:37:16)",
+              "new SingletonFunction (/private/var/folders/xh/6kwtj36s0zv32spmbqc7bs280000gn/T/jsii-kernel-Gl17XN/node_modules/@aws-cdk/aws-lambda/lib/singleton-lambda.js:19:36)",
+              "new LogRetention (/private/var/folders/xh/6kwtj36s0zv32spmbqc7bs280000gn/T/jsii-kernel-Gl17XN/node_modules/@aws-cdk/aws-lambda/lib/log-retention.js:19:26)",
+              "new Function (/private/var/folders/xh/6kwtj36s0zv32spmbqc7bs280000gn/T/jsii-kernel-Gl17XN/node_modules/@aws-cdk/aws-lambda/lib/function.js:109:34)",
+              "/Users/Malte/Documents/CDK/account-setup/.env/lib/python3.7/site-packages/jsii/_embedded/jsii/jsii-runtime.js:7838:49",
+              "Kernel._wrapSandboxCode (/Users/Malte/Documents/CDK/account-setup/.env/lib/python3.7/site-packages/jsii/_embedded/jsii/jsii-runtime.js:8298:20)",
+              "Kernel._create (/Users/Malte/Documents/CDK/account-setup/.env/lib/python3.7/site-packages/jsii/_embedded/jsii/jsii-runtime.js:7838:26)",
+              "Kernel.create (/Users/Malte/Documents/CDK/account-setup/.env/lib/python3.7/site-packages/jsii/_embedded/jsii/jsii-runtime.js:7585:21)",
+              "KernelHost.processRequest (/Users/Malte/Documents/CDK/account-setup/.env/lib/python3.7/site-packages/jsii/_embedded/jsii/jsii-runtime.js:7372:28)",
+              "KernelHost.run (/Users/Malte/Documents/CDK/account-setup/.env/lib/python3.7/site-packages/jsii/_embedded/jsii/jsii-runtime.js:7312:14)",
+              "Immediate._onImmediate (/Users/Malte/Documents/CDK/account-setup/.env/lib/python3.7/site-packages/jsii/_embedded/jsii/jsii-runtime.js:7315:37)",
+              "processImmediate (internal/timers.js:456:21)"
+            ]
+          }
+        ],
+        "/accountSetUp/LogRetentionaae0aa3c5b4d4f87b02d85b201efdd8a/ServiceRole/DefaultPolicy/Resource": [
+          {
+            "type": "aws:cdk:logicalId",
+            "data": "LogRetentionaae0aa3c5b4d4f87b02d85b201efdd8aServiceRoleDefaultPolicyADDA7DEB",
+            "trace": [
+              "new Policy (/private/var/folders/xh/6kwtj36s0zv32spmbqc7bs280000gn/T/jsii-kernel-Gl17XN/node_modules/@aws-cdk/aws-iam/lib/policy.js:30:26)",
+              "Role.addToPolicy (/private/var/folders/xh/6kwtj36s0zv32spmbqc7bs280000gn/T/jsii-kernel-Gl17XN/node_modules/@aws-cdk/aws-iam/lib/role.js:160:34)",
+              "SingletonFunction.addToRolePolicy (/private/var/folders/xh/6kwtj36s0zv32spmbqc7bs280000gn/T/jsii-kernel-Gl17XN/node_modules/@aws-cdk/aws-lambda/lib/function-base.js:38:19)",
+              "new LogRetention (/private/var/folders/xh/6kwtj36s0zv32spmbqc7bs280000gn/T/jsii-kernel-Gl17XN/node_modules/@aws-cdk/aws-lambda/lib/log-retention.js:28:18)",
+              "new Function (/private/var/folders/xh/6kwtj36s0zv32spmbqc7bs280000gn/T/jsii-kernel-Gl17XN/node_modules/@aws-cdk/aws-lambda/lib/function.js:109:34)",
+              "/Users/Malte/Documents/CDK/account-setup/.env/lib/python3.7/site-packages/jsii/_embedded/jsii/jsii-runtime.js:7838:49",
+              "Kernel._wrapSandboxCode (/Users/Malte/Documents/CDK/account-setup/.env/lib/python3.7/site-packages/jsii/_embedded/jsii/jsii-runtime.js:8298:20)",
+              "Kernel._create (/Users/Malte/Documents/CDK/account-setup/.env/lib/python3.7/site-packages/jsii/_embedded/jsii/jsii-runtime.js:7838:26)",
+              "Kernel.create (/Users/Malte/Documents/CDK/account-setup/.env/lib/python3.7/site-packages/jsii/_embedded/jsii/jsii-runtime.js:7585:21)",
+              "KernelHost.processRequest (/Users/Malte/Documents/CDK/account-setup/.env/lib/python3.7/site-packages/jsii/_embedded/jsii/jsii-runtime.js:7372:28)",
+              "KernelHost.run (/Users/Malte/Documents/CDK/account-setup/.env/lib/python3.7/site-packages/jsii/_embedded/jsii/jsii-runtime.js:7312:14)",
+              "Immediate._onImmediate (/Users/Malte/Documents/CDK/account-setup/.env/lib/python3.7/site-packages/jsii/_embedded/jsii/jsii-runtime.js:7315:37)",
+              "processImmediate (internal/timers.js:456:21)"
+            ]
+          }
+        ],
+        "/accountSetUp/LogRetentionaae0aa3c5b4d4f87b02d85b201efdd8a/Resource": [
+          {
+            "type": "aws:cdk:logicalId",
+            "data": "LogRetentionaae0aa3c5b4d4f87b02d85b201efdd8aFD4BFC8A",
+            "trace": [
+              "new Function (/private/var/folders/xh/6kwtj36s0zv32spmbqc7bs280000gn/T/jsii-kernel-Gl17XN/node_modules/@aws-cdk/aws-lambda/lib/function.js:71:26)",
+              "SingletonFunction.ensureLambda (/private/var/folders/xh/6kwtj36s0zv32spmbqc7bs280000gn/T/jsii-kernel-Gl17XN/node_modules/@aws-cdk/aws-lambda/lib/singleton-lambda.js:37:16)",
+              "new SingletonFunction (/private/var/folders/xh/6kwtj36s0zv32spmbqc7bs280000gn/T/jsii-kernel-Gl17XN/node_modules/@aws-cdk/aws-lambda/lib/singleton-lambda.js:19:36)",
+              "new LogRetention (/private/var/folders/xh/6kwtj36s0zv32spmbqc7bs280000gn/T/jsii-kernel-Gl17XN/node_modules/@aws-cdk/aws-lambda/lib/log-retention.js:19:26)",
+              "new Function (/private/var/folders/xh/6kwtj36s0zv32spmbqc7bs280000gn/T/jsii-kernel-Gl17XN/node_modules/@aws-cdk/aws-lambda/lib/function.js:109:34)",
+              "/Users/Malte/Documents/CDK/account-setup/.env/lib/python3.7/site-packages/jsii/_embedded/jsii/jsii-runtime.js:7838:49",
+              "Kernel._wrapSandboxCode (/Users/Malte/Documents/CDK/account-setup/.env/lib/python3.7/site-packages/jsii/_embedded/jsii/jsii-runtime.js:8298:20)",
+              "Kernel._create (/Users/Malte/Documents/CDK/account-setup/.env/lib/python3.7/site-packages/jsii/_embedded/jsii/jsii-runtime.js:7838:26)",
+              "Kernel.create (/Users/Malte/Documents/CDK/account-setup/.env/lib/python3.7/site-packages/jsii/_embedded/jsii/jsii-runtime.js:7585:21)",
+              "KernelHost.processRequest (/Users/Malte/Documents/CDK/account-setup/.env/lib/python3.7/site-packages/jsii/_embedded/jsii/jsii-runtime.js:7372:28)",
+              "KernelHost.run (/Users/Malte/Documents/CDK/account-setup/.env/lib/python3.7/site-packages/jsii/_embedded/jsii/jsii-runtime.js:7312:14)",
+              "Immediate._onImmediate (/Users/Malte/Documents/CDK/account-setup/.env/lib/python3.7/site-packages/jsii/_embedded/jsii/jsii-runtime.js:7315:37)",
+              "processImmediate (internal/timers.js:456:21)"
+            ]
+          }
+        ],
+        "/accountSetUp/AssetParameters/5741f85917ffca30b209ad61e375d3d3bae0457270071f7aca8ca81be19bd22a/S3Bucket": [
+          {
+            "type": "aws:cdk:logicalId",
+            "data": "AssetParameters5741f85917ffca30b209ad61e375d3d3bae0457270071f7aca8ca81be19bd22aS3Bucket4E933C7F",
+            "trace": [
+              "new FileAssetParameters (/private/var/folders/xh/6kwtj36s0zv32spmbqc7bs280000gn/T/jsii-kernel-Gl17XN/node_modules/@aws-cdk/core/lib/private/asset-parameters.js:11:36)",
+              "Stack.addFileAsset (/private/var/folders/xh/6kwtj36s0zv32spmbqc7bs280000gn/T/jsii-kernel-Gl17XN/node_modules/@aws-cdk/core/lib/stack.js:360:22)",
+              "new Asset (/private/var/folders/xh/6kwtj36s0zv32spmbqc7bs280000gn/T/jsii-kernel-Gl17XN/node_modules/@aws-cdk/aws-s3-assets/lib/asset.js:30:32)",
+              "AssetCode.bind (/private/var/folders/xh/6kwtj36s0zv32spmbqc7bs280000gn/T/jsii-kernel-Gl17XN/node_modules/@aws-cdk/aws-lambda/lib/code.js:135:26)",
+              "new Function (/private/var/folders/xh/6kwtj36s0zv32spmbqc7bs280000gn/T/jsii-kernel-Gl17XN/node_modules/@aws-cdk/aws-lambda/lib/function.js:68:33)",
+              "SingletonFunction.ensureLambda (/private/var/folders/xh/6kwtj36s0zv32spmbqc7bs280000gn/T/jsii-kernel-Gl17XN/node_modules/@aws-cdk/aws-lambda/lib/singleton-lambda.js:37:16)",
+              "new SingletonFunction (/private/var/folders/xh/6kwtj36s0zv32spmbqc7bs280000gn/T/jsii-kernel-Gl17XN/node_modules/@aws-cdk/aws-lambda/lib/singleton-lambda.js:19:36)",
+              "new LogRetention (/private/var/folders/xh/6kwtj36s0zv32spmbqc7bs280000gn/T/jsii-kernel-Gl17XN/node_modules/@aws-cdk/aws-lambda/lib/log-retention.js:19:26)",
+              "new Function (/private/var/folders/xh/6kwtj36s0zv32spmbqc7bs280000gn/T/jsii-kernel-Gl17XN/node_modules/@aws-cdk/aws-lambda/lib/function.js:109:34)",
+              "/Users/Malte/Documents/CDK/account-setup/.env/lib/python3.7/site-packages/jsii/_embedded/jsii/jsii-runtime.js:7838:49",
+              "Kernel._wrapSandboxCode (/Users/Malte/Documents/CDK/account-setup/.env/lib/python3.7/site-packages/jsii/_embedded/jsii/jsii-runtime.js:8298:20)",
+              "Kernel._create (/Users/Malte/Documents/CDK/account-setup/.env/lib/python3.7/site-packages/jsii/_embedded/jsii/jsii-runtime.js:7838:26)",
+              "Kernel.create (/Users/Malte/Documents/CDK/account-setup/.env/lib/python3.7/site-packages/jsii/_embedded/jsii/jsii-runtime.js:7585:21)",
+              "KernelHost.processRequest (/Users/Malte/Documents/CDK/account-setup/.env/lib/python3.7/site-packages/jsii/_embedded/jsii/jsii-runtime.js:7372:28)",
+              "KernelHost.run (/Users/Malte/Documents/CDK/account-setup/.env/lib/python3.7/site-packages/jsii/_embedded/jsii/jsii-runtime.js:7312:14)",
+              "Immediate._onImmediate (/Users/Malte/Documents/CDK/account-setup/.env/lib/python3.7/site-packages/jsii/_embedded/jsii/jsii-runtime.js:7315:37)",
+              "processImmediate (internal/timers.js:456:21)"
+            ]
+          }
+        ],
+        "/accountSetUp/AssetParameters/5741f85917ffca30b209ad61e375d3d3bae0457270071f7aca8ca81be19bd22a/S3VersionKey": [
+          {
+            "type": "aws:cdk:logicalId",
+            "data": "AssetParameters5741f85917ffca30b209ad61e375d3d3bae0457270071f7aca8ca81be19bd22aS3VersionKeyB83CC434",
+            "trace": [
+              "new FileAssetParameters (/private/var/folders/xh/6kwtj36s0zv32spmbqc7bs280000gn/T/jsii-kernel-Gl17XN/node_modules/@aws-cdk/core/lib/private/asset-parameters.js:15:35)",
+              "Stack.addFileAsset (/private/var/folders/xh/6kwtj36s0zv32spmbqc7bs280000gn/T/jsii-kernel-Gl17XN/node_modules/@aws-cdk/core/lib/stack.js:360:22)",
+              "new Asset (/private/var/folders/xh/6kwtj36s0zv32spmbqc7bs280000gn/T/jsii-kernel-Gl17XN/node_modules/@aws-cdk/aws-s3-assets/lib/asset.js:30:32)",
+              "AssetCode.bind (/private/var/folders/xh/6kwtj36s0zv32spmbqc7bs280000gn/T/jsii-kernel-Gl17XN/node_modules/@aws-cdk/aws-lambda/lib/code.js:135:26)",
+              "new Function (/private/var/folders/xh/6kwtj36s0zv32spmbqc7bs280000gn/T/jsii-kernel-Gl17XN/node_modules/@aws-cdk/aws-lambda/lib/function.js:68:33)",
+              "SingletonFunction.ensureLambda (/private/var/folders/xh/6kwtj36s0zv32spmbqc7bs280000gn/T/jsii-kernel-Gl17XN/node_modules/@aws-cdk/aws-lambda/lib/singleton-lambda.js:37:16)",
+              "new SingletonFunction (/private/var/folders/xh/6kwtj36s0zv32spmbqc7bs280000gn/T/jsii-kernel-Gl17XN/node_modules/@aws-cdk/aws-lambda/lib/singleton-lambda.js:19:36)",
+              "new LogRetention (/private/var/folders/xh/6kwtj36s0zv32spmbqc7bs280000gn/T/jsii-kernel-Gl17XN/node_modules/@aws-cdk/aws-lambda/lib/log-retention.js:19:26)",
+              "new Function (/private/var/folders/xh/6kwtj36s0zv32spmbqc7bs280000gn/T/jsii-kernel-Gl17XN/node_modules/@aws-cdk/aws-lambda/lib/function.js:109:34)",
+              "/Users/Malte/Documents/CDK/account-setup/.env/lib/python3.7/site-packages/jsii/_embedded/jsii/jsii-runtime.js:7838:49",
+              "Kernel._wrapSandboxCode (/Users/Malte/Documents/CDK/account-setup/.env/lib/python3.7/site-packages/jsii/_embedded/jsii/jsii-runtime.js:8298:20)",
+              "Kernel._create (/Users/Malte/Documents/CDK/account-setup/.env/lib/python3.7/site-packages/jsii/_embedded/jsii/jsii-runtime.js:7838:26)",
+              "Kernel.create (/Users/Malte/Documents/CDK/account-setup/.env/lib/python3.7/site-packages/jsii/_embedded/jsii/jsii-runtime.js:7585:21)",
+              "KernelHost.processRequest (/Users/Malte/Documents/CDK/account-setup/.env/lib/python3.7/site-packages/jsii/_embedded/jsii/jsii-runtime.js:7372:28)",
+              "KernelHost.run (/Users/Malte/Documents/CDK/account-setup/.env/lib/python3.7/site-packages/jsii/_embedded/jsii/jsii-runtime.js:7312:14)",
+              "Immediate._onImmediate (/Users/Malte/Documents/CDK/account-setup/.env/lib/python3.7/site-packages/jsii/_embedded/jsii/jsii-runtime.js:7315:37)",
+              "processImmediate (internal/timers.js:456:21)"
+            ]
+          }
+        ],
+        "/accountSetUp/AssetParameters/5741f85917ffca30b209ad61e375d3d3bae0457270071f7aca8ca81be19bd22a/ArtifactHash": [
+          {
+            "type": "aws:cdk:logicalId",
+            "data": "AssetParameters5741f85917ffca30b209ad61e375d3d3bae0457270071f7aca8ca81be19bd22aArtifactHash5A536F97",
+            "trace": [
+              "new FileAssetParameters (/private/var/folders/xh/6kwtj36s0zv32spmbqc7bs280000gn/T/jsii-kernel-Gl17XN/node_modules/@aws-cdk/core/lib/private/asset-parameters.js:19:38)",
+              "Stack.addFileAsset (/private/var/folders/xh/6kwtj36s0zv32spmbqc7bs280000gn/T/jsii-kernel-Gl17XN/node_modules/@aws-cdk/core/lib/stack.js:360:22)",
+              "new Asset (/private/var/folders/xh/6kwtj36s0zv32spmbqc7bs280000gn/T/jsii-kernel-Gl17XN/node_modules/@aws-cdk/aws-s3-assets/lib/asset.js:30:32)",
+              "AssetCode.bind (/private/var/folders/xh/6kwtj36s0zv32spmbqc7bs280000gn/T/jsii-kernel-Gl17XN/node_modules/@aws-cdk/aws-lambda/lib/code.js:135:26)",
+              "new Function (/private/var/folders/xh/6kwtj36s0zv32spmbqc7bs280000gn/T/jsii-kernel-Gl17XN/node_modules/@aws-cdk/aws-lambda/lib/function.js:68:33)",
+              "SingletonFunction.ensureLambda (/private/var/folders/xh/6kwtj36s0zv32spmbqc7bs280000gn/T/jsii-kernel-Gl17XN/node_modules/@aws-cdk/aws-lambda/lib/singleton-lambda.js:37:16)",
+              "new SingletonFunction (/private/var/folders/xh/6kwtj36s0zv32spmbqc7bs280000gn/T/jsii-kernel-Gl17XN/node_modules/@aws-cdk/aws-lambda/lib/singleton-lambda.js:19:36)",
+              "new LogRetention (/private/var/folders/xh/6kwtj36s0zv32spmbqc7bs280000gn/T/jsii-kernel-Gl17XN/node_modules/@aws-cdk/aws-lambda/lib/log-retention.js:19:26)",
+              "new Function (/private/var/folders/xh/6kwtj36s0zv32spmbqc7bs280000gn/T/jsii-kernel-Gl17XN/node_modules/@aws-cdk/aws-lambda/lib/function.js:109:34)",
+              "/Users/Malte/Documents/CDK/account-setup/.env/lib/python3.7/site-packages/jsii/_embedded/jsii/jsii-runtime.js:7838:49",
+              "Kernel._wrapSandboxCode (/Users/Malte/Documents/CDK/account-setup/.env/lib/python3.7/site-packages/jsii/_embedded/jsii/jsii-runtime.js:8298:20)",
+              "Kernel._create (/Users/Malte/Documents/CDK/account-setup/.env/lib/python3.7/site-packages/jsii/_embedded/jsii/jsii-runtime.js:7838:26)",
+              "Kernel.create (/Users/Malte/Documents/CDK/account-setup/.env/lib/python3.7/site-packages/jsii/_embedded/jsii/jsii-runtime.js:7585:21)",
+              "KernelHost.processRequest (/Users/Malte/Documents/CDK/account-setup/.env/lib/python3.7/site-packages/jsii/_embedded/jsii/jsii-runtime.js:7372:28)",
+              "KernelHost.run (/Users/Malte/Documents/CDK/account-setup/.env/lib/python3.7/site-packages/jsii/_embedded/jsii/jsii-runtime.js:7312:14)",
+              "Immediate._onImmediate (/Users/Malte/Documents/CDK/account-setup/.env/lib/python3.7/site-packages/jsii/_embedded/jsii/jsii-runtime.js:7315:37)",
+              "processImmediate (internal/timers.js:456:21)"
+            ]
+          }
+        ],
+        "/accountSetUp/AssetParameters/6383df60cc1b99de7b175befae3f0ea1dfa7ef89a2afae556140dcf51c8d17b7/S3Bucket": [
+          {
+            "type": "aws:cdk:logicalId",
+            "data": "AssetParameters6383df60cc1b99de7b175befae3f0ea1dfa7ef89a2afae556140dcf51c8d17b7S3BucketC2E03481",
+            "trace": [
+              "new FileAssetParameters (/private/var/folders/xh/6kwtj36s0zv32spmbqc7bs280000gn/T/jsii-kernel-Gl17XN/node_modules/@aws-cdk/core/lib/private/asset-parameters.js:11:36)",
+              "Stack.addFileAsset (/private/var/folders/xh/6kwtj36s0zv32spmbqc7bs280000gn/T/jsii-kernel-Gl17XN/node_modules/@aws-cdk/core/lib/stack.js:360:22)",
+              "new Asset (/private/var/folders/xh/6kwtj36s0zv32spmbqc7bs280000gn/T/jsii-kernel-Gl17XN/node_modules/@aws-cdk/aws-s3-assets/lib/asset.js:30:32)",
+              "AssetCode.bind (/private/var/folders/xh/6kwtj36s0zv32spmbqc7bs280000gn/T/jsii-kernel-Gl17XN/node_modules/@aws-cdk/aws-lambda/lib/code.js:135:26)",
+              "new Function (/private/var/folders/xh/6kwtj36s0zv32spmbqc7bs280000gn/T/jsii-kernel-Gl17XN/node_modules/@aws-cdk/aws-lambda/lib/function.js:68:33)",
+              "/Users/Malte/Documents/CDK/account-setup/.env/lib/python3.7/site-packages/jsii/_embedded/jsii/jsii-runtime.js:7838:49",
+              "Kernel._wrapSandboxCode (/Users/Malte/Documents/CDK/account-setup/.env/lib/python3.7/site-packages/jsii/_embedded/jsii/jsii-runtime.js:8298:20)",
+              "Kernel._create (/Users/Malte/Documents/CDK/account-setup/.env/lib/python3.7/site-packages/jsii/_embedded/jsii/jsii-runtime.js:7838:26)",
+              "Kernel.create (/Users/Malte/Documents/CDK/account-setup/.env/lib/python3.7/site-packages/jsii/_embedded/jsii/jsii-runtime.js:7585:21)",
+              "KernelHost.processRequest (/Users/Malte/Documents/CDK/account-setup/.env/lib/python3.7/site-packages/jsii/_embedded/jsii/jsii-runtime.js:7372:28)",
+              "KernelHost.run (/Users/Malte/Documents/CDK/account-setup/.env/lib/python3.7/site-packages/jsii/_embedded/jsii/jsii-runtime.js:7312:14)",
+              "Immediate._onImmediate (/Users/Malte/Documents/CDK/account-setup/.env/lib/python3.7/site-packages/jsii/_embedded/jsii/jsii-runtime.js:7315:37)",
+              "processImmediate (internal/timers.js:456:21)"
+            ]
+          }
+        ],
+        "/accountSetUp/AssetParameters/6383df60cc1b99de7b175befae3f0ea1dfa7ef89a2afae556140dcf51c8d17b7/S3VersionKey": [
+          {
+            "type": "aws:cdk:logicalId",
+            "data": "AssetParameters6383df60cc1b99de7b175befae3f0ea1dfa7ef89a2afae556140dcf51c8d17b7S3VersionKey71106FD8",
+            "trace": [
+              "new FileAssetParameters (/private/var/folders/xh/6kwtj36s0zv32spmbqc7bs280000gn/T/jsii-kernel-Gl17XN/node_modules/@aws-cdk/core/lib/private/asset-parameters.js:15:35)",
+              "Stack.addFileAsset (/private/var/folders/xh/6kwtj36s0zv32spmbqc7bs280000gn/T/jsii-kernel-Gl17XN/node_modules/@aws-cdk/core/lib/stack.js:360:22)",
+              "new Asset (/private/var/folders/xh/6kwtj36s0zv32spmbqc7bs280000gn/T/jsii-kernel-Gl17XN/node_modules/@aws-cdk/aws-s3-assets/lib/asset.js:30:32)",
+              "AssetCode.bind (/private/var/folders/xh/6kwtj36s0zv32spmbqc7bs280000gn/T/jsii-kernel-Gl17XN/node_modules/@aws-cdk/aws-lambda/lib/code.js:135:26)",
+              "new Function (/private/var/folders/xh/6kwtj36s0zv32spmbqc7bs280000gn/T/jsii-kernel-Gl17XN/node_modules/@aws-cdk/aws-lambda/lib/function.js:68:33)",
+              "/Users/Malte/Documents/CDK/account-setup/.env/lib/python3.7/site-packages/jsii/_embedded/jsii/jsii-runtime.js:7838:49",
+              "Kernel._wrapSandboxCode (/Users/Malte/Documents/CDK/account-setup/.env/lib/python3.7/site-packages/jsii/_embedded/jsii/jsii-runtime.js:8298:20)",
+              "Kernel._create (/Users/Malte/Documents/CDK/account-setup/.env/lib/python3.7/site-packages/jsii/_embedded/jsii/jsii-runtime.js:7838:26)",
+              "Kernel.create (/Users/Malte/Documents/CDK/account-setup/.env/lib/python3.7/site-packages/jsii/_embedded/jsii/jsii-runtime.js:7585:21)",
+              "KernelHost.processRequest (/Users/Malte/Documents/CDK/account-setup/.env/lib/python3.7/site-packages/jsii/_embedded/jsii/jsii-runtime.js:7372:28)",
+              "KernelHost.run (/Users/Malte/Documents/CDK/account-setup/.env/lib/python3.7/site-packages/jsii/_embedded/jsii/jsii-runtime.js:7312:14)",
+              "Immediate._onImmediate (/Users/Malte/Documents/CDK/account-setup/.env/lib/python3.7/site-packages/jsii/_embedded/jsii/jsii-runtime.js:7315:37)",
+              "processImmediate (internal/timers.js:456:21)"
+            ]
+          }
+        ],
+        "/accountSetUp/AssetParameters/6383df60cc1b99de7b175befae3f0ea1dfa7ef89a2afae556140dcf51c8d17b7/ArtifactHash": [
+          {
+            "type": "aws:cdk:logicalId",
+            "data": "AssetParameters6383df60cc1b99de7b175befae3f0ea1dfa7ef89a2afae556140dcf51c8d17b7ArtifactHash1D4B4D91",
+            "trace": [
+              "new FileAssetParameters (/private/var/folders/xh/6kwtj36s0zv32spmbqc7bs280000gn/T/jsii-kernel-Gl17XN/node_modules/@aws-cdk/core/lib/private/asset-parameters.js:19:38)",
+              "Stack.addFileAsset (/private/var/folders/xh/6kwtj36s0zv32spmbqc7bs280000gn/T/jsii-kernel-Gl17XN/node_modules/@aws-cdk/core/lib/stack.js:360:22)",
+              "new Asset (/private/var/folders/xh/6kwtj36s0zv32spmbqc7bs280000gn/T/jsii-kernel-Gl17XN/node_modules/@aws-cdk/aws-s3-assets/lib/asset.js:30:32)",
+              "AssetCode.bind (/private/var/folders/xh/6kwtj36s0zv32spmbqc7bs280000gn/T/jsii-kernel-Gl17XN/node_modules/@aws-cdk/aws-lambda/lib/code.js:135:26)",
+              "new Function (/private/var/folders/xh/6kwtj36s0zv32spmbqc7bs280000gn/T/jsii-kernel-Gl17XN/node_modules/@aws-cdk/aws-lambda/lib/function.js:68:33)",
+              "/Users/Malte/Documents/CDK/account-setup/.env/lib/python3.7/site-packages/jsii/_embedded/jsii/jsii-runtime.js:7838:49",
+              "Kernel._wrapSandboxCode (/Users/Malte/Documents/CDK/account-setup/.env/lib/python3.7/site-packages/jsii/_embedded/jsii/jsii-runtime.js:8298:20)",
+              "Kernel._create (/Users/Malte/Documents/CDK/account-setup/.env/lib/python3.7/site-packages/jsii/_embedded/jsii/jsii-runtime.js:7838:26)",
+              "Kernel.create (/Users/Malte/Documents/CDK/account-setup/.env/lib/python3.7/site-packages/jsii/_embedded/jsii/jsii-runtime.js:7585:21)",
+              "KernelHost.processRequest (/Users/Malte/Documents/CDK/account-setup/.env/lib/python3.7/site-packages/jsii/_embedded/jsii/jsii-runtime.js:7372:28)",
+              "KernelHost.run (/Users/Malte/Documents/CDK/account-setup/.env/lib/python3.7/site-packages/jsii/_embedded/jsii/jsii-runtime.js:7312:14)",
+              "Immediate._onImmediate (/Users/Malte/Documents/CDK/account-setup/.env/lib/python3.7/site-packages/jsii/_embedded/jsii/jsii-runtime.js:7315:37)",
+              "processImmediate (internal/timers.js:456:21)"
+            ]
+          }
+        ],
+        "/accountSetUp/Update_Password_Policy/Default": [
+          {
+            "type": "aws:cdk:logicalId",
+            "data": "UpdatePasswordPolicy",
+            "trace": [
+              "new CustomResource (/private/var/folders/xh/6kwtj36s0zv32spmbqc7bs280000gn/T/jsii-kernel-Gl17XN/node_modules/@aws-cdk/aws-cloudformation/lib/custom-resource.js:56:25)",
+              "/Users/Malte/Documents/CDK/account-setup/.env/lib/python3.7/site-packages/jsii/_embedded/jsii/jsii-runtime.js:7838:49",
+              "Kernel._wrapSandboxCode (/Users/Malte/Documents/CDK/account-setup/.env/lib/python3.7/site-packages/jsii/_embedded/jsii/jsii-runtime.js:8298:20)",
+              "Kernel._create (/Users/Malte/Documents/CDK/account-setup/.env/lib/python3.7/site-packages/jsii/_embedded/jsii/jsii-runtime.js:7838:26)",
+              "Kernel.create (/Users/Malte/Documents/CDK/account-setup/.env/lib/python3.7/site-packages/jsii/_embedded/jsii/jsii-runtime.js:7585:21)",
+              "KernelHost.processRequest (/Users/Malte/Documents/CDK/account-setup/.env/lib/python3.7/site-packages/jsii/_embedded/jsii/jsii-runtime.js:7372:28)",
+              "KernelHost.run (/Users/Malte/Documents/CDK/account-setup/.env/lib/python3.7/site-packages/jsii/_embedded/jsii/jsii-runtime.js:7312:14)",
+              "Immediate._onImmediate (/Users/Malte/Documents/CDK/account-setup/.env/lib/python3.7/site-packages/jsii/_embedded/jsii/jsii-runtime.js:7315:37)",
+              "processImmediate (internal/timers.js:456:21)"
+            ]
+          }
+        ],
+        "/accountSetUp/user_email": [
+          {
+            "type": "aws:cdk:logicalId",
+            "data": "useremail",
+            "trace": [
+              "/Users/Malte/Documents/CDK/account-setup/.env/lib/python3.7/site-packages/jsii/_embedded/jsii/jsii-runtime.js:7838:49",
+              "Kernel._wrapSandboxCode (/Users/Malte/Documents/CDK/account-setup/.env/lib/python3.7/site-packages/jsii/_embedded/jsii/jsii-runtime.js:8298:20)",
+              "Kernel._create (/Users/Malte/Documents/CDK/account-setup/.env/lib/python3.7/site-packages/jsii/_embedded/jsii/jsii-runtime.js:7838:26)",
+              "Kernel.create (/Users/Malte/Documents/CDK/account-setup/.env/lib/python3.7/site-packages/jsii/_embedded/jsii/jsii-runtime.js:7585:21)",
+              "KernelHost.processRequest (/Users/Malte/Documents/CDK/account-setup/.env/lib/python3.7/site-packages/jsii/_embedded/jsii/jsii-runtime.js:7372:28)",
+              "KernelHost.run (/Users/Malte/Documents/CDK/account-setup/.env/lib/python3.7/site-packages/jsii/_embedded/jsii/jsii-runtime.js:7312:14)",
+              "Immediate._onImmediate (/Users/Malte/Documents/CDK/account-setup/.env/lib/python3.7/site-packages/jsii/_embedded/jsii/jsii-runtime.js:7315:37)",
+              "processImmediate (internal/timers.js:456:21)"
+            ]
+          }
+        ],
+        "/accountSetUp/SandBox_Admin_User_Group/Resource": [
+          {
+            "type": "aws:cdk:logicalId",
+            "data": "SandBoxAdminUserGroupF0F4A0DA",
+            "trace": [
+              "new Group (/private/var/folders/xh/6kwtj36s0zv32spmbqc7bs280000gn/T/jsii-kernel-Gl17XN/node_modules/@aws-cdk/aws-iam/lib/group.js:54:23)",
+              "/Users/Malte/Documents/CDK/account-setup/.env/lib/python3.7/site-packages/jsii/_embedded/jsii/jsii-runtime.js:7838:49",
+              "Kernel._wrapSandboxCode (/Users/Malte/Documents/CDK/account-setup/.env/lib/python3.7/site-packages/jsii/_embedded/jsii/jsii-runtime.js:8298:20)",
+              "Kernel._create (/Users/Malte/Documents/CDK/account-setup/.env/lib/python3.7/site-packages/jsii/_embedded/jsii/jsii-runtime.js:7838:26)",
+              "Kernel.create (/Users/Malte/Documents/CDK/account-setup/.env/lib/python3.7/site-packages/jsii/_embedded/jsii/jsii-runtime.js:7585:21)",
+              "KernelHost.processRequest (/Users/Malte/Documents/CDK/account-setup/.env/lib/python3.7/site-packages/jsii/_embedded/jsii/jsii-runtime.js:7372:28)",
+              "KernelHost.run (/Users/Malte/Documents/CDK/account-setup/.env/lib/python3.7/site-packages/jsii/_embedded/jsii/jsii-runtime.js:7312:14)",
+              "Immediate._onImmediate (/Users/Malte/Documents/CDK/account-setup/.env/lib/python3.7/site-packages/jsii/_embedded/jsii/jsii-runtime.js:7315:37)",
+              "processImmediate (internal/timers.js:456:21)"
+            ]
+          }
+        ],
+        "/accountSetUp/Limit_Sandbox_Admin_Group/Resource": [
+          {
+            "type": "aws:cdk:logicalId",
+            "data": "LimitSandboxAdminGroup70A710EA",
+            "trace": [
+              "new Policy (/private/var/folders/xh/6kwtj36s0zv32spmbqc7bs280000gn/T/jsii-kernel-Gl17XN/node_modules/@aws-cdk/aws-iam/lib/policy.js:30:26)",
+              "/Users/Malte/Documents/CDK/account-setup/.env/lib/python3.7/site-packages/jsii/_embedded/jsii/jsii-runtime.js:7838:49",
+              "Kernel._wrapSandboxCode (/Users/Malte/Documents/CDK/account-setup/.env/lib/python3.7/site-packages/jsii/_embedded/jsii/jsii-runtime.js:8298:20)",
+              "Kernel._create (/Users/Malte/Documents/CDK/account-setup/.env/lib/python3.7/site-packages/jsii/_embedded/jsii/jsii-runtime.js:7838:26)",
+              "Kernel.create (/Users/Malte/Documents/CDK/account-setup/.env/lib/python3.7/site-packages/jsii/_embedded/jsii/jsii-runtime.js:7585:21)",
+              "KernelHost.processRequest (/Users/Malte/Documents/CDK/account-setup/.env/lib/python3.7/site-packages/jsii/_embedded/jsii/jsii-runtime.js:7372:28)",
+              "KernelHost.run (/Users/Malte/Documents/CDK/account-setup/.env/lib/python3.7/site-packages/jsii/_embedded/jsii/jsii-runtime.js:7312:14)",
+              "Immediate._onImmediate (/Users/Malte/Documents/CDK/account-setup/.env/lib/python3.7/site-packages/jsii/_embedded/jsii/jsii-runtime.js:7315:37)",
+              "processImmediate (internal/timers.js:456:21)"
+            ]
+          }
+        ],
+        "/accountSetUp/Billing_Topic/Resource": [
+          {
+            "type": "aws:cdk:logicalId",
+            "data": "BillingTopicBD902DD9",
+            "trace": [
+              "new Topic (/private/var/folders/xh/6kwtj36s0zv32spmbqc7bs280000gn/T/jsii-kernel-Gl17XN/node_modules/@aws-cdk/aws-sns/lib/topic.js:15:26)",
+              "/Users/Malte/Documents/CDK/account-setup/.env/lib/python3.7/site-packages/jsii/_embedded/jsii/jsii-runtime.js:7838:49",
+              "Kernel._wrapSandboxCode (/Users/Malte/Documents/CDK/account-setup/.env/lib/python3.7/site-packages/jsii/_embedded/jsii/jsii-runtime.js:8298:20)",
+              "Kernel._create (/Users/Malte/Documents/CDK/account-setup/.env/lib/python3.7/site-packages/jsii/_embedded/jsii/jsii-runtime.js:7838:26)",
+              "Kernel.create (/Users/Malte/Documents/CDK/account-setup/.env/lib/python3.7/site-packages/jsii/_embedded/jsii/jsii-runtime.js:7585:21)",
+              "KernelHost.processRequest (/Users/Malte/Documents/CDK/account-setup/.env/lib/python3.7/site-packages/jsii/_embedded/jsii/jsii-runtime.js:7372:28)",
+              "KernelHost.run (/Users/Malte/Documents/CDK/account-setup/.env/lib/python3.7/site-packages/jsii/_embedded/jsii/jsii-runtime.js:7312:14)",
+              "Immediate._onImmediate (/Users/Malte/Documents/CDK/account-setup/.env/lib/python3.7/site-packages/jsii/_embedded/jsii/jsii-runtime.js:7315:37)",
+              "processImmediate (internal/timers.js:456:21)"
+            ]
+          }
+        ],
+        "/accountSetUp/Billing_Topic_Subscription": [
+          {
+            "type": "aws:cdk:logicalId",
+            "data": "BillingTopicSubscription",
+            "trace": [
+              "/Users/Malte/Documents/CDK/account-setup/.env/lib/python3.7/site-packages/jsii/_embedded/jsii/jsii-runtime.js:7838:49",
+              "Kernel._wrapSandboxCode (/Users/Malte/Documents/CDK/account-setup/.env/lib/python3.7/site-packages/jsii/_embedded/jsii/jsii-runtime.js:8298:20)",
+              "Kernel._create (/Users/Malte/Documents/CDK/account-setup/.env/lib/python3.7/site-packages/jsii/_embedded/jsii/jsii-runtime.js:7838:26)",
+              "Kernel.create (/Users/Malte/Documents/CDK/account-setup/.env/lib/python3.7/site-packages/jsii/_embedded/jsii/jsii-runtime.js:7585:21)",
+              "KernelHost.processRequest (/Users/Malte/Documents/CDK/account-setup/.env/lib/python3.7/site-packages/jsii/_embedded/jsii/jsii-runtime.js:7372:28)",
+              "KernelHost.run (/Users/Malte/Documents/CDK/account-setup/.env/lib/python3.7/site-packages/jsii/_embedded/jsii/jsii-runtime.js:7312:14)",
+              "Immediate._onImmediate (/Users/Malte/Documents/CDK/account-setup/.env/lib/python3.7/site-packages/jsii/_embedded/jsii/jsii-runtime.js:7315:37)",
+              "processImmediate (internal/timers.js:456:21)"
+            ]
+          }
+        ],
+        "/accountSetUp/Billing_Alert5_Dollars/Resource": [
+          {
+            "type": "aws:cdk:logicalId",
+            "data": "BillingAlert5DollarsDB575F70",
+            "trace": [
+              "new Alarm (/private/var/folders/xh/6kwtj36s0zv32spmbqc7bs280000gn/T/jsii-kernel-Gl17XN/node_modules/@aws-cdk/aws-cloudwatch/lib/alarm.js:56:23)",
+              "/Users/Malte/Documents/CDK/account-setup/.env/lib/python3.7/site-packages/jsii/_embedded/jsii/jsii-runtime.js:7838:49",
+              "Kernel._wrapSandboxCode (/Users/Malte/Documents/CDK/account-setup/.env/lib/python3.7/site-packages/jsii/_embedded/jsii/jsii-runtime.js:8298:20)",
+              "Kernel._create (/Users/Malte/Documents/CDK/account-setup/.env/lib/python3.7/site-packages/jsii/_embedded/jsii/jsii-runtime.js:7838:26)",
+              "Kernel.create (/Users/Malte/Documents/CDK/account-setup/.env/lib/python3.7/site-packages/jsii/_embedded/jsii/jsii-runtime.js:7585:21)",
+              "KernelHost.processRequest (/Users/Malte/Documents/CDK/account-setup/.env/lib/python3.7/site-packages/jsii/_embedded/jsii/jsii-runtime.js:7372:28)",
+              "KernelHost.run (/Users/Malte/Documents/CDK/account-setup/.env/lib/python3.7/site-packages/jsii/_embedded/jsii/jsii-runtime.js:7312:14)",
+              "Immediate._onImmediate (/Users/Malte/Documents/CDK/account-setup/.env/lib/python3.7/site-packages/jsii/_embedded/jsii/jsii-runtime.js:7315:37)",
+              "processImmediate (internal/timers.js:456:21)"
+            ]
+          }
+        ],
+        "/accountSetUp/Check_User_Topic/Resource": [
+          {
+            "type": "aws:cdk:logicalId",
+            "data": "CheckUserTopicF3F01C93",
+            "trace": [
+              "new Topic (/private/var/folders/xh/6kwtj36s0zv32spmbqc7bs280000gn/T/jsii-kernel-Gl17XN/node_modules/@aws-cdk/aws-sns/lib/topic.js:15:26)",
+              "/Users/Malte/Documents/CDK/account-setup/.env/lib/python3.7/site-packages/jsii/_embedded/jsii/jsii-runtime.js:7838:49",
+              "Kernel._wrapSandboxCode (/Users/Malte/Documents/CDK/account-setup/.env/lib/python3.7/site-packages/jsii/_embedded/jsii/jsii-runtime.js:8298:20)",
+              "Kernel._create (/Users/Malte/Documents/CDK/account-setup/.env/lib/python3.7/site-packages/jsii/_embedded/jsii/jsii-runtime.js:7838:26)",
+              "Kernel.create (/Users/Malte/Documents/CDK/account-setup/.env/lib/python3.7/site-packages/jsii/_embedded/jsii/jsii-runtime.js:7585:21)",
+              "KernelHost.processRequest (/Users/Malte/Documents/CDK/account-setup/.env/lib/python3.7/site-packages/jsii/_embedded/jsii/jsii-runtime.js:7372:28)",
+              "KernelHost.run (/Users/Malte/Documents/CDK/account-setup/.env/lib/python3.7/site-packages/jsii/_embedded/jsii/jsii-runtime.js:7312:14)",
+              "Immediate._onImmediate (/Users/Malte/Documents/CDK/account-setup/.env/lib/python3.7/site-packages/jsii/_embedded/jsii/jsii-runtime.js:7315:37)",
+              "processImmediate (internal/timers.js:456:21)"
+            ]
+          }
+        ],
+        "/accountSetUp/User_Topic_Subscription": [
+          {
+            "type": "aws:cdk:logicalId",
+            "data": "UserTopicSubscription",
+            "trace": [
+              "/Users/Malte/Documents/CDK/account-setup/.env/lib/python3.7/site-packages/jsii/_embedded/jsii/jsii-runtime.js:7838:49",
+              "Kernel._wrapSandboxCode (/Users/Malte/Documents/CDK/account-setup/.env/lib/python3.7/site-packages/jsii/_embedded/jsii/jsii-runtime.js:8298:20)",
+              "Kernel._create (/Users/Malte/Documents/CDK/account-setup/.env/lib/python3.7/site-packages/jsii/_embedded/jsii/jsii-runtime.js:7838:26)",
+              "Kernel.create (/Users/Malte/Documents/CDK/account-setup/.env/lib/python3.7/site-packages/jsii/_embedded/jsii/jsii-runtime.js:7585:21)",
+              "KernelHost.processRequest (/Users/Malte/Documents/CDK/account-setup/.env/lib/python3.7/site-packages/jsii/_embedded/jsii/jsii-runtime.js:7372:28)",
+              "KernelHost.run (/Users/Malte/Documents/CDK/account-setup/.env/lib/python3.7/site-packages/jsii/_embedded/jsii/jsii-runtime.js:7312:14)",
+              "Immediate._onImmediate (/Users/Malte/Documents/CDK/account-setup/.env/lib/python3.7/site-packages/jsii/_embedded/jsii/jsii-runtime.js:7315:37)",
+              "processImmediate (internal/timers.js:456:21)"
+            ]
+          }
+        ],
+        "/accountSetUp/Check_User_Keys/ServiceRole/Resource": [
+          {
+            "type": "aws:cdk:logicalId",
+            "data": "CheckUserKeysServiceRole1581AA85",
+            "trace": [
+              "new Role (/private/var/folders/xh/6kwtj36s0zv32spmbqc7bs280000gn/T/jsii-kernel-Gl17XN/node_modules/@aws-cdk/aws-iam/lib/role.js:41:22)",
+              "new Function (/private/var/folders/xh/6kwtj36s0zv32spmbqc7bs280000gn/T/jsii-kernel-Gl17XN/node_modules/@aws-cdk/aws-lambda/lib/function.js:60:35)",
+              "/Users/Malte/Documents/CDK/account-setup/.env/lib/python3.7/site-packages/jsii/_embedded/jsii/jsii-runtime.js:7838:49",
+              "Kernel._wrapSandboxCode (/Users/Malte/Documents/CDK/account-setup/.env/lib/python3.7/site-packages/jsii/_embedded/jsii/jsii-runtime.js:8298:20)",
+              "Kernel._create (/Users/Malte/Documents/CDK/account-setup/.env/lib/python3.7/site-packages/jsii/_embedded/jsii/jsii-runtime.js:7838:26)",
+              "Kernel.create (/Users/Malte/Documents/CDK/account-setup/.env/lib/python3.7/site-packages/jsii/_embedded/jsii/jsii-runtime.js:7585:21)",
+              "KernelHost.processRequest (/Users/Malte/Documents/CDK/account-setup/.env/lib/python3.7/site-packages/jsii/_embedded/jsii/jsii-runtime.js:7372:28)",
+              "KernelHost.run (/Users/Malte/Documents/CDK/account-setup/.env/lib/python3.7/site-packages/jsii/_embedded/jsii/jsii-runtime.js:7312:14)",
+              "Immediate._onImmediate (/Users/Malte/Documents/CDK/account-setup/.env/lib/python3.7/site-packages/jsii/_embedded/jsii/jsii-runtime.js:7315:37)",
+              "processImmediate (internal/timers.js:456:21)"
+            ]
+          }
+        ],
+        "/accountSetUp/Check_User_Keys/ServiceRole/DefaultPolicy/Resource": [
+          {
+            "type": "aws:cdk:logicalId",
+            "data": "CheckUserKeysServiceRoleDefaultPolicy6FF65E59",
+            "trace": [
+              "new Policy (/private/var/folders/xh/6kwtj36s0zv32spmbqc7bs280000gn/T/jsii-kernel-Gl17XN/node_modules/@aws-cdk/aws-iam/lib/policy.js:30:26)",
+              "Role.addToPolicy (/private/var/folders/xh/6kwtj36s0zv32spmbqc7bs280000gn/T/jsii-kernel-Gl17XN/node_modules/@aws-cdk/aws-iam/lib/role.js:160:34)",
+              "Function.addToRolePolicy (/private/var/folders/xh/6kwtj36s0zv32spmbqc7bs280000gn/T/jsii-kernel-Gl17XN/node_modules/@aws-cdk/aws-lambda/lib/function-base.js:38:19)",
+              "/Users/Malte/Documents/CDK/account-setup/.env/lib/python3.7/site-packages/jsii/_embedded/jsii/jsii-runtime.js:7665:51",
+              "Kernel._wrapSandboxCode (/Users/Malte/Documents/CDK/account-setup/.env/lib/python3.7/site-packages/jsii/_embedded/jsii/jsii-runtime.js:8298:20)",
+              "/Users/Malte/Documents/CDK/account-setup/.env/lib/python3.7/site-packages/jsii/_embedded/jsii/jsii-runtime.js:7665:25",
+              "Kernel._ensureSync (/Users/Malte/Documents/CDK/account-setup/.env/lib/python3.7/site-packages/jsii/_embedded/jsii/jsii-runtime.js:8274:20)",
+              "Kernel.invoke (/Users/Malte/Documents/CDK/account-setup/.env/lib/python3.7/site-packages/jsii/_embedded/jsii/jsii-runtime.js:7664:26)",
+              "KernelHost.processRequest (/Users/Malte/Documents/CDK/account-setup/.env/lib/python3.7/site-packages/jsii/_embedded/jsii/jsii-runtime.js:7372:28)",
+              "KernelHost.run (/Users/Malte/Documents/CDK/account-setup/.env/lib/python3.7/site-packages/jsii/_embedded/jsii/jsii-runtime.js:7312:14)",
+              "Immediate._onImmediate (/Users/Malte/Documents/CDK/account-setup/.env/lib/python3.7/site-packages/jsii/_embedded/jsii/jsii-runtime.js:7315:37)",
+              "processImmediate (internal/timers.js:456:21)"
+            ]
+          }
+        ],
+        "/accountSetUp/Check_User_Keys/Resource": [
+          {
+            "type": "aws:cdk:logicalId",
+            "data": "CheckUserKeysFBEF0A44",
+            "trace": [
+              "new Function (/private/var/folders/xh/6kwtj36s0zv32spmbqc7bs280000gn/T/jsii-kernel-Gl17XN/node_modules/@aws-cdk/aws-lambda/lib/function.js:71:26)",
+              "/Users/Malte/Documents/CDK/account-setup/.env/lib/python3.7/site-packages/jsii/_embedded/jsii/jsii-runtime.js:7838:49",
+              "Kernel._wrapSandboxCode (/Users/Malte/Documents/CDK/account-setup/.env/lib/python3.7/site-packages/jsii/_embedded/jsii/jsii-runtime.js:8298:20)",
+              "Kernel._create (/Users/Malte/Documents/CDK/account-setup/.env/lib/python3.7/site-packages/jsii/_embedded/jsii/jsii-runtime.js:7838:26)",
+              "Kernel.create (/Users/Malte/Documents/CDK/account-setup/.env/lib/python3.7/site-packages/jsii/_embedded/jsii/jsii-runtime.js:7585:21)",
+              "KernelHost.processRequest (/Users/Malte/Documents/CDK/account-setup/.env/lib/python3.7/site-packages/jsii/_embedded/jsii/jsii-runtime.js:7372:28)",
+              "KernelHost.run (/Users/Malte/Documents/CDK/account-setup/.env/lib/python3.7/site-packages/jsii/_embedded/jsii/jsii-runtime.js:7312:14)",
+              "Immediate._onImmediate (/Users/Malte/Documents/CDK/account-setup/.env/lib/python3.7/site-packages/jsii/_embedded/jsii/jsii-runtime.js:7315:37)",
+              "processImmediate (internal/timers.js:456:21)"
+            ]
+          }
+        ],
+        "/accountSetUp/Check_User_Keys/LogRetention/Resource": [
+          {
+            "type": "aws:cdk:logicalId",
+            "data": "CheckUserKeysLogRetention4B7E998C",
+            "trace": [
+              "new LogRetention (/private/var/folders/xh/6kwtj36s0zv32spmbqc7bs280000gn/T/jsii-kernel-Gl17XN/node_modules/@aws-cdk/aws-lambda/lib/log-retention.js:37:26)",
+              "new Function (/private/var/folders/xh/6kwtj36s0zv32spmbqc7bs280000gn/T/jsii-kernel-Gl17XN/node_modules/@aws-cdk/aws-lambda/lib/function.js:109:34)",
+              "/Users/Malte/Documents/CDK/account-setup/.env/lib/python3.7/site-packages/jsii/_embedded/jsii/jsii-runtime.js:7838:49",
+              "Kernel._wrapSandboxCode (/Users/Malte/Documents/CDK/account-setup/.env/lib/python3.7/site-packages/jsii/_embedded/jsii/jsii-runtime.js:8298:20)",
+              "Kernel._create (/Users/Malte/Documents/CDK/account-setup/.env/lib/python3.7/site-packages/jsii/_embedded/jsii/jsii-runtime.js:7838:26)",
+              "Kernel.create (/Users/Malte/Documents/CDK/account-setup/.env/lib/python3.7/site-packages/jsii/_embedded/jsii/jsii-runtime.js:7585:21)",
+              "KernelHost.processRequest (/Users/Malte/Documents/CDK/account-setup/.env/lib/python3.7/site-packages/jsii/_embedded/jsii/jsii-runtime.js:7372:28)",
+              "KernelHost.run (/Users/Malte/Documents/CDK/account-setup/.env/lib/python3.7/site-packages/jsii/_embedded/jsii/jsii-runtime.js:7312:14)",
+              "Immediate._onImmediate (/Users/Malte/Documents/CDK/account-setup/.env/lib/python3.7/site-packages/jsii/_embedded/jsii/jsii-runtime.js:7315:37)",
+              "processImmediate (internal/timers.js:456:21)"
+            ]
+          }
+        ],
+        "/accountSetUp/Check_User_Keys/EventInvokeConfig/Resource": [
+          {
+            "type": "aws:cdk:logicalId",
+            "data": "CheckUserKeysEventInvokeConfig57E7C6AC",
+            "trace": [
+              "new EventInvokeConfig (/private/var/folders/xh/6kwtj36s0zv32spmbqc7bs280000gn/T/jsii-kernel-Gl17XN/node_modules/@aws-cdk/aws-lambda/lib/event-invoke-config.js:23:9)",
+              "Function.configureAsyncInvoke (/private/var/folders/xh/6kwtj36s0zv32spmbqc7bs280000gn/T/jsii-kernel-Gl17XN/node_modules/@aws-cdk/aws-lambda/lib/function-base.js:112:9)",
+              "new Function (/private/var/folders/xh/6kwtj36s0zv32spmbqc7bs280000gn/T/jsii-kernel-Gl17XN/node_modules/@aws-cdk/aws-lambda/lib/function.js:119:18)",
+              "/Users/Malte/Documents/CDK/account-setup/.env/lib/python3.7/site-packages/jsii/_embedded/jsii/jsii-runtime.js:7838:49",
+              "Kernel._wrapSandboxCode (/Users/Malte/Documents/CDK/account-setup/.env/lib/python3.7/site-packages/jsii/_embedded/jsii/jsii-runtime.js:8298:20)",
+              "Kernel._create (/Users/Malte/Documents/CDK/account-setup/.env/lib/python3.7/site-packages/jsii/_embedded/jsii/jsii-runtime.js:7838:26)",
+              "Kernel.create (/Users/Malte/Documents/CDK/account-setup/.env/lib/python3.7/site-packages/jsii/_embedded/jsii/jsii-runtime.js:7585:21)",
+              "KernelHost.processRequest (/Users/Malte/Documents/CDK/account-setup/.env/lib/python3.7/site-packages/jsii/_embedded/jsii/jsii-runtime.js:7372:28)",
+              "KernelHost.run (/Users/Malte/Documents/CDK/account-setup/.env/lib/python3.7/site-packages/jsii/_embedded/jsii/jsii-runtime.js:7312:14)",
+              "Immediate._onImmediate (/Users/Malte/Documents/CDK/account-setup/.env/lib/python3.7/site-packages/jsii/_embedded/jsii/jsii-runtime.js:7315:37)",
+              "processImmediate (internal/timers.js:456:21)"
+            ]
+          }
+        ],
+        "/accountSetUp/Check_User_Keys/AllowEventRuleaccountSetUpScheduleCheckKeyLambda999591B3": [
+          {
+            "type": "aws:cdk:logicalId",
+            "data": "CheckUserKeysAllowEventRuleaccountSetUpScheduleCheckKeyLambda999591B3900C02EC",
+            "trace": [
+              "Function.addPermission (/private/var/folders/xh/6kwtj36s0zv32spmbqc7bs280000gn/T/jsii-kernel-Gl17XN/node_modules/@aws-cdk/aws-lambda/lib/function-base.js:22:9)",
+              "Object.addLambdaPermission (/private/var/folders/xh/6kwtj36s0zv32spmbqc7bs280000gn/T/jsii-kernel-Gl17XN/node_modules/@aws-cdk/aws-events-targets/lib/util.js:29:17)",
+              "LambdaFunction.bind (/private/var/folders/xh/6kwtj36s0zv32spmbqc7bs280000gn/T/jsii-kernel-Gl17XN/node_modules/@aws-cdk/aws-events-targets/lib/lambda.js:18:16)",
+              "Rule.addTarget (/private/var/folders/xh/6kwtj36s0zv32spmbqc7bs280000gn/T/jsii-kernel-Gl17XN/node_modules/@aws-cdk/aws-events/lib/rule.js:68:36)",
+              "/Users/Malte/Documents/CDK/account-setup/.env/lib/python3.7/site-packages/jsii/_embedded/jsii/jsii-runtime.js:7665:51",
+              "Kernel._wrapSandboxCode (/Users/Malte/Documents/CDK/account-setup/.env/lib/python3.7/site-packages/jsii/_embedded/jsii/jsii-runtime.js:8298:20)",
+              "/Users/Malte/Documents/CDK/account-setup/.env/lib/python3.7/site-packages/jsii/_embedded/jsii/jsii-runtime.js:7665:25",
+              "Kernel._ensureSync (/Users/Malte/Documents/CDK/account-setup/.env/lib/python3.7/site-packages/jsii/_embedded/jsii/jsii-runtime.js:8274:20)",
+              "Kernel.invoke (/Users/Malte/Documents/CDK/account-setup/.env/lib/python3.7/site-packages/jsii/_embedded/jsii/jsii-runtime.js:7664:26)",
+              "KernelHost.processRequest (/Users/Malte/Documents/CDK/account-setup/.env/lib/python3.7/site-packages/jsii/_embedded/jsii/jsii-runtime.js:7372:28)",
+              "KernelHost.run (/Users/Malte/Documents/CDK/account-setup/.env/lib/python3.7/site-packages/jsii/_embedded/jsii/jsii-runtime.js:7312:14)",
+              "Immediate._onImmediate (/Users/Malte/Documents/CDK/account-setup/.env/lib/python3.7/site-packages/jsii/_embedded/jsii/jsii-runtime.js:7315:37)",
+              "processImmediate (internal/timers.js:456:21)"
+            ]
+          }
+        ],
+        "/accountSetUp/Schedule_Check_Key_Lambda/Resource": [
+          {
+            "type": "aws:cdk:logicalId",
+            "data": "ScheduleCheckKeyLambdaD8310F73",
+            "trace": [
+              "new Rule (/private/var/folders/xh/6kwtj36s0zv32spmbqc7bs280000gn/T/jsii-kernel-Gl17XN/node_modules/@aws-cdk/aws-events/lib/rule.js:25:26)",
+              "/Users/Malte/Documents/CDK/account-setup/.env/lib/python3.7/site-packages/jsii/_embedded/jsii/jsii-runtime.js:7838:49",
+              "Kernel._wrapSandboxCode (/Users/Malte/Documents/CDK/account-setup/.env/lib/python3.7/site-packages/jsii/_embedded/jsii/jsii-runtime.js:8298:20)",
+              "Kernel._create (/Users/Malte/Documents/CDK/account-setup/.env/lib/python3.7/site-packages/jsii/_embedded/jsii/jsii-runtime.js:7838:26)",
+              "Kernel.create (/Users/Malte/Documents/CDK/account-setup/.env/lib/python3.7/site-packages/jsii/_embedded/jsii/jsii-runtime.js:7585:21)",
+              "KernelHost.processRequest (/Users/Malte/Documents/CDK/account-setup/.env/lib/python3.7/site-packages/jsii/_embedded/jsii/jsii-runtime.js:7372:28)",
+              "KernelHost.run (/Users/Malte/Documents/CDK/account-setup/.env/lib/python3.7/site-packages/jsii/_embedded/jsii/jsii-runtime.js:7312:14)",
+              "Immediate._onImmediate (/Users/Malte/Documents/CDK/account-setup/.env/lib/python3.7/site-packages/jsii/_embedded/jsii/jsii-runtime.js:7315:37)",
+              "processImmediate (internal/timers.js:456:21)"
+            ]
+          }
+        ],
+        "/accountSetUp/Root_User_Topic/Resource": [
+          {
+            "type": "aws:cdk:logicalId",
+            "data": "RootUserTopic37E445AC",
+            "trace": [
+              "new Topic (/private/var/folders/xh/6kwtj36s0zv32spmbqc7bs280000gn/T/jsii-kernel-Gl17XN/node_modules/@aws-cdk/aws-sns/lib/topic.js:15:26)",
+              "/Users/Malte/Documents/CDK/account-setup/.env/lib/python3.7/site-packages/jsii/_embedded/jsii/jsii-runtime.js:7838:49",
+              "Kernel._wrapSandboxCode (/Users/Malte/Documents/CDK/account-setup/.env/lib/python3.7/site-packages/jsii/_embedded/jsii/jsii-runtime.js:8298:20)",
+              "Kernel._create (/Users/Malte/Documents/CDK/account-setup/.env/lib/python3.7/site-packages/jsii/_embedded/jsii/jsii-runtime.js:7838:26)",
+              "Kernel.create (/Users/Malte/Documents/CDK/account-setup/.env/lib/python3.7/site-packages/jsii/_embedded/jsii/jsii-runtime.js:7585:21)",
+              "KernelHost.processRequest (/Users/Malte/Documents/CDK/account-setup/.env/lib/python3.7/site-packages/jsii/_embedded/jsii/jsii-runtime.js:7372:28)",
+              "KernelHost.run (/Users/Malte/Documents/CDK/account-setup/.env/lib/python3.7/site-packages/jsii/_embedded/jsii/jsii-runtime.js:7312:14)",
+              "Immediate._onImmediate (/Users/Malte/Documents/CDK/account-setup/.env/lib/python3.7/site-packages/jsii/_embedded/jsii/jsii-runtime.js:7315:37)",
+              "processImmediate (internal/timers.js:456:21)"
+            ]
+          }
+        ],
+        "/accountSetUp/Root_User_Topic/Policy/Resource": [
+          {
+            "type": "aws:cdk:logicalId",
+            "data": "RootUserTopicPolicy08D1E7A4",
+            "trace": [
+              "new TopicPolicy (/private/var/folders/xh/6kwtj36s0zv32spmbqc7bs280000gn/T/jsii-kernel-Gl17XN/node_modules/@aws-cdk/aws-sns/lib/policy.js:22:9)",
+              "Topic.addToResourcePolicy (/private/var/folders/xh/6kwtj36s0zv32spmbqc7bs280000gn/T/jsii-kernel-Gl17XN/node_modules/@aws-cdk/aws-sns/lib/topic-base.js:40:27)",
+              "Function.addToPrincipalOrResource (/private/var/folders/xh/6kwtj36s0zv32spmbqc7bs280000gn/T/jsii-kernel-Gl17XN/node_modules/@aws-cdk/aws-iam/lib/grant.js:43:26)",
+              "Topic.grantPublish (/private/var/folders/xh/6kwtj36s0zv32spmbqc7bs280000gn/T/jsii-kernel-Gl17XN/node_modules/@aws-cdk/aws-sns/lib/topic-base.js:50:26)",
+              "SnsTopic.bind (/private/var/folders/xh/6kwtj36s0zv32spmbqc7bs280000gn/T/jsii-kernel-Gl17XN/node_modules/@aws-cdk/aws-events-targets/lib/sns.js:27:20)",
+              "Rule.addTarget (/private/var/folders/xh/6kwtj36s0zv32spmbqc7bs280000gn/T/jsii-kernel-Gl17XN/node_modules/@aws-cdk/aws-events/lib/rule.js:68:36)",
+              "new Rule (/private/var/folders/xh/6kwtj36s0zv32spmbqc7bs280000gn/T/jsii-kernel-Gl17XN/node_modules/@aws-cdk/aws-events/lib/rule.js:42:18)",
+              "/Users/Malte/Documents/CDK/account-setup/.env/lib/python3.7/site-packages/jsii/_embedded/jsii/jsii-runtime.js:7838:49",
+              "Kernel._wrapSandboxCode (/Users/Malte/Documents/CDK/account-setup/.env/lib/python3.7/site-packages/jsii/_embedded/jsii/jsii-runtime.js:8298:20)",
+              "Kernel._create (/Users/Malte/Documents/CDK/account-setup/.env/lib/python3.7/site-packages/jsii/_embedded/jsii/jsii-runtime.js:7838:26)",
+              "Kernel.create (/Users/Malte/Documents/CDK/account-setup/.env/lib/python3.7/site-packages/jsii/_embedded/jsii/jsii-runtime.js:7585:21)",
+              "KernelHost.processRequest (/Users/Malte/Documents/CDK/account-setup/.env/lib/python3.7/site-packages/jsii/_embedded/jsii/jsii-runtime.js:7372:28)",
+              "KernelHost.run (/Users/Malte/Documents/CDK/account-setup/.env/lib/python3.7/site-packages/jsii/_embedded/jsii/jsii-runtime.js:7312:14)",
+              "Immediate._onImmediate (/Users/Malte/Documents/CDK/account-setup/.env/lib/python3.7/site-packages/jsii/_embedded/jsii/jsii-runtime.js:7315:37)",
+              "processImmediate (internal/timers.js:456:21)"
+            ]
+          }
+        ],
+        "/accountSetUp/Cloudtrail_Bucket/Resource": [
+          {
+            "type": "aws:cdk:logicalId",
+            "data": "CloudtrailBucket9DD872B1",
+            "trace": [
+              "new Bucket (/private/var/folders/xh/6kwtj36s0zv32spmbqc7bs280000gn/T/jsii-kernel-Gl17XN/node_modules/@aws-cdk/aws-s3/lib/bucket.js:366:26)",
+              "/Users/Malte/Documents/CDK/account-setup/.env/lib/python3.7/site-packages/jsii/_embedded/jsii/jsii-runtime.js:7838:49",
+              "Kernel._wrapSandboxCode (/Users/Malte/Documents/CDK/account-setup/.env/lib/python3.7/site-packages/jsii/_embedded/jsii/jsii-runtime.js:8298:20)",
+              "Kernel._create (/Users/Malte/Documents/CDK/account-setup/.env/lib/python3.7/site-packages/jsii/_embedded/jsii/jsii-runtime.js:7838:26)",
+              "Kernel.create (/Users/Malte/Documents/CDK/account-setup/.env/lib/python3.7/site-packages/jsii/_embedded/jsii/jsii-runtime.js:7585:21)",
+              "KernelHost.processRequest (/Users/Malte/Documents/CDK/account-setup/.env/lib/python3.7/site-packages/jsii/_embedded/jsii/jsii-runtime.js:7372:28)",
+              "KernelHost.run (/Users/Malte/Documents/CDK/account-setup/.env/lib/python3.7/site-packages/jsii/_embedded/jsii/jsii-runtime.js:7312:14)",
+              "Immediate._onImmediate (/Users/Malte/Documents/CDK/account-setup/.env/lib/python3.7/site-packages/jsii/_embedded/jsii/jsii-runtime.js:7315:37)",
+              "processImmediate (internal/timers.js:456:21)"
+            ]
+          }
+        ],
+        "/accountSetUp/Cloudtrail_Bucket/Policy/Resource": [
+          {
+            "type": "aws:cdk:logicalId",
+            "data": "CloudtrailBucketPolicy636E0927",
+            "trace": [
+              "new BucketPolicy (/private/var/folders/xh/6kwtj36s0zv32spmbqc7bs280000gn/T/jsii-kernel-Gl17XN/node_modules/@aws-cdk/aws-s3/lib/bucket-policy.js:21:9)",
+              "Bucket.addToResourcePolicy (/private/var/folders/xh/6kwtj36s0zv32spmbqc7bs280000gn/T/jsii-kernel-Gl17XN/node_modules/@aws-cdk/aws-s3/lib/bucket.js:125:27)",
+              "new Trail (/private/var/folders/xh/6kwtj36s0zv32spmbqc7bs280000gn/T/jsii-kernel-Gl17XN/node_modules/@aws-cdk/aws-cloudtrail/lib/index.js:41:23)",
+              "/Users/Malte/Documents/CDK/account-setup/.env/lib/python3.7/site-packages/jsii/_embedded/jsii/jsii-runtime.js:7838:49",
+              "Kernel._wrapSandboxCode (/Users/Malte/Documents/CDK/account-setup/.env/lib/python3.7/site-packages/jsii/_embedded/jsii/jsii-runtime.js:8298:20)",
+              "Kernel._create (/Users/Malte/Documents/CDK/account-setup/.env/lib/python3.7/site-packages/jsii/_embedded/jsii/jsii-runtime.js:7838:26)",
+              "Kernel.create (/Users/Malte/Documents/CDK/account-setup/.env/lib/python3.7/site-packages/jsii/_embedded/jsii/jsii-runtime.js:7585:21)",
+              "KernelHost.processRequest (/Users/Malte/Documents/CDK/account-setup/.env/lib/python3.7/site-packages/jsii/_embedded/jsii/jsii-runtime.js:7372:28)",
+              "KernelHost.run (/Users/Malte/Documents/CDK/account-setup/.env/lib/python3.7/site-packages/jsii/_embedded/jsii/jsii-runtime.js:7312:14)",
+              "Immediate._onImmediate (/Users/Malte/Documents/CDK/account-setup/.env/lib/python3.7/site-packages/jsii/_embedded/jsii/jsii-runtime.js:7315:37)",
+              "processImmediate (internal/timers.js:456:21)"
+            ]
+          }
+        ],
+        "/accountSetUp/Basic_Trail/Resource": [
+          {
+            "type": "aws:cdk:logicalId",
+            "data": "BasicTrail657D1E47",
+            "trace": [
+              "new Trail (/private/var/folders/xh/6kwtj36s0zv32spmbqc7bs280000gn/T/jsii-kernel-Gl17XN/node_modules/@aws-cdk/aws-cloudtrail/lib/index.js:74:23)",
+              "/Users/Malte/Documents/CDK/account-setup/.env/lib/python3.7/site-packages/jsii/_embedded/jsii/jsii-runtime.js:7838:49",
+              "Kernel._wrapSandboxCode (/Users/Malte/Documents/CDK/account-setup/.env/lib/python3.7/site-packages/jsii/_embedded/jsii/jsii-runtime.js:8298:20)",
+              "Kernel._create (/Users/Malte/Documents/CDK/account-setup/.env/lib/python3.7/site-packages/jsii/_embedded/jsii/jsii-runtime.js:7838:26)",
+              "Kernel.create (/Users/Malte/Documents/CDK/account-setup/.env/lib/python3.7/site-packages/jsii/_embedded/jsii/jsii-runtime.js:7585:21)",
+              "KernelHost.processRequest (/Users/Malte/Documents/CDK/account-setup/.env/lib/python3.7/site-packages/jsii/_embedded/jsii/jsii-runtime.js:7372:28)",
+              "KernelHost.run (/Users/Malte/Documents/CDK/account-setup/.env/lib/python3.7/site-packages/jsii/_embedded/jsii/jsii-runtime.js:7312:14)",
+              "Immediate._onImmediate (/Users/Malte/Documents/CDK/account-setup/.env/lib/python3.7/site-packages/jsii/_embedded/jsii/jsii-runtime.js:7315:37)",
+              "processImmediate (internal/timers.js:456:21)"
+            ]
+          }
+        ],
+        "/accountSetUp/Root_User_Topic_Subscription": [
+          {
+            "type": "aws:cdk:logicalId",
+            "data": "RootUserTopicSubscription",
+            "trace": [
+              "/Users/Malte/Documents/CDK/account-setup/.env/lib/python3.7/site-packages/jsii/_embedded/jsii/jsii-runtime.js:7838:49",
+              "Kernel._wrapSandboxCode (/Users/Malte/Documents/CDK/account-setup/.env/lib/python3.7/site-packages/jsii/_embedded/jsii/jsii-runtime.js:8298:20)",
+              "Kernel._create (/Users/Malte/Documents/CDK/account-setup/.env/lib/python3.7/site-packages/jsii/_embedded/jsii/jsii-runtime.js:7838:26)",
+              "Kernel.create (/Users/Malte/Documents/CDK/account-setup/.env/lib/python3.7/site-packages/jsii/_embedded/jsii/jsii-runtime.js:7585:21)",
+              "KernelHost.processRequest (/Users/Malte/Documents/CDK/account-setup/.env/lib/python3.7/site-packages/jsii/_embedded/jsii/jsii-runtime.js:7372:28)",
+              "KernelHost.run (/Users/Malte/Documents/CDK/account-setup/.env/lib/python3.7/site-packages/jsii/_embedded/jsii/jsii-runtime.js:7312:14)",
+              "Immediate._onImmediate (/Users/Malte/Documents/CDK/account-setup/.env/lib/python3.7/site-packages/jsii/_embedded/jsii/jsii-runtime.js:7315:37)",
+              "processImmediate (internal/timers.js:456:21)"
+            ]
+          }
+        ],
+        "/accountSetUp/Root_Account_Usage/Resource": [
+          {
+            "type": "aws:cdk:logicalId",
+            "data": "RootAccountUsageDF7A7159",
+            "trace": [
+              "new Rule (/private/var/folders/xh/6kwtj36s0zv32spmbqc7bs280000gn/T/jsii-kernel-Gl17XN/node_modules/@aws-cdk/aws-events/lib/rule.js:25:26)",
+              "/Users/Malte/Documents/CDK/account-setup/.env/lib/python3.7/site-packages/jsii/_embedded/jsii/jsii-runtime.js:7838:49",
+              "Kernel._wrapSandboxCode (/Users/Malte/Documents/CDK/account-setup/.env/lib/python3.7/site-packages/jsii/_embedded/jsii/jsii-runtime.js:8298:20)",
+              "Kernel._create (/Users/Malte/Documents/CDK/account-setup/.env/lib/python3.7/site-packages/jsii/_embedded/jsii/jsii-runtime.js:7838:26)",
+              "Kernel.create (/Users/Malte/Documents/CDK/account-setup/.env/lib/python3.7/site-packages/jsii/_embedded/jsii/jsii-runtime.js:7585:21)",
+              "KernelHost.processRequest (/Users/Malte/Documents/CDK/account-setup/.env/lib/python3.7/site-packages/jsii/_embedded/jsii/jsii-runtime.js:7372:28)",
+              "KernelHost.run (/Users/Malte/Documents/CDK/account-setup/.env/lib/python3.7/site-packages/jsii/_embedded/jsii/jsii-runtime.js:7312:14)",
+              "Immediate._onImmediate (/Users/Malte/Documents/CDK/account-setup/.env/lib/python3.7/site-packages/jsii/_embedded/jsii/jsii-runtime.js:7315:37)",
+              "processImmediate (internal/timers.js:456:21)"
+            ]
+          }
+        ]
+      }
+    },
+    "vpcSetUp": {
+      "type": "aws:cloudformation:stack",
+      "environment": "aws://431892011317/eu-central-1",
+      "properties": {
+        "templateFile": "vpcSetUp.template.json"
+      },
+      "dependencies": [
+        "accountSetUp"
+      ],
+      "metadata": {
+        "/vpcSetUp": [
+          {
+            "type": "aws:cdk:asset",
+            "data": {
+              "path": "asset.0d9e0aff1c669ff9e72194486e7299bb616310ce1d00c31f103603c7dd0ddd68",
+              "id": "0d9e0aff1c669ff9e72194486e7299bb616310ce1d00c31f103603c7dd0ddd68",
+              "packaging": "zip",
+              "sourceHash": "0d9e0aff1c669ff9e72194486e7299bb616310ce1d00c31f103603c7dd0ddd68",
+              "s3BucketParameter": "AssetParameters0d9e0aff1c669ff9e72194486e7299bb616310ce1d00c31f103603c7dd0ddd68S3Bucket3F01804D",
+              "s3KeyParameter": "AssetParameters0d9e0aff1c669ff9e72194486e7299bb616310ce1d00c31f103603c7dd0ddd68S3VersionKeyE1CCA944",
+              "artifactHashParameter": "AssetParameters0d9e0aff1c669ff9e72194486e7299bb616310ce1d00c31f103603c7dd0ddd68ArtifactHash98877081"
+            },
+            "trace": [
+              "Stack.addFileAsset (/private/var/folders/xh/6kwtj36s0zv32spmbqc7bs280000gn/T/jsii-kernel-Gl17XN/node_modules/@aws-cdk/core/lib/stack.js:370:23)",
+              "new Asset (/private/var/folders/xh/6kwtj36s0zv32spmbqc7bs280000gn/T/jsii-kernel-Gl17XN/node_modules/@aws-cdk/aws-s3-assets/lib/asset.js:30:32)",
+              "AssetCode.bind (/private/var/folders/xh/6kwtj36s0zv32spmbqc7bs280000gn/T/jsii-kernel-Gl17XN/node_modules/@aws-cdk/aws-lambda/lib/code.js:135:26)",
+              "new Function (/private/var/folders/xh/6kwtj36s0zv32spmbqc7bs280000gn/T/jsii-kernel-Gl17XN/node_modules/@aws-cdk/aws-lambda/lib/function.js:68:33)",
+              "/Users/Malte/Documents/CDK/account-setup/.env/lib/python3.7/site-packages/jsii/_embedded/jsii/jsii-runtime.js:7838:49",
+              "Kernel._wrapSandboxCode (/Users/Malte/Documents/CDK/account-setup/.env/lib/python3.7/site-packages/jsii/_embedded/jsii/jsii-runtime.js:8298:20)",
+              "Kernel._create (/Users/Malte/Documents/CDK/account-setup/.env/lib/python3.7/site-packages/jsii/_embedded/jsii/jsii-runtime.js:7838:26)",
+              "Kernel.create (/Users/Malte/Documents/CDK/account-setup/.env/lib/python3.7/site-packages/jsii/_embedded/jsii/jsii-runtime.js:7585:21)",
+              "KernelHost.processRequest (/Users/Malte/Documents/CDK/account-setup/.env/lib/python3.7/site-packages/jsii/_embedded/jsii/jsii-runtime.js:7372:28)",
+              "KernelHost.run (/Users/Malte/Documents/CDK/account-setup/.env/lib/python3.7/site-packages/jsii/_embedded/jsii/jsii-runtime.js:7312:14)",
+              "Immediate._onImmediate (/Users/Malte/Documents/CDK/account-setup/.env/lib/python3.7/site-packages/jsii/_embedded/jsii/jsii-runtime.js:7315:37)",
+              "processImmediate (internal/timers.js:456:21)"
+            ]
+          },
+          {
+            "type": "aws:cdk:asset",
+            "data": {
+              "path": "asset.5741f85917ffca30b209ad61e375d3d3bae0457270071f7aca8ca81be19bd22a",
+              "id": "5741f85917ffca30b209ad61e375d3d3bae0457270071f7aca8ca81be19bd22a",
+              "packaging": "zip",
+              "sourceHash": "5741f85917ffca30b209ad61e375d3d3bae0457270071f7aca8ca81be19bd22a",
+              "s3BucketParameter": "AssetParameters5741f85917ffca30b209ad61e375d3d3bae0457270071f7aca8ca81be19bd22aS3Bucket4E933C7F",
+              "s3KeyParameter": "AssetParameters5741f85917ffca30b209ad61e375d3d3bae0457270071f7aca8ca81be19bd22aS3VersionKeyB83CC434",
+              "artifactHashParameter": "AssetParameters5741f85917ffca30b209ad61e375d3d3bae0457270071f7aca8ca81be19bd22aArtifactHash5A536F97"
+            },
+            "trace": [
+              "Stack.addFileAsset (/private/var/folders/xh/6kwtj36s0zv32spmbqc7bs280000gn/T/jsii-kernel-Gl17XN/node_modules/@aws-cdk/core/lib/stack.js:370:23)",
+              "new Asset (/private/var/folders/xh/6kwtj36s0zv32spmbqc7bs280000gn/T/jsii-kernel-Gl17XN/node_modules/@aws-cdk/aws-s3-assets/lib/asset.js:30:32)",
+              "AssetCode.bind (/private/var/folders/xh/6kwtj36s0zv32spmbqc7bs280000gn/T/jsii-kernel-Gl17XN/node_modules/@aws-cdk/aws-lambda/lib/code.js:135:26)",
+              "new Function (/private/var/folders/xh/6kwtj36s0zv32spmbqc7bs280000gn/T/jsii-kernel-Gl17XN/node_modules/@aws-cdk/aws-lambda/lib/function.js:68:33)",
+              "SingletonFunction.ensureLambda (/private/var/folders/xh/6kwtj36s0zv32spmbqc7bs280000gn/T/jsii-kernel-Gl17XN/node_modules/@aws-cdk/aws-lambda/lib/singleton-lambda.js:37:16)",
+              "new SingletonFunction (/private/var/folders/xh/6kwtj36s0zv32spmbqc7bs280000gn/T/jsii-kernel-Gl17XN/node_modules/@aws-cdk/aws-lambda/lib/singleton-lambda.js:19:36)",
+              "new LogRetention (/private/var/folders/xh/6kwtj36s0zv32spmbqc7bs280000gn/T/jsii-kernel-Gl17XN/node_modules/@aws-cdk/aws-lambda/lib/log-retention.js:19:26)",
+              "new Function (/private/var/folders/xh/6kwtj36s0zv32spmbqc7bs280000gn/T/jsii-kernel-Gl17XN/node_modules/@aws-cdk/aws-lambda/lib/function.js:109:34)",
+              "/Users/Malte/Documents/CDK/account-setup/.env/lib/python3.7/site-packages/jsii/_embedded/jsii/jsii-runtime.js:7838:49",
+              "Kernel._wrapSandboxCode (/Users/Malte/Documents/CDK/account-setup/.env/lib/python3.7/site-packages/jsii/_embedded/jsii/jsii-runtime.js:8298:20)",
+              "Kernel._create (/Users/Malte/Documents/CDK/account-setup/.env/lib/python3.7/site-packages/jsii/_embedded/jsii/jsii-runtime.js:7838:26)",
+              "Kernel.create (/Users/Malte/Documents/CDK/account-setup/.env/lib/python3.7/site-packages/jsii/_embedded/jsii/jsii-runtime.js:7585:21)",
+              "KernelHost.processRequest (/Users/Malte/Documents/CDK/account-setup/.env/lib/python3.7/site-packages/jsii/_embedded/jsii/jsii-runtime.js:7372:28)",
+              "KernelHost.run (/Users/Malte/Documents/CDK/account-setup/.env/lib/python3.7/site-packages/jsii/_embedded/jsii/jsii-runtime.js:7312:14)",
+              "Immediate._onImmediate (/Users/Malte/Documents/CDK/account-setup/.env/lib/python3.7/site-packages/jsii/_embedded/jsii/jsii-runtime.js:7315:37)",
+              "processImmediate (internal/timers.js:456:21)"
+            ]
+          }
+        ],
+        "/vpcSetUp/Basic_Vpc/Resource": [
+          {
+            "type": "aws:cdk:logicalId",
+            "data": "BasicVpc30C9C2CB",
+            "trace": [
+              "new Vpc (/private/var/folders/xh/6kwtj36s0zv32spmbqc7bs280000gn/T/jsii-kernel-Gl17XN/node_modules/@aws-cdk/aws-ec2/lib/vpc.js:286:25)",
+              "/Users/Malte/Documents/CDK/account-setup/.env/lib/python3.7/site-packages/jsii/_embedded/jsii/jsii-runtime.js:7838:49",
+              "Kernel._wrapSandboxCode (/Users/Malte/Documents/CDK/account-setup/.env/lib/python3.7/site-packages/jsii/_embedded/jsii/jsii-runtime.js:8298:20)",
+              "Kernel._create (/Users/Malte/Documents/CDK/account-setup/.env/lib/python3.7/site-packages/jsii/_embedded/jsii/jsii-runtime.js:7838:26)",
+              "Kernel.create (/Users/Malte/Documents/CDK/account-setup/.env/lib/python3.7/site-packages/jsii/_embedded/jsii/jsii-runtime.js:7585:21)",
+              "KernelHost.processRequest (/Users/Malte/Documents/CDK/account-setup/.env/lib/python3.7/site-packages/jsii/_embedded/jsii/jsii-runtime.js:7372:28)",
+              "KernelHost.run (/Users/Malte/Documents/CDK/account-setup/.env/lib/python3.7/site-packages/jsii/_embedded/jsii/jsii-runtime.js:7312:14)",
+              "Immediate._onImmediate (/Users/Malte/Documents/CDK/account-setup/.env/lib/python3.7/site-packages/jsii/_embedded/jsii/jsii-runtime.js:7315:37)",
+              "processImmediate (internal/timers.js:456:21)"
+            ]
+          }
+        ],
+        "/vpcSetUp/Basic_Vpc/PublicSubnet1/Subnet": [
+          {
+            "type": "aws:cdk:logicalId",
+            "data": "BasicVpcPublicSubnet1Subnet5FD9DDC2",
+            "trace": [
+              "new Subnet (/private/var/folders/xh/6kwtj36s0zv32spmbqc7bs280000gn/T/jsii-kernel-Gl17XN/node_modules/@aws-cdk/aws-ec2/lib/vpc.js:576:24)",
+              "new PublicSubnet (/private/var/folders/xh/6kwtj36s0zv32spmbqc7bs280000gn/T/jsii-kernel-Gl17XN/node_modules/@aws-cdk/aws-ec2/lib/vpc.js:726:9)",
+              "/private/var/folders/xh/6kwtj36s0zv32spmbqc7bs280000gn/T/jsii-kernel-Gl17XN/node_modules/@aws-cdk/aws-ec2/lib/vpc.js:505:42",
+              "Array.forEach (<anonymous>)",
+              "Vpc.createSubnetResources (/private/var/folders/xh/6kwtj36s0zv32spmbqc7bs280000gn/T/jsii-kernel-Gl17XN/node_modules/@aws-cdk/aws-ec2/lib/vpc.js:489:32)",
+              "Vpc.createSubnets (/private/var/folders/xh/6kwtj36s0zv32spmbqc7bs280000gn/T/jsii-kernel-Gl17XN/node_modules/@aws-cdk/aws-ec2/lib/vpc.js:480:18)",
+              "new Vpc (/private/var/folders/xh/6kwtj36s0zv32spmbqc7bs280000gn/T/jsii-kernel-Gl17XN/node_modules/@aws-cdk/aws-ec2/lib/vpc.js:306:14)",
+              "/Users/Malte/Documents/CDK/account-setup/.env/lib/python3.7/site-packages/jsii/_embedded/jsii/jsii-runtime.js:7838:49",
+              "Kernel._wrapSandboxCode (/Users/Malte/Documents/CDK/account-setup/.env/lib/python3.7/site-packages/jsii/_embedded/jsii/jsii-runtime.js:8298:20)",
+              "Kernel._create (/Users/Malte/Documents/CDK/account-setup/.env/lib/python3.7/site-packages/jsii/_embedded/jsii/jsii-runtime.js:7838:26)",
+              "Kernel.create (/Users/Malte/Documents/CDK/account-setup/.env/lib/python3.7/site-packages/jsii/_embedded/jsii/jsii-runtime.js:7585:21)",
+              "KernelHost.processRequest (/Users/Malte/Documents/CDK/account-setup/.env/lib/python3.7/site-packages/jsii/_embedded/jsii/jsii-runtime.js:7372:28)",
+              "KernelHost.run (/Users/Malte/Documents/CDK/account-setup/.env/lib/python3.7/site-packages/jsii/_embedded/jsii/jsii-runtime.js:7312:14)",
+              "Immediate._onImmediate (/Users/Malte/Documents/CDK/account-setup/.env/lib/python3.7/site-packages/jsii/_embedded/jsii/jsii-runtime.js:7315:37)",
+              "processImmediate (internal/timers.js:456:21)"
+            ]
+          }
+        ],
+        "/vpcSetUp/Basic_Vpc/PublicSubnet1/RouteTable": [
+          {
+            "type": "aws:cdk:logicalId",
+            "data": "BasicVpcPublicSubnet1RouteTable7B328207",
+            "trace": [
+              "new Subnet (/private/var/folders/xh/6kwtj36s0zv32spmbqc7bs280000gn/T/jsii-kernel-Gl17XN/node_modules/@aws-cdk/aws-ec2/lib/vpc.js:591:23)",
+              "new PublicSubnet (/private/var/folders/xh/6kwtj36s0zv32spmbqc7bs280000gn/T/jsii-kernel-Gl17XN/node_modules/@aws-cdk/aws-ec2/lib/vpc.js:726:9)",
+              "/private/var/folders/xh/6kwtj36s0zv32spmbqc7bs280000gn/T/jsii-kernel-Gl17XN/node_modules/@aws-cdk/aws-ec2/lib/vpc.js:505:42",
+              "Array.forEach (<anonymous>)",
+              "Vpc.createSubnetResources (/private/var/folders/xh/6kwtj36s0zv32spmbqc7bs280000gn/T/jsii-kernel-Gl17XN/node_modules/@aws-cdk/aws-ec2/lib/vpc.js:489:32)",
+              "Vpc.createSubnets (/private/var/folders/xh/6kwtj36s0zv32spmbqc7bs280000gn/T/jsii-kernel-Gl17XN/node_modules/@aws-cdk/aws-ec2/lib/vpc.js:480:18)",
+              "new Vpc (/private/var/folders/xh/6kwtj36s0zv32spmbqc7bs280000gn/T/jsii-kernel-Gl17XN/node_modules/@aws-cdk/aws-ec2/lib/vpc.js:306:14)",
+              "/Users/Malte/Documents/CDK/account-setup/.env/lib/python3.7/site-packages/jsii/_embedded/jsii/jsii-runtime.js:7838:49",
+              "Kernel._wrapSandboxCode (/Users/Malte/Documents/CDK/account-setup/.env/lib/python3.7/site-packages/jsii/_embedded/jsii/jsii-runtime.js:8298:20)",
+              "Kernel._create (/Users/Malte/Documents/CDK/account-setup/.env/lib/python3.7/site-packages/jsii/_embedded/jsii/jsii-runtime.js:7838:26)",
+              "Kernel.create (/Users/Malte/Documents/CDK/account-setup/.env/lib/python3.7/site-packages/jsii/_embedded/jsii/jsii-runtime.js:7585:21)",
+              "KernelHost.processRequest (/Users/Malte/Documents/CDK/account-setup/.env/lib/python3.7/site-packages/jsii/_embedded/jsii/jsii-runtime.js:7372:28)",
+              "KernelHost.run (/Users/Malte/Documents/CDK/account-setup/.env/lib/python3.7/site-packages/jsii/_embedded/jsii/jsii-runtime.js:7312:14)",
+              "Immediate._onImmediate (/Users/Malte/Documents/CDK/account-setup/.env/lib/python3.7/site-packages/jsii/_embedded/jsii/jsii-runtime.js:7315:37)",
+              "processImmediate (internal/timers.js:456:21)"
+            ]
+          }
+        ],
+        "/vpcSetUp/Basic_Vpc/PublicSubnet1/RouteTableAssociation": [
+          {
+            "type": "aws:cdk:logicalId",
+            "data": "BasicVpcPublicSubnet1RouteTableAssociation82DE7634",
+            "trace": [
+              "new Subnet (/private/var/folders/xh/6kwtj36s0zv32spmbqc7bs280000gn/T/jsii-kernel-Gl17XN/node_modules/@aws-cdk/aws-ec2/lib/vpc.js:596:9)",
+              "new PublicSubnet (/private/var/folders/xh/6kwtj36s0zv32spmbqc7bs280000gn/T/jsii-kernel-Gl17XN/node_modules/@aws-cdk/aws-ec2/lib/vpc.js:726:9)",
+              "/private/var/folders/xh/6kwtj36s0zv32spmbqc7bs280000gn/T/jsii-kernel-Gl17XN/node_modules/@aws-cdk/aws-ec2/lib/vpc.js:505:42",
+              "Array.forEach (<anonymous>)",
+              "Vpc.createSubnetResources (/private/var/folders/xh/6kwtj36s0zv32spmbqc7bs280000gn/T/jsii-kernel-Gl17XN/node_modules/@aws-cdk/aws-ec2/lib/vpc.js:489:32)",
+              "Vpc.createSubnets (/private/var/folders/xh/6kwtj36s0zv32spmbqc7bs280000gn/T/jsii-kernel-Gl17XN/node_modules/@aws-cdk/aws-ec2/lib/vpc.js:480:18)",
+              "new Vpc (/private/var/folders/xh/6kwtj36s0zv32spmbqc7bs280000gn/T/jsii-kernel-Gl17XN/node_modules/@aws-cdk/aws-ec2/lib/vpc.js:306:14)",
+              "/Users/Malte/Documents/CDK/account-setup/.env/lib/python3.7/site-packages/jsii/_embedded/jsii/jsii-runtime.js:7838:49",
+              "Kernel._wrapSandboxCode (/Users/Malte/Documents/CDK/account-setup/.env/lib/python3.7/site-packages/jsii/_embedded/jsii/jsii-runtime.js:8298:20)",
+              "Kernel._create (/Users/Malte/Documents/CDK/account-setup/.env/lib/python3.7/site-packages/jsii/_embedded/jsii/jsii-runtime.js:7838:26)",
+              "Kernel.create (/Users/Malte/Documents/CDK/account-setup/.env/lib/python3.7/site-packages/jsii/_embedded/jsii/jsii-runtime.js:7585:21)",
+              "KernelHost.processRequest (/Users/Malte/Documents/CDK/account-setup/.env/lib/python3.7/site-packages/jsii/_embedded/jsii/jsii-runtime.js:7372:28)",
+              "KernelHost.run (/Users/Malte/Documents/CDK/account-setup/.env/lib/python3.7/site-packages/jsii/_embedded/jsii/jsii-runtime.js:7312:14)",
+              "Immediate._onImmediate (/Users/Malte/Documents/CDK/account-setup/.env/lib/python3.7/site-packages/jsii/_embedded/jsii/jsii-runtime.js:7315:37)",
+              "processImmediate (internal/timers.js:456:21)"
+            ]
+          }
+        ],
+        "/vpcSetUp/Basic_Vpc/PublicSubnet1/DefaultRoute": [
+          {
+            "type": "aws:cdk:logicalId",
+            "data": "BasicVpcPublicSubnet1DefaultRouteDCC9CB12",
+            "trace": [
+              "PublicSubnet.addDefaultInternetRoute (/private/var/folders/xh/6kwtj36s0zv32spmbqc7bs280000gn/T/jsii-kernel-Gl17XN/node_modules/@aws-cdk/aws-ec2/lib/vpc.js:616:23)",
+              "/private/var/folders/xh/6kwtj36s0zv32spmbqc7bs280000gn/T/jsii-kernel-Gl17XN/node_modules/@aws-cdk/aws-ec2/lib/vpc.js:317:30",
+              "Array.forEach (<anonymous>)",
+              "new Vpc (/private/var/folders/xh/6kwtj36s0zv32spmbqc7bs280000gn/T/jsii-kernel-Gl17XN/node_modules/@aws-cdk/aws-ec2/lib/vpc.js:316:32)",
+              "/Users/Malte/Documents/CDK/account-setup/.env/lib/python3.7/site-packages/jsii/_embedded/jsii/jsii-runtime.js:7838:49",
+              "Kernel._wrapSandboxCode (/Users/Malte/Documents/CDK/account-setup/.env/lib/python3.7/site-packages/jsii/_embedded/jsii/jsii-runtime.js:8298:20)",
+              "Kernel._create (/Users/Malte/Documents/CDK/account-setup/.env/lib/python3.7/site-packages/jsii/_embedded/jsii/jsii-runtime.js:7838:26)",
+              "Kernel.create (/Users/Malte/Documents/CDK/account-setup/.env/lib/python3.7/site-packages/jsii/_embedded/jsii/jsii-runtime.js:7585:21)",
+              "KernelHost.processRequest (/Users/Malte/Documents/CDK/account-setup/.env/lib/python3.7/site-packages/jsii/_embedded/jsii/jsii-runtime.js:7372:28)",
+              "KernelHost.run (/Users/Malte/Documents/CDK/account-setup/.env/lib/python3.7/site-packages/jsii/_embedded/jsii/jsii-runtime.js:7312:14)",
+              "Immediate._onImmediate (/Users/Malte/Documents/CDK/account-setup/.env/lib/python3.7/site-packages/jsii/_embedded/jsii/jsii-runtime.js:7315:37)",
+              "processImmediate (internal/timers.js:456:21)"
+            ]
+          }
+        ],
+        "/vpcSetUp/Basic_Vpc/PublicSubnet2/Subnet": [
+          {
+            "type": "aws:cdk:logicalId",
+            "data": "BasicVpcPublicSubnet2SubnetF45B34F3",
+            "trace": [
+              "new Subnet (/private/var/folders/xh/6kwtj36s0zv32spmbqc7bs280000gn/T/jsii-kernel-Gl17XN/node_modules/@aws-cdk/aws-ec2/lib/vpc.js:576:24)",
+              "new PublicSubnet (/private/var/folders/xh/6kwtj36s0zv32spmbqc7bs280000gn/T/jsii-kernel-Gl17XN/node_modules/@aws-cdk/aws-ec2/lib/vpc.js:726:9)",
+              "/private/var/folders/xh/6kwtj36s0zv32spmbqc7bs280000gn/T/jsii-kernel-Gl17XN/node_modules/@aws-cdk/aws-ec2/lib/vpc.js:505:42",
+              "Array.forEach (<anonymous>)",
+              "Vpc.createSubnetResources (/private/var/folders/xh/6kwtj36s0zv32spmbqc7bs280000gn/T/jsii-kernel-Gl17XN/node_modules/@aws-cdk/aws-ec2/lib/vpc.js:489:32)",
+              "Vpc.createSubnets (/private/var/folders/xh/6kwtj36s0zv32spmbqc7bs280000gn/T/jsii-kernel-Gl17XN/node_modules/@aws-cdk/aws-ec2/lib/vpc.js:480:18)",
+              "new Vpc (/private/var/folders/xh/6kwtj36s0zv32spmbqc7bs280000gn/T/jsii-kernel-Gl17XN/node_modules/@aws-cdk/aws-ec2/lib/vpc.js:306:14)",
+              "/Users/Malte/Documents/CDK/account-setup/.env/lib/python3.7/site-packages/jsii/_embedded/jsii/jsii-runtime.js:7838:49",
+              "Kernel._wrapSandboxCode (/Users/Malte/Documents/CDK/account-setup/.env/lib/python3.7/site-packages/jsii/_embedded/jsii/jsii-runtime.js:8298:20)",
+              "Kernel._create (/Users/Malte/Documents/CDK/account-setup/.env/lib/python3.7/site-packages/jsii/_embedded/jsii/jsii-runtime.js:7838:26)",
+              "Kernel.create (/Users/Malte/Documents/CDK/account-setup/.env/lib/python3.7/site-packages/jsii/_embedded/jsii/jsii-runtime.js:7585:21)",
+              "KernelHost.processRequest (/Users/Malte/Documents/CDK/account-setup/.env/lib/python3.7/site-packages/jsii/_embedded/jsii/jsii-runtime.js:7372:28)",
+              "KernelHost.run (/Users/Malte/Documents/CDK/account-setup/.env/lib/python3.7/site-packages/jsii/_embedded/jsii/jsii-runtime.js:7312:14)",
+              "Immediate._onImmediate (/Users/Malte/Documents/CDK/account-setup/.env/lib/python3.7/site-packages/jsii/_embedded/jsii/jsii-runtime.js:7315:37)",
+              "processImmediate (internal/timers.js:456:21)"
+            ]
+          }
+        ],
+        "/vpcSetUp/Basic_Vpc/PublicSubnet2/RouteTable": [
+          {
+            "type": "aws:cdk:logicalId",
+            "data": "BasicVpcPublicSubnet2RouteTableF66ABCD4",
+            "trace": [
+              "new Subnet (/private/var/folders/xh/6kwtj36s0zv32spmbqc7bs280000gn/T/jsii-kernel-Gl17XN/node_modules/@aws-cdk/aws-ec2/lib/vpc.js:591:23)",
+              "new PublicSubnet (/private/var/folders/xh/6kwtj36s0zv32spmbqc7bs280000gn/T/jsii-kernel-Gl17XN/node_modules/@aws-cdk/aws-ec2/lib/vpc.js:726:9)",
+              "/private/var/folders/xh/6kwtj36s0zv32spmbqc7bs280000gn/T/jsii-kernel-Gl17XN/node_modules/@aws-cdk/aws-ec2/lib/vpc.js:505:42",
+              "Array.forEach (<anonymous>)",
+              "Vpc.createSubnetResources (/private/var/folders/xh/6kwtj36s0zv32spmbqc7bs280000gn/T/jsii-kernel-Gl17XN/node_modules/@aws-cdk/aws-ec2/lib/vpc.js:489:32)",
+              "Vpc.createSubnets (/private/var/folders/xh/6kwtj36s0zv32spmbqc7bs280000gn/T/jsii-kernel-Gl17XN/node_modules/@aws-cdk/aws-ec2/lib/vpc.js:480:18)",
+              "new Vpc (/private/var/folders/xh/6kwtj36s0zv32spmbqc7bs280000gn/T/jsii-kernel-Gl17XN/node_modules/@aws-cdk/aws-ec2/lib/vpc.js:306:14)",
+              "/Users/Malte/Documents/CDK/account-setup/.env/lib/python3.7/site-packages/jsii/_embedded/jsii/jsii-runtime.js:7838:49",
+              "Kernel._wrapSandboxCode (/Users/Malte/Documents/CDK/account-setup/.env/lib/python3.7/site-packages/jsii/_embedded/jsii/jsii-runtime.js:8298:20)",
+              "Kernel._create (/Users/Malte/Documents/CDK/account-setup/.env/lib/python3.7/site-packages/jsii/_embedded/jsii/jsii-runtime.js:7838:26)",
+              "Kernel.create (/Users/Malte/Documents/CDK/account-setup/.env/lib/python3.7/site-packages/jsii/_embedded/jsii/jsii-runtime.js:7585:21)",
+              "KernelHost.processRequest (/Users/Malte/Documents/CDK/account-setup/.env/lib/python3.7/site-packages/jsii/_embedded/jsii/jsii-runtime.js:7372:28)",
+              "KernelHost.run (/Users/Malte/Documents/CDK/account-setup/.env/lib/python3.7/site-packages/jsii/_embedded/jsii/jsii-runtime.js:7312:14)",
+              "Immediate._onImmediate (/Users/Malte/Documents/CDK/account-setup/.env/lib/python3.7/site-packages/jsii/_embedded/jsii/jsii-runtime.js:7315:37)",
+              "processImmediate (internal/timers.js:456:21)"
+            ]
+          }
+        ],
+        "/vpcSetUp/Basic_Vpc/PublicSubnet2/RouteTableAssociation": [
+          {
+            "type": "aws:cdk:logicalId",
+            "data": "BasicVpcPublicSubnet2RouteTableAssociation3301450B",
+            "trace": [
+              "new Subnet (/private/var/folders/xh/6kwtj36s0zv32spmbqc7bs280000gn/T/jsii-kernel-Gl17XN/node_modules/@aws-cdk/aws-ec2/lib/vpc.js:596:9)",
+              "new PublicSubnet (/private/var/folders/xh/6kwtj36s0zv32spmbqc7bs280000gn/T/jsii-kernel-Gl17XN/node_modules/@aws-cdk/aws-ec2/lib/vpc.js:726:9)",
+              "/private/var/folders/xh/6kwtj36s0zv32spmbqc7bs280000gn/T/jsii-kernel-Gl17XN/node_modules/@aws-cdk/aws-ec2/lib/vpc.js:505:42",
+              "Array.forEach (<anonymous>)",
+              "Vpc.createSubnetResources (/private/var/folders/xh/6kwtj36s0zv32spmbqc7bs280000gn/T/jsii-kernel-Gl17XN/node_modules/@aws-cdk/aws-ec2/lib/vpc.js:489:32)",
+              "Vpc.createSubnets (/private/var/folders/xh/6kwtj36s0zv32spmbqc7bs280000gn/T/jsii-kernel-Gl17XN/node_modules/@aws-cdk/aws-ec2/lib/vpc.js:480:18)",
+              "new Vpc (/private/var/folders/xh/6kwtj36s0zv32spmbqc7bs280000gn/T/jsii-kernel-Gl17XN/node_modules/@aws-cdk/aws-ec2/lib/vpc.js:306:14)",
+              "/Users/Malte/Documents/CDK/account-setup/.env/lib/python3.7/site-packages/jsii/_embedded/jsii/jsii-runtime.js:7838:49",
+              "Kernel._wrapSandboxCode (/Users/Malte/Documents/CDK/account-setup/.env/lib/python3.7/site-packages/jsii/_embedded/jsii/jsii-runtime.js:8298:20)",
+              "Kernel._create (/Users/Malte/Documents/CDK/account-setup/.env/lib/python3.7/site-packages/jsii/_embedded/jsii/jsii-runtime.js:7838:26)",
+              "Kernel.create (/Users/Malte/Documents/CDK/account-setup/.env/lib/python3.7/site-packages/jsii/_embedded/jsii/jsii-runtime.js:7585:21)",
+              "KernelHost.processRequest (/Users/Malte/Documents/CDK/account-setup/.env/lib/python3.7/site-packages/jsii/_embedded/jsii/jsii-runtime.js:7372:28)",
+              "KernelHost.run (/Users/Malte/Documents/CDK/account-setup/.env/lib/python3.7/site-packages/jsii/_embedded/jsii/jsii-runtime.js:7312:14)",
+              "Immediate._onImmediate (/Users/Malte/Documents/CDK/account-setup/.env/lib/python3.7/site-packages/jsii/_embedded/jsii/jsii-runtime.js:7315:37)",
+              "processImmediate (internal/timers.js:456:21)"
+            ]
+          }
+        ],
+        "/vpcSetUp/Basic_Vpc/PublicSubnet2/DefaultRoute": [
+          {
+            "type": "aws:cdk:logicalId",
+            "data": "BasicVpcPublicSubnet2DefaultRoute325F1898",
+            "trace": [
+              "PublicSubnet.addDefaultInternetRoute (/private/var/folders/xh/6kwtj36s0zv32spmbqc7bs280000gn/T/jsii-kernel-Gl17XN/node_modules/@aws-cdk/aws-ec2/lib/vpc.js:616:23)",
+              "/private/var/folders/xh/6kwtj36s0zv32spmbqc7bs280000gn/T/jsii-kernel-Gl17XN/node_modules/@aws-cdk/aws-ec2/lib/vpc.js:317:30",
+              "Array.forEach (<anonymous>)",
+              "new Vpc (/private/var/folders/xh/6kwtj36s0zv32spmbqc7bs280000gn/T/jsii-kernel-Gl17XN/node_modules/@aws-cdk/aws-ec2/lib/vpc.js:316:32)",
+              "/Users/Malte/Documents/CDK/account-setup/.env/lib/python3.7/site-packages/jsii/_embedded/jsii/jsii-runtime.js:7838:49",
+              "Kernel._wrapSandboxCode (/Users/Malte/Documents/CDK/account-setup/.env/lib/python3.7/site-packages/jsii/_embedded/jsii/jsii-runtime.js:8298:20)",
+              "Kernel._create (/Users/Malte/Documents/CDK/account-setup/.env/lib/python3.7/site-packages/jsii/_embedded/jsii/jsii-runtime.js:7838:26)",
+              "Kernel.create (/Users/Malte/Documents/CDK/account-setup/.env/lib/python3.7/site-packages/jsii/_embedded/jsii/jsii-runtime.js:7585:21)",
+              "KernelHost.processRequest (/Users/Malte/Documents/CDK/account-setup/.env/lib/python3.7/site-packages/jsii/_embedded/jsii/jsii-runtime.js:7372:28)",
+              "KernelHost.run (/Users/Malte/Documents/CDK/account-setup/.env/lib/python3.7/site-packages/jsii/_embedded/jsii/jsii-runtime.js:7312:14)",
+              "Immediate._onImmediate (/Users/Malte/Documents/CDK/account-setup/.env/lib/python3.7/site-packages/jsii/_embedded/jsii/jsii-runtime.js:7315:37)",
+              "processImmediate (internal/timers.js:456:21)"
+            ]
+          }
+        ],
+        "/vpcSetUp/Basic_Vpc/PrivateSubnet1/Subnet": [
+          {
+            "type": "aws:cdk:logicalId",
+            "data": "BasicVpcPrivateSubnet1SubnetA17E648A",
+            "trace": [
+              "new Subnet (/private/var/folders/xh/6kwtj36s0zv32spmbqc7bs280000gn/T/jsii-kernel-Gl17XN/node_modules/@aws-cdk/aws-ec2/lib/vpc.js:576:24)",
+              "new PrivateSubnet (/private/var/folders/xh/6kwtj36s0zv32spmbqc7bs280000gn/T/jsii-kernel-Gl17XN/node_modules/@aws-cdk/aws-ec2/lib/vpc.js:753:9)",
+              "/private/var/folders/xh/6kwtj36s0zv32spmbqc7bs280000gn/T/jsii-kernel-Gl17XN/node_modules/@aws-cdk/aws-ec2/lib/vpc.js:515:44",
+              "Array.forEach (<anonymous>)",
+              "Vpc.createSubnetResources (/private/var/folders/xh/6kwtj36s0zv32spmbqc7bs280000gn/T/jsii-kernel-Gl17XN/node_modules/@aws-cdk/aws-ec2/lib/vpc.js:489:32)",
+              "Vpc.createSubnets (/private/var/folders/xh/6kwtj36s0zv32spmbqc7bs280000gn/T/jsii-kernel-Gl17XN/node_modules/@aws-cdk/aws-ec2/lib/vpc.js:480:18)",
+              "new Vpc (/private/var/folders/xh/6kwtj36s0zv32spmbqc7bs280000gn/T/jsii-kernel-Gl17XN/node_modules/@aws-cdk/aws-ec2/lib/vpc.js:306:14)",
+              "/Users/Malte/Documents/CDK/account-setup/.env/lib/python3.7/site-packages/jsii/_embedded/jsii/jsii-runtime.js:7838:49",
+              "Kernel._wrapSandboxCode (/Users/Malte/Documents/CDK/account-setup/.env/lib/python3.7/site-packages/jsii/_embedded/jsii/jsii-runtime.js:8298:20)",
+              "Kernel._create (/Users/Malte/Documents/CDK/account-setup/.env/lib/python3.7/site-packages/jsii/_embedded/jsii/jsii-runtime.js:7838:26)",
+              "Kernel.create (/Users/Malte/Documents/CDK/account-setup/.env/lib/python3.7/site-packages/jsii/_embedded/jsii/jsii-runtime.js:7585:21)",
+              "KernelHost.processRequest (/Users/Malte/Documents/CDK/account-setup/.env/lib/python3.7/site-packages/jsii/_embedded/jsii/jsii-runtime.js:7372:28)",
+              "KernelHost.run (/Users/Malte/Documents/CDK/account-setup/.env/lib/python3.7/site-packages/jsii/_embedded/jsii/jsii-runtime.js:7312:14)",
+              "Immediate._onImmediate (/Users/Malte/Documents/CDK/account-setup/.env/lib/python3.7/site-packages/jsii/_embedded/jsii/jsii-runtime.js:7315:37)",
+              "processImmediate (internal/timers.js:456:21)"
+            ]
+          }
+        ],
+        "/vpcSetUp/Basic_Vpc/PrivateSubnet1/RouteTable": [
+          {
+            "type": "aws:cdk:logicalId",
+            "data": "BasicVpcPrivateSubnet1RouteTableDDD2C414",
+            "trace": [
+              "new Subnet (/private/var/folders/xh/6kwtj36s0zv32spmbqc7bs280000gn/T/jsii-kernel-Gl17XN/node_modules/@aws-cdk/aws-ec2/lib/vpc.js:591:23)",
+              "new PrivateSubnet (/private/var/folders/xh/6kwtj36s0zv32spmbqc7bs280000gn/T/jsii-kernel-Gl17XN/node_modules/@aws-cdk/aws-ec2/lib/vpc.js:753:9)",
+              "/private/var/folders/xh/6kwtj36s0zv32spmbqc7bs280000gn/T/jsii-kernel-Gl17XN/node_modules/@aws-cdk/aws-ec2/lib/vpc.js:515:44",
+              "Array.forEach (<anonymous>)",
+              "Vpc.createSubnetResources (/private/var/folders/xh/6kwtj36s0zv32spmbqc7bs280000gn/T/jsii-kernel-Gl17XN/node_modules/@aws-cdk/aws-ec2/lib/vpc.js:489:32)",
+              "Vpc.createSubnets (/private/var/folders/xh/6kwtj36s0zv32spmbqc7bs280000gn/T/jsii-kernel-Gl17XN/node_modules/@aws-cdk/aws-ec2/lib/vpc.js:480:18)",
+              "new Vpc (/private/var/folders/xh/6kwtj36s0zv32spmbqc7bs280000gn/T/jsii-kernel-Gl17XN/node_modules/@aws-cdk/aws-ec2/lib/vpc.js:306:14)",
+              "/Users/Malte/Documents/CDK/account-setup/.env/lib/python3.7/site-packages/jsii/_embedded/jsii/jsii-runtime.js:7838:49",
+              "Kernel._wrapSandboxCode (/Users/Malte/Documents/CDK/account-setup/.env/lib/python3.7/site-packages/jsii/_embedded/jsii/jsii-runtime.js:8298:20)",
+              "Kernel._create (/Users/Malte/Documents/CDK/account-setup/.env/lib/python3.7/site-packages/jsii/_embedded/jsii/jsii-runtime.js:7838:26)",
+              "Kernel.create (/Users/Malte/Documents/CDK/account-setup/.env/lib/python3.7/site-packages/jsii/_embedded/jsii/jsii-runtime.js:7585:21)",
+              "KernelHost.processRequest (/Users/Malte/Documents/CDK/account-setup/.env/lib/python3.7/site-packages/jsii/_embedded/jsii/jsii-runtime.js:7372:28)",
+              "KernelHost.run (/Users/Malte/Documents/CDK/account-setup/.env/lib/python3.7/site-packages/jsii/_embedded/jsii/jsii-runtime.js:7312:14)",
+              "Immediate._onImmediate (/Users/Malte/Documents/CDK/account-setup/.env/lib/python3.7/site-packages/jsii/_embedded/jsii/jsii-runtime.js:7315:37)",
+              "processImmediate (internal/timers.js:456:21)"
+            ]
+          }
+        ],
+        "/vpcSetUp/Basic_Vpc/PrivateSubnet1/RouteTableAssociation": [
+          {
+            "type": "aws:cdk:logicalId",
+            "data": "BasicVpcPrivateSubnet1RouteTableAssociation759DA127",
+            "trace": [
+              "new Subnet (/private/var/folders/xh/6kwtj36s0zv32spmbqc7bs280000gn/T/jsii-kernel-Gl17XN/node_modules/@aws-cdk/aws-ec2/lib/vpc.js:596:9)",
+              "new PrivateSubnet (/private/var/folders/xh/6kwtj36s0zv32spmbqc7bs280000gn/T/jsii-kernel-Gl17XN/node_modules/@aws-cdk/aws-ec2/lib/vpc.js:753:9)",
+              "/private/var/folders/xh/6kwtj36s0zv32spmbqc7bs280000gn/T/jsii-kernel-Gl17XN/node_modules/@aws-cdk/aws-ec2/lib/vpc.js:515:44",
+              "Array.forEach (<anonymous>)",
+              "Vpc.createSubnetResources (/private/var/folders/xh/6kwtj36s0zv32spmbqc7bs280000gn/T/jsii-kernel-Gl17XN/node_modules/@aws-cdk/aws-ec2/lib/vpc.js:489:32)",
+              "Vpc.createSubnets (/private/var/folders/xh/6kwtj36s0zv32spmbqc7bs280000gn/T/jsii-kernel-Gl17XN/node_modules/@aws-cdk/aws-ec2/lib/vpc.js:480:18)",
+              "new Vpc (/private/var/folders/xh/6kwtj36s0zv32spmbqc7bs280000gn/T/jsii-kernel-Gl17XN/node_modules/@aws-cdk/aws-ec2/lib/vpc.js:306:14)",
+              "/Users/Malte/Documents/CDK/account-setup/.env/lib/python3.7/site-packages/jsii/_embedded/jsii/jsii-runtime.js:7838:49",
+              "Kernel._wrapSandboxCode (/Users/Malte/Documents/CDK/account-setup/.env/lib/python3.7/site-packages/jsii/_embedded/jsii/jsii-runtime.js:8298:20)",
+              "Kernel._create (/Users/Malte/Documents/CDK/account-setup/.env/lib/python3.7/site-packages/jsii/_embedded/jsii/jsii-runtime.js:7838:26)",
+              "Kernel.create (/Users/Malte/Documents/CDK/account-setup/.env/lib/python3.7/site-packages/jsii/_embedded/jsii/jsii-runtime.js:7585:21)",
+              "KernelHost.processRequest (/Users/Malte/Documents/CDK/account-setup/.env/lib/python3.7/site-packages/jsii/_embedded/jsii/jsii-runtime.js:7372:28)",
+              "KernelHost.run (/Users/Malte/Documents/CDK/account-setup/.env/lib/python3.7/site-packages/jsii/_embedded/jsii/jsii-runtime.js:7312:14)",
+              "Immediate._onImmediate (/Users/Malte/Documents/CDK/account-setup/.env/lib/python3.7/site-packages/jsii/_embedded/jsii/jsii-runtime.js:7315:37)",
+              "processImmediate (internal/timers.js:456:21)"
+            ]
+          }
+        ],
+        "/vpcSetUp/Basic_Vpc/PrivateSubnet2/Subnet": [
+          {
+            "type": "aws:cdk:logicalId",
+            "data": "BasicVpcPrivateSubnet2Subnet8E02F4D9",
+            "trace": [
+              "new Subnet (/private/var/folders/xh/6kwtj36s0zv32spmbqc7bs280000gn/T/jsii-kernel-Gl17XN/node_modules/@aws-cdk/aws-ec2/lib/vpc.js:576:24)",
+              "new PrivateSubnet (/private/var/folders/xh/6kwtj36s0zv32spmbqc7bs280000gn/T/jsii-kernel-Gl17XN/node_modules/@aws-cdk/aws-ec2/lib/vpc.js:753:9)",
+              "/private/var/folders/xh/6kwtj36s0zv32spmbqc7bs280000gn/T/jsii-kernel-Gl17XN/node_modules/@aws-cdk/aws-ec2/lib/vpc.js:515:44",
+              "Array.forEach (<anonymous>)",
+              "Vpc.createSubnetResources (/private/var/folders/xh/6kwtj36s0zv32spmbqc7bs280000gn/T/jsii-kernel-Gl17XN/node_modules/@aws-cdk/aws-ec2/lib/vpc.js:489:32)",
+              "Vpc.createSubnets (/private/var/folders/xh/6kwtj36s0zv32spmbqc7bs280000gn/T/jsii-kernel-Gl17XN/node_modules/@aws-cdk/aws-ec2/lib/vpc.js:480:18)",
+              "new Vpc (/private/var/folders/xh/6kwtj36s0zv32spmbqc7bs280000gn/T/jsii-kernel-Gl17XN/node_modules/@aws-cdk/aws-ec2/lib/vpc.js:306:14)",
+              "/Users/Malte/Documents/CDK/account-setup/.env/lib/python3.7/site-packages/jsii/_embedded/jsii/jsii-runtime.js:7838:49",
+              "Kernel._wrapSandboxCode (/Users/Malte/Documents/CDK/account-setup/.env/lib/python3.7/site-packages/jsii/_embedded/jsii/jsii-runtime.js:8298:20)",
+              "Kernel._create (/Users/Malte/Documents/CDK/account-setup/.env/lib/python3.7/site-packages/jsii/_embedded/jsii/jsii-runtime.js:7838:26)",
+              "Kernel.create (/Users/Malte/Documents/CDK/account-setup/.env/lib/python3.7/site-packages/jsii/_embedded/jsii/jsii-runtime.js:7585:21)",
+              "KernelHost.processRequest (/Users/Malte/Documents/CDK/account-setup/.env/lib/python3.7/site-packages/jsii/_embedded/jsii/jsii-runtime.js:7372:28)",
+              "KernelHost.run (/Users/Malte/Documents/CDK/account-setup/.env/lib/python3.7/site-packages/jsii/_embedded/jsii/jsii-runtime.js:7312:14)",
+              "Immediate._onImmediate (/Users/Malte/Documents/CDK/account-setup/.env/lib/python3.7/site-packages/jsii/_embedded/jsii/jsii-runtime.js:7315:37)",
+              "processImmediate (internal/timers.js:456:21)"
+            ]
+          }
+        ],
+        "/vpcSetUp/Basic_Vpc/PrivateSubnet2/RouteTable": [
+          {
+            "type": "aws:cdk:logicalId",
+            "data": "BasicVpcPrivateSubnet2RouteTable12844C56",
+            "trace": [
+              "new Subnet (/private/var/folders/xh/6kwtj36s0zv32spmbqc7bs280000gn/T/jsii-kernel-Gl17XN/node_modules/@aws-cdk/aws-ec2/lib/vpc.js:591:23)",
+              "new PrivateSubnet (/private/var/folders/xh/6kwtj36s0zv32spmbqc7bs280000gn/T/jsii-kernel-Gl17XN/node_modules/@aws-cdk/aws-ec2/lib/vpc.js:753:9)",
+              "/private/var/folders/xh/6kwtj36s0zv32spmbqc7bs280000gn/T/jsii-kernel-Gl17XN/node_modules/@aws-cdk/aws-ec2/lib/vpc.js:515:44",
+              "Array.forEach (<anonymous>)",
+              "Vpc.createSubnetResources (/private/var/folders/xh/6kwtj36s0zv32spmbqc7bs280000gn/T/jsii-kernel-Gl17XN/node_modules/@aws-cdk/aws-ec2/lib/vpc.js:489:32)",
+              "Vpc.createSubnets (/private/var/folders/xh/6kwtj36s0zv32spmbqc7bs280000gn/T/jsii-kernel-Gl17XN/node_modules/@aws-cdk/aws-ec2/lib/vpc.js:480:18)",
+              "new Vpc (/private/var/folders/xh/6kwtj36s0zv32spmbqc7bs280000gn/T/jsii-kernel-Gl17XN/node_modules/@aws-cdk/aws-ec2/lib/vpc.js:306:14)",
+              "/Users/Malte/Documents/CDK/account-setup/.env/lib/python3.7/site-packages/jsii/_embedded/jsii/jsii-runtime.js:7838:49",
+              "Kernel._wrapSandboxCode (/Users/Malte/Documents/CDK/account-setup/.env/lib/python3.7/site-packages/jsii/_embedded/jsii/jsii-runtime.js:8298:20)",
+              "Kernel._create (/Users/Malte/Documents/CDK/account-setup/.env/lib/python3.7/site-packages/jsii/_embedded/jsii/jsii-runtime.js:7838:26)",
+              "Kernel.create (/Users/Malte/Documents/CDK/account-setup/.env/lib/python3.7/site-packages/jsii/_embedded/jsii/jsii-runtime.js:7585:21)",
+              "KernelHost.processRequest (/Users/Malte/Documents/CDK/account-setup/.env/lib/python3.7/site-packages/jsii/_embedded/jsii/jsii-runtime.js:7372:28)",
+              "KernelHost.run (/Users/Malte/Documents/CDK/account-setup/.env/lib/python3.7/site-packages/jsii/_embedded/jsii/jsii-runtime.js:7312:14)",
+              "Immediate._onImmediate (/Users/Malte/Documents/CDK/account-setup/.env/lib/python3.7/site-packages/jsii/_embedded/jsii/jsii-runtime.js:7315:37)",
+              "processImmediate (internal/timers.js:456:21)"
+            ]
+          }
+        ],
+        "/vpcSetUp/Basic_Vpc/PrivateSubnet2/RouteTableAssociation": [
+          {
+            "type": "aws:cdk:logicalId",
+            "data": "BasicVpcPrivateSubnet2RouteTableAssociation88765D78",
+            "trace": [
+              "new Subnet (/private/var/folders/xh/6kwtj36s0zv32spmbqc7bs280000gn/T/jsii-kernel-Gl17XN/node_modules/@aws-cdk/aws-ec2/lib/vpc.js:596:9)",
+              "new PrivateSubnet (/private/var/folders/xh/6kwtj36s0zv32spmbqc7bs280000gn/T/jsii-kernel-Gl17XN/node_modules/@aws-cdk/aws-ec2/lib/vpc.js:753:9)",
+              "/private/var/folders/xh/6kwtj36s0zv32spmbqc7bs280000gn/T/jsii-kernel-Gl17XN/node_modules/@aws-cdk/aws-ec2/lib/vpc.js:515:44",
+              "Array.forEach (<anonymous>)",
+              "Vpc.createSubnetResources (/private/var/folders/xh/6kwtj36s0zv32spmbqc7bs280000gn/T/jsii-kernel-Gl17XN/node_modules/@aws-cdk/aws-ec2/lib/vpc.js:489:32)",
+              "Vpc.createSubnets (/private/var/folders/xh/6kwtj36s0zv32spmbqc7bs280000gn/T/jsii-kernel-Gl17XN/node_modules/@aws-cdk/aws-ec2/lib/vpc.js:480:18)",
+              "new Vpc (/private/var/folders/xh/6kwtj36s0zv32spmbqc7bs280000gn/T/jsii-kernel-Gl17XN/node_modules/@aws-cdk/aws-ec2/lib/vpc.js:306:14)",
+              "/Users/Malte/Documents/CDK/account-setup/.env/lib/python3.7/site-packages/jsii/_embedded/jsii/jsii-runtime.js:7838:49",
+              "Kernel._wrapSandboxCode (/Users/Malte/Documents/CDK/account-setup/.env/lib/python3.7/site-packages/jsii/_embedded/jsii/jsii-runtime.js:8298:20)",
+              "Kernel._create (/Users/Malte/Documents/CDK/account-setup/.env/lib/python3.7/site-packages/jsii/_embedded/jsii/jsii-runtime.js:7838:26)",
+              "Kernel.create (/Users/Malte/Documents/CDK/account-setup/.env/lib/python3.7/site-packages/jsii/_embedded/jsii/jsii-runtime.js:7585:21)",
+              "KernelHost.processRequest (/Users/Malte/Documents/CDK/account-setup/.env/lib/python3.7/site-packages/jsii/_embedded/jsii/jsii-runtime.js:7372:28)",
+              "KernelHost.run (/Users/Malte/Documents/CDK/account-setup/.env/lib/python3.7/site-packages/jsii/_embedded/jsii/jsii-runtime.js:7312:14)",
+              "Immediate._onImmediate (/Users/Malte/Documents/CDK/account-setup/.env/lib/python3.7/site-packages/jsii/_embedded/jsii/jsii-runtime.js:7315:37)",
+              "processImmediate (internal/timers.js:456:21)"
+            ]
+          }
+        ],
+        "/vpcSetUp/Basic_Vpc/IGW": [
+          {
+            "type": "aws:cdk:logicalId",
+            "data": "BasicVpcIGW0CB62AA2",
+            "trace": [
+              "new Vpc (/private/var/folders/xh/6kwtj36s0zv32spmbqc7bs280000gn/T/jsii-kernel-Gl17XN/node_modules/@aws-cdk/aws-ec2/lib/vpc.js:310:25)",
+              "/Users/Malte/Documents/CDK/account-setup/.env/lib/python3.7/site-packages/jsii/_embedded/jsii/jsii-runtime.js:7838:49",
+              "Kernel._wrapSandboxCode (/Users/Malte/Documents/CDK/account-setup/.env/lib/python3.7/site-packages/jsii/_embedded/jsii/jsii-runtime.js:8298:20)",
+              "Kernel._create (/Users/Malte/Documents/CDK/account-setup/.env/lib/python3.7/site-packages/jsii/_embedded/jsii/jsii-runtime.js:7838:26)",
+              "Kernel.create (/Users/Malte/Documents/CDK/account-setup/.env/lib/python3.7/site-packages/jsii/_embedded/jsii/jsii-runtime.js:7585:21)",
+              "KernelHost.processRequest (/Users/Malte/Documents/CDK/account-setup/.env/lib/python3.7/site-packages/jsii/_embedded/jsii/jsii-runtime.js:7372:28)",
+              "KernelHost.run (/Users/Malte/Documents/CDK/account-setup/.env/lib/python3.7/site-packages/jsii/_embedded/jsii/jsii-runtime.js:7312:14)",
+              "Immediate._onImmediate (/Users/Malte/Documents/CDK/account-setup/.env/lib/python3.7/site-packages/jsii/_embedded/jsii/jsii-runtime.js:7315:37)",
+              "processImmediate (internal/timers.js:456:21)"
+            ]
+          }
+        ],
+        "/vpcSetUp/Basic_Vpc/VPCGW": [
+          {
+            "type": "aws:cdk:logicalId",
+            "data": "BasicVpcVPCGWD7AB5A69",
+            "trace": [
+              "new Vpc (/private/var/folders/xh/6kwtj36s0zv32spmbqc7bs280000gn/T/jsii-kernel-Gl17XN/node_modules/@aws-cdk/aws-ec2/lib/vpc.js:312:25)",
+              "/Users/Malte/Documents/CDK/account-setup/.env/lib/python3.7/site-packages/jsii/_embedded/jsii/jsii-runtime.js:7838:49",
+              "Kernel._wrapSandboxCode (/Users/Malte/Documents/CDK/account-setup/.env/lib/python3.7/site-packages/jsii/_embedded/jsii/jsii-runtime.js:8298:20)",
+              "Kernel._create (/Users/Malte/Documents/CDK/account-setup/.env/lib/python3.7/site-packages/jsii/_embedded/jsii/jsii-runtime.js:7838:26)",
+              "Kernel.create (/Users/Malte/Documents/CDK/account-setup/.env/lib/python3.7/site-packages/jsii/_embedded/jsii/jsii-runtime.js:7585:21)",
+              "KernelHost.processRequest (/Users/Malte/Documents/CDK/account-setup/.env/lib/python3.7/site-packages/jsii/_embedded/jsii/jsii-runtime.js:7372:28)",
+              "KernelHost.run (/Users/Malte/Documents/CDK/account-setup/.env/lib/python3.7/site-packages/jsii/_embedded/jsii/jsii-runtime.js:7312:14)",
+              "Immediate._onImmediate (/Users/Malte/Documents/CDK/account-setup/.env/lib/python3.7/site-packages/jsii/_embedded/jsii/jsii-runtime.js:7315:37)",
+              "processImmediate (internal/timers.js:456:21)"
+            ]
+          }
+        ],
+        "/vpcSetUp/Delete_Default_VPC/ServiceRole/Resource": [
+          {
+            "type": "aws:cdk:logicalId",
+            "data": "DeleteDefaultVPCServiceRole41812950",
+            "trace": [
+              "new Role (/private/var/folders/xh/6kwtj36s0zv32spmbqc7bs280000gn/T/jsii-kernel-Gl17XN/node_modules/@aws-cdk/aws-iam/lib/role.js:41:22)",
+              "new Function (/private/var/folders/xh/6kwtj36s0zv32spmbqc7bs280000gn/T/jsii-kernel-Gl17XN/node_modules/@aws-cdk/aws-lambda/lib/function.js:60:35)",
+              "/Users/Malte/Documents/CDK/account-setup/.env/lib/python3.7/site-packages/jsii/_embedded/jsii/jsii-runtime.js:7838:49",
+              "Kernel._wrapSandboxCode (/Users/Malte/Documents/CDK/account-setup/.env/lib/python3.7/site-packages/jsii/_embedded/jsii/jsii-runtime.js:8298:20)",
+              "Kernel._create (/Users/Malte/Documents/CDK/account-setup/.env/lib/python3.7/site-packages/jsii/_embedded/jsii/jsii-runtime.js:7838:26)",
+              "Kernel.create (/Users/Malte/Documents/CDK/account-setup/.env/lib/python3.7/site-packages/jsii/_embedded/jsii/jsii-runtime.js:7585:21)",
+              "KernelHost.processRequest (/Users/Malte/Documents/CDK/account-setup/.env/lib/python3.7/site-packages/jsii/_embedded/jsii/jsii-runtime.js:7372:28)",
+              "KernelHost.run (/Users/Malte/Documents/CDK/account-setup/.env/lib/python3.7/site-packages/jsii/_embedded/jsii/jsii-runtime.js:7312:14)",
+              "Immediate._onImmediate (/Users/Malte/Documents/CDK/account-setup/.env/lib/python3.7/site-packages/jsii/_embedded/jsii/jsii-runtime.js:7315:37)",
+              "processImmediate (internal/timers.js:456:21)"
+            ]
+          }
+        ],
+        "/vpcSetUp/Delete_Default_VPC/ServiceRole/DefaultPolicy/Resource": [
+          {
+            "type": "aws:cdk:logicalId",
+            "data": "DeleteDefaultVPCServiceRoleDefaultPolicy1B67401D",
+            "trace": [
+              "new Policy (/private/var/folders/xh/6kwtj36s0zv32spmbqc7bs280000gn/T/jsii-kernel-Gl17XN/node_modules/@aws-cdk/aws-iam/lib/policy.js:30:26)",
+              "Role.addToPolicy (/private/var/folders/xh/6kwtj36s0zv32spmbqc7bs280000gn/T/jsii-kernel-Gl17XN/node_modules/@aws-cdk/aws-iam/lib/role.js:160:34)",
+              "Function.addToRolePolicy (/private/var/folders/xh/6kwtj36s0zv32spmbqc7bs280000gn/T/jsii-kernel-Gl17XN/node_modules/@aws-cdk/aws-lambda/lib/function-base.js:38:19)",
+              "/Users/Malte/Documents/CDK/account-setup/.env/lib/python3.7/site-packages/jsii/_embedded/jsii/jsii-runtime.js:7665:51",
+              "Kernel._wrapSandboxCode (/Users/Malte/Documents/CDK/account-setup/.env/lib/python3.7/site-packages/jsii/_embedded/jsii/jsii-runtime.js:8298:20)",
+              "/Users/Malte/Documents/CDK/account-setup/.env/lib/python3.7/site-packages/jsii/_embedded/jsii/jsii-runtime.js:7665:25",
+              "Kernel._ensureSync (/Users/Malte/Documents/CDK/account-setup/.env/lib/python3.7/site-packages/jsii/_embedded/jsii/jsii-runtime.js:8274:20)",
+              "Kernel.invoke (/Users/Malte/Documents/CDK/account-setup/.env/lib/python3.7/site-packages/jsii/_embedded/jsii/jsii-runtime.js:7664:26)",
+              "KernelHost.processRequest (/Users/Malte/Documents/CDK/account-setup/.env/lib/python3.7/site-packages/jsii/_embedded/jsii/jsii-runtime.js:7372:28)",
+              "KernelHost.run (/Users/Malte/Documents/CDK/account-setup/.env/lib/python3.7/site-packages/jsii/_embedded/jsii/jsii-runtime.js:7312:14)",
+              "Immediate._onImmediate (/Users/Malte/Documents/CDK/account-setup/.env/lib/python3.7/site-packages/jsii/_embedded/jsii/jsii-runtime.js:7315:37)",
+              "processImmediate (internal/timers.js:456:21)"
+            ]
+          }
+        ],
+        "/vpcSetUp/Delete_Default_VPC/Resource": [
+          {
+            "type": "aws:cdk:logicalId",
+            "data": "DeleteDefaultVPCA1FCE209",
+            "trace": [
+              "new Function (/private/var/folders/xh/6kwtj36s0zv32spmbqc7bs280000gn/T/jsii-kernel-Gl17XN/node_modules/@aws-cdk/aws-lambda/lib/function.js:71:26)",
+              "/Users/Malte/Documents/CDK/account-setup/.env/lib/python3.7/site-packages/jsii/_embedded/jsii/jsii-runtime.js:7838:49",
+              "Kernel._wrapSandboxCode (/Users/Malte/Documents/CDK/account-setup/.env/lib/python3.7/site-packages/jsii/_embedded/jsii/jsii-runtime.js:8298:20)",
+              "Kernel._create (/Users/Malte/Documents/CDK/account-setup/.env/lib/python3.7/site-packages/jsii/_embedded/jsii/jsii-runtime.js:7838:26)",
+              "Kernel.create (/Users/Malte/Documents/CDK/account-setup/.env/lib/python3.7/site-packages/jsii/_embedded/jsii/jsii-runtime.js:7585:21)",
+              "KernelHost.processRequest (/Users/Malte/Documents/CDK/account-setup/.env/lib/python3.7/site-packages/jsii/_embedded/jsii/jsii-runtime.js:7372:28)",
+              "KernelHost.run (/Users/Malte/Documents/CDK/account-setup/.env/lib/python3.7/site-packages/jsii/_embedded/jsii/jsii-runtime.js:7312:14)",
+              "Immediate._onImmediate (/Users/Malte/Documents/CDK/account-setup/.env/lib/python3.7/site-packages/jsii/_embedded/jsii/jsii-runtime.js:7315:37)",
+              "processImmediate (internal/timers.js:456:21)"
+            ]
+          }
+        ],
+        "/vpcSetUp/Delete_Default_VPC/LogRetention/Resource": [
+          {
+            "type": "aws:cdk:logicalId",
+            "data": "DeleteDefaultVPCLogRetention9FECC465",
+            "trace": [
+              "new LogRetention (/private/var/folders/xh/6kwtj36s0zv32spmbqc7bs280000gn/T/jsii-kernel-Gl17XN/node_modules/@aws-cdk/aws-lambda/lib/log-retention.js:37:26)",
+              "new Function (/private/var/folders/xh/6kwtj36s0zv32spmbqc7bs280000gn/T/jsii-kernel-Gl17XN/node_modules/@aws-cdk/aws-lambda/lib/function.js:109:34)",
+              "/Users/Malte/Documents/CDK/account-setup/.env/lib/python3.7/site-packages/jsii/_embedded/jsii/jsii-runtime.js:7838:49",
+              "Kernel._wrapSandboxCode (/Users/Malte/Documents/CDK/account-setup/.env/lib/python3.7/site-packages/jsii/_embedded/jsii/jsii-runtime.js:8298:20)",
+              "Kernel._create (/Users/Malte/Documents/CDK/account-setup/.env/lib/python3.7/site-packages/jsii/_embedded/jsii/jsii-runtime.js:7838:26)",
+              "Kernel.create (/Users/Malte/Documents/CDK/account-setup/.env/lib/python3.7/site-packages/jsii/_embedded/jsii/jsii-runtime.js:7585:21)",
+              "KernelHost.processRequest (/Users/Malte/Documents/CDK/account-setup/.env/lib/python3.7/site-packages/jsii/_embedded/jsii/jsii-runtime.js:7372:28)",
+              "KernelHost.run (/Users/Malte/Documents/CDK/account-setup/.env/lib/python3.7/site-packages/jsii/_embedded/jsii/jsii-runtime.js:7312:14)",
+              "Immediate._onImmediate (/Users/Malte/Documents/CDK/account-setup/.env/lib/python3.7/site-packages/jsii/_embedded/jsii/jsii-runtime.js:7315:37)",
+              "processImmediate (internal/timers.js:456:21)"
+            ]
+          }
+        ],
+        "/vpcSetUp/Delete_Default_VPC/EventInvokeConfig/Resource": [
+          {
+            "type": "aws:cdk:logicalId",
+            "data": "DeleteDefaultVPCEventInvokeConfig655128A4",
+            "trace": [
+              "new EventInvokeConfig (/private/var/folders/xh/6kwtj36s0zv32spmbqc7bs280000gn/T/jsii-kernel-Gl17XN/node_modules/@aws-cdk/aws-lambda/lib/event-invoke-config.js:23:9)",
+              "Function.configureAsyncInvoke (/private/var/folders/xh/6kwtj36s0zv32spmbqc7bs280000gn/T/jsii-kernel-Gl17XN/node_modules/@aws-cdk/aws-lambda/lib/function-base.js:112:9)",
+              "new Function (/private/var/folders/xh/6kwtj36s0zv32spmbqc7bs280000gn/T/jsii-kernel-Gl17XN/node_modules/@aws-cdk/aws-lambda/lib/function.js:119:18)",
+              "/Users/Malte/Documents/CDK/account-setup/.env/lib/python3.7/site-packages/jsii/_embedded/jsii/jsii-runtime.js:7838:49",
+              "Kernel._wrapSandboxCode (/Users/Malte/Documents/CDK/account-setup/.env/lib/python3.7/site-packages/jsii/_embedded/jsii/jsii-runtime.js:8298:20)",
+              "Kernel._create (/Users/Malte/Documents/CDK/account-setup/.env/lib/python3.7/site-packages/jsii/_embedded/jsii/jsii-runtime.js:7838:26)",
+              "Kernel.create (/Users/Malte/Documents/CDK/account-setup/.env/lib/python3.7/site-packages/jsii/_embedded/jsii/jsii-runtime.js:7585:21)",
+              "KernelHost.processRequest (/Users/Malte/Documents/CDK/account-setup/.env/lib/python3.7/site-packages/jsii/_embedded/jsii/jsii-runtime.js:7372:28)",
+              "KernelHost.run (/Users/Malte/Documents/CDK/account-setup/.env/lib/python3.7/site-packages/jsii/_embedded/jsii/jsii-runtime.js:7312:14)",
+              "Immediate._onImmediate (/Users/Malte/Documents/CDK/account-setup/.env/lib/python3.7/site-packages/jsii/_embedded/jsii/jsii-runtime.js:7315:37)",
+              "processImmediate (internal/timers.js:456:21)"
+            ]
+          }
+        ],
+        "/vpcSetUp/Delete_Default_VPC/AllowEventRulevpcSetUpScheduleVPCCheckLambdaEE40FF73": [
+          {
+            "type": "aws:cdk:logicalId",
+            "data": "DeleteDefaultVPCAllowEventRulevpcSetUpScheduleVPCCheckLambdaEE40FF736429E3ED",
+            "trace": [
+              "Function.addPermission (/private/var/folders/xh/6kwtj36s0zv32spmbqc7bs280000gn/T/jsii-kernel-Gl17XN/node_modules/@aws-cdk/aws-lambda/lib/function-base.js:22:9)",
+              "Object.addLambdaPermission (/private/var/folders/xh/6kwtj36s0zv32spmbqc7bs280000gn/T/jsii-kernel-Gl17XN/node_modules/@aws-cdk/aws-events-targets/lib/util.js:29:17)",
+              "LambdaFunction.bind (/private/var/folders/xh/6kwtj36s0zv32spmbqc7bs280000gn/T/jsii-kernel-Gl17XN/node_modules/@aws-cdk/aws-events-targets/lib/lambda.js:18:16)",
+              "Rule.addTarget (/private/var/folders/xh/6kwtj36s0zv32spmbqc7bs280000gn/T/jsii-kernel-Gl17XN/node_modules/@aws-cdk/aws-events/lib/rule.js:68:36)",
+              "/Users/Malte/Documents/CDK/account-setup/.env/lib/python3.7/site-packages/jsii/_embedded/jsii/jsii-runtime.js:7665:51",
+              "Kernel._wrapSandboxCode (/Users/Malte/Documents/CDK/account-setup/.env/lib/python3.7/site-packages/jsii/_embedded/jsii/jsii-runtime.js:8298:20)",
+              "/Users/Malte/Documents/CDK/account-setup/.env/lib/python3.7/site-packages/jsii/_embedded/jsii/jsii-runtime.js:7665:25",
+              "Kernel._ensureSync (/Users/Malte/Documents/CDK/account-setup/.env/lib/python3.7/site-packages/jsii/_embedded/jsii/jsii-runtime.js:8274:20)",
+              "Kernel.invoke (/Users/Malte/Documents/CDK/account-setup/.env/lib/python3.7/site-packages/jsii/_embedded/jsii/jsii-runtime.js:7664:26)",
+              "KernelHost.processRequest (/Users/Malte/Documents/CDK/account-setup/.env/lib/python3.7/site-packages/jsii/_embedded/jsii/jsii-runtime.js:7372:28)",
+              "KernelHost.run (/Users/Malte/Documents/CDK/account-setup/.env/lib/python3.7/site-packages/jsii/_embedded/jsii/jsii-runtime.js:7312:14)",
+              "Immediate._onImmediate (/Users/Malte/Documents/CDK/account-setup/.env/lib/python3.7/site-packages/jsii/_embedded/jsii/jsii-runtime.js:7315:37)",
+              "processImmediate (internal/timers.js:456:21)"
+            ]
+          }
+        ],
+        "/vpcSetUp/AssetParameters/0d9e0aff1c669ff9e72194486e7299bb616310ce1d00c31f103603c7dd0ddd68/S3Bucket": [
+          {
+            "type": "aws:cdk:logicalId",
+            "data": "AssetParameters0d9e0aff1c669ff9e72194486e7299bb616310ce1d00c31f103603c7dd0ddd68S3Bucket3F01804D",
+            "trace": [
+              "new FileAssetParameters (/private/var/folders/xh/6kwtj36s0zv32spmbqc7bs280000gn/T/jsii-kernel-Gl17XN/node_modules/@aws-cdk/core/lib/private/asset-parameters.js:11:36)",
+              "Stack.addFileAsset (/private/var/folders/xh/6kwtj36s0zv32spmbqc7bs280000gn/T/jsii-kernel-Gl17XN/node_modules/@aws-cdk/core/lib/stack.js:360:22)",
+              "new Asset (/private/var/folders/xh/6kwtj36s0zv32spmbqc7bs280000gn/T/jsii-kernel-Gl17XN/node_modules/@aws-cdk/aws-s3-assets/lib/asset.js:30:32)",
+              "AssetCode.bind (/private/var/folders/xh/6kwtj36s0zv32spmbqc7bs280000gn/T/jsii-kernel-Gl17XN/node_modules/@aws-cdk/aws-lambda/lib/code.js:135:26)",
+              "new Function (/private/var/folders/xh/6kwtj36s0zv32spmbqc7bs280000gn/T/jsii-kernel-Gl17XN/node_modules/@aws-cdk/aws-lambda/lib/function.js:68:33)",
+              "/Users/Malte/Documents/CDK/account-setup/.env/lib/python3.7/site-packages/jsii/_embedded/jsii/jsii-runtime.js:7838:49",
+              "Kernel._wrapSandboxCode (/Users/Malte/Documents/CDK/account-setup/.env/lib/python3.7/site-packages/jsii/_embedded/jsii/jsii-runtime.js:8298:20)",
+              "Kernel._create (/Users/Malte/Documents/CDK/account-setup/.env/lib/python3.7/site-packages/jsii/_embedded/jsii/jsii-runtime.js:7838:26)",
+              "Kernel.create (/Users/Malte/Documents/CDK/account-setup/.env/lib/python3.7/site-packages/jsii/_embedded/jsii/jsii-runtime.js:7585:21)",
+              "KernelHost.processRequest (/Users/Malte/Documents/CDK/account-setup/.env/lib/python3.7/site-packages/jsii/_embedded/jsii/jsii-runtime.js:7372:28)",
+              "KernelHost.run (/Users/Malte/Documents/CDK/account-setup/.env/lib/python3.7/site-packages/jsii/_embedded/jsii/jsii-runtime.js:7312:14)",
+              "Immediate._onImmediate (/Users/Malte/Documents/CDK/account-setup/.env/lib/python3.7/site-packages/jsii/_embedded/jsii/jsii-runtime.js:7315:37)",
+              "processImmediate (internal/timers.js:456:21)"
+            ]
+          }
+        ],
+        "/vpcSetUp/AssetParameters/0d9e0aff1c669ff9e72194486e7299bb616310ce1d00c31f103603c7dd0ddd68/S3VersionKey": [
+          {
+            "type": "aws:cdk:logicalId",
+            "data": "AssetParameters0d9e0aff1c669ff9e72194486e7299bb616310ce1d00c31f103603c7dd0ddd68S3VersionKeyE1CCA944",
+            "trace": [
+              "new FileAssetParameters (/private/var/folders/xh/6kwtj36s0zv32spmbqc7bs280000gn/T/jsii-kernel-Gl17XN/node_modules/@aws-cdk/core/lib/private/asset-parameters.js:15:35)",
+              "Stack.addFileAsset (/private/var/folders/xh/6kwtj36s0zv32spmbqc7bs280000gn/T/jsii-kernel-Gl17XN/node_modules/@aws-cdk/core/lib/stack.js:360:22)",
+              "new Asset (/private/var/folders/xh/6kwtj36s0zv32spmbqc7bs280000gn/T/jsii-kernel-Gl17XN/node_modules/@aws-cdk/aws-s3-assets/lib/asset.js:30:32)",
+              "AssetCode.bind (/private/var/folders/xh/6kwtj36s0zv32spmbqc7bs280000gn/T/jsii-kernel-Gl17XN/node_modules/@aws-cdk/aws-lambda/lib/code.js:135:26)",
+              "new Function (/private/var/folders/xh/6kwtj36s0zv32spmbqc7bs280000gn/T/jsii-kernel-Gl17XN/node_modules/@aws-cdk/aws-lambda/lib/function.js:68:33)",
+              "/Users/Malte/Documents/CDK/account-setup/.env/lib/python3.7/site-packages/jsii/_embedded/jsii/jsii-runtime.js:7838:49",
+              "Kernel._wrapSandboxCode (/Users/Malte/Documents/CDK/account-setup/.env/lib/python3.7/site-packages/jsii/_embedded/jsii/jsii-runtime.js:8298:20)",
+              "Kernel._create (/Users/Malte/Documents/CDK/account-setup/.env/lib/python3.7/site-packages/jsii/_embedded/jsii/jsii-runtime.js:7838:26)",
+              "Kernel.create (/Users/Malte/Documents/CDK/account-setup/.env/lib/python3.7/site-packages/jsii/_embedded/jsii/jsii-runtime.js:7585:21)",
+              "KernelHost.processRequest (/Users/Malte/Documents/CDK/account-setup/.env/lib/python3.7/site-packages/jsii/_embedded/jsii/jsii-runtime.js:7372:28)",
+              "KernelHost.run (/Users/Malte/Documents/CDK/account-setup/.env/lib/python3.7/site-packages/jsii/_embedded/jsii/jsii-runtime.js:7312:14)",
+              "Immediate._onImmediate (/Users/Malte/Documents/CDK/account-setup/.env/lib/python3.7/site-packages/jsii/_embedded/jsii/jsii-runtime.js:7315:37)",
+              "processImmediate (internal/timers.js:456:21)"
+            ]
+          }
+        ],
+        "/vpcSetUp/AssetParameters/0d9e0aff1c669ff9e72194486e7299bb616310ce1d00c31f103603c7dd0ddd68/ArtifactHash": [
+          {
+            "type": "aws:cdk:logicalId",
+            "data": "AssetParameters0d9e0aff1c669ff9e72194486e7299bb616310ce1d00c31f103603c7dd0ddd68ArtifactHash98877081",
+            "trace": [
+              "new FileAssetParameters (/private/var/folders/xh/6kwtj36s0zv32spmbqc7bs280000gn/T/jsii-kernel-Gl17XN/node_modules/@aws-cdk/core/lib/private/asset-parameters.js:19:38)",
+              "Stack.addFileAsset (/private/var/folders/xh/6kwtj36s0zv32spmbqc7bs280000gn/T/jsii-kernel-Gl17XN/node_modules/@aws-cdk/core/lib/stack.js:360:22)",
+              "new Asset (/private/var/folders/xh/6kwtj36s0zv32spmbqc7bs280000gn/T/jsii-kernel-Gl17XN/node_modules/@aws-cdk/aws-s3-assets/lib/asset.js:30:32)",
+              "AssetCode.bind (/private/var/folders/xh/6kwtj36s0zv32spmbqc7bs280000gn/T/jsii-kernel-Gl17XN/node_modules/@aws-cdk/aws-lambda/lib/code.js:135:26)",
+              "new Function (/private/var/folders/xh/6kwtj36s0zv32spmbqc7bs280000gn/T/jsii-kernel-Gl17XN/node_modules/@aws-cdk/aws-lambda/lib/function.js:68:33)",
+              "/Users/Malte/Documents/CDK/account-setup/.env/lib/python3.7/site-packages/jsii/_embedded/jsii/jsii-runtime.js:7838:49",
+              "Kernel._wrapSandboxCode (/Users/Malte/Documents/CDK/account-setup/.env/lib/python3.7/site-packages/jsii/_embedded/jsii/jsii-runtime.js:8298:20)",
+              "Kernel._create (/Users/Malte/Documents/CDK/account-setup/.env/lib/python3.7/site-packages/jsii/_embedded/jsii/jsii-runtime.js:7838:26)",
+              "Kernel.create (/Users/Malte/Documents/CDK/account-setup/.env/lib/python3.7/site-packages/jsii/_embedded/jsii/jsii-runtime.js:7585:21)",
+              "KernelHost.processRequest (/Users/Malte/Documents/CDK/account-setup/.env/lib/python3.7/site-packages/jsii/_embedded/jsii/jsii-runtime.js:7372:28)",
+              "KernelHost.run (/Users/Malte/Documents/CDK/account-setup/.env/lib/python3.7/site-packages/jsii/_embedded/jsii/jsii-runtime.js:7312:14)",
+              "Immediate._onImmediate (/Users/Malte/Documents/CDK/account-setup/.env/lib/python3.7/site-packages/jsii/_embedded/jsii/jsii-runtime.js:7315:37)",
+              "processImmediate (internal/timers.js:456:21)"
+            ]
+          }
+        ],
+        "/vpcSetUp/AssetParameters/5741f85917ffca30b209ad61e375d3d3bae0457270071f7aca8ca81be19bd22a/S3Bucket": [
+          {
+            "type": "aws:cdk:logicalId",
+            "data": "AssetParameters5741f85917ffca30b209ad61e375d3d3bae0457270071f7aca8ca81be19bd22aS3Bucket4E933C7F",
+            "trace": [
+              "new FileAssetParameters (/private/var/folders/xh/6kwtj36s0zv32spmbqc7bs280000gn/T/jsii-kernel-Gl17XN/node_modules/@aws-cdk/core/lib/private/asset-parameters.js:11:36)",
+              "Stack.addFileAsset (/private/var/folders/xh/6kwtj36s0zv32spmbqc7bs280000gn/T/jsii-kernel-Gl17XN/node_modules/@aws-cdk/core/lib/stack.js:360:22)",
+              "new Asset (/private/var/folders/xh/6kwtj36s0zv32spmbqc7bs280000gn/T/jsii-kernel-Gl17XN/node_modules/@aws-cdk/aws-s3-assets/lib/asset.js:30:32)",
+              "AssetCode.bind (/private/var/folders/xh/6kwtj36s0zv32spmbqc7bs280000gn/T/jsii-kernel-Gl17XN/node_modules/@aws-cdk/aws-lambda/lib/code.js:135:26)",
+              "new Function (/private/var/folders/xh/6kwtj36s0zv32spmbqc7bs280000gn/T/jsii-kernel-Gl17XN/node_modules/@aws-cdk/aws-lambda/lib/function.js:68:33)",
+              "SingletonFunction.ensureLambda (/private/var/folders/xh/6kwtj36s0zv32spmbqc7bs280000gn/T/jsii-kernel-Gl17XN/node_modules/@aws-cdk/aws-lambda/lib/singleton-lambda.js:37:16)",
+              "new SingletonFunction (/private/var/folders/xh/6kwtj36s0zv32spmbqc7bs280000gn/T/jsii-kernel-Gl17XN/node_modules/@aws-cdk/aws-lambda/lib/singleton-lambda.js:19:36)",
+              "new LogRetention (/private/var/folders/xh/6kwtj36s0zv32spmbqc7bs280000gn/T/jsii-kernel-Gl17XN/node_modules/@aws-cdk/aws-lambda/lib/log-retention.js:19:26)",
+              "new Function (/private/var/folders/xh/6kwtj36s0zv32spmbqc7bs280000gn/T/jsii-kernel-Gl17XN/node_modules/@aws-cdk/aws-lambda/lib/function.js:109:34)",
+              "/Users/Malte/Documents/CDK/account-setup/.env/lib/python3.7/site-packages/jsii/_embedded/jsii/jsii-runtime.js:7838:49",
+              "Kernel._wrapSandboxCode (/Users/Malte/Documents/CDK/account-setup/.env/lib/python3.7/site-packages/jsii/_embedded/jsii/jsii-runtime.js:8298:20)",
+              "Kernel._create (/Users/Malte/Documents/CDK/account-setup/.env/lib/python3.7/site-packages/jsii/_embedded/jsii/jsii-runtime.js:7838:26)",
+              "Kernel.create (/Users/Malte/Documents/CDK/account-setup/.env/lib/python3.7/site-packages/jsii/_embedded/jsii/jsii-runtime.js:7585:21)",
+              "KernelHost.processRequest (/Users/Malte/Documents/CDK/account-setup/.env/lib/python3.7/site-packages/jsii/_embedded/jsii/jsii-runtime.js:7372:28)",
+              "KernelHost.run (/Users/Malte/Documents/CDK/account-setup/.env/lib/python3.7/site-packages/jsii/_embedded/jsii/jsii-runtime.js:7312:14)",
+              "Immediate._onImmediate (/Users/Malte/Documents/CDK/account-setup/.env/lib/python3.7/site-packages/jsii/_embedded/jsii/jsii-runtime.js:7315:37)",
+              "processImmediate (internal/timers.js:456:21)"
+            ]
+          }
+        ],
+        "/vpcSetUp/AssetParameters/5741f85917ffca30b209ad61e375d3d3bae0457270071f7aca8ca81be19bd22a/S3VersionKey": [
+          {
+            "type": "aws:cdk:logicalId",
+            "data": "AssetParameters5741f85917ffca30b209ad61e375d3d3bae0457270071f7aca8ca81be19bd22aS3VersionKeyB83CC434",
+            "trace": [
+              "new FileAssetParameters (/private/var/folders/xh/6kwtj36s0zv32spmbqc7bs280000gn/T/jsii-kernel-Gl17XN/node_modules/@aws-cdk/core/lib/private/asset-parameters.js:15:35)",
+              "Stack.addFileAsset (/private/var/folders/xh/6kwtj36s0zv32spmbqc7bs280000gn/T/jsii-kernel-Gl17XN/node_modules/@aws-cdk/core/lib/stack.js:360:22)",
+              "new Asset (/private/var/folders/xh/6kwtj36s0zv32spmbqc7bs280000gn/T/jsii-kernel-Gl17XN/node_modules/@aws-cdk/aws-s3-assets/lib/asset.js:30:32)",
+              "AssetCode.bind (/private/var/folders/xh/6kwtj36s0zv32spmbqc7bs280000gn/T/jsii-kernel-Gl17XN/node_modules/@aws-cdk/aws-lambda/lib/code.js:135:26)",
+              "new Function (/private/var/folders/xh/6kwtj36s0zv32spmbqc7bs280000gn/T/jsii-kernel-Gl17XN/node_modules/@aws-cdk/aws-lambda/lib/function.js:68:33)",
+              "SingletonFunction.ensureLambda (/private/var/folders/xh/6kwtj36s0zv32spmbqc7bs280000gn/T/jsii-kernel-Gl17XN/node_modules/@aws-cdk/aws-lambda/lib/singleton-lambda.js:37:16)",
+              "new SingletonFunction (/private/var/folders/xh/6kwtj36s0zv32spmbqc7bs280000gn/T/jsii-kernel-Gl17XN/node_modules/@aws-cdk/aws-lambda/lib/singleton-lambda.js:19:36)",
+              "new LogRetention (/private/var/folders/xh/6kwtj36s0zv32spmbqc7bs280000gn/T/jsii-kernel-Gl17XN/node_modules/@aws-cdk/aws-lambda/lib/log-retention.js:19:26)",
+              "new Function (/private/var/folders/xh/6kwtj36s0zv32spmbqc7bs280000gn/T/jsii-kernel-Gl17XN/node_modules/@aws-cdk/aws-lambda/lib/function.js:109:34)",
+              "/Users/Malte/Documents/CDK/account-setup/.env/lib/python3.7/site-packages/jsii/_embedded/jsii/jsii-runtime.js:7838:49",
+              "Kernel._wrapSandboxCode (/Users/Malte/Documents/CDK/account-setup/.env/lib/python3.7/site-packages/jsii/_embedded/jsii/jsii-runtime.js:8298:20)",
+              "Kernel._create (/Users/Malte/Documents/CDK/account-setup/.env/lib/python3.7/site-packages/jsii/_embedded/jsii/jsii-runtime.js:7838:26)",
+              "Kernel.create (/Users/Malte/Documents/CDK/account-setup/.env/lib/python3.7/site-packages/jsii/_embedded/jsii/jsii-runtime.js:7585:21)",
+              "KernelHost.processRequest (/Users/Malte/Documents/CDK/account-setup/.env/lib/python3.7/site-packages/jsii/_embedded/jsii/jsii-runtime.js:7372:28)",
+              "KernelHost.run (/Users/Malte/Documents/CDK/account-setup/.env/lib/python3.7/site-packages/jsii/_embedded/jsii/jsii-runtime.js:7312:14)",
+              "Immediate._onImmediate (/Users/Malte/Documents/CDK/account-setup/.env/lib/python3.7/site-packages/jsii/_embedded/jsii/jsii-runtime.js:7315:37)",
+              "processImmediate (internal/timers.js:456:21)"
+            ]
+          }
+        ],
+        "/vpcSetUp/AssetParameters/5741f85917ffca30b209ad61e375d3d3bae0457270071f7aca8ca81be19bd22a/ArtifactHash": [
+          {
+            "type": "aws:cdk:logicalId",
+            "data": "AssetParameters5741f85917ffca30b209ad61e375d3d3bae0457270071f7aca8ca81be19bd22aArtifactHash5A536F97",
+            "trace": [
+              "new FileAssetParameters (/private/var/folders/xh/6kwtj36s0zv32spmbqc7bs280000gn/T/jsii-kernel-Gl17XN/node_modules/@aws-cdk/core/lib/private/asset-parameters.js:19:38)",
+              "Stack.addFileAsset (/private/var/folders/xh/6kwtj36s0zv32spmbqc7bs280000gn/T/jsii-kernel-Gl17XN/node_modules/@aws-cdk/core/lib/stack.js:360:22)",
+              "new Asset (/private/var/folders/xh/6kwtj36s0zv32spmbqc7bs280000gn/T/jsii-kernel-Gl17XN/node_modules/@aws-cdk/aws-s3-assets/lib/asset.js:30:32)",
+              "AssetCode.bind (/private/var/folders/xh/6kwtj36s0zv32spmbqc7bs280000gn/T/jsii-kernel-Gl17XN/node_modules/@aws-cdk/aws-lambda/lib/code.js:135:26)",
+              "new Function (/private/var/folders/xh/6kwtj36s0zv32spmbqc7bs280000gn/T/jsii-kernel-Gl17XN/node_modules/@aws-cdk/aws-lambda/lib/function.js:68:33)",
+              "SingletonFunction.ensureLambda (/private/var/folders/xh/6kwtj36s0zv32spmbqc7bs280000gn/T/jsii-kernel-Gl17XN/node_modules/@aws-cdk/aws-lambda/lib/singleton-lambda.js:37:16)",
+              "new SingletonFunction (/private/var/folders/xh/6kwtj36s0zv32spmbqc7bs280000gn/T/jsii-kernel-Gl17XN/node_modules/@aws-cdk/aws-lambda/lib/singleton-lambda.js:19:36)",
+              "new LogRetention (/private/var/folders/xh/6kwtj36s0zv32spmbqc7bs280000gn/T/jsii-kernel-Gl17XN/node_modules/@aws-cdk/aws-lambda/lib/log-retention.js:19:26)",
+              "new Function (/private/var/folders/xh/6kwtj36s0zv32spmbqc7bs280000gn/T/jsii-kernel-Gl17XN/node_modules/@aws-cdk/aws-lambda/lib/function.js:109:34)",
+              "/Users/Malte/Documents/CDK/account-setup/.env/lib/python3.7/site-packages/jsii/_embedded/jsii/jsii-runtime.js:7838:49",
+              "Kernel._wrapSandboxCode (/Users/Malte/Documents/CDK/account-setup/.env/lib/python3.7/site-packages/jsii/_embedded/jsii/jsii-runtime.js:8298:20)",
+              "Kernel._create (/Users/Malte/Documents/CDK/account-setup/.env/lib/python3.7/site-packages/jsii/_embedded/jsii/jsii-runtime.js:7838:26)",
+              "Kernel.create (/Users/Malte/Documents/CDK/account-setup/.env/lib/python3.7/site-packages/jsii/_embedded/jsii/jsii-runtime.js:7585:21)",
+              "KernelHost.processRequest (/Users/Malte/Documents/CDK/account-setup/.env/lib/python3.7/site-packages/jsii/_embedded/jsii/jsii-runtime.js:7372:28)",
+              "KernelHost.run (/Users/Malte/Documents/CDK/account-setup/.env/lib/python3.7/site-packages/jsii/_embedded/jsii/jsii-runtime.js:7312:14)",
+              "Immediate._onImmediate (/Users/Malte/Documents/CDK/account-setup/.env/lib/python3.7/site-packages/jsii/_embedded/jsii/jsii-runtime.js:7315:37)",
+              "processImmediate (internal/timers.js:456:21)"
+            ]
+          }
+        ],
+        "/vpcSetUp/LogRetentionaae0aa3c5b4d4f87b02d85b201efdd8a/ServiceRole/Resource": [
+          {
+            "type": "aws:cdk:logicalId",
+            "data": "LogRetentionaae0aa3c5b4d4f87b02d85b201efdd8aServiceRole9741ECFB",
+            "trace": [
+              "new Role (/private/var/folders/xh/6kwtj36s0zv32spmbqc7bs280000gn/T/jsii-kernel-Gl17XN/node_modules/@aws-cdk/aws-iam/lib/role.js:41:22)",
+              "new Function (/private/var/folders/xh/6kwtj36s0zv32spmbqc7bs280000gn/T/jsii-kernel-Gl17XN/node_modules/@aws-cdk/aws-lambda/lib/function.js:60:35)",
+              "SingletonFunction.ensureLambda (/private/var/folders/xh/6kwtj36s0zv32spmbqc7bs280000gn/T/jsii-kernel-Gl17XN/node_modules/@aws-cdk/aws-lambda/lib/singleton-lambda.js:37:16)",
+              "new SingletonFunction (/private/var/folders/xh/6kwtj36s0zv32spmbqc7bs280000gn/T/jsii-kernel-Gl17XN/node_modules/@aws-cdk/aws-lambda/lib/singleton-lambda.js:19:36)",
+              "new LogRetention (/private/var/folders/xh/6kwtj36s0zv32spmbqc7bs280000gn/T/jsii-kernel-Gl17XN/node_modules/@aws-cdk/aws-lambda/lib/log-retention.js:19:26)",
+              "new Function (/private/var/folders/xh/6kwtj36s0zv32spmbqc7bs280000gn/T/jsii-kernel-Gl17XN/node_modules/@aws-cdk/aws-lambda/lib/function.js:109:34)",
+              "/Users/Malte/Documents/CDK/account-setup/.env/lib/python3.7/site-packages/jsii/_embedded/jsii/jsii-runtime.js:7838:49",
+              "Kernel._wrapSandboxCode (/Users/Malte/Documents/CDK/account-setup/.env/lib/python3.7/site-packages/jsii/_embedded/jsii/jsii-runtime.js:8298:20)",
+              "Kernel._create (/Users/Malte/Documents/CDK/account-setup/.env/lib/python3.7/site-packages/jsii/_embedded/jsii/jsii-runtime.js:7838:26)",
+              "Kernel.create (/Users/Malte/Documents/CDK/account-setup/.env/lib/python3.7/site-packages/jsii/_embedded/jsii/jsii-runtime.js:7585:21)",
+              "KernelHost.processRequest (/Users/Malte/Documents/CDK/account-setup/.env/lib/python3.7/site-packages/jsii/_embedded/jsii/jsii-runtime.js:7372:28)",
+              "KernelHost.run (/Users/Malte/Documents/CDK/account-setup/.env/lib/python3.7/site-packages/jsii/_embedded/jsii/jsii-runtime.js:7312:14)",
+              "Immediate._onImmediate (/Users/Malte/Documents/CDK/account-setup/.env/lib/python3.7/site-packages/jsii/_embedded/jsii/jsii-runtime.js:7315:37)",
+              "processImmediate (internal/timers.js:456:21)"
+            ]
+          }
+        ],
+        "/vpcSetUp/LogRetentionaae0aa3c5b4d4f87b02d85b201efdd8a/ServiceRole/DefaultPolicy/Resource": [
+          {
+            "type": "aws:cdk:logicalId",
+            "data": "LogRetentionaae0aa3c5b4d4f87b02d85b201efdd8aServiceRoleDefaultPolicyADDA7DEB",
+            "trace": [
+              "new Policy (/private/var/folders/xh/6kwtj36s0zv32spmbqc7bs280000gn/T/jsii-kernel-Gl17XN/node_modules/@aws-cdk/aws-iam/lib/policy.js:30:26)",
+              "Role.addToPolicy (/private/var/folders/xh/6kwtj36s0zv32spmbqc7bs280000gn/T/jsii-kernel-Gl17XN/node_modules/@aws-cdk/aws-iam/lib/role.js:160:34)",
+              "SingletonFunction.addToRolePolicy (/private/var/folders/xh/6kwtj36s0zv32spmbqc7bs280000gn/T/jsii-kernel-Gl17XN/node_modules/@aws-cdk/aws-lambda/lib/function-base.js:38:19)",
+              "new LogRetention (/private/var/folders/xh/6kwtj36s0zv32spmbqc7bs280000gn/T/jsii-kernel-Gl17XN/node_modules/@aws-cdk/aws-lambda/lib/log-retention.js:28:18)",
+              "new Function (/private/var/folders/xh/6kwtj36s0zv32spmbqc7bs280000gn/T/jsii-kernel-Gl17XN/node_modules/@aws-cdk/aws-lambda/lib/function.js:109:34)",
+              "/Users/Malte/Documents/CDK/account-setup/.env/lib/python3.7/site-packages/jsii/_embedded/jsii/jsii-runtime.js:7838:49",
+              "Kernel._wrapSandboxCode (/Users/Malte/Documents/CDK/account-setup/.env/lib/python3.7/site-packages/jsii/_embedded/jsii/jsii-runtime.js:8298:20)",
+              "Kernel._create (/Users/Malte/Documents/CDK/account-setup/.env/lib/python3.7/site-packages/jsii/_embedded/jsii/jsii-runtime.js:7838:26)",
+              "Kernel.create (/Users/Malte/Documents/CDK/account-setup/.env/lib/python3.7/site-packages/jsii/_embedded/jsii/jsii-runtime.js:7585:21)",
+              "KernelHost.processRequest (/Users/Malte/Documents/CDK/account-setup/.env/lib/python3.7/site-packages/jsii/_embedded/jsii/jsii-runtime.js:7372:28)",
+              "KernelHost.run (/Users/Malte/Documents/CDK/account-setup/.env/lib/python3.7/site-packages/jsii/_embedded/jsii/jsii-runtime.js:7312:14)",
+              "Immediate._onImmediate (/Users/Malte/Documents/CDK/account-setup/.env/lib/python3.7/site-packages/jsii/_embedded/jsii/jsii-runtime.js:7315:37)",
+              "processImmediate (internal/timers.js:456:21)"
+            ]
+          }
+        ],
+        "/vpcSetUp/LogRetentionaae0aa3c5b4d4f87b02d85b201efdd8a/Resource": [
+          {
+            "type": "aws:cdk:logicalId",
+            "data": "LogRetentionaae0aa3c5b4d4f87b02d85b201efdd8aFD4BFC8A",
+            "trace": [
+              "new Function (/private/var/folders/xh/6kwtj36s0zv32spmbqc7bs280000gn/T/jsii-kernel-Gl17XN/node_modules/@aws-cdk/aws-lambda/lib/function.js:71:26)",
+              "SingletonFunction.ensureLambda (/private/var/folders/xh/6kwtj36s0zv32spmbqc7bs280000gn/T/jsii-kernel-Gl17XN/node_modules/@aws-cdk/aws-lambda/lib/singleton-lambda.js:37:16)",
+              "new SingletonFunction (/private/var/folders/xh/6kwtj36s0zv32spmbqc7bs280000gn/T/jsii-kernel-Gl17XN/node_modules/@aws-cdk/aws-lambda/lib/singleton-lambda.js:19:36)",
+              "new LogRetention (/private/var/folders/xh/6kwtj36s0zv32spmbqc7bs280000gn/T/jsii-kernel-Gl17XN/node_modules/@aws-cdk/aws-lambda/lib/log-retention.js:19:26)",
+              "new Function (/private/var/folders/xh/6kwtj36s0zv32spmbqc7bs280000gn/T/jsii-kernel-Gl17XN/node_modules/@aws-cdk/aws-lambda/lib/function.js:109:34)",
+              "/Users/Malte/Documents/CDK/account-setup/.env/lib/python3.7/site-packages/jsii/_embedded/jsii/jsii-runtime.js:7838:49",
+              "Kernel._wrapSandboxCode (/Users/Malte/Documents/CDK/account-setup/.env/lib/python3.7/site-packages/jsii/_embedded/jsii/jsii-runtime.js:8298:20)",
+              "Kernel._create (/Users/Malte/Documents/CDK/account-setup/.env/lib/python3.7/site-packages/jsii/_embedded/jsii/jsii-runtime.js:7838:26)",
+              "Kernel.create (/Users/Malte/Documents/CDK/account-setup/.env/lib/python3.7/site-packages/jsii/_embedded/jsii/jsii-runtime.js:7585:21)",
+              "KernelHost.processRequest (/Users/Malte/Documents/CDK/account-setup/.env/lib/python3.7/site-packages/jsii/_embedded/jsii/jsii-runtime.js:7372:28)",
+              "KernelHost.run (/Users/Malte/Documents/CDK/account-setup/.env/lib/python3.7/site-packages/jsii/_embedded/jsii/jsii-runtime.js:7312:14)",
+              "Immediate._onImmediate (/Users/Malte/Documents/CDK/account-setup/.env/lib/python3.7/site-packages/jsii/_embedded/jsii/jsii-runtime.js:7315:37)",
+              "processImmediate (internal/timers.js:456:21)"
+            ]
+          }
+        ],
+        "/vpcSetUp/Schedule_VPC_Check_Lambda/Resource": [
+          {
+            "type": "aws:cdk:logicalId",
+            "data": "ScheduleVPCCheckLambdaFC6ABEDF",
+            "trace": [
+              "new Rule (/private/var/folders/xh/6kwtj36s0zv32spmbqc7bs280000gn/T/jsii-kernel-Gl17XN/node_modules/@aws-cdk/aws-events/lib/rule.js:25:26)",
+              "/Users/Malte/Documents/CDK/account-setup/.env/lib/python3.7/site-packages/jsii/_embedded/jsii/jsii-runtime.js:7838:49",
+              "Kernel._wrapSandboxCode (/Users/Malte/Documents/CDK/account-setup/.env/lib/python3.7/site-packages/jsii/_embedded/jsii/jsii-runtime.js:8298:20)",
+              "Kernel._create (/Users/Malte/Documents/CDK/account-setup/.env/lib/python3.7/site-packages/jsii/_embedded/jsii/jsii-runtime.js:7838:26)",
+              "Kernel.create (/Users/Malte/Documents/CDK/account-setup/.env/lib/python3.7/site-packages/jsii/_embedded/jsii/jsii-runtime.js:7585:21)",
+              "KernelHost.processRequest (/Users/Malte/Documents/CDK/account-setup/.env/lib/python3.7/site-packages/jsii/_embedded/jsii/jsii-runtime.js:7372:28)",
+              "KernelHost.run (/Users/Malte/Documents/CDK/account-setup/.env/lib/python3.7/site-packages/jsii/_embedded/jsii/jsii-runtime.js:7312:14)",
+              "Immediate._onImmediate (/Users/Malte/Documents/CDK/account-setup/.env/lib/python3.7/site-packages/jsii/_embedded/jsii/jsii-runtime.js:7315:37)",
+              "processImmediate (internal/timers.js:456:21)"
+            ]
+          }
+        ]
+      }
+    }
+  },
+  "runtime": {
+    "libraries": {
+      "@aws-cdk/cx-api": "1.27.0",
+      "@aws-cdk/core": "1.27.0",
+      "@aws-cdk/region-info": "1.27.0",
+      "@aws-cdk/aws-iam": "1.27.0",
+      "@aws-cdk/aws-cloudwatch": "1.27.0",
+      "@aws-cdk/aws-logs": "1.27.0",
+      "@aws-cdk/aws-events": "1.27.0",
+      "@aws-cdk/aws-kms": "1.27.0",
+      "@aws-cdk/aws-s3": "1.27.0",
+      "@aws-cdk/aws-ssm": "1.27.0",
+      "@aws-cdk/aws-ec2": "1.27.0",
+      "@aws-cdk/assets": "1.27.0",
+      "@aws-cdk/aws-s3-assets": "1.27.0",
+      "@aws-cdk/aws-sqs": "1.27.0",
+      "@aws-cdk/aws-lambda": "1.27.0",
+      "@aws-cdk/aws-sns": "1.27.0",
+      "@aws-cdk/aws-sns-subscriptions": "1.27.0",
+      "@aws-cdk/aws-autoscaling-common": "1.27.0",
+      "@aws-cdk/aws-applicationautoscaling": "1.27.0",
+      "@aws-cdk/aws-elasticloadbalancing": "1.27.0",
+      "@aws-cdk/aws-cloudformation": "1.27.0",
+      "@aws-cdk/aws-route53": "1.27.0",
+      "@aws-cdk/aws-certificatemanager": "1.27.0",
+      "@aws-cdk/aws-elasticloadbalancingv2": "1.27.0",
+      "@aws-cdk/aws-autoscaling": "1.27.0",
+      "@aws-cdk/aws-cloudwatch-actions": "1.27.0",
+      "@aws-cdk/aws-stepfunctions": "1.27.0",
+      "@aws-cdk/aws-ecr": "1.27.0",
+      "@aws-cdk/aws-ecr-assets": "1.27.0",
+      "@aws-cdk/aws-autoscaling-hooktargets": "1.27.0",
+      "@aws-cdk/aws-apigateway": "1.27.0",
+      "@aws-cdk/aws-cloudfront": "1.27.0",
+      "@aws-cdk/aws-route53-targets": "1.27.0",
+      "@aws-cdk/aws-sam": "1.27.0",
+      "@aws-cdk/aws-secretsmanager": "1.27.0",
+      "@aws-cdk/aws-servicediscovery": "1.27.0",
+      "@aws-cdk/aws-ecs": "1.27.0",
+      "@aws-cdk/aws-glue": "1.27.0",
+      "@aws-cdk/aws-stepfunctions-tasks": "1.27.0",
+      "@aws-cdk/custom-resources": "1.27.0",
+      "@aws-cdk/aws-codecommit": "1.27.0",
+      "@aws-cdk/aws-codebuild": "1.27.0",
+      "@aws-cdk/aws-codepipeline": "1.27.0",
+      "@aws-cdk/aws-events-targets": "1.27.0",
+      "@aws-cdk/aws-cloudtrail": "1.27.0",
+      "jsii-runtime": "Python/3.7.6"
+    }
+  }
+}

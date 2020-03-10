@@ -1,0 +1,759 @@
+{
+  "Parameters": {
+    "AllowUsersToChangePassword": {
+      "Type": "String",
+      "Default": true,
+      "AllowedValues": [
+        "true",
+        "false"
+      ],
+      "Description": "You can permit all IAM users in your account to use the IAM console to change their own passwords."
+    },
+    "HardExpiry": {
+      "Type": "String",
+      "Default": false,
+      "AllowedValues": [
+        "true",
+        "false"
+      ],
+      "Description": "You can prevent IAM users from choosing a new password after their current password has expired."
+    },
+    "MaxPasswordAge": {
+      "Type": "Number",
+      "Default": "90",
+      "ConstraintDescription": "Must be in the range [0-1095]",
+      "Description": "You can set IAM user passwords to be valid for only the specified number of days. Choose 0 if you don not want passwords to expire.",
+      "MaxValue": 1095,
+      "MinValue": 0
+    },
+    "MinimumPasswordLength": {
+      "Type": "Number",
+      "Default": "16",
+      "ConstraintDescription": "Must be in the range [6-128]",
+      "Description": "You can specify the minimum number of characters allowed in an IAM user password.",
+      "MaxValue": 1095,
+      "MinValue": 16
+    },
+    "PasswordReusePrevention": {
+      "Type": "Number",
+      "Default": "5",
+      "ConstraintDescription": "Must be in the range [0-24]",
+      "Description": "You can prevent IAM users from reusing a specified number of previous passwords.",
+      "MaxValue": 24,
+      "MinValue": 0
+    },
+    "RequireLowercaseCharacters": {
+      "Type": "String",
+      "Default": true,
+      "AllowedValues": [
+        "true",
+        "false"
+      ],
+      "Description": "You can require that IAM user passwords contain at least one lowercase character from the ISO basic Latin alphabet (a to z)."
+    },
+    "RequireNumbersCharacters": {
+      "Type": "String",
+      "Default": true,
+      "AllowedValues": [
+        "true",
+        "false"
+      ],
+      "Description": "You can require that IAM user passwords contain at least one numeric character (0 to 9)."
+    },
+    "RequireSymbolsCharacters": {
+      "Type": "String",
+      "Default": true,
+      "AllowedValues": [
+        "true",
+        "false"
+      ],
+      "Description": "You can require that IAM user passwords contain at least one of the following nonalphanumeric characters: '! @ # $ % ^ & * ( ) _ + - = [ ] {} |'"
+    },
+    "RequireUppercaseCharacters": {
+      "Type": "String",
+      "Default": true,
+      "AllowedValues": [
+        "true",
+        "false"
+      ],
+      "Description": "You can require that IAM user passwords contain at least one uppercase character from the ISO basic Latin alphabet (A to Z)."
+    },
+    "LogsRetentionInDays": {
+      "Type": "Number",
+      "Default": "14",
+      "AllowedValues": [
+        "1",
+        "3",
+        "5",
+        "7",
+        "14",
+        "30",
+        "60",
+        "90",
+        "120",
+        "150",
+        "180",
+        "365",
+        "400",
+        "545",
+        "731",
+        "1827",
+        "3653"
+      ],
+      "Description": "Specifies the number of days you want to retain log events in the specified log group."
+    },
+    "AssetParameters7619786189c644b669167aa17ba2aaac88239954ffa3eecc195e75c29a0129a4S3Bucket63C4565C": {
+      "Type": "String",
+      "Description": "S3 bucket for asset \"7619786189c644b669167aa17ba2aaac88239954ffa3eecc195e75c29a0129a4\""
+    },
+    "AssetParameters7619786189c644b669167aa17ba2aaac88239954ffa3eecc195e75c29a0129a4S3VersionKey1C928B80": {
+      "Type": "String",
+      "Description": "S3 key for asset version \"7619786189c644b669167aa17ba2aaac88239954ffa3eecc195e75c29a0129a4\""
+    },
+    "AssetParameters7619786189c644b669167aa17ba2aaac88239954ffa3eecc195e75c29a0129a4ArtifactHashFB9ABFC0": {
+      "Type": "String",
+      "Description": "Artifact hash for asset \"7619786189c644b669167aa17ba2aaac88239954ffa3eecc195e75c29a0129a4\""
+    },
+    "useremail": {
+      "Type": "String",
+      "Default": "aws-mwalkowiak@gmx.de",
+      "Description": "A valid email address"
+    }
+  },
+  "Resources": {
+    "SetPasswordPolicyServiceRole07D7CF76": {
+      "Type": "AWS::IAM::Role",
+      "Properties": {
+        "AssumeRolePolicyDocument": {
+          "Statement": [
+            {
+              "Action": "sts:AssumeRole",
+              "Effect": "Allow",
+              "Principal": {
+                "Service": "lambda.amazonaws.com"
+              }
+            }
+          ],
+          "Version": "2012-10-17"
+        },
+        "ManagedPolicyArns": [
+          {
+            "Fn::Join": [
+              "",
+              [
+                "arn:",
+                {
+                  "Ref": "AWS::Partition"
+                },
+                ":iam::aws:policy/service-role/AWSLambdaBasicExecutionRole"
+              ]
+            ]
+          }
+        ]
+      },
+      "Metadata": {
+        "aws:cdk:path": "account-setup-v2/Set_Password_Policy/ServiceRole/Resource"
+      }
+    },
+    "SetPasswordPolicyServiceRoleDefaultPolicy6A127D21": {
+      "Type": "AWS::IAM::Policy",
+      "Properties": {
+        "PolicyDocument": {
+          "Statement": [
+            {
+              "Action": [
+                "iam:GetAccountPasswordPolicy",
+                "iam:UpdateAccountPasswordPolicy",
+                "iam:DeleteAccountPasswordPolicy"
+              ],
+              "Effect": "Allow",
+              "Resource": "*"
+            }
+          ],
+          "Version": "2012-10-17"
+        },
+        "PolicyName": "SetPasswordPolicyServiceRoleDefaultPolicy6A127D21",
+        "Roles": [
+          {
+            "Ref": "SetPasswordPolicyServiceRole07D7CF76"
+          }
+        ]
+      },
+      "Metadata": {
+        "aws:cdk:path": "account-setup-v2/Set_Password_Policy/ServiceRole/DefaultPolicy/Resource"
+      }
+    },
+    "SetPasswordPolicy62BCABC3": {
+      "Type": "AWS::Lambda::Function",
+      "Properties": {
+        "Code": {
+          "S3Bucket": {
+            "Ref": "AssetParameters7619786189c644b669167aa17ba2aaac88239954ffa3eecc195e75c29a0129a4S3Bucket63C4565C"
+          },
+          "S3Key": {
+            "Fn::Join": [
+              "",
+              [
+                {
+                  "Fn::Select": [
+                    0,
+                    {
+                      "Fn::Split": [
+                        "||",
+                        {
+                          "Ref": "AssetParameters7619786189c644b669167aa17ba2aaac88239954ffa3eecc195e75c29a0129a4S3VersionKey1C928B80"
+                        }
+                      ]
+                    }
+                  ]
+                },
+                {
+                  "Fn::Select": [
+                    1,
+                    {
+                      "Fn::Split": [
+                        "||",
+                        {
+                          "Ref": "AssetParameters7619786189c644b669167aa17ba2aaac88239954ffa3eecc195e75c29a0129a4S3VersionKey1C928B80"
+                        }
+                      ]
+                    }
+                  ]
+                }
+              ]
+            ]
+          }
+        },
+        "Handler": "index.handler",
+        "Role": {
+          "Fn::GetAtt": [
+            "SetPasswordPolicyServiceRole07D7CF76",
+            "Arn"
+          ]
+        },
+        "Runtime": "nodejs12.x",
+        "FunctionName": "Lambda_Set_Password_Policy",
+        "MemorySize": 128,
+        "Timeout": 30
+      },
+      "DependsOn": [
+        "SetPasswordPolicyServiceRoleDefaultPolicy6A127D21",
+        "SetPasswordPolicyServiceRole07D7CF76"
+      ],
+      "Metadata": {
+        "aws:cdk:path": "account-setup-v2/Set_Password_Policy/Resource",
+        "aws:asset:path": "asset.7619786189c644b669167aa17ba2aaac88239954ffa3eecc195e75c29a0129a4",
+        "aws:asset:property": "Code"
+      }
+    },
+    "SetPasswordPolicyEventInvokeConfig9DDD223C": {
+      "Type": "AWS::Lambda::EventInvokeConfig",
+      "Properties": {
+        "FunctionName": {
+          "Ref": "SetPasswordPolicy62BCABC3"
+        },
+        "Qualifier": "$LATEST",
+        "MaximumRetryAttempts": 1
+      },
+      "Metadata": {
+        "aws:cdk:path": "account-setup-v2/Set_Password_Policy/EventInvokeConfig/Resource"
+      }
+    },
+    "UpdatePasswordPolicy": {
+      "Type": "AWS::CloudFormation::CustomResource",
+      "Properties": {
+        "ServiceToken": {
+          "Fn::GetAtt": [
+            "SetPasswordPolicy62BCABC3",
+            "Arn"
+          ]
+        },
+        "HardExpiry": {
+          "Ref": "HardExpiry"
+        },
+        "AllowUsersToChangePassword": {
+          "Ref": "AllowUsersToChangePassword"
+        },
+        "MaxPasswordAge": {
+          "Ref": "MaxPasswordAge"
+        },
+        "MinimumPasswordLength": {
+          "Ref": "MinimumPasswordLength"
+        },
+        "PasswordReusePrevention": {
+          "Ref": "PasswordReusePrevention"
+        },
+        "RequireLowercaseCharacters": {
+          "Ref": "RequireLowercaseCharacters"
+        },
+        "RequireNumbers": {
+          "Ref": "RequireNumbersCharacters"
+        },
+        "RequireSymbols": {
+          "Ref": "RequireSymbolsCharacters"
+        },
+        "RequireUppercaseCharacters": {
+          "Ref": "RequireUppercaseCharacters"
+        }
+      },
+      "UpdateReplacePolicy": "Delete",
+      "DeletionPolicy": "Delete",
+      "Metadata": {
+        "aws:cdk:path": "account-setup-v2/Update_Password_Policy/Default"
+      }
+    },
+    "BasicVpc30C9C2CB": {
+      "Type": "AWS::EC2::VPC",
+      "Properties": {
+        "CidrBlock": "192.168.0.0/20",
+        "EnableDnsHostnames": true,
+        "EnableDnsSupport": true,
+        "InstanceTenancy": "default",
+        "Tags": [
+          {
+            "Key": "Name",
+            "Value": "account-setup-v2/Basic_Vpc"
+          }
+        ]
+      },
+      "Metadata": {
+        "aws:cdk:path": "account-setup-v2/Basic_Vpc/Resource"
+      }
+    },
+    "BasicVpcPublicSubnet1Subnet5FD9DDC2": {
+      "Type": "AWS::EC2::Subnet",
+      "Properties": {
+        "CidrBlock": "192.168.0.0/22",
+        "VpcId": {
+          "Ref": "BasicVpc30C9C2CB"
+        },
+        "AvailabilityZone": {
+          "Fn::Select": [
+            0,
+            {
+              "Fn::GetAZs": ""
+            }
+          ]
+        },
+        "MapPublicIpOnLaunch": true,
+        "Tags": [
+          {
+            "Key": "Name",
+            "Value": "account-setup-v2/Basic_Vpc/PublicSubnet1"
+          },
+          {
+            "Key": "aws-cdk:subnet-name",
+            "Value": "Public"
+          },
+          {
+            "Key": "aws-cdk:subnet-type",
+            "Value": "Public"
+          }
+        ]
+      },
+      "Metadata": {
+        "aws:cdk:path": "account-setup-v2/Basic_Vpc/PublicSubnet1/Subnet"
+      }
+    },
+    "BasicVpcPublicSubnet1RouteTable7B328207": {
+      "Type": "AWS::EC2::RouteTable",
+      "Properties": {
+        "VpcId": {
+          "Ref": "BasicVpc30C9C2CB"
+        },
+        "Tags": [
+          {
+            "Key": "Name",
+            "Value": "account-setup-v2/Basic_Vpc/PublicSubnet1"
+          }
+        ]
+      },
+      "Metadata": {
+        "aws:cdk:path": "account-setup-v2/Basic_Vpc/PublicSubnet1/RouteTable"
+      }
+    },
+    "BasicVpcPublicSubnet1RouteTableAssociation82DE7634": {
+      "Type": "AWS::EC2::SubnetRouteTableAssociation",
+      "Properties": {
+        "RouteTableId": {
+          "Ref": "BasicVpcPublicSubnet1RouteTable7B328207"
+        },
+        "SubnetId": {
+          "Ref": "BasicVpcPublicSubnet1Subnet5FD9DDC2"
+        }
+      },
+      "Metadata": {
+        "aws:cdk:path": "account-setup-v2/Basic_Vpc/PublicSubnet1/RouteTableAssociation"
+      }
+    },
+    "BasicVpcPublicSubnet1DefaultRouteDCC9CB12": {
+      "Type": "AWS::EC2::Route",
+      "Properties": {
+        "RouteTableId": {
+          "Ref": "BasicVpcPublicSubnet1RouteTable7B328207"
+        },
+        "DestinationCidrBlock": "0.0.0.0/0",
+        "GatewayId": {
+          "Ref": "BasicVpcIGW0CB62AA2"
+        }
+      },
+      "DependsOn": [
+        "BasicVpcVPCGWD7AB5A69"
+      ],
+      "Metadata": {
+        "aws:cdk:path": "account-setup-v2/Basic_Vpc/PublicSubnet1/DefaultRoute"
+      }
+    },
+    "BasicVpcPublicSubnet2SubnetF45B34F3": {
+      "Type": "AWS::EC2::Subnet",
+      "Properties": {
+        "CidrBlock": "192.168.4.0/22",
+        "VpcId": {
+          "Ref": "BasicVpc30C9C2CB"
+        },
+        "AvailabilityZone": {
+          "Fn::Select": [
+            1,
+            {
+              "Fn::GetAZs": ""
+            }
+          ]
+        },
+        "MapPublicIpOnLaunch": true,
+        "Tags": [
+          {
+            "Key": "Name",
+            "Value": "account-setup-v2/Basic_Vpc/PublicSubnet2"
+          },
+          {
+            "Key": "aws-cdk:subnet-name",
+            "Value": "Public"
+          },
+          {
+            "Key": "aws-cdk:subnet-type",
+            "Value": "Public"
+          }
+        ]
+      },
+      "Metadata": {
+        "aws:cdk:path": "account-setup-v2/Basic_Vpc/PublicSubnet2/Subnet"
+      }
+    },
+    "BasicVpcPublicSubnet2RouteTableF66ABCD4": {
+      "Type": "AWS::EC2::RouteTable",
+      "Properties": {
+        "VpcId": {
+          "Ref": "BasicVpc30C9C2CB"
+        },
+        "Tags": [
+          {
+            "Key": "Name",
+            "Value": "account-setup-v2/Basic_Vpc/PublicSubnet2"
+          }
+        ]
+      },
+      "Metadata": {
+        "aws:cdk:path": "account-setup-v2/Basic_Vpc/PublicSubnet2/RouteTable"
+      }
+    },
+    "BasicVpcPublicSubnet2RouteTableAssociation3301450B": {
+      "Type": "AWS::EC2::SubnetRouteTableAssociation",
+      "Properties": {
+        "RouteTableId": {
+          "Ref": "BasicVpcPublicSubnet2RouteTableF66ABCD4"
+        },
+        "SubnetId": {
+          "Ref": "BasicVpcPublicSubnet2SubnetF45B34F3"
+        }
+      },
+      "Metadata": {
+        "aws:cdk:path": "account-setup-v2/Basic_Vpc/PublicSubnet2/RouteTableAssociation"
+      }
+    },
+    "BasicVpcPublicSubnet2DefaultRoute325F1898": {
+      "Type": "AWS::EC2::Route",
+      "Properties": {
+        "RouteTableId": {
+          "Ref": "BasicVpcPublicSubnet2RouteTableF66ABCD4"
+        },
+        "DestinationCidrBlock": "0.0.0.0/0",
+        "GatewayId": {
+          "Ref": "BasicVpcIGW0CB62AA2"
+        }
+      },
+      "DependsOn": [
+        "BasicVpcVPCGWD7AB5A69"
+      ],
+      "Metadata": {
+        "aws:cdk:path": "account-setup-v2/Basic_Vpc/PublicSubnet2/DefaultRoute"
+      }
+    },
+    "BasicVpcPrivateSubnet1SubnetA17E648A": {
+      "Type": "AWS::EC2::Subnet",
+      "Properties": {
+        "CidrBlock": "192.168.8.0/22",
+        "VpcId": {
+          "Ref": "BasicVpc30C9C2CB"
+        },
+        "AvailabilityZone": {
+          "Fn::Select": [
+            0,
+            {
+              "Fn::GetAZs": ""
+            }
+          ]
+        },
+        "MapPublicIpOnLaunch": false,
+        "Tags": [
+          {
+            "Key": "Name",
+            "Value": "account-setup-v2/Basic_Vpc/PrivateSubnet1"
+          },
+          {
+            "Key": "aws-cdk:subnet-name",
+            "Value": "Private"
+          },
+          {
+            "Key": "aws-cdk:subnet-type",
+            "Value": "Isolated"
+          }
+        ]
+      },
+      "Metadata": {
+        "aws:cdk:path": "account-setup-v2/Basic_Vpc/PrivateSubnet1/Subnet"
+      }
+    },
+    "BasicVpcPrivateSubnet1RouteTableDDD2C414": {
+      "Type": "AWS::EC2::RouteTable",
+      "Properties": {
+        "VpcId": {
+          "Ref": "BasicVpc30C9C2CB"
+        },
+        "Tags": [
+          {
+            "Key": "Name",
+            "Value": "account-setup-v2/Basic_Vpc/PrivateSubnet1"
+          }
+        ]
+      },
+      "Metadata": {
+        "aws:cdk:path": "account-setup-v2/Basic_Vpc/PrivateSubnet1/RouteTable"
+      }
+    },
+    "BasicVpcPrivateSubnet1RouteTableAssociation759DA127": {
+      "Type": "AWS::EC2::SubnetRouteTableAssociation",
+      "Properties": {
+        "RouteTableId": {
+          "Ref": "BasicVpcPrivateSubnet1RouteTableDDD2C414"
+        },
+        "SubnetId": {
+          "Ref": "BasicVpcPrivateSubnet1SubnetA17E648A"
+        }
+      },
+      "Metadata": {
+        "aws:cdk:path": "account-setup-v2/Basic_Vpc/PrivateSubnet1/RouteTableAssociation"
+      }
+    },
+    "BasicVpcPrivateSubnet2Subnet8E02F4D9": {
+      "Type": "AWS::EC2::Subnet",
+      "Properties": {
+        "CidrBlock": "192.168.12.0/22",
+        "VpcId": {
+          "Ref": "BasicVpc30C9C2CB"
+        },
+        "AvailabilityZone": {
+          "Fn::Select": [
+            1,
+            {
+              "Fn::GetAZs": ""
+            }
+          ]
+        },
+        "MapPublicIpOnLaunch": false,
+        "Tags": [
+          {
+            "Key": "Name",
+            "Value": "account-setup-v2/Basic_Vpc/PrivateSubnet2"
+          },
+          {
+            "Key": "aws-cdk:subnet-name",
+            "Value": "Private"
+          },
+          {
+            "Key": "aws-cdk:subnet-type",
+            "Value": "Isolated"
+          }
+        ]
+      },
+      "Metadata": {
+        "aws:cdk:path": "account-setup-v2/Basic_Vpc/PrivateSubnet2/Subnet"
+      }
+    },
+    "BasicVpcPrivateSubnet2RouteTable12844C56": {
+      "Type": "AWS::EC2::RouteTable",
+      "Properties": {
+        "VpcId": {
+          "Ref": "BasicVpc30C9C2CB"
+        },
+        "Tags": [
+          {
+            "Key": "Name",
+            "Value": "account-setup-v2/Basic_Vpc/PrivateSubnet2"
+          }
+        ]
+      },
+      "Metadata": {
+        "aws:cdk:path": "account-setup-v2/Basic_Vpc/PrivateSubnet2/RouteTable"
+      }
+    },
+    "BasicVpcPrivateSubnet2RouteTableAssociation88765D78": {
+      "Type": "AWS::EC2::SubnetRouteTableAssociation",
+      "Properties": {
+        "RouteTableId": {
+          "Ref": "BasicVpcPrivateSubnet2RouteTable12844C56"
+        },
+        "SubnetId": {
+          "Ref": "BasicVpcPrivateSubnet2Subnet8E02F4D9"
+        }
+      },
+      "Metadata": {
+        "aws:cdk:path": "account-setup-v2/Basic_Vpc/PrivateSubnet2/RouteTableAssociation"
+      }
+    },
+    "BasicVpcIGW0CB62AA2": {
+      "Type": "AWS::EC2::InternetGateway",
+      "Properties": {
+        "Tags": [
+          {
+            "Key": "Name",
+            "Value": "account-setup-v2/Basic_Vpc"
+          }
+        ]
+      },
+      "Metadata": {
+        "aws:cdk:path": "account-setup-v2/Basic_Vpc/IGW"
+      }
+    },
+    "BasicVpcVPCGWD7AB5A69": {
+      "Type": "AWS::EC2::VPCGatewayAttachment",
+      "Properties": {
+        "VpcId": {
+          "Ref": "BasicVpc30C9C2CB"
+        },
+        "InternetGatewayId": {
+          "Ref": "BasicVpcIGW0CB62AA2"
+        }
+      },
+      "Metadata": {
+        "aws:cdk:path": "account-setup-v2/Basic_Vpc/VPCGW"
+      }
+    },
+    "SandBoxAdminUserGroupF0F4A0DA": {
+      "Type": "AWS::IAM::Group",
+      "Properties": {
+        "ManagedPolicyArns": [
+          {
+            "Fn::Join": [
+              "",
+              [
+                "arn:",
+                {
+                  "Ref": "AWS::Partition"
+                },
+                ":iam::aws:policy/AdministratorAccess"
+              ]
+            ]
+          }
+        ]
+      },
+      "Metadata": {
+        "aws:cdk:path": "account-setup-v2/SandBox_Admin_User_Group/Resource"
+      }
+    },
+    "LimitSandboxAdminGroup70A710EA": {
+      "Type": "AWS::IAM::Policy",
+      "Properties": {
+        "PolicyDocument": {
+          "Statement": [
+            {
+              "Action": [
+                "ec2:*Reserved*",
+                "dynamodb:*Reserved*",
+                "rds:*Reserved*",
+                "elasticache:*Reserved*",
+                "redshift:*Reserved*",
+                "elasticsearch:*Reserved*",
+                "cloudfront:*Reserved*",
+                "emr:*Reserved*"
+              ],
+              "Effect": "Deny",
+              "Resource": "*"
+            }
+          ],
+          "Version": "2012-10-17"
+        },
+        "PolicyName": "LimitSandboxAdminGroup70A710EA",
+        "Groups": [
+          {
+            "Ref": "SandBoxAdminUserGroupF0F4A0DA"
+          }
+        ]
+      },
+      "Metadata": {
+        "aws:cdk:path": "account-setup-v2/Limit_Sandbox_Admin_Group/Resource"
+      }
+    },
+    "BillingTopicBD902DD9": {
+      "Type": "AWS::SNS::Topic",
+      "Properties": {
+        "DisplayName": "BillingAllertTopic",
+        "TopicName": "BillingAllertTopic"
+      },
+      "Metadata": {
+        "aws:cdk:path": "account-setup-v2/Billing_Topic/Resource"
+      }
+    },
+    "BillingTopicSubscription": {
+      "Type": "AWS::SNS::Subscription",
+      "Properties": {
+        "Protocol": "email",
+        "TopicArn": {
+          "Ref": "BillingTopicBD902DD9"
+        },
+        "Endpoint": {
+          "Ref": "useremail"
+        }
+      },
+      "Metadata": {
+        "aws:cdk:path": "account-setup-v2/Billing_Topic_Subscription"
+      }
+    },
+    "BillingAlert5DollarsDB575F70": {
+      "Type": "AWS::CloudWatch::Alarm",
+      "Properties": {
+        "ComparisonOperator": "GreaterThanThreshold",
+        "EvaluationPeriods": 1,
+        "AlarmActions": [
+          {
+            "Ref": "BillingTopicBD902DD9"
+          }
+        ],
+        "AlarmDescription": "If costs are greater then 5$ within 6 hours, this alarm will be triggered.",
+        "Dimensions": [
+          {
+            "Name": "Currency",
+            "Value": "USD"
+          }
+        ],
+        "MetricName": "Estimated_Charges",
+        "Namespace": "AWS/Billing",
+        "Period": 21600,
+        "Statistic": "Maximum",
+        "Threshold": 5
+      },
+      "Metadata": {
+        "aws:cdk:path": "account-setup-v2/Billing_Alert5_Dollars/Resource"
+      }
+    }
+  }
+}

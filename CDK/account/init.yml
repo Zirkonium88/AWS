@@ -1,0 +1,635 @@
+Description: Sets some basic accounts settings
+Parameters:
+  AllowUsersToChangePassword:
+    Type: String
+    Default: true
+    AllowedValues:
+      - "true"
+      - "false"
+    Description: You can permit all IAM users in your account to use the IAM console to change their own passwords.
+  HardExpiry:
+    Type: String
+    Default: false
+    AllowedValues:
+      - "true"
+      - "false"
+    Description: You can prevent IAM users from choosing a new password after their current password has expired.
+  MaxPasswordAge:
+    Type: Number
+    Default: "90"
+    ConstraintDescription: Must be in the range [0-1095]
+    Description: You can set IAM user passwords to be valid for only the specified number of days. Choose 0 if you don not want passwords to expire.
+    MaxValue: 1095
+    MinValue: 0
+  MinimumPasswordLength:
+    Type: Number
+    Default: "16"
+    ConstraintDescription: Must be in the range [6-128]
+    Description: You can specify the minimum number of characters allowed in an IAM user password.
+    MaxValue: 1095
+    MinValue: 16
+  PasswordReusePrevention:
+    Type: Number
+    Default: "5"
+    ConstraintDescription: Must be in the range [0-24]
+    Description: You can prevent IAM users from reusing a specified number of previous passwords.
+    MaxValue: 24
+    MinValue: 0
+  RequireLowercaseCharacters:
+    Type: String
+    Default: true
+    AllowedValues:
+      - "true"
+      - "false"
+    Description: You can require that IAM user passwords contain at least one lowercase character from the ISO basic Latin alphabet (a to z).
+  RequireNumbersCharacters:
+    Type: String
+    Default: true
+    AllowedValues:
+      - "true"
+      - "false"
+    Description: You can require that IAM user passwords contain at least one numeric character (0 to 9).
+  RequireSymbolsCharacters:
+    Type: String
+    Default: true
+    AllowedValues:
+      - "true"
+      - "false"
+    Description: "You can require that IAM user passwords contain at least one of the following nonalphanumeric characters: '! @ # $ % ^ & * ( ) _ + - = [ ] {} |'"
+  RequireUppercaseCharacters:
+    Type: String
+    Default: true
+    AllowedValues:
+      - "true"
+      - "false"
+    Description: You can require that IAM user passwords contain at least one uppercase character from the ISO basic Latin alphabet (A to Z).
+  AssetParameters5741f85917ffca30b209ad61e375d3d3bae0457270071f7aca8ca81be19bd22aS3Bucket4E933C7F:
+    Type: String
+    Description: S3 bucket for asset "5741f85917ffca30b209ad61e375d3d3bae0457270071f7aca8ca81be19bd22a"
+  AssetParameters5741f85917ffca30b209ad61e375d3d3bae0457270071f7aca8ca81be19bd22aS3VersionKeyB83CC434:
+    Type: String
+    Description: S3 key for asset version "5741f85917ffca30b209ad61e375d3d3bae0457270071f7aca8ca81be19bd22a"
+  AssetParameters5741f85917ffca30b209ad61e375d3d3bae0457270071f7aca8ca81be19bd22aArtifactHash5A536F97:
+    Type: String
+    Description: Artifact hash for asset "5741f85917ffca30b209ad61e375d3d3bae0457270071f7aca8ca81be19bd22a"
+  AssetParameters6383df60cc1b99de7b175befae3f0ea1dfa7ef89a2afae556140dcf51c8d17b7S3BucketC2E03481:
+    Type: String
+    Description: S3 bucket for asset "6383df60cc1b99de7b175befae3f0ea1dfa7ef89a2afae556140dcf51c8d17b7"
+  AssetParameters6383df60cc1b99de7b175befae3f0ea1dfa7ef89a2afae556140dcf51c8d17b7S3VersionKey71106FD8:
+    Type: String
+    Description: S3 key for asset version "6383df60cc1b99de7b175befae3f0ea1dfa7ef89a2afae556140dcf51c8d17b7"
+  AssetParameters6383df60cc1b99de7b175befae3f0ea1dfa7ef89a2afae556140dcf51c8d17b7ArtifactHash1D4B4D91:
+    Type: String
+    Description: Artifact hash for asset "6383df60cc1b99de7b175befae3f0ea1dfa7ef89a2afae556140dcf51c8d17b7"
+  useremail:
+    Type: String
+    Default: aws-mwalkowiak@gmx.de
+    Description: A valid email address
+Resources:
+  SetPasswordPolicyServiceRole07D7CF76:
+    Type: AWS::IAM::Role
+    Properties:
+      AssumeRolePolicyDocument:
+        Statement:
+          - Action: sts:AssumeRole
+            Effect: Allow
+            Principal:
+              Service: lambda.amazonaws.com
+        Version: "2012-10-17"
+      ManagedPolicyArns:
+        - Fn::Join:
+            - ""
+            - - "arn:"
+              - Ref: AWS::Partition
+              - :iam::aws:policy/service-role/AWSLambdaBasicExecutionRole
+    Metadata:
+      aws:cdk:path: accountSetUp/Set_Password_Policy/ServiceRole/Resource
+  SetPasswordPolicyServiceRoleDefaultPolicy6A127D21:
+    Type: AWS::IAM::Policy
+    Properties:
+      PolicyDocument:
+        Statement:
+          - Action:
+              - iam:GetAccountPasswordPolicy
+              - iam:UpdateAccountPasswordPolicy
+              - iam:DeleteAccountPasswordPolicy
+            Effect: Allow
+            Resource: "*"
+        Version: "2012-10-17"
+      PolicyName: SetPasswordPolicyServiceRoleDefaultPolicy6A127D21
+      Roles:
+        - Ref: SetPasswordPolicyServiceRole07D7CF76
+    Metadata:
+      aws:cdk:path: accountSetUp/Set_Password_Policy/ServiceRole/DefaultPolicy/Resource
+  SetPasswordPolicy62BCABC3:
+    Type: AWS::Lambda::Function
+    Properties:
+      Code:
+        ZipFile: >-
+          'use strict';
+
+          const AWS = require('aws-sdk');
+
+          const response = require('./cfn-response');
+
+          const iam = new AWS.IAM({apiVersion: '2010-05-08'});
+
+          exports.handler = (event, context, cb) => {
+              console.log(`Invoke: ${JSON.stringify(event)}`);
+              function done(err) {
+                  if (err) {
+                  console.log(`Error: ${JSON.stringify(err)}`);
+                  response.send(event, context, response.FAILED, {});
+                  } else {
+                  response.send(event, context, response.SUCCESS, {});
+                  }
+              }
+              if (event.RequestType === 'Delete') {
+                  iam.deleteAccountPasswordPolicy({}, done);
+              } else if (event.RequestType === 'Create' || event.RequestType === 'Update') {
+                  const params = {
+                  MinimumPasswordLength: parseInt(event.ResourceProperties.MinimumPasswordLength, 10),
+                  RequireSymbols: event.ResourceProperties.RequireSymbols === 'true',
+                  RequireNumbers: event.ResourceProperties.RequireNumbers === 'true',
+                  RequireUppercaseCharacters: event.ResourceProperties.RequireUppercaseCharacters === 'true',
+                  RequireLowercaseCharacters: event.ResourceProperties.RequireLowercaseCharacters === 'true',
+                  AllowUsersToChangePassword: event.ResourceProperties.AllowUsersToChangePassword === 'true',
+                  HardExpiry: event.ResourceProperties.HardExpiry === 'true'
+                  };
+                  if (parseInt(event.ResourceProperties.MaxPasswordAge, 10) > 0) {
+                  params.MaxPasswordAge = parseInt(event.ResourceProperties.MaxPasswordAge, 10);
+                  }
+                  if (parseInt(event.ResourceProperties.PasswordReusePrevention, 10) > 0) {
+                  params.PasswordReusePrevention = parseInt(event.ResourceProperties.PasswordReusePrevention, 10);
+                  }
+                  iam.updateAccountPasswordPolicy(params, done);
+              } else {
+                  cb(new Error(`unsupported RequestType: ${event.RequestType}`));
+              }
+          };
+      Handler: index.handler
+      Role:
+        Fn::GetAtt:
+          - SetPasswordPolicyServiceRole07D7CF76
+          - Arn
+      Runtime: nodejs10.x
+      FunctionName: Lambda_Set_Password_Policy
+      MemorySize: 128
+      Timeout: 30
+    DependsOn:
+      - SetPasswordPolicyServiceRoleDefaultPolicy6A127D21
+      - SetPasswordPolicyServiceRole07D7CF76
+    Metadata:
+      aws:cdk:path: accountSetUp/Set_Password_Policy/Resource
+  SetPasswordPolicyLogRetention4CCFAF74:
+    Type: Custom::LogRetention
+    Properties:
+      ServiceToken:
+        Fn::GetAtt:
+          - LogRetentionaae0aa3c5b4d4f87b02d85b201efdd8aFD4BFC8A
+          - Arn
+      LogGroupName:
+        Fn::Join:
+          - ""
+          - - /aws/lambda/
+            - Ref: SetPasswordPolicy62BCABC3
+      RetentionInDays: 5
+    Metadata:
+      aws:cdk:path: accountSetUp/Set_Password_Policy/LogRetention/Resource
+  SetPasswordPolicyEventInvokeConfig9DDD223C:
+    Type: AWS::Lambda::EventInvokeConfig
+    Properties:
+      FunctionName:
+        Ref: SetPasswordPolicy62BCABC3
+      Qualifier: $LATEST
+      MaximumRetryAttempts: 1
+    Metadata:
+      aws:cdk:path: accountSetUp/Set_Password_Policy/EventInvokeConfig/Resource
+  LogRetentionaae0aa3c5b4d4f87b02d85b201efdd8aServiceRole9741ECFB:
+    Type: AWS::IAM::Role
+    Properties:
+      AssumeRolePolicyDocument:
+        Statement:
+          - Action: sts:AssumeRole
+            Effect: Allow
+            Principal:
+              Service: lambda.amazonaws.com
+        Version: "2012-10-17"
+      ManagedPolicyArns:
+        - Fn::Join:
+            - ""
+            - - "arn:"
+              - Ref: AWS::Partition
+              - :iam::aws:policy/service-role/AWSLambdaBasicExecutionRole
+    Metadata:
+      aws:cdk:path: accountSetUp/LogRetentionaae0aa3c5b4d4f87b02d85b201efdd8a/ServiceRole/Resource
+  LogRetentionaae0aa3c5b4d4f87b02d85b201efdd8aServiceRoleDefaultPolicyADDA7DEB:
+    Type: AWS::IAM::Policy
+    Properties:
+      PolicyDocument:
+        Statement:
+          - Action:
+              - logs:PutRetentionPolicy
+              - logs:DeleteRetentionPolicy
+            Effect: Allow
+            Resource: "*"
+        Version: "2012-10-17"
+      PolicyName: LogRetentionaae0aa3c5b4d4f87b02d85b201efdd8aServiceRoleDefaultPolicyADDA7DEB
+      Roles:
+        - Ref: LogRetentionaae0aa3c5b4d4f87b02d85b201efdd8aServiceRole9741ECFB
+    Metadata:
+      aws:cdk:path: accountSetUp/LogRetentionaae0aa3c5b4d4f87b02d85b201efdd8a/ServiceRole/DefaultPolicy/Resource
+  LogRetentionaae0aa3c5b4d4f87b02d85b201efdd8aFD4BFC8A:
+    Type: AWS::Lambda::Function
+    Properties:
+      Code:
+        S3Bucket:
+          Ref: AssetParameters5741f85917ffca30b209ad61e375d3d3bae0457270071f7aca8ca81be19bd22aS3Bucket4E933C7F
+        S3Key:
+          Fn::Join:
+            - ""
+            - - Fn::Select:
+                  - 0
+                  - Fn::Split:
+                      - "||"
+                      - Ref: AssetParameters5741f85917ffca30b209ad61e375d3d3bae0457270071f7aca8ca81be19bd22aS3VersionKeyB83CC434
+              - Fn::Select:
+                  - 1
+                  - Fn::Split:
+                      - "||"
+                      - Ref: AssetParameters5741f85917ffca30b209ad61e375d3d3bae0457270071f7aca8ca81be19bd22aS3VersionKeyB83CC434
+      Handler: index.handler
+      Role:
+        Fn::GetAtt:
+          - LogRetentionaae0aa3c5b4d4f87b02d85b201efdd8aServiceRole9741ECFB
+          - Arn
+      Runtime: nodejs10.x
+    DependsOn:
+      - LogRetentionaae0aa3c5b4d4f87b02d85b201efdd8aServiceRoleDefaultPolicyADDA7DEB
+      - LogRetentionaae0aa3c5b4d4f87b02d85b201efdd8aServiceRole9741ECFB
+    Metadata:
+      aws:cdk:path: accountSetUp/LogRetentionaae0aa3c5b4d4f87b02d85b201efdd8a/Resource
+      aws:asset:path: asset.5741f85917ffca30b209ad61e375d3d3bae0457270071f7aca8ca81be19bd22a
+      aws:asset:property: Code
+  UpdatePasswordPolicy:
+    Type: AWS::CloudFormation::CustomResource
+    Properties:
+      ServiceToken:
+        Fn::GetAtt:
+          - SetPasswordPolicy62BCABC3
+          - Arn
+      HardExpiry:
+        Ref: HardExpiry
+      AllowUsersToChangePassword:
+        Ref: AllowUsersToChangePassword
+      MaxPasswordAge:
+        Ref: MaxPasswordAge
+      MinimumPasswordLength:
+        Ref: MinimumPasswordLength
+      PasswordReusePrevention:
+        Ref: PasswordReusePrevention
+      RequireLowercaseCharacters:
+        Ref: RequireLowercaseCharacters
+      RequireNumbers:
+        Ref: RequireNumbersCharacters
+      RequireSymbols:
+        Ref: RequireSymbolsCharacters
+      RequireUppercaseCharacters:
+        Ref: RequireUppercaseCharacters
+    UpdateReplacePolicy: Delete
+    DeletionPolicy: Delete
+    Metadata:
+      aws:cdk:path: accountSetUp/Update_Password_Policy/Default
+  SandBoxAdminUserGroupF0F4A0DA:
+    Type: AWS::IAM::Group
+    Properties:
+      ManagedPolicyArns:
+        - Fn::Join:
+            - ""
+            - - "arn:"
+              - Ref: AWS::Partition
+              - :iam::aws:policy/AdministratorAccess
+    Metadata:
+      aws:cdk:path: accountSetUp/SandBox_Admin_User_Group/Resource
+  LimitSandboxAdminGroup70A710EA:
+    Type: AWS::IAM::Policy
+    Properties:
+      PolicyDocument:
+        Statement:
+          - Action:
+              - ec2:*Reserved*
+              - dynamodb:*Reserved*
+              - rds:*Reserved*
+              - elasticache:*Reserved*
+              - redshift:*Reserved*
+              - elasticsearch:*Reserved*
+              - cloudfront:*Reserved*
+              - emr:*Reserved*
+            Effect: Deny
+            Resource: "*"
+        Version: "2012-10-17"
+      PolicyName: LimitSandboxAdminGroup70A710EA
+      Groups:
+        - Ref: SandBoxAdminUserGroupF0F4A0DA
+    Metadata:
+      aws:cdk:path: accountSetUp/Limit_Sandbox_Admin_Group/Resource
+  BillingTopicBD902DD9:
+    Type: AWS::SNS::Topic
+    Properties:
+      DisplayName: BillingAllertTopic
+      TopicName: BillingAllertTopic
+    Metadata:
+      aws:cdk:path: accountSetUp/Billing_Topic/Resource
+  BillingTopicSubscription:
+    Type: AWS::SNS::Subscription
+    Properties:
+      Protocol: email
+      TopicArn:
+        Ref: BillingTopicBD902DD9
+      Endpoint:
+        Ref: useremail
+    Metadata:
+      aws:cdk:path: accountSetUp/Billing_Topic_Subscription
+  BillingAlert5DollarsDB575F70:
+    Type: AWS::CloudWatch::Alarm
+    Properties:
+      ComparisonOperator: GreaterThanThreshold
+      EvaluationPeriods: 1
+      AlarmActions:
+        - Ref: BillingTopicBD902DD9
+      AlarmDescription: If costs are greater then 5$ within 6 hours, this alarm will be triggered.
+      Dimensions:
+        - Name: Currency
+          Value: USD
+      MetricName: Estimated_Charges
+      Namespace: AWS/Billing
+      Period: 21600
+      Statistic: Maximum
+      Threshold: 5
+    DependsOn:
+      - BillingTopicBD902DD9
+    Metadata:
+      aws:cdk:path: accountSetUp/Billing_Alert5_Dollars/Resource
+  CheckUserTopicF3F01C93:
+    Type: AWS::SNS::Topic
+    Properties:
+      DisplayName: UserAccessKeyTopic
+      TopicName: UserAccessKeyTopic
+    Metadata:
+      aws:cdk:path: accountSetUp/Check_User_Topic/Resource
+  UserTopicSubscription:
+    Type: AWS::SNS::Subscription
+    Properties:
+      Protocol: email
+      TopicArn:
+        Ref: CheckUserTopicF3F01C93
+      Endpoint:
+        Ref: useremail
+    Metadata:
+      aws:cdk:path: accountSetUp/User_Topic_Subscription
+  CheckUserKeysServiceRole1581AA85:
+    Type: AWS::IAM::Role
+    Properties:
+      AssumeRolePolicyDocument:
+        Statement:
+          - Action: sts:AssumeRole
+            Effect: Allow
+            Principal:
+              Service: lambda.amazonaws.com
+        Version: "2012-10-17"
+      ManagedPolicyArns:
+        - Fn::Join:
+            - ""
+            - - "arn:"
+              - Ref: AWS::Partition
+              - :iam::aws:policy/service-role/AWSLambdaBasicExecutionRole
+    Metadata:
+      aws:cdk:path: accountSetUp/Check_User_Keys/ServiceRole/Resource
+  CheckUserKeysServiceRoleDefaultPolicy6FF65E59:
+    Type: AWS::IAM::Policy
+    Properties:
+      PolicyDocument:
+        Statement:
+          - Action:
+              - iam:ListUsers
+              - iam:ListAccessKeys
+            Effect: Allow
+            Resource: "*"
+          - Action: sns:Publish
+            Effect: Allow
+            Resource:
+              Ref: CheckUserTopicF3F01C93
+        Version: "2012-10-17"
+      PolicyName: CheckUserKeysServiceRoleDefaultPolicy6FF65E59
+      Roles:
+        - Ref: CheckUserKeysServiceRole1581AA85
+    Metadata:
+      aws:cdk:path: accountSetUp/Check_User_Keys/ServiceRole/DefaultPolicy/Resource
+  CheckUserKeysFBEF0A44:
+    Type: AWS::Lambda::Function
+    Properties:
+      Code:
+        S3Bucket:
+          Ref: AssetParameters6383df60cc1b99de7b175befae3f0ea1dfa7ef89a2afae556140dcf51c8d17b7S3BucketC2E03481
+        S3Key:
+          Fn::Join:
+            - ""
+            - - Fn::Select:
+                  - 0
+                  - Fn::Split:
+                      - "||"
+                      - Ref: AssetParameters6383df60cc1b99de7b175befae3f0ea1dfa7ef89a2afae556140dcf51c8d17b7S3VersionKey71106FD8
+              - Fn::Select:
+                  - 1
+                  - Fn::Split:
+                      - "||"
+                      - Ref: AssetParameters6383df60cc1b99de7b175befae3f0ea1dfa7ef89a2afae556140dcf51c8d17b7S3VersionKey71106FD8
+      Handler: handler.DailyUserCheck
+      Role:
+        Fn::GetAtt:
+          - CheckUserKeysServiceRole1581AA85
+          - Arn
+      Runtime: python3.7
+      Environment:
+        Variables:
+          SecOpsTopicArn:
+            Ref: CheckUserTopicF3F01C93
+          KeyAge: "90"
+      FunctionName: Lambda_User_Keys
+      MemorySize: 128
+      Timeout: 30
+    DependsOn:
+      - CheckUserKeysServiceRoleDefaultPolicy6FF65E59
+      - CheckUserKeysServiceRole1581AA85
+    Metadata:
+      aws:cdk:path: accountSetUp/Check_User_Keys/Resource
+      aws:asset:path: asset.6383df60cc1b99de7b175befae3f0ea1dfa7ef89a2afae556140dcf51c8d17b7
+      aws:asset:property: Code
+  CheckUserKeysLogRetention4B7E998C:
+    Type: Custom::LogRetention
+    Properties:
+      ServiceToken:
+        Fn::GetAtt:
+          - LogRetentionaae0aa3c5b4d4f87b02d85b201efdd8aFD4BFC8A
+          - Arn
+      LogGroupName:
+        Fn::Join:
+          - ""
+          - - /aws/lambda/
+            - Ref: CheckUserKeysFBEF0A44
+      RetentionInDays: 5
+    Metadata:
+      aws:cdk:path: accountSetUp/Check_User_Keys/LogRetention/Resource
+  CheckUserKeysEventInvokeConfig57E7C6AC:
+    Type: AWS::Lambda::EventInvokeConfig
+    Properties:
+      FunctionName:
+        Ref: CheckUserKeysFBEF0A44
+      Qualifier: $LATEST
+      MaximumRetryAttempts: 1
+    Metadata:
+      aws:cdk:path: accountSetUp/Check_User_Keys/EventInvokeConfig/Resource
+  CheckUserKeysAllowEventRuleaccountSetUpScheduleCheckKeyLambda999591B3900C02EC:
+    Type: AWS::Lambda::Permission
+    Properties:
+      Action: lambda:InvokeFunction
+      FunctionName:
+        Fn::GetAtt:
+          - CheckUserKeysFBEF0A44
+          - Arn
+      Principal: events.amazonaws.com
+      SourceArn:
+        Fn::GetAtt:
+          - ScheduleCheckKeyLambdaD8310F73
+          - Arn
+    Metadata:
+      aws:cdk:path: accountSetUp/Check_User_Keys/AllowEventRuleaccountSetUpScheduleCheckKeyLambda999591B3
+  ScheduleCheckKeyLambdaD8310F73:
+    Type: AWS::Events::Rule
+    Properties:
+      ScheduleExpression: cron(0 18 ? * * *)
+      State: ENABLED
+      Targets:
+        - Arn:
+            Fn::GetAtt:
+              - CheckUserKeysFBEF0A44
+              - Arn
+          Id: Target0
+    Metadata:
+      aws:cdk:path: accountSetUp/Schedule_Check_Key_Lambda/Resource
+  RootUserTopic37E445AC:
+    Type: AWS::SNS::Topic
+    Properties:
+      DisplayName: RootUserAccessTopic
+      TopicName: RootUserAccessTopic
+    Metadata:
+      aws:cdk:path: accountSetUp/Root_User_Topic/Resource
+  RootUserTopicPolicy08D1E7A4:
+    Type: AWS::SNS::TopicPolicy
+    Properties:
+      PolicyDocument:
+        Statement:
+          - Action: sns:Publish
+            Effect: Allow
+            Principal:
+              Service: events.amazonaws.com
+            Resource:
+              Ref: RootUserTopic37E445AC
+            Sid: "0"
+        Version: "2012-10-17"
+      Topics:
+        - Ref: RootUserTopic37E445AC
+    Metadata:
+      aws:cdk:path: accountSetUp/Root_User_Topic/Policy/Resource
+  CloudtrailBucket9DD872B1:
+    Type: AWS::S3::Bucket
+    Properties:
+      BucketName: 431892011317-logs
+      LifecycleConfiguration:
+        Rules:
+          - ExpirationInDays: 1
+            Status: Enabled
+    UpdateReplacePolicy: Retain
+    DeletionPolicy: Retain
+    Metadata:
+      aws:cdk:path: accountSetUp/Cloudtrail_Bucket/Resource
+  CloudtrailBucketPolicy636E0927:
+    Type: AWS::S3::BucketPolicy
+    Properties:
+      Bucket:
+        Ref: CloudtrailBucket9DD872B1
+      PolicyDocument:
+        Statement:
+          - Action: s3:GetBucketAcl
+            Effect: Allow
+            Principal:
+              Service: cloudtrail.amazonaws.com
+            Resource:
+              Fn::GetAtt:
+                - CloudtrailBucket9DD872B1
+                - Arn
+          - Action: s3:PutObject
+            Condition:
+              StringEquals:
+                s3:x-amz-acl: bucket-owner-full-control
+            Effect: Allow
+            Principal:
+              Service: cloudtrail.amazonaws.com
+            Resource:
+              Fn::Join:
+                - ""
+                - - Fn::GetAtt:
+                      - CloudtrailBucket9DD872B1
+                      - Arn
+                  - /AWSLogs/431892011317/*
+        Version: "2012-10-17"
+    Metadata:
+      aws:cdk:path: accountSetUp/Cloudtrail_Bucket/Policy/Resource
+  BasicTrail657D1E47:
+    Type: AWS::CloudTrail::Trail
+    Properties:
+      IsLogging: true
+      S3BucketName:
+        Ref: CloudtrailBucket9DD872B1
+      EnableLogFileValidation: true
+      EventSelectors: []
+      IncludeGlobalServiceEvents: true
+      IsMultiRegionTrail: true
+    DependsOn:
+      - CloudtrailBucketPolicy636E0927
+    Metadata:
+      aws:cdk:path: accountSetUp/Basic_Trail/Resource
+  RootUserTopicSubscription:
+    Type: AWS::SNS::Subscription
+    Properties:
+      Protocol: email
+      TopicArn:
+        Ref: RootUserTopic37E445AC
+      Endpoint:
+        Ref: useremail
+    Metadata:
+      aws:cdk:path: accountSetUp/Root_User_Topic_Subscription
+  RootAccountUsageDF7A7159:
+    Type: AWS::Events::Rule
+    Properties:
+      Description: Events rule for monitoring root AWS Console Sign In activity
+      EventPattern:
+        detail:
+          userIdentity:
+            type:
+              - Root
+        detail-type:
+          - AWS Console Sign In via CloudTrail
+      Name: Root_Activity_Rule
+      State: ENABLED
+      Targets:
+        - Arn:
+            Ref: RootUserTopic37E445AC
+          Id: Target0
+    Metadata:
+      aws:cdk:path: accountSetUp/Root_Account_Usage/Resource
+  CDKMetadata:
+    Type: AWS::CDK::Metadata
+    Properties:
+      Modules: aws-cdk=1.27.0,@aws-cdk/assets=1.27.0,@aws-cdk/aws-apigateway=1.27.0,@aws-cdk/aws-applicationautoscaling=1.27.0,@aws-cdk/aws-autoscaling=1.27.0,@aws-cdk/aws-autoscaling-common=1.27.0,@aws-cdk/aws-autoscaling-hooktargets=1.27.0,@aws-cdk/aws-certificatemanager=1.27.0,@aws-cdk/aws-cloudformation=1.27.0,@aws-cdk/aws-cloudfront=1.27.0,@aws-cdk/aws-cloudtrail=1.27.0,@aws-cdk/aws-cloudwatch=1.27.0,@aws-cdk/aws-cloudwatch-actions=1.27.0,@aws-cdk/aws-codebuild=1.27.0,@aws-cdk/aws-codecommit=1.27.0,@aws-cdk/aws-codepipeline=1.27.0,@aws-cdk/aws-ec2=1.27.0,@aws-cdk/aws-ecr=1.27.0,@aws-cdk/aws-ecr-assets=1.27.0,@aws-cdk/aws-ecs=1.27.0,@aws-cdk/aws-elasticloadbalancing=1.27.0,@aws-cdk/aws-elasticloadbalancingv2=1.27.0,@aws-cdk/aws-events=1.27.0,@aws-cdk/aws-events-targets=1.27.0,@aws-cdk/aws-glue=1.27.0,@aws-cdk/aws-iam=1.27.0,@aws-cdk/aws-kms=1.27.0,@aws-cdk/aws-lambda=1.27.0,@aws-cdk/aws-logs=1.27.0,@aws-cdk/aws-route53=1.27.0,@aws-cdk/aws-route53-targets=1.27.0,@aws-cdk/aws-s3=1.27.0,@aws-cdk/aws-s3-assets=1.27.0,@aws-cdk/aws-sam=1.27.0,@aws-cdk/aws-secretsmanager=1.27.0,@aws-cdk/aws-servicediscovery=1.27.0,@aws-cdk/aws-sns=1.27.0,@aws-cdk/aws-sns-subscriptions=1.27.0,@aws-cdk/aws-sqs=1.27.0,@aws-cdk/aws-ssm=1.27.0,@aws-cdk/aws-stepfunctions=1.27.0,@aws-cdk/aws-stepfunctions-tasks=1.27.0,@aws-cdk/core=1.27.0,@aws-cdk/custom-resources=1.27.0,@aws-cdk/cx-api=1.27.0,@aws-cdk/region-info=1.27.0,jsii-runtime=Python/3.7.6
+

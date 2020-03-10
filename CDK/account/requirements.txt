@@ -1,0 +1,13 @@
+aws-cdk.aws_ec2
+aws-cdk.aws_iam
+aws-cdk.aws_cloudwatch
+aws-cdk.aws_sns
+aws-cdk.aws_sns_subscriptions
+aws-cdk.aws_cloudwatch_actions
+aws-cdk.aws_lambda
+aws_cdk.aws_logs
+aws_cdk.custom_resources
+aws_cdk.aws_cloudformation
+aws_cdk.aws_events
+aws_cdk.aws_events_targets
+aws_cdk.aws_cloudtrail

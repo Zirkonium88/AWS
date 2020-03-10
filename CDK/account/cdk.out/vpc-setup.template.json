@@ -1,0 +1,654 @@
+{
+  "Resources": {
+    "DeleteDefaulVPCServiceRole2702A0BF": {
+      "Type": "AWS::IAM::Role",
+      "Properties": {
+        "AssumeRolePolicyDocument": {
+          "Statement": [
+            {
+              "Action": "sts:AssumeRole",
+              "Effect": "Allow",
+              "Principal": {
+                "Service": "lambda.amazonaws.com"
+              }
+            }
+          ],
+          "Version": "2012-10-17"
+        },
+        "ManagedPolicyArns": [
+          {
+            "Fn::Join": [
+              "",
+              [
+                "arn:",
+                {
+                  "Ref": "AWS::Partition"
+                },
+                ":iam::aws:policy/service-role/AWSLambdaBasicExecutionRole"
+              ]
+            ]
+          }
+        ]
+      },
+      "Metadata": {
+        "aws:cdk:path": "vpc-setup/Delete_Defaul_VPC/ServiceRole/Resource"
+      }
+    },
+    "DeleteDefaulVPCServiceRoleDefaultPolicy73EC7DA3": {
+      "Type": "AWS::IAM::Policy",
+      "Properties": {
+        "PolicyDocument": {
+          "Statement": [
+            {
+              "Action": [
+                "ec2:DeleteSecurityGroup",
+                "ec2:DeleteRoute",
+                "ec2:DeleteNetworkAcl",
+                "ec2:DeleteRouteTable",
+                "ec2:DeleteSubnet",
+                "ec2:DetachNetworkInterface",
+                "ec2:DeleteVpc",
+                "ec2:DetachInternetGateway"
+              ],
+              "Effect": "Allow",
+              "Resource": "*"
+            }
+          ],
+          "Version": "2012-10-17"
+        },
+        "PolicyName": "DeleteDefaulVPCServiceRoleDefaultPolicy73EC7DA3",
+        "Roles": [
+          {
+            "Ref": "DeleteDefaulVPCServiceRole2702A0BF"
+          }
+        ]
+      },
+      "Metadata": {
+        "aws:cdk:path": "vpc-setup/Delete_Defaul_VPC/ServiceRole/DefaultPolicy/Resource"
+      }
+    },
+    "DeleteDefaulVPCE3543A67": {
+      "Type": "AWS::Lambda::Function",
+      "Properties": {
+        "Code": {
+          "S3Bucket": {
+            "Ref": "AssetParameters8190c1af321db5a76baa81534972fef90c6a0a6cb082aed3e0b515280a1f8b0fS3Bucket6083956E"
+          },
+          "S3Key": {
+            "Fn::Join": [
+              "",
+              [
+                {
+                  "Fn::Select": [
+                    0,
+                    {
+                      "Fn::Split": [
+                        "||",
+                        {
+                          "Ref": "AssetParameters8190c1af321db5a76baa81534972fef90c6a0a6cb082aed3e0b515280a1f8b0fS3VersionKeyC2E20830"
+                        }
+                      ]
+                    }
+                  ]
+                },
+                {
+                  "Fn::Select": [
+                    1,
+                    {
+                      "Fn::Split": [
+                        "||",
+                        {
+                          "Ref": "AssetParameters8190c1af321db5a76baa81534972fef90c6a0a6cb082aed3e0b515280a1f8b0fS3VersionKeyC2E20830"
+                        }
+                      ]
+                    }
+                  ]
+                }
+              ]
+            ]
+          }
+        },
+        "Handler": "index.handler",
+        "Role": {
+          "Fn::GetAtt": [
+            "DeleteDefaulVPCServiceRole2702A0BF",
+            "Arn"
+          ]
+        },
+        "Runtime": "python3.7",
+        "FunctionName": "Lambda_Delete_Defaul_VPC",
+        "MemorySize": 128,
+        "Timeout": 60
+      },
+      "DependsOn": [
+        "DeleteDefaulVPCServiceRoleDefaultPolicy73EC7DA3",
+        "DeleteDefaulVPCServiceRole2702A0BF"
+      ],
+      "Metadata": {
+        "aws:cdk:path": "vpc-setup/Delete_Defaul_VPC/Resource",
+        "aws:asset:path": "asset.8190c1af321db5a76baa81534972fef90c6a0a6cb082aed3e0b515280a1f8b0f",
+        "aws:asset:property": "Code"
+      }
+    },
+    "DeleteDefaulVPCLogRetention9705FB82": {
+      "Type": "Custom::LogRetention",
+      "Properties": {
+        "ServiceToken": {
+          "Fn::GetAtt": [
+            "LogRetentionaae0aa3c5b4d4f87b02d85b201efdd8aFD4BFC8A",
+            "Arn"
+          ]
+        },
+        "LogGroupName": {
+          "Fn::Join": [
+            "",
+            [
+              "/aws/lambda/",
+              {
+                "Ref": "DeleteDefaulVPCE3543A67"
+              }
+            ]
+          ]
+        },
+        "RetentionInDays": 5
+      },
+      "Metadata": {
+        "aws:cdk:path": "vpc-setup/Delete_Defaul_VPC/LogRetention/Resource"
+      }
+    },
+    "DeleteDefaulVPCEventInvokeConfigB2C0D9D3": {
+      "Type": "AWS::Lambda::EventInvokeConfig",
+      "Properties": {
+        "FunctionName": {
+          "Ref": "DeleteDefaulVPCE3543A67"
+        },
+        "Qualifier": "$LATEST",
+        "MaximumRetryAttempts": 1
+      },
+      "Metadata": {
+        "aws:cdk:path": "vpc-setup/Delete_Defaul_VPC/EventInvokeConfig/Resource"
+      }
+    },
+    "LogRetentionaae0aa3c5b4d4f87b02d85b201efdd8aServiceRole9741ECFB": {
+      "Type": "AWS::IAM::Role",
+      "Properties": {
+        "AssumeRolePolicyDocument": {
+          "Statement": [
+            {
+              "Action": "sts:AssumeRole",
+              "Effect": "Allow",
+              "Principal": {
+                "Service": "lambda.amazonaws.com"
+              }
+            }
+          ],
+          "Version": "2012-10-17"
+        },
+        "ManagedPolicyArns": [
+          {
+            "Fn::Join": [
+              "",
+              [
+                "arn:",
+                {
+                  "Ref": "AWS::Partition"
+                },
+                ":iam::aws:policy/service-role/AWSLambdaBasicExecutionRole"
+              ]
+            ]
+          }
+        ]
+      },
+      "Metadata": {
+        "aws:cdk:path": "vpc-setup/LogRetentionaae0aa3c5b4d4f87b02d85b201efdd8a/ServiceRole/Resource"
+      }
+    },
+    "LogRetentionaae0aa3c5b4d4f87b02d85b201efdd8aServiceRoleDefaultPolicyADDA7DEB": {
+      "Type": "AWS::IAM::Policy",
+      "Properties": {
+        "PolicyDocument": {
+          "Statement": [
+            {
+              "Action": [
+                "logs:PutRetentionPolicy",
+                "logs:DeleteRetentionPolicy"
+              ],
+              "Effect": "Allow",
+              "Resource": "*"
+            }
+          ],
+          "Version": "2012-10-17"
+        },
+        "PolicyName": "LogRetentionaae0aa3c5b4d4f87b02d85b201efdd8aServiceRoleDefaultPolicyADDA7DEB",
+        "Roles": [
+          {
+            "Ref": "LogRetentionaae0aa3c5b4d4f87b02d85b201efdd8aServiceRole9741ECFB"
+          }
+        ]
+      },
+      "Metadata": {
+        "aws:cdk:path": "vpc-setup/LogRetentionaae0aa3c5b4d4f87b02d85b201efdd8a/ServiceRole/DefaultPolicy/Resource"
+      }
+    },
+    "LogRetentionaae0aa3c5b4d4f87b02d85b201efdd8aFD4BFC8A": {
+      "Type": "AWS::Lambda::Function",
+      "Properties": {
+        "Code": {
+          "S3Bucket": {
+            "Ref": "AssetParameters5741f85917ffca30b209ad61e375d3d3bae0457270071f7aca8ca81be19bd22aS3Bucket4E933C7F"
+          },
+          "S3Key": {
+            "Fn::Join": [
+              "",
+              [
+                {
+                  "Fn::Select": [
+                    0,
+                    {
+                      "Fn::Split": [
+                        "||",
+                        {
+                          "Ref": "AssetParameters5741f85917ffca30b209ad61e375d3d3bae0457270071f7aca8ca81be19bd22aS3VersionKeyB83CC434"
+                        }
+                      ]
+                    }
+                  ]
+                },
+                {
+                  "Fn::Select": [
+                    1,
+                    {
+                      "Fn::Split": [
+                        "||",
+                        {
+                          "Ref": "AssetParameters5741f85917ffca30b209ad61e375d3d3bae0457270071f7aca8ca81be19bd22aS3VersionKeyB83CC434"
+                        }
+                      ]
+                    }
+                  ]
+                }
+              ]
+            ]
+          }
+        },
+        "Handler": "index.handler",
+        "Role": {
+          "Fn::GetAtt": [
+            "LogRetentionaae0aa3c5b4d4f87b02d85b201efdd8aServiceRole9741ECFB",
+            "Arn"
+          ]
+        },
+        "Runtime": "nodejs10.x"
+      },
+      "DependsOn": [
+        "LogRetentionaae0aa3c5b4d4f87b02d85b201efdd8aServiceRoleDefaultPolicyADDA7DEB",
+        "LogRetentionaae0aa3c5b4d4f87b02d85b201efdd8aServiceRole9741ECFB"
+      ],
+      "Metadata": {
+        "aws:cdk:path": "vpc-setup/LogRetentionaae0aa3c5b4d4f87b02d85b201efdd8a/Resource",
+        "aws:asset:path": "asset.5741f85917ffca30b209ad61e375d3d3bae0457270071f7aca8ca81be19bd22a",
+        "aws:asset:property": "Code"
+      }
+    },
+    "UpdatePasswordPolicy": {
+      "Type": "AWS::CloudFormation::CustomResource",
+      "Properties": {
+        "ServiceToken": {
+          "Fn::GetAtt": [
+            "DeleteDefaulVPCE3543A67",
+            "Arn"
+          ]
+        }
+      },
+      "UpdateReplacePolicy": "Delete",
+      "DeletionPolicy": "Delete",
+      "Metadata": {
+        "aws:cdk:path": "vpc-setup/Update_Password_Policy/Default"
+      }
+    },
+    "BasicVpc30C9C2CB": {
+      "Type": "AWS::EC2::VPC",
+      "Properties": {
+        "CidrBlock": "192.168.0.0/20",
+        "EnableDnsHostnames": true,
+        "EnableDnsSupport": true,
+        "InstanceTenancy": "default",
+        "Tags": [
+          {
+            "Key": "Name",
+            "Value": "vpc-setup/Basic_Vpc"
+          }
+        ]
+      },
+      "Metadata": {
+        "aws:cdk:path": "vpc-setup/Basic_Vpc/Resource"
+      }
+    },
+    "BasicVpcPublicSubnet1Subnet5FD9DDC2": {
+      "Type": "AWS::EC2::Subnet",
+      "Properties": {
+        "CidrBlock": "192.168.0.0/22",
+        "VpcId": {
+          "Ref": "BasicVpc30C9C2CB"
+        },
+        "AvailabilityZone": "eu-central-1a",
+        "MapPublicIpOnLaunch": true,
+        "Tags": [
+          {
+            "Key": "Name",
+            "Value": "vpc-setup/Basic_Vpc/PublicSubnet1"
+          },
+          {
+            "Key": "aws-cdk:subnet-name",
+            "Value": "Public"
+          },
+          {
+            "Key": "aws-cdk:subnet-type",
+            "Value": "Public"
+          }
+        ]
+      },
+      "Metadata": {
+        "aws:cdk:path": "vpc-setup/Basic_Vpc/PublicSubnet1/Subnet"
+      }
+    },
+    "BasicVpcPublicSubnet1RouteTable7B328207": {
+      "Type": "AWS::EC2::RouteTable",
+      "Properties": {
+        "VpcId": {
+          "Ref": "BasicVpc30C9C2CB"
+        },
+        "Tags": [
+          {
+            "Key": "Name",
+            "Value": "vpc-setup/Basic_Vpc/PublicSubnet1"
+          }
+        ]
+      },
+      "Metadata": {
+        "aws:cdk:path": "vpc-setup/Basic_Vpc/PublicSubnet1/RouteTable"
+      }
+    },
+    "BasicVpcPublicSubnet1RouteTableAssociation82DE7634": {
+      "Type": "AWS::EC2::SubnetRouteTableAssociation",
+      "Properties": {
+        "RouteTableId": {
+          "Ref": "BasicVpcPublicSubnet1RouteTable7B328207"
+        },
+        "SubnetId": {
+          "Ref": "BasicVpcPublicSubnet1Subnet5FD9DDC2"
+        }
+      },
+      "Metadata": {
+        "aws:cdk:path": "vpc-setup/Basic_Vpc/PublicSubnet1/RouteTableAssociation"
+      }
+    },
+    "BasicVpcPublicSubnet1DefaultRouteDCC9CB12": {
+      "Type": "AWS::EC2::Route",
+      "Properties": {
+        "RouteTableId": {
+          "Ref": "BasicVpcPublicSubnet1RouteTable7B328207"
+        },
+        "DestinationCidrBlock": "0.0.0.0/0",
+        "GatewayId": {
+          "Ref": "BasicVpcIGW0CB62AA2"
+        }
+      },
+      "DependsOn": [
+        "BasicVpcVPCGWD7AB5A69"
+      ],
+      "Metadata": {
+        "aws:cdk:path": "vpc-setup/Basic_Vpc/PublicSubnet1/DefaultRoute"
+      }
+    },
+    "BasicVpcPublicSubnet2SubnetF45B34F3": {
+      "Type": "AWS::EC2::Subnet",
+      "Properties": {
+        "CidrBlock": "192.168.4.0/22",
+        "VpcId": {
+          "Ref": "BasicVpc30C9C2CB"
+        },
+        "AvailabilityZone": "eu-central-1b",
+        "MapPublicIpOnLaunch": true,
+        "Tags": [
+          {
+            "Key": "Name",
+            "Value": "vpc-setup/Basic_Vpc/PublicSubnet2"
+          },
+          {
+            "Key": "aws-cdk:subnet-name",
+            "Value": "Public"
+          },
+          {
+            "Key": "aws-cdk:subnet-type",
+            "Value": "Public"
+          }
+        ]
+      },
+      "Metadata": {
+        "aws:cdk:path": "vpc-setup/Basic_Vpc/PublicSubnet2/Subnet"
+      }
+    },
+    "BasicVpcPublicSubnet2RouteTableF66ABCD4": {
+      "Type": "AWS::EC2::RouteTable",
+      "Properties": {
+        "VpcId": {
+          "Ref": "BasicVpc30C9C2CB"
+        },
+        "Tags": [
+          {
+            "Key": "Name",
+            "Value": "vpc-setup/Basic_Vpc/PublicSubnet2"
+          }
+        ]
+      },
+      "Metadata": {
+        "aws:cdk:path": "vpc-setup/Basic_Vpc/PublicSubnet2/RouteTable"
+      }
+    },
+    "BasicVpcPublicSubnet2RouteTableAssociation3301450B": {
+      "Type": "AWS::EC2::SubnetRouteTableAssociation",
+      "Properties": {
+        "RouteTableId": {
+          "Ref": "BasicVpcPublicSubnet2RouteTableF66ABCD4"
+        },
+        "SubnetId": {
+          "Ref": "BasicVpcPublicSubnet2SubnetF45B34F3"
+        }
+      },
+      "Metadata": {
+        "aws:cdk:path": "vpc-setup/Basic_Vpc/PublicSubnet2/RouteTableAssociation"
+      }
+    },
+    "BasicVpcPublicSubnet2DefaultRoute325F1898": {
+      "Type": "AWS::EC2::Route",
+      "Properties": {
+        "RouteTableId": {
+          "Ref": "BasicVpcPublicSubnet2RouteTableF66ABCD4"
+        },
+        "DestinationCidrBlock": "0.0.0.0/0",
+        "GatewayId": {
+          "Ref": "BasicVpcIGW0CB62AA2"
+        }
+      },
+      "DependsOn": [
+        "BasicVpcVPCGWD7AB5A69"
+      ],
+      "Metadata": {
+        "aws:cdk:path": "vpc-setup/Basic_Vpc/PublicSubnet2/DefaultRoute"
+      }
+    },
+    "BasicVpcPrivateSubnet1SubnetA17E648A": {
+      "Type": "AWS::EC2::Subnet",
+      "Properties": {
+        "CidrBlock": "192.168.8.0/22",
+        "VpcId": {
+          "Ref": "BasicVpc30C9C2CB"
+        },
+        "AvailabilityZone": "eu-central-1a",
+        "MapPublicIpOnLaunch": false,
+        "Tags": [
+          {
+            "Key": "Name",
+            "Value": "vpc-setup/Basic_Vpc/PrivateSubnet1"
+          },
+          {
+            "Key": "aws-cdk:subnet-name",
+            "Value": "Private"
+          },
+          {
+            "Key": "aws-cdk:subnet-type",
+            "Value": "Isolated"
+          }
+        ]
+      },
+      "Metadata": {
+        "aws:cdk:path": "vpc-setup/Basic_Vpc/PrivateSubnet1/Subnet"
+      }
+    },
+    "BasicVpcPrivateSubnet1RouteTableDDD2C414": {
+      "Type": "AWS::EC2::RouteTable",
+      "Properties": {
+        "VpcId": {
+          "Ref": "BasicVpc30C9C2CB"
+        },
+        "Tags": [
+          {
+            "Key": "Name",
+            "Value": "vpc-setup/Basic_Vpc/PrivateSubnet1"
+          }
+        ]
+      },
+      "Metadata": {
+        "aws:cdk:path": "vpc-setup/Basic_Vpc/PrivateSubnet1/RouteTable"
+      }
+    },
+    "BasicVpcPrivateSubnet1RouteTableAssociation759DA127": {
+      "Type": "AWS::EC2::SubnetRouteTableAssociation",
+      "Properties": {
+        "RouteTableId": {
+          "Ref": "BasicVpcPrivateSubnet1RouteTableDDD2C414"
+        },
+        "SubnetId": {
+          "Ref": "BasicVpcPrivateSubnet1SubnetA17E648A"
+        }
+      },
+      "Metadata": {
+        "aws:cdk:path": "vpc-setup/Basic_Vpc/PrivateSubnet1/RouteTableAssociation"
+      }
+    },
+    "BasicVpcPrivateSubnet2Subnet8E02F4D9": {
+      "Type": "AWS::EC2::Subnet",
+      "Properties": {
+        "CidrBlock": "192.168.12.0/22",
+        "VpcId": {
+          "Ref": "BasicVpc30C9C2CB"
+        },
+        "AvailabilityZone": "eu-central-1b",
+        "MapPublicIpOnLaunch": false,
+        "Tags": [
+          {
+            "Key": "Name",
+            "Value": "vpc-setup/Basic_Vpc/PrivateSubnet2"
+          },
+          {
+            "Key": "aws-cdk:subnet-name",
+            "Value": "Private"
+          },
+          {
+            "Key": "aws-cdk:subnet-type",
+            "Value": "Isolated"
+          }
+        ]
+      },
+      "Metadata": {
+        "aws:cdk:path": "vpc-setup/Basic_Vpc/PrivateSubnet2/Subnet"
+      }
+    },
+    "BasicVpcPrivateSubnet2RouteTable12844C56": {
+      "Type": "AWS::EC2::RouteTable",
+      "Properties": {
+        "VpcId": {
+          "Ref": "BasicVpc30C9C2CB"
+        },
+        "Tags": [
+          {
+            "Key": "Name",
+            "Value": "vpc-setup/Basic_Vpc/PrivateSubnet2"
+          }
+        ]
+      },
+      "Metadata": {
+        "aws:cdk:path": "vpc-setup/Basic_Vpc/PrivateSubnet2/RouteTable"
+      }
+    },
+    "BasicVpcPrivateSubnet2RouteTableAssociation88765D78": {
+      "Type": "AWS::EC2::SubnetRouteTableAssociation",
+      "Properties": {
+        "RouteTableId": {
+          "Ref": "BasicVpcPrivateSubnet2RouteTable12844C56"
+        },
+        "SubnetId": {
+          "Ref": "BasicVpcPrivateSubnet2Subnet8E02F4D9"
+        }
+      },
+      "Metadata": {
+        "aws:cdk:path": "vpc-setup/Basic_Vpc/PrivateSubnet2/RouteTableAssociation"
+      }
+    },
+    "BasicVpcIGW0CB62AA2": {
+      "Type": "AWS::EC2::InternetGateway",
+      "Properties": {
+        "Tags": [
+          {
+            "Key": "Name",
+            "Value": "vpc-setup/Basic_Vpc"
+          }
+        ]
+      },
+      "Metadata": {
+        "aws:cdk:path": "vpc-setup/Basic_Vpc/IGW"
+      }
+    },
+    "BasicVpcVPCGWD7AB5A69": {
+      "Type": "AWS::EC2::VPCGatewayAttachment",
+      "Properties": {
+        "VpcId": {
+          "Ref": "BasicVpc30C9C2CB"
+        },
+        "InternetGatewayId": {
+          "Ref": "BasicVpcIGW0CB62AA2"
+        }
+      },
+      "Metadata": {
+        "aws:cdk:path": "vpc-setup/Basic_Vpc/VPCGW"
+      }
+    }
+  },
+  "Parameters": {
+    "AssetParameters8190c1af321db5a76baa81534972fef90c6a0a6cb082aed3e0b515280a1f8b0fS3Bucket6083956E": {
+      "Type": "String",
+      "Description": "S3 bucket for asset \"8190c1af321db5a76baa81534972fef90c6a0a6cb082aed3e0b515280a1f8b0f\""
+    },
+    "AssetParameters8190c1af321db5a76baa81534972fef90c6a0a6cb082aed3e0b515280a1f8b0fS3VersionKeyC2E20830": {
+      "Type": "String",
+      "Description": "S3 key for asset version \"8190c1af321db5a76baa81534972fef90c6a0a6cb082aed3e0b515280a1f8b0f\""
+    },
+    "AssetParameters8190c1af321db5a76baa81534972fef90c6a0a6cb082aed3e0b515280a1f8b0fArtifactHashB338AA80": {
+      "Type": "String",
+      "Description": "Artifact hash for asset \"8190c1af321db5a76baa81534972fef90c6a0a6cb082aed3e0b515280a1f8b0f\""
+    },
+    "AssetParameters5741f85917ffca30b209ad61e375d3d3bae0457270071f7aca8ca81be19bd22aS3Bucket4E933C7F": {
+      "Type": "String",
+      "Description": "S3 bucket for asset \"5741f85917ffca30b209ad61e375d3d3bae0457270071f7aca8ca81be19bd22a\""
+    },
+    "AssetParameters5741f85917ffca30b209ad61e375d3d3bae0457270071f7aca8ca81be19bd22aS3VersionKeyB83CC434": {
+      "Type": "String",
+      "Description": "S3 key for asset version \"5741f85917ffca30b209ad61e375d3d3bae0457270071f7aca8ca81be19bd22a\""
+    },
+    "AssetParameters5741f85917ffca30b209ad61e375d3d3bae0457270071f7aca8ca81be19bd22aArtifactHash5A536F97": {
+      "Type": "String",
+      "Description": "Artifact hash for asset \"5741f85917ffca30b209ad61e375d3d3bae0457270071f7aca8ca81be19bd22a\""
+    }
+  }
+}

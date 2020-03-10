@@ -1,0 +1,806 @@
+{
+  "Parameters": {
+    "AllowUsersToChangePassword": {
+      "Type": "String",
+      "Default": true,
+      "AllowedValues": [
+        "true",
+        "false"
+      ],
+      "Description": "You can permit all IAM users in your account to use the IAM console to change their own passwords."
+    },
+    "HardExpiry": {
+      "Type": "String",
+      "Default": false,
+      "AllowedValues": [
+        "true",
+        "false"
+      ],
+      "Description": "You can prevent IAM users from choosing a new password after their current password has expired."
+    },
+    "MaxPasswordAge": {
+      "Type": "Number",
+      "Default": "90",
+      "ConstraintDescription": "Must be in the range [0-1095]",
+      "Description": "You can set IAM user passwords to be valid for only the specified number of days. Choose 0 if you don not want passwords to expire.",
+      "MaxValue": 1095,
+      "MinValue": 0
+    },
+    "MinimumPasswordLength": {
+      "Type": "Number",
+      "Default": "16",
+      "ConstraintDescription": "Must be in the range [6-128]",
+      "Description": "You can specify the minimum number of characters allowed in an IAM user password.",
+      "MaxValue": 1095,
+      "MinValue": 16
+    },
+    "PasswordReusePrevention": {
+      "Type": "Number",
+      "Default": "5",
+      "ConstraintDescription": "Must be in the range [0-24]",
+      "Description": "You can prevent IAM users from reusing a specified number of previous passwords.",
+      "MaxValue": 24,
+      "MinValue": 0
+    },
+    "RequireLowercaseCharacters": {
+      "Type": "String",
+      "Default": true,
+      "AllowedValues": [
+        "true",
+        "false"
+      ],
+      "Description": "You can require that IAM user passwords contain at least one lowercase character from the ISO basic Latin alphabet (a to z)."
+    },
+    "RequireNumbersCharacters": {
+      "Type": "String",
+      "Default": true,
+      "AllowedValues": [
+        "true",
+        "false"
+      ],
+      "Description": "You can require that IAM user passwords contain at least one numeric character (0 to 9)."
+    },
+    "RequireSymbolsCharacters": {
+      "Type": "String",
+      "Default": true,
+      "AllowedValues": [
+        "true",
+        "false"
+      ],
+      "Description": "You can require that IAM user passwords contain at least one of the following nonalphanumeric characters: '! @ # $ % ^ & * ( ) _ + - = [ ] {} |'"
+    },
+    "RequireUppercaseCharacters": {
+      "Type": "String",
+      "Default": true,
+      "AllowedValues": [
+        "true",
+        "false"
+      ],
+      "Description": "You can require that IAM user passwords contain at least one uppercase character from the ISO basic Latin alphabet (A to Z)."
+    },
+    "AssetParametersf1327c611bded71d8236d62c7a12b083c5c5776e0ad3c7365e9f69e63f22d3e4S3BucketE93B5626": {
+      "Type": "String",
+      "Description": "S3 bucket for asset \"f1327c611bded71d8236d62c7a12b083c5c5776e0ad3c7365e9f69e63f22d3e4\""
+    },
+    "AssetParametersf1327c611bded71d8236d62c7a12b083c5c5776e0ad3c7365e9f69e63f22d3e4S3VersionKey42132245": {
+      "Type": "String",
+      "Description": "S3 key for asset version \"f1327c611bded71d8236d62c7a12b083c5c5776e0ad3c7365e9f69e63f22d3e4\""
+    },
+    "AssetParametersf1327c611bded71d8236d62c7a12b083c5c5776e0ad3c7365e9f69e63f22d3e4ArtifactHashE3AE553D": {
+      "Type": "String",
+      "Description": "Artifact hash for asset \"f1327c611bded71d8236d62c7a12b083c5c5776e0ad3c7365e9f69e63f22d3e4\""
+    },
+    "AssetParameters5741f85917ffca30b209ad61e375d3d3bae0457270071f7aca8ca81be19bd22aS3Bucket4E933C7F": {
+      "Type": "String",
+      "Description": "S3 bucket for asset \"5741f85917ffca30b209ad61e375d3d3bae0457270071f7aca8ca81be19bd22a\""
+    },
+    "AssetParameters5741f85917ffca30b209ad61e375d3d3bae0457270071f7aca8ca81be19bd22aS3VersionKeyB83CC434": {
+      "Type": "String",
+      "Description": "S3 key for asset version \"5741f85917ffca30b209ad61e375d3d3bae0457270071f7aca8ca81be19bd22a\""
+    },
+    "AssetParameters5741f85917ffca30b209ad61e375d3d3bae0457270071f7aca8ca81be19bd22aArtifactHash5A536F97": {
+      "Type": "String",
+      "Description": "Artifact hash for asset \"5741f85917ffca30b209ad61e375d3d3bae0457270071f7aca8ca81be19bd22a\""
+    },
+    "AssetParameters6383df60cc1b99de7b175befae3f0ea1dfa7ef89a2afae556140dcf51c8d17b7S3BucketC2E03481": {
+      "Type": "String",
+      "Description": "S3 bucket for asset \"6383df60cc1b99de7b175befae3f0ea1dfa7ef89a2afae556140dcf51c8d17b7\""
+    },
+    "AssetParameters6383df60cc1b99de7b175befae3f0ea1dfa7ef89a2afae556140dcf51c8d17b7S3VersionKey71106FD8": {
+      "Type": "String",
+      "Description": "S3 key for asset version \"6383df60cc1b99de7b175befae3f0ea1dfa7ef89a2afae556140dcf51c8d17b7\""
+    },
+    "AssetParameters6383df60cc1b99de7b175befae3f0ea1dfa7ef89a2afae556140dcf51c8d17b7ArtifactHash1D4B4D91": {
+      "Type": "String",
+      "Description": "Artifact hash for asset \"6383df60cc1b99de7b175befae3f0ea1dfa7ef89a2afae556140dcf51c8d17b7\""
+    },
+    "useremail": {
+      "Type": "String",
+      "Default": "aws-mwalkowiak@gmx.de",
+      "Description": "A valid email address"
+    }
+  },
+  "Resources": {
+    "SetPasswordPolicyServiceRole07D7CF76": {
+      "Type": "AWS::IAM::Role",
+      "Properties": {
+        "AssumeRolePolicyDocument": {
+          "Statement": [
+            {
+              "Action": "sts:AssumeRole",
+              "Effect": "Allow",
+              "Principal": {
+                "Service": "lambda.amazonaws.com"
+              }
+            }
+          ],
+          "Version": "2012-10-17"
+        },
+        "ManagedPolicyArns": [
+          {
+            "Fn::Join": [
+              "",
+              [
+                "arn:",
+                {
+                  "Ref": "AWS::Partition"
+                },
+                ":iam::aws:policy/service-role/AWSLambdaBasicExecutionRole"
+              ]
+            ]
+          }
+        ]
+      },
+      "Metadata": {
+        "aws:cdk:path": "account-setup/Set_Password_Policy/ServiceRole/Resource"
+      }
+    },
+    "SetPasswordPolicyServiceRoleDefaultPolicy6A127D21": {
+      "Type": "AWS::IAM::Policy",
+      "Properties": {
+        "PolicyDocument": {
+          "Statement": [
+            {
+              "Action": [
+                "iam:GetAccountPasswordPolicy",
+                "iam:UpdateAccountPasswordPolicy",
+                "iam:DeleteAccountPasswordPolicy"
+              ],
+              "Effect": "Allow",
+              "Resource": "*"
+            }
+          ],
+          "Version": "2012-10-17"
+        },
+        "PolicyName": "SetPasswordPolicyServiceRoleDefaultPolicy6A127D21",
+        "Roles": [
+          {
+            "Ref": "SetPasswordPolicyServiceRole07D7CF76"
+          }
+        ]
+      },
+      "Metadata": {
+        "aws:cdk:path": "account-setup/Set_Password_Policy/ServiceRole/DefaultPolicy/Resource"
+      }
+    },
+    "SetPasswordPolicy62BCABC3": {
+      "Type": "AWS::Lambda::Function",
+      "Properties": {
+        "Code": {
+          "S3Bucket": {
+            "Ref": "AssetParametersf1327c611bded71d8236d62c7a12b083c5c5776e0ad3c7365e9f69e63f22d3e4S3BucketE93B5626"
+          },
+          "S3Key": {
+            "Fn::Join": [
+              "",
+              [
+                {
+                  "Fn::Select": [
+                    0,
+                    {
+                      "Fn::Split": [
+                        "||",
+                        {
+                          "Ref": "AssetParametersf1327c611bded71d8236d62c7a12b083c5c5776e0ad3c7365e9f69e63f22d3e4S3VersionKey42132245"
+                        }
+                      ]
+                    }
+                  ]
+                },
+                {
+                  "Fn::Select": [
+                    1,
+                    {
+                      "Fn::Split": [
+                        "||",
+                        {
+                          "Ref": "AssetParametersf1327c611bded71d8236d62c7a12b083c5c5776e0ad3c7365e9f69e63f22d3e4S3VersionKey42132245"
+                        }
+                      ]
+                    }
+                  ]
+                }
+              ]
+            ]
+          }
+        },
+        "Handler": "index.handler",
+        "Role": {
+          "Fn::GetAtt": [
+            "SetPasswordPolicyServiceRole07D7CF76",
+            "Arn"
+          ]
+        },
+        "Runtime": "nodejs12.x",
+        "FunctionName": "Lambda_Set_Password_Policy",
+        "MemorySize": 128,
+        "Timeout": 30
+      },
+      "DependsOn": [
+        "SetPasswordPolicyServiceRoleDefaultPolicy6A127D21",
+        "SetPasswordPolicyServiceRole07D7CF76"
+      ],
+      "Metadata": {
+        "aws:cdk:path": "account-setup/Set_Password_Policy/Resource",
+        "aws:asset:path": "asset.f1327c611bded71d8236d62c7a12b083c5c5776e0ad3c7365e9f69e63f22d3e4",
+        "aws:asset:property": "Code"
+      }
+    },
+    "SetPasswordPolicyLogRetention4CCFAF74": {
+      "Type": "Custom::LogRetention",
+      "Properties": {
+        "ServiceToken": {
+          "Fn::GetAtt": [
+            "LogRetentionaae0aa3c5b4d4f87b02d85b201efdd8aFD4BFC8A",
+            "Arn"
+          ]
+        },
+        "LogGroupName": {
+          "Fn::Join": [
+            "",
+            [
+              "/aws/lambda/",
+              {
+                "Ref": "SetPasswordPolicy62BCABC3"
+              }
+            ]
+          ]
+        },
+        "RetentionInDays": 5
+      },
+      "Metadata": {
+        "aws:cdk:path": "account-setup/Set_Password_Policy/LogRetention/Resource"
+      }
+    },
+    "SetPasswordPolicyEventInvokeConfig9DDD223C": {
+      "Type": "AWS::Lambda::EventInvokeConfig",
+      "Properties": {
+        "FunctionName": {
+          "Ref": "SetPasswordPolicy62BCABC3"
+        },
+        "Qualifier": "$LATEST",
+        "MaximumRetryAttempts": 1
+      },
+      "Metadata": {
+        "aws:cdk:path": "account-setup/Set_Password_Policy/EventInvokeConfig/Resource"
+      }
+    },
+    "LogRetentionaae0aa3c5b4d4f87b02d85b201efdd8aServiceRole9741ECFB": {
+      "Type": "AWS::IAM::Role",
+      "Properties": {
+        "AssumeRolePolicyDocument": {
+          "Statement": [
+            {
+              "Action": "sts:AssumeRole",
+              "Effect": "Allow",
+              "Principal": {
+                "Service": "lambda.amazonaws.com"
+              }
+            }
+          ],
+          "Version": "2012-10-17"
+        },
+        "ManagedPolicyArns": [
+          {
+            "Fn::Join": [
+              "",
+              [
+                "arn:",
+                {
+                  "Ref": "AWS::Partition"
+                },
+                ":iam::aws:policy/service-role/AWSLambdaBasicExecutionRole"
+              ]
+            ]
+          }
+        ]
+      },
+      "Metadata": {
+        "aws:cdk:path": "account-setup/LogRetentionaae0aa3c5b4d4f87b02d85b201efdd8a/ServiceRole/Resource"
+      }
+    },
+    "LogRetentionaae0aa3c5b4d4f87b02d85b201efdd8aServiceRoleDefaultPolicyADDA7DEB": {
+      "Type": "AWS::IAM::Policy",
+      "Properties": {
+        "PolicyDocument": {
+          "Statement": [
+            {
+              "Action": [
+                "logs:PutRetentionPolicy",
+                "logs:DeleteRetentionPolicy"
+              ],
+              "Effect": "Allow",
+              "Resource": "*"
+            }
+          ],
+          "Version": "2012-10-17"
+        },
+        "PolicyName": "LogRetentionaae0aa3c5b4d4f87b02d85b201efdd8aServiceRoleDefaultPolicyADDA7DEB",
+        "Roles": [
+          {
+            "Ref": "LogRetentionaae0aa3c5b4d4f87b02d85b201efdd8aServiceRole9741ECFB"
+          }
+        ]
+      },
+      "Metadata": {
+        "aws:cdk:path": "account-setup/LogRetentionaae0aa3c5b4d4f87b02d85b201efdd8a/ServiceRole/DefaultPolicy/Resource"
+      }
+    },
+    "LogRetentionaae0aa3c5b4d4f87b02d85b201efdd8aFD4BFC8A": {
+      "Type": "AWS::Lambda::Function",
+      "Properties": {
+        "Code": {
+          "S3Bucket": {
+            "Ref": "AssetParameters5741f85917ffca30b209ad61e375d3d3bae0457270071f7aca8ca81be19bd22aS3Bucket4E933C7F"
+          },
+          "S3Key": {
+            "Fn::Join": [
+              "",
+              [
+                {
+                  "Fn::Select": [
+                    0,
+                    {
+                      "Fn::Split": [
+                        "||",
+                        {
+                          "Ref": "AssetParameters5741f85917ffca30b209ad61e375d3d3bae0457270071f7aca8ca81be19bd22aS3VersionKeyB83CC434"
+                        }
+                      ]
+                    }
+                  ]
+                },
+                {
+                  "Fn::Select": [
+                    1,
+                    {
+                      "Fn::Split": [
+                        "||",
+                        {
+                          "Ref": "AssetParameters5741f85917ffca30b209ad61e375d3d3bae0457270071f7aca8ca81be19bd22aS3VersionKeyB83CC434"
+                        }
+                      ]
+                    }
+                  ]
+                }
+              ]
+            ]
+          }
+        },
+        "Handler": "index.handler",
+        "Role": {
+          "Fn::GetAtt": [
+            "LogRetentionaae0aa3c5b4d4f87b02d85b201efdd8aServiceRole9741ECFB",
+            "Arn"
+          ]
+        },
+        "Runtime": "nodejs10.x"
+      },
+      "DependsOn": [
+        "LogRetentionaae0aa3c5b4d4f87b02d85b201efdd8aServiceRoleDefaultPolicyADDA7DEB",
+        "LogRetentionaae0aa3c5b4d4f87b02d85b201efdd8aServiceRole9741ECFB"
+      ],
+      "Metadata": {
+        "aws:cdk:path": "account-setup/LogRetentionaae0aa3c5b4d4f87b02d85b201efdd8a/Resource",
+        "aws:asset:path": "asset.5741f85917ffca30b209ad61e375d3d3bae0457270071f7aca8ca81be19bd22a",
+        "aws:asset:property": "Code"
+      }
+    },
+    "UpdatePasswordPolicy": {
+      "Type": "AWS::CloudFormation::CustomResource",
+      "Properties": {
+        "ServiceToken": {
+          "Fn::GetAtt": [
+            "SetPasswordPolicy62BCABC3",
+            "Arn"
+          ]
+        },
+        "HardExpiry": {
+          "Ref": "HardExpiry"
+        },
+        "AllowUsersToChangePassword": {
+          "Ref": "AllowUsersToChangePassword"
+        },
+        "MaxPasswordAge": {
+          "Ref": "MaxPasswordAge"
+        },
+        "MinimumPasswordLength": {
+          "Ref": "MinimumPasswordLength"
+        },
+        "PasswordReusePrevention": {
+          "Ref": "PasswordReusePrevention"
+        },
+        "RequireLowercaseCharacters": {
+          "Ref": "RequireLowercaseCharacters"
+        },
+        "RequireNumbers": {
+          "Ref": "RequireNumbersCharacters"
+        },
+        "RequireSymbols": {
+          "Ref": "RequireSymbolsCharacters"
+        },
+        "RequireUppercaseCharacters": {
+          "Ref": "RequireUppercaseCharacters"
+        }
+      },
+      "UpdateReplacePolicy": "Delete",
+      "DeletionPolicy": "Delete",
+      "Metadata": {
+        "aws:cdk:path": "account-setup/Update_Password_Policy/Default"
+      }
+    },
+    "SandBoxAdminUserGroupF0F4A0DA": {
+      "Type": "AWS::IAM::Group",
+      "Properties": {
+        "ManagedPolicyArns": [
+          {
+            "Fn::Join": [
+              "",
+              [
+                "arn:",
+                {
+                  "Ref": "AWS::Partition"
+                },
+                ":iam::aws:policy/AdministratorAccess"
+              ]
+            ]
+          }
+        ]
+      },
+      "Metadata": {
+        "aws:cdk:path": "account-setup/SandBox_Admin_User_Group/Resource"
+      }
+    },
+    "LimitSandboxAdminGroup70A710EA": {
+      "Type": "AWS::IAM::Policy",
+      "Properties": {
+        "PolicyDocument": {
+          "Statement": [
+            {
+              "Action": [
+                "ec2:*Reserved*",
+                "dynamodb:*Reserved*",
+                "rds:*Reserved*",
+                "elasticache:*Reserved*",
+                "redshift:*Reserved*",
+                "elasticsearch:*Reserved*",
+                "cloudfront:*Reserved*",
+                "emr:*Reserved*"
+              ],
+              "Effect": "Deny",
+              "Resource": "*"
+            }
+          ],
+          "Version": "2012-10-17"
+        },
+        "PolicyName": "LimitSandboxAdminGroup70A710EA",
+        "Groups": [
+          {
+            "Ref": "SandBoxAdminUserGroupF0F4A0DA"
+          }
+        ]
+      },
+      "Metadata": {
+        "aws:cdk:path": "account-setup/Limit_Sandbox_Admin_Group/Resource"
+      }
+    },
+    "BillingTopicBD902DD9": {
+      "Type": "AWS::SNS::Topic",
+      "Properties": {
+        "DisplayName": "BillingAllertTopic",
+        "TopicName": "BillingAllertTopic"
+      },
+      "Metadata": {
+        "aws:cdk:path": "account-setup/Billing_Topic/Resource"
+      }
+    },
+    "BillingTopicSubscription": {
+      "Type": "AWS::SNS::Subscription",
+      "Properties": {
+        "Protocol": "email",
+        "TopicArn": {
+          "Ref": "BillingTopicBD902DD9"
+        },
+        "Endpoint": {
+          "Ref": "useremail"
+        }
+      },
+      "Metadata": {
+        "aws:cdk:path": "account-setup/Billing_Topic_Subscription"
+      }
+    },
+    "BillingAlert5DollarsDB575F70": {
+      "Type": "AWS::CloudWatch::Alarm",
+      "Properties": {
+        "ComparisonOperator": "GreaterThanThreshold",
+        "EvaluationPeriods": 1,
+        "AlarmActions": [
+          {
+            "Ref": "BillingTopicBD902DD9"
+          }
+        ],
+        "AlarmDescription": "If costs are greater then 5$ within 6 hours, this alarm will be triggered.",
+        "Dimensions": [
+          {
+            "Name": "Currency",
+            "Value": "USD"
+          }
+        ],
+        "MetricName": "Estimated_Charges",
+        "Namespace": "AWS/Billing",
+        "Period": 21600,
+        "Statistic": "Maximum",
+        "Threshold": 5
+      },
+      "Metadata": {
+        "aws:cdk:path": "account-setup/Billing_Alert5_Dollars/Resource"
+      }
+    },
+    "CheckUserTopicF3F01C93": {
+      "Type": "AWS::SNS::Topic",
+      "Properties": {
+        "DisplayName": "UserAccessKeyTopic",
+        "TopicName": "UserAccessKeyTopic"
+      },
+      "Metadata": {
+        "aws:cdk:path": "account-setup/Check_User_Topic/Resource"
+      }
+    },
+    "USerTopicSubscription": {
+      "Type": "AWS::SNS::Subscription",
+      "Properties": {
+        "Protocol": "email",
+        "TopicArn": {
+          "Ref": "CheckUserTopicF3F01C93"
+        },
+        "Endpoint": {
+          "Ref": "useremail"
+        }
+      },
+      "Metadata": {
+        "aws:cdk:path": "account-setup/USer_Topic_Subscription"
+      }
+    },
+    "CheckUserKeysServiceRole1581AA85": {
+      "Type": "AWS::IAM::Role",
+      "Properties": {
+        "AssumeRolePolicyDocument": {
+          "Statement": [
+            {
+              "Action": "sts:AssumeRole",
+              "Effect": "Allow",
+              "Principal": {
+                "Service": "lambda.amazonaws.com"
+              }
+            }
+          ],
+          "Version": "2012-10-17"
+        },
+        "ManagedPolicyArns": [
+          {
+            "Fn::Join": [
+              "",
+              [
+                "arn:",
+                {
+                  "Ref": "AWS::Partition"
+                },
+                ":iam::aws:policy/service-role/AWSLambdaBasicExecutionRole"
+              ]
+            ]
+          }
+        ]
+      },
+      "Metadata": {
+        "aws:cdk:path": "account-setup/Check_User_Keys/ServiceRole/Resource"
+      }
+    },
+    "CheckUserKeysServiceRoleDefaultPolicy6FF65E59": {
+      "Type": "AWS::IAM::Policy",
+      "Properties": {
+        "PolicyDocument": {
+          "Statement": [
+            {
+              "Action": [
+                "iam:ListUsers",
+                "iam:ListAccessKeys"
+              ],
+              "Effect": "Allow",
+              "Resource": "*"
+            },
+            {
+              "Action": "sns:Publish",
+              "Effect": "Allow",
+              "Resource": {
+                "Ref": "CheckUserTopicF3F01C93"
+              }
+            }
+          ],
+          "Version": "2012-10-17"
+        },
+        "PolicyName": "CheckUserKeysServiceRoleDefaultPolicy6FF65E59",
+        "Roles": [
+          {
+            "Ref": "CheckUserKeysServiceRole1581AA85"
+          }
+        ]
+      },
+      "Metadata": {
+        "aws:cdk:path": "account-setup/Check_User_Keys/ServiceRole/DefaultPolicy/Resource"
+      }
+    },
+    "CheckUserKeysFBEF0A44": {
+      "Type": "AWS::Lambda::Function",
+      "Properties": {
+        "Code": {
+          "S3Bucket": {
+            "Ref": "AssetParameters6383df60cc1b99de7b175befae3f0ea1dfa7ef89a2afae556140dcf51c8d17b7S3BucketC2E03481"
+          },
+          "S3Key": {
+            "Fn::Join": [
+              "",
+              [
+                {
+                  "Fn::Select": [
+                    0,
+                    {
+                      "Fn::Split": [
+                        "||",
+                        {
+                          "Ref": "AssetParameters6383df60cc1b99de7b175befae3f0ea1dfa7ef89a2afae556140dcf51c8d17b7S3VersionKey71106FD8"
+                        }
+                      ]
+                    }
+                  ]
+                },
+                {
+                  "Fn::Select": [
+                    1,
+                    {
+                      "Fn::Split": [
+                        "||",
+                        {
+                          "Ref": "AssetParameters6383df60cc1b99de7b175befae3f0ea1dfa7ef89a2afae556140dcf51c8d17b7S3VersionKey71106FD8"
+                        }
+                      ]
+                    }
+                  ]
+                }
+              ]
+            ]
+          }
+        },
+        "Handler": "handler.DailyUserCheck",
+        "Role": {
+          "Fn::GetAtt": [
+            "CheckUserKeysServiceRole1581AA85",
+            "Arn"
+          ]
+        },
+        "Runtime": "python3.7",
+        "Environment": {
+          "Variables": {
+            "SecOpsTopicArn": {
+              "Ref": "CheckUserTopicF3F01C93"
+            },
+            "KeyAge": "90"
+          }
+        },
+        "FunctionName": "Lambda_User_Keys",
+        "MemorySize": 128,
+        "Timeout": 30
+      },
+      "DependsOn": [
+        "CheckUserKeysServiceRoleDefaultPolicy6FF65E59",
+        "CheckUserKeysServiceRole1581AA85"
+      ],
+      "Metadata": {
+        "aws:cdk:path": "account-setup/Check_User_Keys/Resource",
+        "aws:asset:path": "asset.6383df60cc1b99de7b175befae3f0ea1dfa7ef89a2afae556140dcf51c8d17b7",
+        "aws:asset:property": "Code"
+      }
+    },
+    "CheckUserKeysLogRetention4B7E998C": {
+      "Type": "Custom::LogRetention",
+      "Properties": {
+        "ServiceToken": {
+          "Fn::GetAtt": [
+            "LogRetentionaae0aa3c5b4d4f87b02d85b201efdd8aFD4BFC8A",
+            "Arn"
+          ]
+        },
+        "LogGroupName": {
+          "Fn::Join": [
+            "",
+            [
+              "/aws/lambda/",
+              {
+                "Ref": "CheckUserKeysFBEF0A44"
+              }
+            ]
+          ]
+        },
+        "RetentionInDays": 5
+      },
+      "Metadata": {
+        "aws:cdk:path": "account-setup/Check_User_Keys/LogRetention/Resource"
+      }
+    },
+    "CheckUserKeysEventInvokeConfig57E7C6AC": {
+      "Type": "AWS::Lambda::EventInvokeConfig",
+      "Properties": {
+        "FunctionName": {
+          "Ref": "CheckUserKeysFBEF0A44"
+        },
+        "Qualifier": "$LATEST",
+        "MaximumRetryAttempts": 1
+      },
+      "Metadata": {
+        "aws:cdk:path": "account-setup/Check_User_Keys/EventInvokeConfig/Resource"
+      }
+    },
+    "CheckUserKeysAllowEventRuleaccountsetupScheduleCheckKeyLambda61F70B94A1756A95": {
+      "Type": "AWS::Lambda::Permission",
+      "Properties": {
+        "Action": "lambda:InvokeFunction",
+        "FunctionName": {
+          "Fn::GetAtt": [
+            "CheckUserKeysFBEF0A44",
+            "Arn"
+          ]
+        },
+        "Principal": "events.amazonaws.com",
+        "SourceArn": {
+          "Fn::GetAtt": [
+            "ScheduleCheckKeyLambdaD8310F73",
+            "Arn"
+          ]
+        }
+      },
+      "Metadata": {
+        "aws:cdk:path": "account-setup/Check_User_Keys/AllowEventRuleaccountsetupScheduleCheckKeyLambda61F70B94"
+      }
+    },
+    "ScheduleCheckKeyLambdaD8310F73": {
+      "Type": "AWS::Events::Rule",
+      "Properties": {
+        "ScheduleExpression": "cron(0 18 ? * * *)",
+        "State": "ENABLED",
+        "Targets": [
+          {
+            "Arn": {
+              "Fn::GetAtt": [
+                "CheckUserKeysFBEF0A44",
+                "Arn"
+              ]
+            },
+            "Id": "Target0"
+          }
+        ]
+      },
+      "Metadata": {
+        "aws:cdk:path": "account-setup/Schedule_Check_Key_Lambda/Resource"
+      }
+    }
+  }
+}
