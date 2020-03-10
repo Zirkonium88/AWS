@@ -1,7 +1,0 @@
-README.md
-setup.py
-sagemaker/sagemaker.egg-info/PKG-INFO
-sagemaker/sagemaker.egg-info/SOURCES.txt
-sagemaker/sagemaker.egg-info/dependency_links.txt
-sagemaker/sagemaker.egg-info/requires.txt
-sagemaker/sagemaker.egg-info/top_level.txt
