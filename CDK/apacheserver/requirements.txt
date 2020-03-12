@@ -2,3 +2,4 @@ aws_cdk.aws_s3
 aws_cdk.aws_iam
 aws_cdk.aws_ec2
 aws_cdk.aws_codecommit
+aws_cdk.aws_s3_deployment
