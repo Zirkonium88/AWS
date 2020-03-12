@@ -14,4 +14,4 @@ This app fullfils some of the AWS Best Practices.
 
 ## Apache Web Server within a existing VPC
 
-[Apache WebServer example](CDK/apacheserver/RREADME.MD)!
+* [Apache WebServer example](CDK/apacheserver/RREADME.MD)!
