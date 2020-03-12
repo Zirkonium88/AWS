@@ -1,6 +1,7 @@
 from aws_cdk import core
 from aws_cdk import aws_ec2 as _ec2
 from aws_cdk import aws_s3 as _s3
+from aws_cdk import aws_s3_deployment as _s3_deploy
 from aws_cdk import aws_iam as _iam
 from aws_cdk import aws_codecommit as _git
 
@@ -36,7 +37,7 @@ class Ec2DevStack(core.Stack):
             id="Deployment_Bucket_Param",
             description="Enter the instancetype",
             type="String",
-            default="431892011317-deployment"
+            default="my-deployment-bucket-20201203"
         )
 
         #===============================
@@ -46,7 +47,7 @@ class Ec2DevStack(core.Stack):
             id="Deployment_Git",
             description="Enter the instancetype",
             type="String",
-            default="431892011317-git"
+            default="my-demo-git-20201203"
         )
 
         #===============================
@@ -70,12 +71,12 @@ class Ec2DevStack(core.Stack):
         )
 
         #===============================
-        # Parameter for CIDR
+        # Parameter for your local ip adress
         cidr_local = core.CfnParameter(
             self,
             id="CIDR",
             type="String",
-            default="213.61.162.74/32",
+            default="91.3.126.209/32", #"213.61.162.74/32",
             description="Source Ip from local machine"
         )
 
@@ -87,8 +88,68 @@ class Ec2DevStack(core.Stack):
             self,
             id="WWW-VPC",
             is_default=False,
-            vpc_id="vpc-0e4f2f24a48b5d1d6"
+            vpc_id="vpc-0e4f2f24a48b5d1d6" # Needs to be explicit: vpc_id.value_as_String is not working so far
         )
+            
+        
+        ################################
+        # S3, Git and S3 Gateway Endpoint
+        ################################
+
+        s3_endpoint = _ec2.GatewayVpcEndpoint(
+            self,
+            id="S3_Deployment_Endpoint",
+            vpc=vpc,
+            subnets=[_ec2.SubnetSelection(subnet_type=_ec2.SubnetType.PUBLIC)],
+            service=_ec2.GatewayVpcEndpointAwsService.S3
+        )
+
+        bucket = _s3.Bucket(
+            self,
+            id="Deployment_Bucket",
+            bucket_name=bucket_name.value_as_string,   
+        )
+
+        bucket_deployment = _s3_deploy.BucketDeployment(
+            self,
+            id="Bucket_Deployment",
+            sources=[_s3_deploy.Source.asset("./www/")],
+            destination_bucket=bucket
+        )
+
+        bucket_pol = _iam.PolicyStatement(
+            effect=_iam.Effect.ALLOW,
+            actions=[
+                "s3:GetObject*",
+                "s3:GetBucket*",
+                "s3:List*",
+                "s3:DeleteObject*",
+                "s3:PutObject*",
+                "s3:Abort*",
+            ],
+            principals=[_iam.ServicePrincipal(service="ec2.amazonaws.com")],
+            resources=[
+                bucket.bucket_arn,
+                bucket.bucket_arn+"/*"
+            ],
+            conditions={
+                "StringNotEquals": {
+                    "aws:sourceVpce": vpc.vpc_id
+                }
+            }
+        )
+        
+        bucket.add_to_resource_policy(bucket_pol)
+        
+        git = _git.Repository(
+            self,
+            id="Deployment_Repository",
+            repository_name=git_name.value_as_string
+        )
+
+        ################################
+        # EC2 instance
+        ################################
 
         dev_sg = _ec2.SecurityGroup(
             self,
@@ -116,23 +177,6 @@ class Ec2DevStack(core.Stack):
             generation=_ec2.AmazonLinuxGeneration.AMAZON_LINUX_2,
             user_data=_ec2.UserData.custom(user_data),
             storage=_ec2.AmazonLinuxStorage.GENERAL_PURPOSE
-        )
-            
-        
-        ################################
-        # S3 and Git
-        ################################
-
-        bucket = _s3.Bucket(
-            self,
-            id="Deployment_Bucket",
-            bucket_name=bucket_name.value_as_string
-        )
-
-        git = _git.Repository(
-            self,
-            id="Deployment_Repository",
-            repository_name=git_name.value_as_string
         )
 
         ec2_dev_role = _iam.Role(
@@ -179,7 +223,6 @@ class Ec2DevStack(core.Stack):
                 )
             ]
         )
-
     
         dev_instance = _ec2.Instance(
             self, 
@@ -188,6 +231,7 @@ class Ec2DevStack(core.Stack):
             instance_name=instance_name.value_as_string,
             instance_type=_ec2.InstanceType(instance_type_identifier=ec2_type.value_as_string),
             machine_image=ami,
+            key_name=key_name.value_as_string,
             security_group=dev_sg,
             vpc_subnets=_ec2.SubnetSelection(subnet_type=_ec2.SubnetType.PUBLIC)
         )
@@ -195,9 +239,20 @@ class Ec2DevStack(core.Stack):
         git_policy.attach_to_role(dev_instance.role)
          
         bucket.grant_read_write(dev_instance)
-   
+
+        core.Dependency(
+            source=bucket_deployment,
+            target=dev_instance
+        )
+  
         core.CfnOutput(
             self, 
             id="Dev_Instance",
             value=dev_instance.instance_public_dns_name
+        )
+
+        core.CfnOutput(
+            self, 
+            id="Bucket_Name",
+            value=bucket.bucket_name
         )
