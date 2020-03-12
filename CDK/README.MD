@@ -11,3 +11,7 @@ This app fullfils some of the AWS Best Practices.
 ## IoT Streaming Example
 
 * [AWS Account Setup](https://github.com/Zirkonium88/AWS/blob/master/CDK/streaming/README.MD)
+
+## Apache Web Server within a existing VPC
+
+[Apache WebServer example](CDK/apacheserver/RREADME.MD)!

@@ -54,4 +54,5 @@ aws iot create-keys-and-certificate \
 
 ## IoT Device Script
 
-The script from the Pi can be found [here](CDK/IoT/Pi/demo.py)!
+The script from the Pi can be found [here](CDK/streaming/Pi/demo.py)!
+
