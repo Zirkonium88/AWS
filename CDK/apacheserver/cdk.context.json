@@ -1,0 +1,52 @@
+{
+  "@aws-cdk/core:enableStackNameDuplicates": "true",
+  "aws-cdk:enableDiffNoFail": "true",
+  "availability-zones:account=431892011317:region=eu-central-1": [
+    "eu-central-1a",
+    "eu-central-1b",
+    "eu-central-1c"
+  ],
+  "vpc-provider:account=431892011317:filter.isDefault=false:filter.vpc-id=vpc-0e4f2f24a48b5d1d6:region=eu-central-1:returnAsymmetricSubnets=true": {
+    "vpcId": "vpc-0e4f2f24a48b5d1d6",
+    "vpcCidrBlock": "192.168.0.0/20",
+    "availabilityZones": [],
+    "subnetGroups": [
+      {
+        "name": "Public",
+        "type": "Public",
+        "subnets": [
+          {
+            "subnetId": "subnet-019c3afccadbdf53b",
+            "cidr": "192.168.0.0/22",
+            "availabilityZone": "eu-central-1a",
+            "routeTableId": "rtb-06fa856eedb68456f"
+          },
+          {
+            "subnetId": "subnet-0feabebbe1ca3a3e1",
+            "cidr": "192.168.4.0/22",
+            "availabilityZone": "eu-central-1b",
+            "routeTableId": "rtb-08745db89e3a98f6d"
+          }
+        ]
+      },
+      {
+        "name": "Private",
+        "type": "Isolated",
+        "subnets": [
+          {
+            "subnetId": "subnet-0b61f5e5968367cdd",
+            "cidr": "192.168.8.0/22",
+            "availabilityZone": "eu-central-1a",
+            "routeTableId": "rtb-09218b0752ae8e342"
+          },
+          {
+            "subnetId": "subnet-01da35061cf834f3e",
+            "cidr": "192.168.12.0/22",
+            "availabilityZone": "eu-central-1b",
+            "routeTableId": "rtb-0e4c194f88c78cfe8"
+          }
+        ]
+      }
+    ]
+  }
+}
