@@ -20,6 +20,10 @@ This repository will provide some examples from my daily AWS workloads. It will 
 * If your interested in various examples of CloudFormation, look [here](https://github.com/Zirkonium88/aws-cf-templates). It's a repo of one of my colleagues.
 * A small Demo on how to use Parameters and Troposphere in and for Cloudformation can be found [here](https://github.com/Zirkonium88/AWS/tree/master/CloudFormation/README.MD).
 
+## Cloud Development Kit (CDK) Examples
+
+* Various example can be found [here](https://github.com/Zirkonium88/AWS/tree/master/CDK/README.MD)!
+
 ## Docker on AWS
 
 * Do you want to host a Docker container as Apache webserver? This [Docker example](Docker/DockerStaticWebsite/README.MD) will show you how.
