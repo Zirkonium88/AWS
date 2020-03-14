@@ -1,0 +1,671 @@
+{
+  "version": "tree-0.1",
+  "tree": {
+    "id": "App",
+    "path": "",
+    "children": {
+      "Tree": {
+        "id": "Tree",
+        "path": "Tree"
+      },
+      "lambdaPipeline": {
+        "id": "lambdaPipeline",
+        "path": "lambdaPipeline",
+        "children": {
+          "Pipe_Bucket": {
+            "id": "Pipe_Bucket",
+            "path": "lambdaPipeline/Pipe_Bucket",
+            "children": {
+              "Resource": {
+                "id": "Resource",
+                "path": "lambdaPipeline/Pipe_Bucket/Resource",
+                "attributes": {
+                  "aws:cdk:cloudformation:type": "AWS::S3::Bucket",
+                  "aws:cdk:cloudformation:props": {
+                    "bucketEncryption": {
+                      "serverSideEncryptionConfiguration": [
+                        {
+                          "serverSideEncryptionByDefault": {
+                            "sseAlgorithm": "AES256"
+                          }
+                        }
+                      ]
+                    },
+                    "bucketName": "431892011317-pipe"
+                  }
+                }
+              },
+              "Notifications": {
+                "id": "Notifications",
+                "path": "lambdaPipeline/Pipe_Bucket/Notifications",
+                "children": {
+                  "Resource": {
+                    "id": "Resource",
+                    "path": "lambdaPipeline/Pipe_Bucket/Notifications/Resource"
+                  }
+                }
+              }
+            }
+          },
+          "DLQ_LoadData_Lambda": {
+            "id": "DLQ_LoadData_Lambda",
+            "path": "lambdaPipeline/DLQ_LoadData_Lambda",
+            "children": {
+              "Resource": {
+                "id": "Resource",
+                "path": "lambdaPipeline/DLQ_LoadData_Lambda/Resource",
+                "attributes": {
+                  "aws:cdk:cloudformation:type": "AWS::SQS::Queue",
+                  "aws:cdk:cloudformation:props": {}
+                }
+              }
+            }
+          },
+          "Pipe_Lambda": {
+            "id": "Pipe_Lambda",
+            "path": "lambdaPipeline/Pipe_Lambda",
+            "children": {
+              "ServiceRole": {
+                "id": "ServiceRole",
+                "path": "lambdaPipeline/Pipe_Lambda/ServiceRole",
+                "children": {
+                  "Resource": {
+                    "id": "Resource",
+                    "path": "lambdaPipeline/Pipe_Lambda/ServiceRole/Resource",
+                    "attributes": {
+                      "aws:cdk:cloudformation:type": "AWS::IAM::Role",
+                      "aws:cdk:cloudformation:props": {
+                        "assumeRolePolicyDocument": {
+                          "Statement": [
+                            {
+                              "Action": "sts:AssumeRole",
+                              "Effect": "Allow",
+                              "Principal": {
+                                "Service": "lambda.amazonaws.com"
+                              }
+                            }
+                          ],
+                          "Version": "2012-10-17"
+                        },
+                        "managedPolicyArns": [
+                          {
+                            "Fn::Join": [
+                              "",
+                              [
+                                "arn:",
+                                {
+                                  "Ref": "AWS::Partition"
+                                },
+                                ":iam::aws:policy/service-role/AWSLambdaBasicExecutionRole"
+                              ]
+                            ]
+                          }
+                        ]
+                      }
+                    }
+                  },
+                  "DefaultPolicy": {
+                    "id": "DefaultPolicy",
+                    "path": "lambdaPipeline/Pipe_Lambda/ServiceRole/DefaultPolicy",
+                    "children": {
+                      "Resource": {
+                        "id": "Resource",
+                        "path": "lambdaPipeline/Pipe_Lambda/ServiceRole/DefaultPolicy/Resource",
+                        "attributes": {
+                          "aws:cdk:cloudformation:type": "AWS::IAM::Policy",
+                          "aws:cdk:cloudformation:props": {
+                            "policyDocument": {
+                              "Statement": [
+                                {
+                                  "Action": "sqs:SendMessage",
+                                  "Effect": "Allow",
+                                  "Resource": {
+                                    "Fn::GetAtt": [
+                                      "DLQLoadDataLambdaEFE21EE4",
+                                      "Arn"
+                                    ]
+                                  }
+                                },
+                                {
+                                  "Action": [
+                                    "s3:GetBucket*",
+                                    "s3:GetObject*",
+                                    "s3:List*",
+                                    "s3:Head*"
+                                  ],
+                                  "Effect": "Allow",
+                                  "Resource": [
+                                    {
+                                      "Fn::GetAtt": [
+                                        "PipeBucket0A689C15",
+                                        "Arn"
+                                      ]
+                                    },
+                                    {
+                                      "Fn::Join": [
+                                        "",
+                                        [
+                                          {
+                                            "Fn::GetAtt": [
+                                              "PipeBucket0A689C15",
+                                              "Arn"
+                                            ]
+                                          },
+                                          "/*"
+                                        ]
+                                      ]
+                                    }
+                                  ]
+                                },
+                                {
+                                  "Action": [
+                                    "dynamodb:BatchWriteItem",
+                                    "dynamodb:PutItem",
+                                    "dynamodb:UpdateItem",
+                                    "dynamodb:DeleteItem"
+                                  ],
+                                  "Effect": "Allow",
+                                  "Resource": [
+                                    {
+                                      "Fn::GetAtt": [
+                                        "LoadDataTableFD0A0933",
+                                        "Arn"
+                                      ]
+                                    },
+                                    {
+                                      "Ref": "AWS::NoValue"
+                                    }
+                                  ]
+                                }
+                              ],
+                              "Version": "2012-10-17"
+                            },
+                            "policyName": "PipeLambdaServiceRoleDefaultPolicyFC9EC737",
+                            "roles": [
+                              {
+                                "Ref": "PipeLambdaServiceRoleD98950EE"
+                              }
+                            ]
+                          }
+                        }
+                      }
+                    }
+                  }
+                }
+              },
+              "Code": {
+                "id": "Code",
+                "path": "lambdaPipeline/Pipe_Lambda/Code",
+                "children": {
+                  "Stage": {
+                    "id": "Stage",
+                    "path": "lambdaPipeline/Pipe_Lambda/Code/Stage"
+                  },
+                  "AssetBucket": {
+                    "id": "AssetBucket",
+                    "path": "lambdaPipeline/Pipe_Lambda/Code/AssetBucket"
+                  }
+                }
+              },
+              "Resource": {
+                "id": "Resource",
+                "path": "lambdaPipeline/Pipe_Lambda/Resource",
+                "attributes": {
+                  "aws:cdk:cloudformation:type": "AWS::Lambda::Function",
+                  "aws:cdk:cloudformation:props": {
+                    "code": {
+                      "s3Bucket": {
+                        "Ref": "AssetParametersa4b4635e87d896f4581e8bf2599e069191c06e0c4d43047f0972c155a5cd97a6S3Bucket5E4DEC63"
+                      },
+                      "s3Key": {
+                        "Fn::Join": [
+                          "",
+                          [
+                            {
+                              "Fn::Select": [
+                                0,
+                                {
+                                  "Fn::Split": [
+                                    "||",
+                                    {
+                                      "Ref": "AssetParametersa4b4635e87d896f4581e8bf2599e069191c06e0c4d43047f0972c155a5cd97a6S3VersionKeyDFE70B98"
+                                    }
+                                  ]
+                                }
+                              ]
+                            },
+                            {
+                              "Fn::Select": [
+                                1,
+                                {
+                                  "Fn::Split": [
+                                    "||",
+                                    {
+                                      "Ref": "AssetParametersa4b4635e87d896f4581e8bf2599e069191c06e0c4d43047f0972c155a5cd97a6S3VersionKeyDFE70B98"
+                                    }
+                                  ]
+                                }
+                              ]
+                            }
+                          ]
+                        ]
+                      }
+                    },
+                    "handler": "loaddata.LoadData",
+                    "role": {
+                      "Fn::GetAtt": [
+                        "PipeLambdaServiceRoleD98950EE",
+                        "Arn"
+                      ]
+                    },
+                    "runtime": "python3.8",
+                    "deadLetterConfig": {
+                      "targetArn": {
+                        "Fn::GetAtt": [
+                          "DLQLoadDataLambdaEFE21EE4",
+                          "Arn"
+                        ]
+                      }
+                    },
+                    "environment": {
+                      "variables": {
+                        "TABLE_NAME": {
+                          "Ref": "LoadDataTableFD0A0933"
+                        }
+                      }
+                    },
+                    "functionName": "Lambda_Put_Data_from_File_into_DynamoDB",
+                    "memorySize": 128,
+                    "timeout": 30
+                  }
+                }
+              },
+              "LogRetention": {
+                "id": "LogRetention",
+                "path": "lambdaPipeline/Pipe_Lambda/LogRetention",
+                "children": {
+                  "Provider": {
+                    "id": "Provider",
+                    "path": "lambdaPipeline/Pipe_Lambda/LogRetention/Provider"
+                  },
+                  "Resource": {
+                    "id": "Resource",
+                    "path": "lambdaPipeline/Pipe_Lambda/LogRetention/Resource"
+                  }
+                }
+              },
+              "LogGroup": {
+                "id": "LogGroup",
+                "path": "lambdaPipeline/Pipe_Lambda/LogGroup"
+              },
+              "EventInvokeConfig": {
+                "id": "EventInvokeConfig",
+                "path": "lambdaPipeline/Pipe_Lambda/EventInvokeConfig",
+                "children": {
+                  "Resource": {
+                    "id": "Resource",
+                    "path": "lambdaPipeline/Pipe_Lambda/EventInvokeConfig/Resource",
+                    "attributes": {
+                      "aws:cdk:cloudformation:type": "AWS::Lambda::EventInvokeConfig",
+                      "aws:cdk:cloudformation:props": {
+                        "functionName": {
+                          "Ref": "PipeLambda247A18FB"
+                        },
+                        "qualifier": "$LATEST",
+                        "maximumRetryAttempts": 1
+                      }
+                    }
+                  }
+                }
+              },
+              "AllowBucketNotificationsFromlambdaPipelinePipeBucket3886726B": {
+                "id": "AllowBucketNotificationsFromlambdaPipelinePipeBucket3886726B",
+                "path": "lambdaPipeline/Pipe_Lambda/AllowBucketNotificationsFromlambdaPipelinePipeBucket3886726B",
+                "attributes": {
+                  "aws:cdk:cloudformation:type": "AWS::Lambda::Permission",
+                  "aws:cdk:cloudformation:props": {
+                    "action": "lambda:InvokeFunction",
+                    "functionName": {
+                      "Fn::GetAtt": [
+                        "PipeLambda247A18FB",
+                        "Arn"
+                      ]
+                    },
+                    "principal": "s3.amazonaws.com",
+                    "sourceAccount": {
+                      "Ref": "AWS::AccountId"
+                    },
+                    "sourceArn": {
+                      "Fn::GetAtt": [
+                        "PipeBucket0A689C15",
+                        "Arn"
+                      ]
+                    }
+                  }
+                }
+              }
+            }
+          },
+          "AssetParameters": {
+            "id": "AssetParameters",
+            "path": "lambdaPipeline/AssetParameters",
+            "children": {
+              "a4b4635e87d896f4581e8bf2599e069191c06e0c4d43047f0972c155a5cd97a6": {
+                "id": "a4b4635e87d896f4581e8bf2599e069191c06e0c4d43047f0972c155a5cd97a6",
+                "path": "lambdaPipeline/AssetParameters/a4b4635e87d896f4581e8bf2599e069191c06e0c4d43047f0972c155a5cd97a6",
+                "children": {
+                  "S3Bucket": {
+                    "id": "S3Bucket",
+                    "path": "lambdaPipeline/AssetParameters/a4b4635e87d896f4581e8bf2599e069191c06e0c4d43047f0972c155a5cd97a6/S3Bucket"
+                  },
+                  "S3VersionKey": {
+                    "id": "S3VersionKey",
+                    "path": "lambdaPipeline/AssetParameters/a4b4635e87d896f4581e8bf2599e069191c06e0c4d43047f0972c155a5cd97a6/S3VersionKey"
+                  },
+                  "ArtifactHash": {
+                    "id": "ArtifactHash",
+                    "path": "lambdaPipeline/AssetParameters/a4b4635e87d896f4581e8bf2599e069191c06e0c4d43047f0972c155a5cd97a6/ArtifactHash"
+                  }
+                }
+              },
+              "5741f85917ffca30b209ad61e375d3d3bae0457270071f7aca8ca81be19bd22a": {
+                "id": "5741f85917ffca30b209ad61e375d3d3bae0457270071f7aca8ca81be19bd22a",
+                "path": "lambdaPipeline/AssetParameters/5741f85917ffca30b209ad61e375d3d3bae0457270071f7aca8ca81be19bd22a",
+                "children": {
+                  "S3Bucket": {
+                    "id": "S3Bucket",
+                    "path": "lambdaPipeline/AssetParameters/5741f85917ffca30b209ad61e375d3d3bae0457270071f7aca8ca81be19bd22a/S3Bucket"
+                  },
+                  "S3VersionKey": {
+                    "id": "S3VersionKey",
+                    "path": "lambdaPipeline/AssetParameters/5741f85917ffca30b209ad61e375d3d3bae0457270071f7aca8ca81be19bd22a/S3VersionKey"
+                  },
+                  "ArtifactHash": {
+                    "id": "ArtifactHash",
+                    "path": "lambdaPipeline/AssetParameters/5741f85917ffca30b209ad61e375d3d3bae0457270071f7aca8ca81be19bd22a/ArtifactHash"
+                  }
+                }
+              }
+            }
+          },
+          "LogRetentionaae0aa3c5b4d4f87b02d85b201efdd8a": {
+            "id": "LogRetentionaae0aa3c5b4d4f87b02d85b201efdd8a",
+            "path": "lambdaPipeline/LogRetentionaae0aa3c5b4d4f87b02d85b201efdd8a",
+            "children": {
+              "ServiceRole": {
+                "id": "ServiceRole",
+                "path": "lambdaPipeline/LogRetentionaae0aa3c5b4d4f87b02d85b201efdd8a/ServiceRole",
+                "children": {
+                  "Resource": {
+                    "id": "Resource",
+                    "path": "lambdaPipeline/LogRetentionaae0aa3c5b4d4f87b02d85b201efdd8a/ServiceRole/Resource",
+                    "attributes": {
+                      "aws:cdk:cloudformation:type": "AWS::IAM::Role",
+                      "aws:cdk:cloudformation:props": {
+                        "assumeRolePolicyDocument": {
+                          "Statement": [
+                            {
+                              "Action": "sts:AssumeRole",
+                              "Effect": "Allow",
+                              "Principal": {
+                                "Service": "lambda.amazonaws.com"
+                              }
+                            }
+                          ],
+                          "Version": "2012-10-17"
+                        },
+                        "managedPolicyArns": [
+                          {
+                            "Fn::Join": [
+                              "",
+                              [
+                                "arn:",
+                                {
+                                  "Ref": "AWS::Partition"
+                                },
+                                ":iam::aws:policy/service-role/AWSLambdaBasicExecutionRole"
+                              ]
+                            ]
+                          }
+                        ]
+                      }
+                    }
+                  },
+                  "DefaultPolicy": {
+                    "id": "DefaultPolicy",
+                    "path": "lambdaPipeline/LogRetentionaae0aa3c5b4d4f87b02d85b201efdd8a/ServiceRole/DefaultPolicy",
+                    "children": {
+                      "Resource": {
+                        "id": "Resource",
+                        "path": "lambdaPipeline/LogRetentionaae0aa3c5b4d4f87b02d85b201efdd8a/ServiceRole/DefaultPolicy/Resource",
+                        "attributes": {
+                          "aws:cdk:cloudformation:type": "AWS::IAM::Policy",
+                          "aws:cdk:cloudformation:props": {
+                            "policyDocument": {
+                              "Statement": [
+                                {
+                                  "Action": [
+                                    "logs:PutRetentionPolicy",
+                                    "logs:DeleteRetentionPolicy"
+                                  ],
+                                  "Effect": "Allow",
+                                  "Resource": "*"
+                                }
+                              ],
+                              "Version": "2012-10-17"
+                            },
+                            "policyName": "LogRetentionaae0aa3c5b4d4f87b02d85b201efdd8aServiceRoleDefaultPolicyADDA7DEB",
+                            "roles": [
+                              {
+                                "Ref": "LogRetentionaae0aa3c5b4d4f87b02d85b201efdd8aServiceRole9741ECFB"
+                              }
+                            ]
+                          }
+                        }
+                      }
+                    }
+                  }
+                }
+              },
+              "Code": {
+                "id": "Code",
+                "path": "lambdaPipeline/LogRetentionaae0aa3c5b4d4f87b02d85b201efdd8a/Code",
+                "children": {
+                  "Stage": {
+                    "id": "Stage",
+                    "path": "lambdaPipeline/LogRetentionaae0aa3c5b4d4f87b02d85b201efdd8a/Code/Stage"
+                  },
+                  "AssetBucket": {
+                    "id": "AssetBucket",
+                    "path": "lambdaPipeline/LogRetentionaae0aa3c5b4d4f87b02d85b201efdd8a/Code/AssetBucket"
+                  }
+                }
+              },
+              "Resource": {
+                "id": "Resource",
+                "path": "lambdaPipeline/LogRetentionaae0aa3c5b4d4f87b02d85b201efdd8a/Resource",
+                "attributes": {
+                  "aws:cdk:cloudformation:type": "AWS::Lambda::Function",
+                  "aws:cdk:cloudformation:props": {
+                    "code": {
+                      "s3Bucket": {
+                        "Ref": "AssetParameters5741f85917ffca30b209ad61e375d3d3bae0457270071f7aca8ca81be19bd22aS3Bucket4E933C7F"
+                      },
+                      "s3Key": {
+                        "Fn::Join": [
+                          "",
+                          [
+                            {
+                              "Fn::Select": [
+                                0,
+                                {
+                                  "Fn::Split": [
+                                    "||",
+                                    {
+                                      "Ref": "AssetParameters5741f85917ffca30b209ad61e375d3d3bae0457270071f7aca8ca81be19bd22aS3VersionKeyB83CC434"
+                                    }
+                                  ]
+                                }
+                              ]
+                            },
+                            {
+                              "Fn::Select": [
+                                1,
+                                {
+                                  "Fn::Split": [
+                                    "||",
+                                    {
+                                      "Ref": "AssetParameters5741f85917ffca30b209ad61e375d3d3bae0457270071f7aca8ca81be19bd22aS3VersionKeyB83CC434"
+                                    }
+                                  ]
+                                }
+                              ]
+                            }
+                          ]
+                        ]
+                      }
+                    },
+                    "handler": "index.handler",
+                    "role": {
+                      "Fn::GetAtt": [
+                        "LogRetentionaae0aa3c5b4d4f87b02d85b201efdd8aServiceRole9741ECFB",
+                        "Arn"
+                      ]
+                    },
+                    "runtime": "nodejs10.x"
+                  }
+                }
+              }
+            }
+          },
+          "BucketNotificationsHandler050a0587b7544547bf325f094a3db834": {
+            "id": "BucketNotificationsHandler050a0587b7544547bf325f094a3db834",
+            "path": "lambdaPipeline/BucketNotificationsHandler050a0587b7544547bf325f094a3db834",
+            "children": {
+              "Role": {
+                "id": "Role",
+                "path": "lambdaPipeline/BucketNotificationsHandler050a0587b7544547bf325f094a3db834/Role",
+                "children": {
+                  "Resource": {
+                    "id": "Resource",
+                    "path": "lambdaPipeline/BucketNotificationsHandler050a0587b7544547bf325f094a3db834/Role/Resource",
+                    "attributes": {
+                      "aws:cdk:cloudformation:type": "AWS::IAM::Role",
+                      "aws:cdk:cloudformation:props": {
+                        "assumeRolePolicyDocument": {
+                          "Statement": [
+                            {
+                              "Action": "sts:AssumeRole",
+                              "Effect": "Allow",
+                              "Principal": {
+                                "Service": "lambda.amazonaws.com"
+                              }
+                            }
+                          ],
+                          "Version": "2012-10-17"
+                        },
+                        "managedPolicyArns": [
+                          {
+                            "Fn::Join": [
+                              "",
+                              [
+                                "arn:",
+                                {
+                                  "Ref": "AWS::Partition"
+                                },
+                                ":iam::aws:policy/service-role/AWSLambdaBasicExecutionRole"
+                              ]
+                            ]
+                          }
+                        ]
+                      }
+                    }
+                  },
+                  "DefaultPolicy": {
+                    "id": "DefaultPolicy",
+                    "path": "lambdaPipeline/BucketNotificationsHandler050a0587b7544547bf325f094a3db834/Role/DefaultPolicy",
+                    "children": {
+                      "Resource": {
+                        "id": "Resource",
+                        "path": "lambdaPipeline/BucketNotificationsHandler050a0587b7544547bf325f094a3db834/Role/DefaultPolicy/Resource",
+                        "attributes": {
+                          "aws:cdk:cloudformation:type": "AWS::IAM::Policy",
+                          "aws:cdk:cloudformation:props": {
+                            "policyDocument": {
+                              "Statement": [
+                                {
+                                  "Action": "s3:PutBucketNotification",
+                                  "Effect": "Allow",
+                                  "Resource": "*"
+                                }
+                              ],
+                              "Version": "2012-10-17"
+                            },
+                            "policyName": "BucketNotificationsHandler050a0587b7544547bf325f094a3db834RoleDefaultPolicy2CF63D36",
+                            "roles": [
+                              {
+                                "Ref": "BucketNotificationsHandler050a0587b7544547bf325f094a3db834RoleB6FB88EC"
+                              }
+                            ]
+                          }
+                        }
+                      }
+                    }
+                  }
+                }
+              },
+              "Resource": {
+                "id": "Resource",
+                "path": "lambdaPipeline/BucketNotificationsHandler050a0587b7544547bf325f094a3db834/Resource"
+              }
+            }
+          },
+          "LoadData_Table": {
+            "id": "LoadData_Table",
+            "path": "lambdaPipeline/LoadData_Table",
+            "children": {
+              "Resource": {
+                "id": "Resource",
+                "path": "lambdaPipeline/LoadData_Table/Resource",
+                "attributes": {
+                  "aws:cdk:cloudformation:type": "AWS::DynamoDB::Table",
+                  "aws:cdk:cloudformation:props": {
+                    "keySchema": [
+                      {
+                        "attributeName": "uuid",
+                        "keyType": "HASH"
+                      },
+                      {
+                        "attributeName": "name",
+                        "keyType": "RANGE"
+                      }
+                    ],
+                    "attributeDefinitions": [
+                      {
+                        "attributeName": "uuid",
+                        "attributeType": "S"
+                      },
+                      {
+                        "attributeName": "name",
+                        "attributeType": "S"
+                      }
+                    ],
+                    "provisionedThroughput": {
+                      "readCapacityUnits": 5,
+                      "writeCapacityUnits": 5
+                    },
+                    "tableName": "LambdaPipeTable"
+                  }
+                }
+              },
+              "ScalingRole": {
+                "id": "ScalingRole",
+                "path": "lambdaPipeline/LoadData_Table/ScalingRole"
+              }
+            }
+          }
+        }
+      }
+    }
+  }
+}
