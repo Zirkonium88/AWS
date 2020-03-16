@@ -8,17 +8,17 @@
         "id": "Tree",
         "path": "Tree"
       },
-      "lambdaPipeline": {
-        "id": "lambdaPipeline",
-        "path": "lambdaPipeline",
+      "importCSVtoDynamDB": {
+        "id": "importCSVtoDynamDB",
+        "path": "importCSVtoDynamDB",
         "children": {
           "Pipe_Bucket": {
             "id": "Pipe_Bucket",
-            "path": "lambdaPipeline/Pipe_Bucket",
+            "path": "importCSVtoDynamDB/Pipe_Bucket",
             "children": {
               "Resource": {
                 "id": "Resource",
-                "path": "lambdaPipeline/Pipe_Bucket/Resource",
+                "path": "importCSVtoDynamDB/Pipe_Bucket/Resource",
                 "attributes": {
                   "aws:cdk:cloudformation:type": "AWS::S3::Bucket",
                   "aws:cdk:cloudformation:props": {
@@ -37,11 +37,11 @@
               },
               "Notifications": {
                 "id": "Notifications",
-                "path": "lambdaPipeline/Pipe_Bucket/Notifications",
+                "path": "importCSVtoDynamDB/Pipe_Bucket/Notifications",
                 "children": {
                   "Resource": {
                     "id": "Resource",
-                    "path": "lambdaPipeline/Pipe_Bucket/Notifications/Resource"
+                    "path": "importCSVtoDynamDB/Pipe_Bucket/Notifications/Resource"
                   }
                 }
               }
@@ -49,11 +49,11 @@
           },
           "DLQ_LoadData_Lambda": {
             "id": "DLQ_LoadData_Lambda",
-            "path": "lambdaPipeline/DLQ_LoadData_Lambda",
+            "path": "importCSVtoDynamDB/DLQ_LoadData_Lambda",
             "children": {
               "Resource": {
                 "id": "Resource",
-                "path": "lambdaPipeline/DLQ_LoadData_Lambda/Resource",
+                "path": "importCSVtoDynamDB/DLQ_LoadData_Lambda/Resource",
                 "attributes": {
                   "aws:cdk:cloudformation:type": "AWS::SQS::Queue",
                   "aws:cdk:cloudformation:props": {}
@@ -63,15 +63,15 @@
           },
           "Pipe_Lambda": {
             "id": "Pipe_Lambda",
-            "path": "lambdaPipeline/Pipe_Lambda",
+            "path": "importCSVtoDynamDB/Pipe_Lambda",
             "children": {
               "ServiceRole": {
                 "id": "ServiceRole",
-                "path": "lambdaPipeline/Pipe_Lambda/ServiceRole",
+                "path": "importCSVtoDynamDB/Pipe_Lambda/ServiceRole",
                 "children": {
                   "Resource": {
                     "id": "Resource",
-                    "path": "lambdaPipeline/Pipe_Lambda/ServiceRole/Resource",
+                    "path": "importCSVtoDynamDB/Pipe_Lambda/ServiceRole/Resource",
                     "attributes": {
                       "aws:cdk:cloudformation:type": "AWS::IAM::Role",
                       "aws:cdk:cloudformation:props": {
@@ -106,11 +106,11 @@
                   },
                   "DefaultPolicy": {
                     "id": "DefaultPolicy",
-                    "path": "lambdaPipeline/Pipe_Lambda/ServiceRole/DefaultPolicy",
+                    "path": "importCSVtoDynamDB/Pipe_Lambda/ServiceRole/DefaultPolicy",
                     "children": {
                       "Resource": {
                         "id": "Resource",
-                        "path": "lambdaPipeline/Pipe_Lambda/ServiceRole/DefaultPolicy/Resource",
+                        "path": "importCSVtoDynamDB/Pipe_Lambda/ServiceRole/DefaultPolicy/Resource",
                         "attributes": {
                           "aws:cdk:cloudformation:type": "AWS::IAM::Policy",
                           "aws:cdk:cloudformation:props": {
@@ -195,27 +195,27 @@
               },
               "Code": {
                 "id": "Code",
-                "path": "lambdaPipeline/Pipe_Lambda/Code",
+                "path": "importCSVtoDynamDB/Pipe_Lambda/Code",
                 "children": {
                   "Stage": {
                     "id": "Stage",
-                    "path": "lambdaPipeline/Pipe_Lambda/Code/Stage"
+                    "path": "importCSVtoDynamDB/Pipe_Lambda/Code/Stage"
                   },
                   "AssetBucket": {
                     "id": "AssetBucket",
-                    "path": "lambdaPipeline/Pipe_Lambda/Code/AssetBucket"
+                    "path": "importCSVtoDynamDB/Pipe_Lambda/Code/AssetBucket"
                   }
                 }
               },
               "Resource": {
                 "id": "Resource",
-                "path": "lambdaPipeline/Pipe_Lambda/Resource",
+                "path": "importCSVtoDynamDB/Pipe_Lambda/Resource",
                 "attributes": {
                   "aws:cdk:cloudformation:type": "AWS::Lambda::Function",
                   "aws:cdk:cloudformation:props": {
                     "code": {
                       "s3Bucket": {
-                        "Ref": "AssetParametersa4b4635e87d896f4581e8bf2599e069191c06e0c4d43047f0972c155a5cd97a6S3Bucket5E4DEC63"
+                        "Ref": "AssetParameters23f39a629381a9ac1432e0a17b5b16dbee46ad6664687d8f8f4dc8182d49467eS3Bucket16CAEF5F"
                       },
                       "s3Key": {
                         "Fn::Join": [
@@ -228,7 +228,7 @@
                                   "Fn::Split": [
                                     "||",
                                     {
-                                      "Ref": "AssetParametersa4b4635e87d896f4581e8bf2599e069191c06e0c4d43047f0972c155a5cd97a6S3VersionKeyDFE70B98"
+                                      "Ref": "AssetParameters23f39a629381a9ac1432e0a17b5b16dbee46ad6664687d8f8f4dc8182d49467eS3VersionKeyBFF41C8E"
                                     }
                                   ]
                                 }
@@ -241,7 +241,7 @@
                                   "Fn::Split": [
                                     "||",
                                     {
-                                      "Ref": "AssetParametersa4b4635e87d896f4581e8bf2599e069191c06e0c4d43047f0972c155a5cd97a6S3VersionKeyDFE70B98"
+                                      "Ref": "AssetParameters23f39a629381a9ac1432e0a17b5b16dbee46ad6664687d8f8f4dc8182d49467eS3VersionKeyBFF41C8E"
                                     }
                                   ]
                                 }
@@ -251,7 +251,7 @@
                         ]
                       }
                     },
-                    "handler": "loaddata.LoadData",
+                    "handler": "put_data_from_file_dynamo.load_data_from_csv_to_dynamodb",
                     "role": {
                       "Fn::GetAtt": [
                         "PipeLambdaServiceRoleD98950EE",
@@ -282,29 +282,29 @@
               },
               "LogRetention": {
                 "id": "LogRetention",
-                "path": "lambdaPipeline/Pipe_Lambda/LogRetention",
+                "path": "importCSVtoDynamDB/Pipe_Lambda/LogRetention",
                 "children": {
                   "Provider": {
                     "id": "Provider",
-                    "path": "lambdaPipeline/Pipe_Lambda/LogRetention/Provider"
+                    "path": "importCSVtoDynamDB/Pipe_Lambda/LogRetention/Provider"
                   },
                   "Resource": {
                     "id": "Resource",
-                    "path": "lambdaPipeline/Pipe_Lambda/LogRetention/Resource"
+                    "path": "importCSVtoDynamDB/Pipe_Lambda/LogRetention/Resource"
                   }
                 }
               },
               "LogGroup": {
                 "id": "LogGroup",
-                "path": "lambdaPipeline/Pipe_Lambda/LogGroup"
+                "path": "importCSVtoDynamDB/Pipe_Lambda/LogGroup"
               },
               "EventInvokeConfig": {
                 "id": "EventInvokeConfig",
-                "path": "lambdaPipeline/Pipe_Lambda/EventInvokeConfig",
+                "path": "importCSVtoDynamDB/Pipe_Lambda/EventInvokeConfig",
                 "children": {
                   "Resource": {
                     "id": "Resource",
-                    "path": "lambdaPipeline/Pipe_Lambda/EventInvokeConfig/Resource",
+                    "path": "importCSVtoDynamDB/Pipe_Lambda/EventInvokeConfig/Resource",
                     "attributes": {
                       "aws:cdk:cloudformation:type": "AWS::Lambda::EventInvokeConfig",
                       "aws:cdk:cloudformation:props": {
@@ -312,15 +312,15 @@
                           "Ref": "PipeLambda247A18FB"
                         },
                         "qualifier": "$LATEST",
-                        "maximumRetryAttempts": 1
+                        "maximumRetryAttempts": 0
                       }
                     }
                   }
                 }
               },
-              "AllowBucketNotificationsFromlambdaPipelinePipeBucket3886726B": {
-                "id": "AllowBucketNotificationsFromlambdaPipelinePipeBucket3886726B",
-                "path": "lambdaPipeline/Pipe_Lambda/AllowBucketNotificationsFromlambdaPipelinePipeBucket3886726B",
+              "AllowBucketNotificationsFromimportCSVtoDynamDBPipeBucket21879CE5": {
+                "id": "AllowBucketNotificationsFromimportCSVtoDynamDBPipeBucket21879CE5",
+                "path": "importCSVtoDynamDB/Pipe_Lambda/AllowBucketNotificationsFromimportCSVtoDynamDBPipeBucket21879CE5",
                 "attributes": {
                   "aws:cdk:cloudformation:type": "AWS::Lambda::Permission",
                   "aws:cdk:cloudformation:props": {
@@ -348,41 +348,41 @@
           },
           "AssetParameters": {
             "id": "AssetParameters",
-            "path": "lambdaPipeline/AssetParameters",
+            "path": "importCSVtoDynamDB/AssetParameters",
             "children": {
-              "a4b4635e87d896f4581e8bf2599e069191c06e0c4d43047f0972c155a5cd97a6": {
-                "id": "a4b4635e87d896f4581e8bf2599e069191c06e0c4d43047f0972c155a5cd97a6",
-                "path": "lambdaPipeline/AssetParameters/a4b4635e87d896f4581e8bf2599e069191c06e0c4d43047f0972c155a5cd97a6",
+              "23f39a629381a9ac1432e0a17b5b16dbee46ad6664687d8f8f4dc8182d49467e": {
+                "id": "23f39a629381a9ac1432e0a17b5b16dbee46ad6664687d8f8f4dc8182d49467e",
+                "path": "importCSVtoDynamDB/AssetParameters/23f39a629381a9ac1432e0a17b5b16dbee46ad6664687d8f8f4dc8182d49467e",
                 "children": {
                   "S3Bucket": {
                     "id": "S3Bucket",
-                    "path": "lambdaPipeline/AssetParameters/a4b4635e87d896f4581e8bf2599e069191c06e0c4d43047f0972c155a5cd97a6/S3Bucket"
+                    "path": "importCSVtoDynamDB/AssetParameters/23f39a629381a9ac1432e0a17b5b16dbee46ad6664687d8f8f4dc8182d49467e/S3Bucket"
                   },
                   "S3VersionKey": {
                     "id": "S3VersionKey",
-                    "path": "lambdaPipeline/AssetParameters/a4b4635e87d896f4581e8bf2599e069191c06e0c4d43047f0972c155a5cd97a6/S3VersionKey"
+                    "path": "importCSVtoDynamDB/AssetParameters/23f39a629381a9ac1432e0a17b5b16dbee46ad6664687d8f8f4dc8182d49467e/S3VersionKey"
                   },
                   "ArtifactHash": {
                     "id": "ArtifactHash",
-                    "path": "lambdaPipeline/AssetParameters/a4b4635e87d896f4581e8bf2599e069191c06e0c4d43047f0972c155a5cd97a6/ArtifactHash"
+                    "path": "importCSVtoDynamDB/AssetParameters/23f39a629381a9ac1432e0a17b5b16dbee46ad6664687d8f8f4dc8182d49467e/ArtifactHash"
                   }
                 }
               },
               "5741f85917ffca30b209ad61e375d3d3bae0457270071f7aca8ca81be19bd22a": {
                 "id": "5741f85917ffca30b209ad61e375d3d3bae0457270071f7aca8ca81be19bd22a",
-                "path": "lambdaPipeline/AssetParameters/5741f85917ffca30b209ad61e375d3d3bae0457270071f7aca8ca81be19bd22a",
+                "path": "importCSVtoDynamDB/AssetParameters/5741f85917ffca30b209ad61e375d3d3bae0457270071f7aca8ca81be19bd22a",
                 "children": {
                   "S3Bucket": {
                     "id": "S3Bucket",
-                    "path": "lambdaPipeline/AssetParameters/5741f85917ffca30b209ad61e375d3d3bae0457270071f7aca8ca81be19bd22a/S3Bucket"
+                    "path": "importCSVtoDynamDB/AssetParameters/5741f85917ffca30b209ad61e375d3d3bae0457270071f7aca8ca81be19bd22a/S3Bucket"
                   },
                   "S3VersionKey": {
                     "id": "S3VersionKey",
-                    "path": "lambdaPipeline/AssetParameters/5741f85917ffca30b209ad61e375d3d3bae0457270071f7aca8ca81be19bd22a/S3VersionKey"
+                    "path": "importCSVtoDynamDB/AssetParameters/5741f85917ffca30b209ad61e375d3d3bae0457270071f7aca8ca81be19bd22a/S3VersionKey"
                   },
                   "ArtifactHash": {
                     "id": "ArtifactHash",
-                    "path": "lambdaPipeline/AssetParameters/5741f85917ffca30b209ad61e375d3d3bae0457270071f7aca8ca81be19bd22a/ArtifactHash"
+                    "path": "importCSVtoDynamDB/AssetParameters/5741f85917ffca30b209ad61e375d3d3bae0457270071f7aca8ca81be19bd22a/ArtifactHash"
                   }
                 }
               }
@@ -390,15 +390,15 @@
           },
           "LogRetentionaae0aa3c5b4d4f87b02d85b201efdd8a": {
             "id": "LogRetentionaae0aa3c5b4d4f87b02d85b201efdd8a",
-            "path": "lambdaPipeline/LogRetentionaae0aa3c5b4d4f87b02d85b201efdd8a",
+            "path": "importCSVtoDynamDB/LogRetentionaae0aa3c5b4d4f87b02d85b201efdd8a",
             "children": {
               "ServiceRole": {
                 "id": "ServiceRole",
-                "path": "lambdaPipeline/LogRetentionaae0aa3c5b4d4f87b02d85b201efdd8a/ServiceRole",
+                "path": "importCSVtoDynamDB/LogRetentionaae0aa3c5b4d4f87b02d85b201efdd8a/ServiceRole",
                 "children": {
                   "Resource": {
                     "id": "Resource",
-                    "path": "lambdaPipeline/LogRetentionaae0aa3c5b4d4f87b02d85b201efdd8a/ServiceRole/Resource",
+                    "path": "importCSVtoDynamDB/LogRetentionaae0aa3c5b4d4f87b02d85b201efdd8a/ServiceRole/Resource",
                     "attributes": {
                       "aws:cdk:cloudformation:type": "AWS::IAM::Role",
                       "aws:cdk:cloudformation:props": {
@@ -433,11 +433,11 @@
                   },
                   "DefaultPolicy": {
                     "id": "DefaultPolicy",
-                    "path": "lambdaPipeline/LogRetentionaae0aa3c5b4d4f87b02d85b201efdd8a/ServiceRole/DefaultPolicy",
+                    "path": "importCSVtoDynamDB/LogRetentionaae0aa3c5b4d4f87b02d85b201efdd8a/ServiceRole/DefaultPolicy",
                     "children": {
                       "Resource": {
                         "id": "Resource",
-                        "path": "lambdaPipeline/LogRetentionaae0aa3c5b4d4f87b02d85b201efdd8a/ServiceRole/DefaultPolicy/Resource",
+                        "path": "importCSVtoDynamDB/LogRetentionaae0aa3c5b4d4f87b02d85b201efdd8a/ServiceRole/DefaultPolicy/Resource",
                         "attributes": {
                           "aws:cdk:cloudformation:type": "AWS::IAM::Policy",
                           "aws:cdk:cloudformation:props": {
@@ -469,21 +469,21 @@
               },
               "Code": {
                 "id": "Code",
-                "path": "lambdaPipeline/LogRetentionaae0aa3c5b4d4f87b02d85b201efdd8a/Code",
+                "path": "importCSVtoDynamDB/LogRetentionaae0aa3c5b4d4f87b02d85b201efdd8a/Code",
                 "children": {
                   "Stage": {
                     "id": "Stage",
-                    "path": "lambdaPipeline/LogRetentionaae0aa3c5b4d4f87b02d85b201efdd8a/Code/Stage"
+                    "path": "importCSVtoDynamDB/LogRetentionaae0aa3c5b4d4f87b02d85b201efdd8a/Code/Stage"
                   },
                   "AssetBucket": {
                     "id": "AssetBucket",
-                    "path": "lambdaPipeline/LogRetentionaae0aa3c5b4d4f87b02d85b201efdd8a/Code/AssetBucket"
+                    "path": "importCSVtoDynamDB/LogRetentionaae0aa3c5b4d4f87b02d85b201efdd8a/Code/AssetBucket"
                   }
                 }
               },
               "Resource": {
                 "id": "Resource",
-                "path": "lambdaPipeline/LogRetentionaae0aa3c5b4d4f87b02d85b201efdd8a/Resource",
+                "path": "importCSVtoDynamDB/LogRetentionaae0aa3c5b4d4f87b02d85b201efdd8a/Resource",
                 "attributes": {
                   "aws:cdk:cloudformation:type": "AWS::Lambda::Function",
                   "aws:cdk:cloudformation:props": {
@@ -540,15 +540,15 @@
           },
           "BucketNotificationsHandler050a0587b7544547bf325f094a3db834": {
             "id": "BucketNotificationsHandler050a0587b7544547bf325f094a3db834",
-            "path": "lambdaPipeline/BucketNotificationsHandler050a0587b7544547bf325f094a3db834",
+            "path": "importCSVtoDynamDB/BucketNotificationsHandler050a0587b7544547bf325f094a3db834",
             "children": {
               "Role": {
                 "id": "Role",
-                "path": "lambdaPipeline/BucketNotificationsHandler050a0587b7544547bf325f094a3db834/Role",
+                "path": "importCSVtoDynamDB/BucketNotificationsHandler050a0587b7544547bf325f094a3db834/Role",
                 "children": {
                   "Resource": {
                     "id": "Resource",
-                    "path": "lambdaPipeline/BucketNotificationsHandler050a0587b7544547bf325f094a3db834/Role/Resource",
+                    "path": "importCSVtoDynamDB/BucketNotificationsHandler050a0587b7544547bf325f094a3db834/Role/Resource",
                     "attributes": {
                       "aws:cdk:cloudformation:type": "AWS::IAM::Role",
                       "aws:cdk:cloudformation:props": {
@@ -583,11 +583,11 @@
                   },
                   "DefaultPolicy": {
                     "id": "DefaultPolicy",
-                    "path": "lambdaPipeline/BucketNotificationsHandler050a0587b7544547bf325f094a3db834/Role/DefaultPolicy",
+                    "path": "importCSVtoDynamDB/BucketNotificationsHandler050a0587b7544547bf325f094a3db834/Role/DefaultPolicy",
                     "children": {
                       "Resource": {
                         "id": "Resource",
-                        "path": "lambdaPipeline/BucketNotificationsHandler050a0587b7544547bf325f094a3db834/Role/DefaultPolicy/Resource",
+                        "path": "importCSVtoDynamDB/BucketNotificationsHandler050a0587b7544547bf325f094a3db834/Role/DefaultPolicy/Resource",
                         "attributes": {
                           "aws:cdk:cloudformation:type": "AWS::IAM::Policy",
                           "aws:cdk:cloudformation:props": {
@@ -616,17 +616,17 @@
               },
               "Resource": {
                 "id": "Resource",
-                "path": "lambdaPipeline/BucketNotificationsHandler050a0587b7544547bf325f094a3db834/Resource"
+                "path": "importCSVtoDynamDB/BucketNotificationsHandler050a0587b7544547bf325f094a3db834/Resource"
               }
             }
           },
           "LoadData_Table": {
             "id": "LoadData_Table",
-            "path": "lambdaPipeline/LoadData_Table",
+            "path": "importCSVtoDynamDB/LoadData_Table",
             "children": {
               "Resource": {
                 "id": "Resource",
-                "path": "lambdaPipeline/LoadData_Table/Resource",
+                "path": "importCSVtoDynamDB/LoadData_Table/Resource",
                 "attributes": {
                   "aws:cdk:cloudformation:type": "AWS::DynamoDB::Table",
                   "aws:cdk:cloudformation:props": {
@@ -660,7 +660,7 @@
               },
               "ScalingRole": {
                 "id": "ScalingRole",
-                "path": "lambdaPipeline/LoadData_Table/ScalingRole"
+                "path": "importCSVtoDynamDB/LoadData_Table/ScalingRole"
               }
             }
           }

@@ -5,3 +5,5 @@ aws_cdk.aws_dynamodb
 aws_cdk.aws_sqs
 aws_cdk.aws_logs
 aws_cdk.aws_s3_notifications
+boto3
+moto

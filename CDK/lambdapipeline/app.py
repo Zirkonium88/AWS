@@ -2,10 +2,10 @@
 
 from aws_cdk import core
 
-from lambdapipe.lambdapipe_stack import LambdapipeStack
+from serverless_pipeline.serverless_pipeline_stack import ServerlessPipelineStack
 
 
 app = core.App()
-LambdapipeStack(app, "lambdaPipeline")
+ServerlessPipelineStack(app, "importCSVtoDynamDB")
 
 app.synth()

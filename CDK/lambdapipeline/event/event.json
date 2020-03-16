@@ -1,0 +1,38 @@
+{
+    "Records": [
+        {
+            "eventVersion": "2.1",
+            "eventSource": "aws:s3",
+            "awsRegion": "eu-central-1",
+            "eventTime": "2020-03-14T20:08:44.328Z",
+            "eventName": "ObjectCreated:Put",
+            "userIdentity": {
+                "principalId": "AWS:AIDAWJDWFDE2T6W6YW24S"
+            },
+            "requestParameters": {
+                "sourceIPAddress": "91.3.126.209"
+            },
+            "responseElements": {
+                "x-amz-request-id": "8D8E815E921505DA",
+                "x-amz-id-2": "wNw6/4Pg1Dlu2mJfcHCFraPSh4MA+sI5xySQKIhM8FSuHmLu/725/YnFCj03f+3TaqPZkU5Lye43QLBlhn/AWu9buV2Yls4I"
+            },
+            "s3": {
+                "s3SchemaVersion": "1.0",
+                "configurationId": "MjM2MmRkN2EtNDA4NC00YjAwLWIzOTItNDBmOGU0NzU5NDI3",
+                "bucket": {
+                    "name": "431892011317-pipe",
+                    "ownerIdentity": {
+                        "principalId": "AIWNNWA840MC5"
+                    },
+                    "arn": "arn:aws:s3:::431892011317-pipe"
+                },
+                "object": {
+                    "key": "data/codes.csv",
+                    "size": 137,
+                    "eTag": "6defc12bfba275c931e0cb2cf9a12893",
+                    "sequencer": "005E6D39D11BECE8AF"
+                }
+            }
+        }
+    ]
+}

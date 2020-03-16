@@ -6,3 +6,5 @@
   * Upload a CSV to S3
   * Read the contens from teh CSV to Lambdapipe
   * Put the content row by row into DynamoDB
+
+![Diagramm](./architecture.png)
