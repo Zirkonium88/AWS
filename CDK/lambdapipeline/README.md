@@ -1,6 +1,6 @@
 # Architecture
 
-* S3 Bucket, Lambda and a DynaDynamoDBmDB table
+* S3 Bucket, Lambda and a DynamoDB table
 * Cloudwatchs Logs will be deleted by a second Lambda after one day
 * Plot:
   * Upload a CSV to S3

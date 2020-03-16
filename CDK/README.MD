@@ -6,16 +6,16 @@ This app fullfils some of the AWS Best Practices.
 
 ## AWS Account SetUp
 
-* [AWS Account Setup](https://github.com/Zirkonium88/AWS/blob/master/CDK/account/README.md)
+* [AWS Account Setup](https://github.com/Zirkonium88/AWS/blob/master/CDK/account)
 
 ## IoT Streaming Example
 
-* [AWS Account Setup](https://github.com/Zirkonium88/AWS/blob/master/CDK/streaming/README.MD)
+* [AWS Account Setup](https://github.com/Zirkonium88/AWS/blob/master/CDK/streaming)
 
 ## Apache Web Server within a existing VPC
 
-* [Apache WebServer example](https://github.com/Zirkonium88/AWS/blob/master/CDK/apacheserver/README.md)!
+* [Apache WebServer example](https://github.com/Zirkonium88/AWS/blob/master/CDK/apacheserver)!
 
-## Lambda Pipeline from S3 to DynamDB
+## Lambda Pipeline from S3 to DynamoDB
 
-* [Copy CSV contents to DynamoDB](https://github.com/Zirkonium88/AWS/blob/master/CDK/lambdapipeline/README.md)!
+* [Copy CSV contents to DynamoDB](https://github.com/Zirkonium88/AWS/blob/master/CDK/lambdapipeline)!
