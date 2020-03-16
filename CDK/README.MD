@@ -14,8 +14,8 @@ This app fullfils some of the AWS Best Practices.
 
 ## Apache Web Server within a existing VPC
 
-* [Apache WebServer example](CDK/apacheserver/README.MD)!
+* [Apache WebServer example](https://github.com/Zirkonium88/AWS/blob/master/CDK/apacheserver/README.md)!
 
 ## Lambda Pipeline from S3 to DynamDB
 
-* [Copy CSV contents to DynamoDB](CDK/lambdapipe/README.MD)!
+* [Copy CSV contents to DynamoDB](https://github.com/Zirkonium88/AWS/blob/master/CDK/lambdapipeline/README.md)!
