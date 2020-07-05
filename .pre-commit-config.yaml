@@ -31,6 +31,7 @@ repos:
     - id: trailing-whitespace
     - id: check-yaml
       name: YAML Syntax Checking
+      args: ['--unsafe'] # https://stackoverflow.com/questions/59413979/how-exclude-ref-tag-from-check-yaml-git-hook
     - id: detect-aws-credentials
       name: Checking for AWS Credentials
     - id: detect-private-key
