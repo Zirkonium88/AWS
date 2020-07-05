@@ -1,0 +1,105 @@
+Description: 'SAM Demo: Authorized Microservice API'
+Transform: AWS::Serverless-2016-10-31
+Parameters:
+  YourEmail:
+    Type: String
+    Default: malte.walkowiak@gmx.de
+  Version:
+    Type: String
+    Default: v1
+Resources:
+  UserPool:
+    Type: AWS::Cognito::UserPool
+    Properties:
+      AdminCreateUserConfig:
+        AllowAdminCreateUserOnly: false
+      UserPoolName: TestingUsers
+      UsernameAttributes:
+      - email
+      AutoVerifiedAttributes:
+      - email
+      Policies:
+        PasswordPolicy:
+          MinimumLength: 6
+          RequireLowercase: true
+          RequireNumbers: false
+          RequireSymbols: false
+          RequireUppercase: true
+  UserPoolTokenClient:
+    Type: AWS::Cognito::UserPoolClient
+    Properties:
+      UserPoolId:
+        Ref: UserPool
+      GenerateSecret: false
+      ExplicitAuthFlows:
+      - USER_PASSWORD_AUTH
+  UserPoolUser:
+    Type: AWS::Cognito::UserPoolUser
+    Properties:
+      DesiredDeliveryMediums:
+      - EMAIL
+      Username:
+        Ref: YourEmail
+      UserPoolId:
+        Ref: UserPool
+  HelloWorldApi:
+    DependsOn: UserPool
+    Type: AWS::Serverless::Api
+    Properties:
+      Name: HelloWorldApi
+      StageName:
+        Ref: Version
+      Cors:
+        AllowMethods: '''*'''
+        AllowHeaders: '''*'''
+        AllowOrigin: '''*'''
+      Auth:
+        Authorizers:
+          CognitoAuthorizer:
+            UserPoolArn:
+              Fn::GetAtt:
+              - UserPool
+              - Arn
+  OpenHelloWorldFunction:
+    Type: AWS::Serverless::Function
+    Properties:
+      CodeUri: s3://mw-800524020870-example/b92fa34827dd1ad8231c39ea4ec4db3c
+      Handler: index.lambdaHandler
+      Runtime: nodejs12.x
+      Events:
+        Get:
+          Type: Api
+          Properties:
+            Path: /unauth
+            RestApiId:
+              Ref: HelloWorldApi
+            Method: GET
+  AuthHelloWorldFunction:
+    Type: AWS::Serverless::Function
+    Properties:
+      CodeUri: s3://mw-800524020870-example/b92fa34827dd1ad8231c39ea4ec4db3c
+      Handler: index.lambdaHandler
+      Runtime: nodejs12.x
+      Events:
+        Get:
+          Type: Api
+          Properties:
+            Path: /auth
+            RestApiId:
+              Ref: HelloWorldApi
+            Method: GET
+            Auth:
+              Authorizer: CognitoAuthorizer
+Outputs:
+  HelloWorldApi:
+    Description: API Gateway endpoint URL for Prod stage for Hello World function
+    Value:
+      Fn::Sub: https://${HelloWorldApi}.execute-api.${AWS::Region}.amazonaws.com/${Version}/
+  CognitoID:
+    Description: The Cognito UserPool ID
+    Value:
+      Ref: UserPool
+  CognitoClientID:
+    Description: The Cognito UserPool Client ID
+    Value:
+      Ref: UserPoolTokenClient

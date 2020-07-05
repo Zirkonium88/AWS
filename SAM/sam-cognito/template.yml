@@ -1,0 +1,102 @@
+Description: "Microservice API and Auth settings"
+Transform: "AWS::Serverless-2016-10-31"
+
+Parameters:
+  YourEmail:
+    Type: String
+    Default: malte.walkowiak@gmx.de
+  Version:
+    Type: String
+    Default: v1
+
+Resources:
+    UserPool:
+        Type: AWS::Cognito::UserPool
+        Properties:
+            AdminCreateUserConfig:
+                AllowAdminCreateUserOnly: false
+            UserPoolName: TestingUsers
+            UsernameAttributes:
+            - email
+            AutoVerifiedAttributes:
+            - email
+            Policies:
+                PasswordPolicy:
+                    MinimumLength: 6
+                    RequireLowercase: true
+                    RequireNumbers: false
+                    RequireSymbols: false
+                    RequireUppercase: true
+    UserPoolTokenClient:
+            Type: AWS::Cognito::UserPoolClient
+            Properties:
+                UserPoolId: !Ref UserPool
+                GenerateSecret: false
+                ExplicitAuthFlows:
+                - USER_PASSWORD_AUTH
+    UserPoolUser:
+        Type: AWS::Cognito::UserPoolUser
+        Properties:
+            DesiredDeliveryMediums:
+            - EMAIL
+            Username: !Ref YourEmail
+            UserPoolId: !Ref UserPool
+    HelloWorldApi:
+        DependsOn: UserPool
+        Type: AWS::Serverless::Api
+        Properties:
+            Name: HelloWorldApi
+            StageName: !Ref Version
+            Cors:
+                AllowMethods: "'*'"
+                AllowHeaders: "'*'"
+                AllowOrigin: "'*'"
+            Auth:
+                Authorizers:
+                    CognitoAuthorizer:
+                        UserPoolArn: !GetAtt "UserPool.Arn"
+    OpenHelloWorldFunction:
+        Type: AWS::Serverless::Function # More info about Function Resource: https://github.com/awslabs/serverless-application-model/blob/master/versions/2016-10-31.md#awsserverlessfunction
+        Properties:
+            CodeUri: src/
+            Handler: index.lambdaHandler
+            Runtime: nodejs12.x
+            # Events:
+            #     HelloWorldApi:
+            #         Type: Api # More info about API Event Source: https://github.com/awslabs/serverless-application-model/blob/master/versions/2016-10-31.md#api
+            #         Properties:
+            #             Path: /hello
+            #             Method: get
+            Events:
+                Get:
+                    Type: Api
+                    Properties:
+                        Path: /unauth
+                        RestApiId: !Ref HelloWorldApi
+                        Method: GET
+    AuthHelloWorldFunction:
+        Type: AWS::Serverless::Function # More info about Function Resource: https://github.com/awslabs/serverless-application-model/blob/master/versions/2016-10-31.md#awsserverlessfunction
+        Properties:
+            CodeUri: src/
+            Handler: index.lambdaHandler
+            Runtime: nodejs12.x
+            Events:
+                Get:
+                    Type: Api
+                    Properties:
+                        Path: /auth
+                        RestApiId: !Ref HelloWorldApi
+                        Method: GET
+                        Auth:
+                            Authorizer: CognitoAuthorizer
+
+Outputs:
+    HelloWorldApi:
+        Description: "API Gateway endpoint URL for Prod stage for Hello World function"
+        Value: !Sub "https://${HelloWorldApi}.execute-api.${AWS::Region}.amazonaws.com/${Version}/"
+    CognitoID:
+        Description: The Cognito UserPool ID
+        Value: !Ref UserPool
+    CognitoClientID:
+        Description: The Cognito UserPool Client ID
+        Value: !Ref UserPoolTokenClient

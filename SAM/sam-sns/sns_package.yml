@@ -1,0 +1,40 @@
+Description: 'SAM Demo: Microservice API with SNS Integration'
+Transform: AWS::Serverless-2016-10-31
+Parameters:
+  Version:
+    Type: String
+    Default: v1
+Resources:
+  HelloWorldTopic:
+    Type: AWS::SNS::Topic
+    Properties:
+      Subscription:
+      - Endpoint: malte.walkowiak@gmx.de
+        Protocol: email
+  OpenHelloWorldFunction:
+    Type: AWS::Serverless::Function
+    Properties:
+      CodeUri: s3://mw-800524020870-example/f82b2565b52ce642f81013ba163abd05
+      Handler: index.lambdaHandler
+      Runtime: nodejs12.x
+      Events:
+        HelloWorldApi:
+          Type: Api
+          Properties:
+            Path: /hello
+            Method: get
+      Policies:
+      - SNSPublishMessagePolicy:
+          TopicName:
+            Fn::GetAtt:
+            - HelloWorldTopic
+            - TopicName
+      Environment:
+        Variables:
+          SNS_TOPIC_ARN:
+            Ref: HelloWorldTopic
+Outputs:
+  HelloWorldApi:
+    Description: API Gateway endpoint URL for Prod stage for Hello World function
+    Value:
+      Fn::Sub: https://${ServerlessRestApi}.execute-api.${AWS::Region}.amazonaws.com/Prod/hello

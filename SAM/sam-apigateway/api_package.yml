@@ -1,0 +1,24 @@
+Description: 'SAM Demo: Microservice API'
+Transform: AWS::Serverless-2016-10-31
+Parameters:
+  Version:
+    Type: String
+    Default: v1
+Resources:
+  OpenHelloWorldFunction:
+    Type: AWS::Serverless::Function
+    Properties:
+      CodeUri: s3://mw-800524020870-example/a4f32890c420810193d8e348ed20d5cd
+      Handler: index.lambdaHandler
+      Runtime: nodejs12.x
+      Events:
+        HelloWorldApi:
+          Type: Api
+          Properties:
+            Path: /hello
+            Method: get
+Outputs:
+  HelloWorldApi:
+    Description: API Gateway endpoint URL for Prod stage for Hello World function
+    Value:
+      Fn::Sub: https://${ServerlessRestApi}.execute-api.${AWS::Region}.amazonaws.com/Prod/hello
