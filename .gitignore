@@ -6,3 +6,7 @@ Lambda/CustumRuntime
 
 .DS_Store
 .DS_Store/
+
+CDK/lambdapipeline/cdk.out
+CDK/apacheserver/cdk.out
+CDK/account/cdk.out

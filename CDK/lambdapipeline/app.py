@@ -6,6 +6,6 @@ from serverless_pipeline.serverless_pipeline_stack import ServerlessPipelineStac
 
 
 app = core.App()
-ServerlessPipelineStack(app, "importCSVtoDynamDB")
+ServerlessPipelineStack(app, "import-codes")
 
 app.synth()

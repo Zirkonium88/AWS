@@ -9,31 +9,21 @@ from aws_cdk import aws_logs as _logs
 
 
 class ServerlessPipelineStack(core.Stack):
-
     def __init__(self, scope: core.Construct, id: str, **kwargs) -> None:
         super().__init__(scope, id, **kwargs)
 
         # The code that defines your stack goes here
-        
+
         ################################################################
         # Create a Bucket
         ################################################################
 
         bucket = _s3.Bucket(
             self,
-            id="Pipe_Bucket",
-            bucket_name="431892011317-pipe",
+            id="PipeBucket",
+            bucket_name="800524020870-pipe",
             encryption=_s3.BucketEncryption.S3_MANAGED,
             removal_policy=core.RemovalPolicy.DESTROY,
-        )
-
-        ################################################################
-        # Create a Dead Letter Queue for Lambda_Put_Data_from_File_into_DynamoDB
-        ################################################################
-
-        dlq = _sqs.Queue(
-            self,
-            id="DLQ_LoadData_Lambda"
         )
 
         ################################################################
@@ -42,39 +32,26 @@ class ServerlessPipelineStack(core.Stack):
 
         lambda_function = _lambda.Function(
             self,
-            id="Pipe_Lambda",
+            id="LoadCodes",
             code=_lambda.Code.asset("./src"),
-            handler="put_data_from_file_dynamo.load_data_from_csv_to_dynamodb",
+            handler="load_codes.load_codes",
             runtime=_lambda.Runtime.PYTHON_3_8,
-            dead_letter_queue=dlq,
-            dead_letter_queue_enabled=True,
             log_retention=_logs.RetentionDays.ONE_DAY,
             memory_size=128,
             timeout=core.Duration.seconds(30),
-            function_name="Lambda_Put_Data_from_File_into_DynamoDB",
+            function_name="LoadCodesLambda",
             retry_attempts=0,
-
         )
 
         ################################################################
         # Permissions for the Lambda fucntion: Lambda_Put_Data_from_File_into_DynamoDB
         ################################################################
 
-        #dlq.grant_send_messages(lambda_function)
-
         lambda_function.add_to_role_policy(
             _iam.PolicyStatement(
                 effect=_iam.Effect.ALLOW,
-                actions=[
-                    "s3:GetBucket*",
-                    "s3:GetObject*",
-                    "s3:List*",
-                    "s3:Head*"
-                ],
-                resources=[
-                    bucket.bucket_arn,
-                    bucket.bucket_arn+"/*"
-                ]
+                actions=["s3:GetBucket*", "s3:GetObject*", "s3:List*", "s3:Head*"],
+                resources=[bucket.bucket_arn, bucket.bucket_arn + "/*"],
             )
         )
 
@@ -85,10 +62,7 @@ class ServerlessPipelineStack(core.Stack):
         bucket.add_event_notification(
             _s3.EventType.OBJECT_CREATED,
             _s3_notification.LambdaDestination(lambda_function),
-            _s3.NotificationKeyFilter(
-                prefix="data",
-                suffix=".csv"
-            )
+            _s3.NotificationKeyFilter(prefix="data", suffix=".csv"),
         )
 
         ################################################################
@@ -97,30 +71,44 @@ class ServerlessPipelineStack(core.Stack):
 
         results_db = _dynamo.Table(
             self,
-            id="LoadData_Table",
-            table_name="LambdaPipeTable",
+            id="CodeTable",
+            table_name="CodeTable",
             partition_key=_dynamo.Attribute(
-                name="uuid",
-                type=_dynamo.AttributeType.STRING
+                name="training", type=_dynamo.AttributeType.STRING
             ),
-            sort_key=_dynamo.Attribute(
-                name="name",
-                type=_dynamo.AttributeType.STRING
-            ),
-            removal_policy=core.RemovalPolicy.DESTROY
+            sort_key=_dynamo.Attribute(name="id", type=_dynamo.AttributeType.STRING),
+            removal_policy=core.RemovalPolicy.DESTROY,
         )
 
         ################################################################
         # Add the DynamoDB table name as ENV_VAR to Lambda fucntion: Lambda_Put_Data_from_File_into_DynamoDB
         ################################################################
 
-        lambda_function.add_environment(
-            key="TABLE_NAME",
-            value=results_db.table_name
+        lambda_function.add_environment(key="TABLE_NAME", value=results_db.table_name)
+
+        lambda_function.add_to_role_policy(
+            _iam.PolicyStatement(
+                effect=_iam.Effect.ALLOW,
+                actions=["dynamodb:PutItem"],
+                resources=[results_db.table_arn],
+            )
         )
 
-        ################################################################
-        # Allow the Lambda fucntion: Lambda_Put_Data_from_File_into_DynamoDB to write data to DynamoDB table: LambdaPipeTable
-        ################################################################
+        api_user = _iam.User(self, id="ApiUser",)
 
-        results_db.grant_write_data(lambda_function)
+        api_user.attach_inline_policy(
+            policy=_iam.Policy(
+                self,
+                id="ApiUserPolicy",
+                policy_name="QueryCodeTable",
+                statements=[
+                    _iam.PolicyStatement(
+                        effect=_iam.Effect.ALLOW,
+                        actions=["dynamodb:Query"],
+                        resources=[results_db.table_arn],
+                    )
+                ],
+            )
+        )
+
+        core.CfnOutput(self, id="S3BucketLZ", value=bucket.bucket_name)
