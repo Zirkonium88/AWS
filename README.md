@@ -2,6 +2,10 @@
 
 This repository will provide some examples from my daily AWS workloads. It will probably grow day by day. So far, the most examples are written in Python. Therefore, feel free to participate!
 
+## SAM ClI
+
+* SAM is an interactive CLI to create Serverless Applications. You can find four simple exmaples [here](SAM/README.md):
+
 ## Big Data workloads
 
 * Lambda does not fit your workload? The [SQS example](SQS/README.MD) will show you how to unzip large gzip files via S3 events and EC2.
@@ -37,7 +41,7 @@ This repository will provide some examples from my daily AWS workloads. It will 
 * How to prevent unintentional deletion of buckets and their contents? This example shows it with [Lambda and the setting of Bucketpolicies](https://github.com/Zirkonium88/AWS/tree/master/Lambda/BucketPolicy/README.MD).
 * Do you want to automize your IAM processes? Have a look [here!](https://github.com/Zirkonium88/AWS/blob/master/Lambda/AddUser/README.MD)
 * Do you want to dump Data from from your DynamoDB as CSV? [Have a look!](https://github.com/Zirkonium88/AWS/blob/master/Lambda/ReadDynamo/README.MD)
-* Chunking a big CSV into smaller files? Without using pandas? [Click!](https://github.com/Zirkonium88/AWS/blob/master/Lambda/ChunkCSV/README.MD) 
+* Chunking a big CSV into smaller files? Without using pandas? [Click!](https://github.com/Zirkonium88/AWS/blob/master/Lambda/ChunkCSV/README.MD)
 
 ## Deploying my HUGO webpage
 
