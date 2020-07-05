@@ -1,0 +1,19 @@
+<style>
+	img.thumbnail {
+		width: 50px;
+		height: 50px;
+	}
+</style>
+
+
+<footer id="site-footer" class="section-inner thin animated fadeIn faster">
+	<p>&copy; {{ now.Format "2006" }} <a href="{{ .Site.BaseURL }}">{{ .Site.Author.name }}</a>{{ .Site.Params.footerCopyright | safeHTML }}</p>
+	<br>
+	<p>
+			<img src="/img/meinAvatar.png" class="thumbnail">
+	</p>
+	<br>
+	<p>
+		Made with <a href="https://gohugo.io/" target="_blank" rel="noopener">Hugo</a> &#183; Theme <a href="https://github.com/Track3/hermit" target="_blank" rel="noopener">Hermit</a>
+	</p>
+</footer>

@@ -31,7 +31,7 @@ ECR_REPO = "dockerstaticwebsite"
 VERSION = "2012-10-17"
 
 t = Template()
-t.add_version("2010-09-09")
+t.set_version(VERSION)
 
 ProjectName = t.add_parameter(Parameter(
     "AppName",
@@ -597,4 +597,3 @@ print(t.to_yaml())
 
 # Delete Stack
 # aws cloudformation delete-stack --stack-name my-new-stack
-+

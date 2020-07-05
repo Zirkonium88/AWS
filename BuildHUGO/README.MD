@@ -22,16 +22,6 @@ If you want to have your own URL, you need the folliwng services as well.
 
 Don't write things twice. I just followed this [tutorial](https://simpleit.rocks/golang/hugo/deploying-a-hugo-website-to-aws-the-right-way/). Two things I need to mention. First, do not skip the Lambda@Edge step. Otherweise, your webpage will not work! Second, set `draft: false` within your markdown header section. Otherwise the content will not be publsihed.
 
-```
-
----
-title: "EXAMPLE"
-date: 2019-04-28T21:48:38+02:00
-draft: false
----
-
-```
-
 ### Getting the CICD pipeline
 
 I just want to use `git add .`, `git commit -m 'Fancy new cotent` and `git push` for my deployment. For a more detailed tutorial, look up [here](https://digilution.io/posts/ci-cd-pipeline-for-hugo/). The build process of my HUGO webpage shall be done with a pipeline.
@@ -40,10 +30,9 @@ I just want to use `git add .`, `git commit -m 'Fancy new cotent` and `git push`
 * Next, we need a [Build Project](https://docs.aws.amazon.com/codebuild/latest/userguide/create-project.html).
 * Finally, we need a [CodePipeline](https://docs.aws.amazon.com/codepipeline/latest/userguide/pipelines-create.html).
 
-Two important things to mention. First, I used my own `buildspec.yml`. 
+Two important things to mention. First, I used my own `buildspec.yml`.
 
-````yml
-
+```yml
 version: 0.2
 
 env:
@@ -73,8 +62,8 @@ phases:
       - aws cloudfront create-invalidation --distribution-id ${CLOUDFRONT_ID_B} --paths "/*"
     finally:
       - echo "CloudFront invalidation successfull"
+```
 
-````
 Why? After deploying the HUGO webpage, you need to invalidated every object within your CloudFront distribution. Second, I want to use `www.exmaple.com` and `exmaple.com`. Thats why I need a second `aws sync`. Additionally, you need to edit the execution and it's policy with the permission for CloudFront and S3 for both buckets.
 
 ### Delivering the HUGO wegpage with our pipeline

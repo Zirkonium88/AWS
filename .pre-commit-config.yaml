@@ -1,0 +1,52 @@
+fail_fast: false
+repos:
+-   repo: https://github.com/ambv/black
+    rev: stable
+    hooks:
+    - id: black
+      name: Python Style Formatting
+      language_version: python3.7
+- repo: https://gitlab.com/pycqa/flake8
+  rev: 3.8.3
+  hooks:
+    - id: flake8
+      name: Python Style (PEP8) Convention Checking ...
+      files: Demos/.*\.(py)$
+      args: ["--ignore=E501,W503,D203,E231,W291"]
+    - id: flake8
+      name: Python Style (PEP8)  Convention Checking on Service Catalog Module
+      files: Demos/.*\.(py)$
+      args: ["--ignore=E501,W503,D203,E231,W291"]
+- repo: https://github.com/PyCQA/pydocstyle
+  rev: 5.0.2
+  hooks:
+    - id: pydocstyle
+      name: Checking Documentation Strings
+      files: Demos/.*\.(py)$
+      args: ["--ignore=D100,D213,D406,D407,D413,D203,D104"]
+- repo: https://github.com/pre-commit/pre-commit-hooks
+  rev: v2.3.0
+  hooks:
+    - id: end-of-file-fixer
+    - id: trailing-whitespace
+    - id: check-yaml
+      name: YAML Syntax Checking
+    - id: detect-aws-credentials
+      name: Checking for AWS Credentials
+    - id: detect-private-key
+      name: Checking for any other Private Keys
+- repo: https://github.com/awslabs/cfn-python-lint
+  rev: v0.33.1
+  hooks:
+  -  id: cfn-python-lint
+     name: AWS CloudFormation - Check Linting
+     files: Demos/.*\.(json|yml|yaml)$
+     args: ["-i W3005,W2001,E1029,E1029,W3005"] # For an unknown reason, the first element will be skipped
+- repo: local
+  hooks:
+  - id: dockerfile-provides-entrypoint
+    name: AWS CloudFormation - Security Best Practises Scanning
+    language: docker_image
+    entry: stelligent/cfn_nag:latest
+    files: Demos/.*\.(json|yml|yaml)$
+    args: ["--fail-on-warnings"]

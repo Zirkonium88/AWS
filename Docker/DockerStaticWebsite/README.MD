@@ -21,7 +21,7 @@ This demos shows how to build a [Docker container](https://www.docker.com/resour
 4. Test your container on localhost: 
 
     ```bash 
-    docker run -p 80:80 hello-world
+    docker run --rm -p 80:80 hello-world
     ```
 
 5. Stop your running container:
@@ -49,7 +49,11 @@ This demos shows how to build a [Docker container](https://www.docker.com/resour
 9. Get temporary credentials for your repository via the CLI:
 
     ```bash 
-    aws ecr get-login --no-include-email --region eu-west-1
+    aws ecr get-login-password --profile myaws\
+        --region eu-central-1\
+    | docker login \
+        --username AWS \
+        --password-stdin XXX.dkr.ecr.eu-central-1.amazonaws.com # XXX = your account-ID
     ``` 
 
     Copy the output to your clipboard.

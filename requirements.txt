@@ -1,0 +1,5 @@
+troposphere
+awacs
+pre-commit
+botocore
+boto3
