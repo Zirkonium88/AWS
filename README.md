@@ -4,7 +4,7 @@ This repository will provide some examples from my daily AWS workloads. It will 
 
 ## SAM ClI
 
-* SAM is an interactive CLI to create Serverless Applications. You can find four simple exmaples [here](SAM/README.md):
+* SAM is an interactive CLI to create Serverless Applications. You can find four simple exmaples [here](https://github.com/Zirkonium88/AWS/tree/master/SAM)
 
 ## Big Data workloads
 
