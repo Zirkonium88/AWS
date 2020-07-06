@@ -1,24 +1,25 @@
 import boto3
 
-BUCKET_NAME = 'www-stack-websitebucket75c24d94-fvr9vrhsz9wb'
+BUCKET_NAME = "www-stack-websitebucket75c24d94-fvr9vrhsz9wb"
 
 
 def clientS3GetOnjects():
     """Use HIGH level API to retrieve obejcts within a bucket"""
-    s3_client = boto3.client('s3')
+    s3_client = boto3.client("s3")
     bucket = s3_client.list_objects_v2(Bucket=BUCKET_NAME)
-    for content in bucket['Contents']:
-        print(content['Key'], content['LastModified'])
+    for content in bucket["Contents"]:
+        print(content["Key"], content["LastModified"])
     return
 
 
 def resourceS3GetObjects():
     """Use LOW level API to retrieve obejcts within a bucket"""
-    s3_resource = boto3.resource('s3')
+    s3_resource = boto3.resource("s3")
     bucket = s3_resource.Bucket(BUCKET_NAME)
     for object in bucket.objects.all():
         print(object.key, object.last_modified)
     return
+
 
 def create_presigned_url(bucket, object_key, expiration_time):
     """Generate a presigned URL to share a S3 object.
@@ -42,15 +43,14 @@ def create_presigned_url(bucket, object_key, expiration_time):
         raise e
     return presigned_url
 
+
 if __name__ == "__main__":
-    print("Used high level API")
-    clientS3GetOnjects()
-    print("Used low level APi")
-    resourceS3GetObjects()
+    # print("Used high level API")
+    # clientS3GetOnjects()
+    # print("Used low level APi")
+    # resourceS3GetObjects()
     print("Create a presigned URL for object")
     url = create_presigned_url(
-        bucket=BUCKET_NAME,
-        object_key="index.html",
-        expiration_time=3600
+        bucket=BUCKET_NAME, object_key="index.html", expiration_time=3600
     )
     print(url)
