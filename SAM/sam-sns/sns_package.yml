@@ -14,7 +14,7 @@ Resources:
   OpenHelloWorldFunction:
     Type: AWS::Serverless::Function
     Properties:
-      CodeUri: s3://mw-800524020870-example/f82b2565b52ce642f81013ba163abd05
+      CodeUri: s3://mw-800524020870-example/3bbd88d085cf03bb27259ce117c221bd
       Handler: index.lambdaHandler
       Runtime: nodejs12.x
       Events:

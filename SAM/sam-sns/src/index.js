@@ -31,11 +31,11 @@ exports.lambdaHandler = async (event, context) => {
           Subject: 'SNS Notification from Lambda',
           TopicArn: process.env.SNS_TOPIC_ARN
         };
+        console.log(params);
         await sns.publish(params).promise()
     } catch (err) {
         console.log(err);
         return err;
     }
-
     return response
 };

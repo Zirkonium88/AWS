@@ -24,10 +24,10 @@ exports.lambdaHandler = async (event, context) => {
                 // location: ret.data.trim()
             })
         }
+        console.log(response);
     } catch (err) {
         console.log(err);
         return err;
     }
-
     return response
 };

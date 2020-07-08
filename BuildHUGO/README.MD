@@ -1,13 +1,18 @@
 # Create and deploy a HUGO webpage in a CIDCD manner
 
- So far, I used pretty ugly tools to deploy my webpages. Now, a [HUGO](https://gohugo.io) webpage came up in a workshop. This is pretty straight forward. You can locally develop you webpage by using a lot of differents themes ([look up here](https://gohugo.io/getting-started/quick-start/)). Aftwards you can push the compiled result to somewhere. For my [web page](trctrainings.com), I'm using the the [Hermit theme](https://themes.gohugo.io/hermit/).
+So far, I used pretty ugly tools to deploy my webpages. Now, a [HUGO](https://gohugo.io) webpage came up in a workshop. This is pretty straight forward. You can locally develop you webpage by using a lot of differents themes ([look up here](https://gohugo.io/getting-started/quick-start/)). Aftwards you can push the compiled result to somewhere. For my [web page](trctrainings.com), I'm using the the [Hermit theme](https://themes.gohugo.io/hermit/).
+
+## Deployment Options
+
+* Use the `Python` library `troposphere` and this file `GoHugoCICD.py`(outdated).
+* Use the CDK app under `gohugo-stack` repository. To get more information, read this [blog post](https://aws-blog.de/2020/05/building-a-static-website-with-hugo-and-the-cdk.html) from my colleauge Maurice. I added the pretty URL functionality.
 
 ## Presequities
 
 I like automation. I just want to push a markdown-file to a repository. Fire and forget. To do this within AWS, you need the following services.
 
 * Amazon S3
-* Amazon CodeCommit 
+* Amazon CodeCommit
 * Amazon CodePipeline
 
 If you want to have your own URL, you need the folliwng services as well.
