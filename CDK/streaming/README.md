@@ -2,7 +2,7 @@
 
 **Disclaimer**: You are fully responsible for your account activities! This includes costs as well!
 
-## Architecture der Demo
+## Architecture
 
 The CDK app will build this architecture
 
